@@ -9,7 +9,7 @@
     <a href="#">레시피 랭킹</a>
     <a href="#">분류</a>
     <a href="#">밥친구</a>
-    <a href="#">상품 구매</a>
+    <a href="#">상품 구매하기</a>
   </div>
 </div>
 <span onclick="openNav()" class="nav-button">
