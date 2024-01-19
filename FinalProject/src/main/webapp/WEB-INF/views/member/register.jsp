@@ -9,8 +9,11 @@
 </head>
 	<%@ include file="../../views/common/header.jsp" %>
 
-<p>login</p>
-
+<p>register</p>
+<form>
+	<label for="email">이메일</label>
+	<input type="text" id="email" placeholder="이메일을 입력해주세요.">
+</form>
 
 </html>
 

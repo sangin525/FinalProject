@@ -3,26 +3,41 @@
 	pageEncoding="UTF-8"%>
 <html>
 <head>
-	 <link rel="stylesheet" href="/resources/css/common/header.css">
-	<title>Home</title>
+	 <%@ include file="../views/common/head.jsp" %>
 </head>
 <body>
-	<header>
-		<div id="common_header">
-			<nav>
-				<p>nav</p>
-			</nav>
-				<p>logo</p>
-			<div id="login_logout">
-				<p>로그인</p>
-				<p>회원가입</p>
-			</div>
+	<%@ include file="../views/common/header.jsp" %>
+	
+	
+	<div >
+		<div class="main_video">
+			Video output space
 		</div>
-	</header>
-<h1>
-	Hello world!  11 gdgdgddddgdgdgdrrr11!qqqqqq
-</h1>
+	</div>
 
-<P>  The time on the server is ${serverTime}. </P>
+	<div>
+		<p>best 레시피</p>
+		<div>
+		<p>내용</p>
+		</div>
+	</div>
+	<div>
+		<p>추천 레시피</p>
+		<div>
+		<p>내용</p>
+		</div>
+	</div>
+	<div>
+		<p>레시피 분류</p>
+		<div>
+		<p>내용</p>
+		</div>
+	</div>
+	<div>
+		<p>최근 본 레시피</p>
+		<div>
+		<p>내용</p>
+		</div>
+	</div>
 </body>
 </html>
