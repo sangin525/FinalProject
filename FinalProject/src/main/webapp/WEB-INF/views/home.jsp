@@ -6,6 +6,8 @@
 	 <%@ include file="../views/common/head.jsp" %>
 </head>
 <body>
+
+
 	<%@ include file="../views/common/header.jsp" %>
 	
 	
@@ -39,5 +41,6 @@
 		<p>내용</p>
 		</div>
 	</div>
+	<%@ include file="../views/common/footer.jsp" %>
 </body>
 </html>

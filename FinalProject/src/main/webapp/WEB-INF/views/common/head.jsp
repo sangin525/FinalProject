@@ -6,4 +6,5 @@
 <head>
 	 <link rel="stylesheet" href="/resources/css/common/main.css">
 	<title>Home</title>
+		   <script src="/resources/js/common/nav.js"></script>
 </head>
