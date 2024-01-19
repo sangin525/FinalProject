@@ -7,12 +7,6 @@
 </head>
 <body>
 
-<h1>
-	Hello world!  11 gdgdgddddgdgdgdrrr11!qqqqqq
-
-</h1>
-	
-
 	<%@ include file="../views/common/header.jsp" %>
 	
 	
@@ -47,5 +41,6 @@
 		<p>내용</p>
 		</div>
 	</div>
+	<%@ include file="../views/common/footer.jsp" %>
 </body>
 </html>
