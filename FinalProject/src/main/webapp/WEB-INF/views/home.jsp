@@ -10,12 +10,12 @@
 	<header>
 		<div id="common_header">
 			<nav>
-			<p>nav</p>
+				<p>nav</p>
 			</nav>
-			<p>logo</p>
+				<p>logo</p>
 			<div id="login_logout">
-			<p>로그인</p>
-			<p>회원가입</p>
+				<p>로그인</p>
+				<p>회원가입</p>
 			</div>
 		</div>
 	</header>
