@@ -1,0 +1,9 @@
+#common_header {
+	display: flex;
+	justify-content: space-between;
+}
+
+#login_logout {
+	display:flex;
+	padding-right: 10px;
+}
