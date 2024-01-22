@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="/resources/css/member/member.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
+
+<body>
 	<%@ include file="../../views/common/header.jsp" %>
 
 <div class="registerContainer">
@@ -87,5 +89,6 @@
 	</div>
 </div>
 
+</body>
 </html>
 

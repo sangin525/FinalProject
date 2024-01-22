@@ -6,7 +6,7 @@
 	<div id="myNav" class="overlay">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
   <div class="overlay-content">
-    <a href="#">레시피 랭킹</a>
+    <a href="ranking_recipe">레시피 랭킹</a>
     <a href="#">분류</a>
     <a href="#">밥친구</a>
     <a href="#">상품 구매하기</a>
