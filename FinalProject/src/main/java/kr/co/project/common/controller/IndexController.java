@@ -19,4 +19,9 @@ public class IndexController {
 	public String registerPage() {
 		return "member/register";
 	}
+	@RequestMapping("/member_addRecipe")
+	public String addRecipePage() {
+		return "member/addRecipe";
+	}
+	
 }

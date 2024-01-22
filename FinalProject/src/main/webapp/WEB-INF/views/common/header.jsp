@@ -8,6 +8,7 @@
 			<%@ include file="./nav.jsp" %>
 				<p>logo</p>
 			<div id="login_logout">
+			<a href="member_addRecipe">레시피 등록</a>
 				<a href="member_login">로그인</a>
 				<a href="member_register">회원가입</a>
 			</div>
