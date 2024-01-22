@@ -6,7 +6,7 @@
 
 		<div id="common_header">
 			<%@ include file="./nav.jsp" %>
-				<p>logo</p>
+				<a href="/">logo</a>
 			<div id="login_logout">
 			<a href="member_addRecipe">레시피 등록</a>
 				<a href="member_login">로그인</a>
