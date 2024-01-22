@@ -157,7 +157,7 @@
 		<div>
 			<br> <br>
 			<ul id="ingredientList">
-				<li ></li>
+				<li class=""></li>
 			</ul>
 
 		</div>
