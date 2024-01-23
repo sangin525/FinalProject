@@ -1,6 +1,9 @@
-function openNav() {
-  document.getElementById("myNav").style.height = "100%";
-}
-function closeNav() {
-  document.getElementById("myNav").style.height = "0%";
+
+function toggleNav() {
+  var myNav = document.getElementById("myNav");
+  if (myNav.style.height === "30%") {
+    myNav.style.height = "0%";
+  } else {
+    myNav.style.height = "30%";
+  }
 }
