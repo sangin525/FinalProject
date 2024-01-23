@@ -38,7 +38,11 @@ public class IndexController {
 	@RequestMapping("/member_addRecipe")
 	public String addRecipePage() {
 		return "member/addRecipe";
-
+	}
+	
+	@RequestMapping("/recipe_category")
+	public String categoryPage() {
+		return "category/category";
 	}
 	
 }

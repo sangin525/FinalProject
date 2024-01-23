@@ -1,0 +1,46 @@
+.categoryType {
+	text-align: center;
+    vertical-align: top;
+    border-right: 1px solid #e6e7e8;
+    padding-top: 16px;
+}
+
+.categoryContain{
+	background: #fff;
+    padding: 16px 15px 8px 12px;
+    vertical-align: top;
+    margin-top: 0;
+    border-right: none;
+    border-left: none;
+    border-top: none;
+}
+
+[class^="categoryList"] {
+    font-size: 15px;
+    padding: 8px 0;
+    line-height: 1;
+    height: 41px;
+}
+
+.categoryContain a {
+	padding: 3px 8px 4px;
+    color: #666;
+    vertical-align: middle;
+    font-size: 15px;
+    line-height: 1;
+    font-weight: 300;
+    cursor: pointer;
+}
+
+.categoryType span {
+	color: #74b243;
+    display: block;
+    font-weight: 500;
+    margin: 0 5px 0 0;
+    text-align: center;
+    padding-top: 6px;
+    font-size: 15px;
+    height: 41px;
+    width: 100%;
+    padding-top: 12px;
+}
