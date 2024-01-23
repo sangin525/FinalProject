@@ -1,4 +1,14 @@
+.rankingContainer{
+	width: 90%;
+	margin-left: 5%;
+}
 
+.rankingContain {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+}
 
 .RankingList{
 	float:left;
@@ -40,11 +50,22 @@ a.active {
 
 /* 레시피 랭킹 리스트 */
 
+.recipeList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px;
+    margin-left: 20px;
+}
+
 .recipeRanking{
 	width: 282px;
 	list-style: none;
 	margin: 0 12px 40px 0;
-	position: realtive;
+	position: relative; /* 오타 수정: realtive -> relative */
+	flex: 0 0 24%; /* 100%를 4로 나눈 값 */
+    max-width: 24%; /* 100%를 4로 나눈 값 */
+    box-sizing: border-box;
 }
 
 .rank-image{
@@ -71,7 +92,57 @@ a.active {
 
 .rankingNum {
 	position: absolute;
-    left: -4px;
-    top: -4px;
+    top: 5px; /* 위치 조정 */
+    left: 10px; /* 위치 조정 */
+    border: 1px solid;
     z-index: 100;
+    width: 20px;
+    height: 20px;
+    text-align: center;
+}
+/* 검색어 랭킹 */
+
+.searchWordRanking{
+	border-bottom: 1px solid black;
+	list-style: none;
+	padding: 24px 6px;
+	width: 300px;
+    display: inline-block;
+    margin-right: 60px;
+}
+
+.searchWordRank{
+	display: flex;
+	justify-content: flex-start;
+    align-items: center;
+}
+.searchWordNum{
+	width: 20px;
+	height: 20px;
+	border: 1px solid black;
+	text-align: center;
+	margin-right: 20px;
+}
+
+.chefRanking{
+	display: flex;
+    list-style: none;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    margin-bottom: 30px;
+    margin-top: 30px;
+}
+
+.chef-image{
+	width: 110px;
+	height: 110px;
+	border-radius: 50%;
+}
+
+.chefNum {
+	position: absolute;
+    top: -20px; /* 위치 조정 */
+    /* 원하는 스타일링 속성 추가 */
 }

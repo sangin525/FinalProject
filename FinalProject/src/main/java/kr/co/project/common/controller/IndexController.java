@@ -24,4 +24,15 @@ public class IndexController {
 	public String recipePage() {
 		return "ranking/recipe";
 	}
+	
+	@RequestMapping("/searchWordRank")
+	public String searchWordRankPage() {
+		return "ranking/searchWord";
+	}
+	
+	@RequestMapping("/chefRank")
+	public String chefRankPage() {
+		return "ranking/chef";
+	}
+	
 }
