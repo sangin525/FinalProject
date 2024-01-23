@@ -6,6 +6,8 @@
 <html>
 <head>
 	<%@ include file="../../views/common/head.jsp" %>
+	<link rel="stylesheet" href="/resources/css/member/member.css">
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 	<%@ include file="../../views/common/header.jsp" %>
 
@@ -13,37 +15,65 @@
 	<div class="registerContain">
 		<h2 class="register_h2">회원가입</h2>
 		<form action="/member/register.do" method="post" class="needs-validation" novalidate="">
+			<div class = "postCodeFind">
 			<div class="memberInputbox">
-				<input type="text" id="email" name="email" onkeyup="checkEmail()" placeholder="이메일을 입력해주세요.">
+				<input type="email" id="email" name="email" onkeyup="" autocomplete="off">
 				<label for="email" class="register_label">이메일</label>
+				<span id="emailMsg"></span>
+			</div>				
+				<button class="registerFormBtn" onclick="checkEmail()" type="button">중복확인</button>		
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="password" name="pwd" onkeyup="validatePassword()" placeholder="이메일을 입력해주세요.">
+				<input type="password" id="password" name="pwd" onkeyup="validatePassword()" autocomplete="off">
 				<label for="password" class="register_label">비밀번호</label>
+				<span id="passwordHelpInline" class="form-text"> 비밀번호는
+				8~20자 길이로 문자와 숫자와 특수문자[@$!%*?&\#]를 포함해야 하며 공백, 이모티콘을 포함할 수 없습니다. </span><br>
+				<span id="PwdMsg"></span>
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="email" name="name" placeholder="이메일을 입력해주세요.">
+				<input type="password" id="passwordCheck" onkeyup="validatePassword()" autocomplete="off" onchange="pwdCheck">
+				<label for="passwordCheck" class="register_label">비밀번호확인</label>
+				<span id="PwdcheckMsg"></span>			
+			</div>
+			<div id="check" class="invalid-feedback mb-1 m-1" >
+                        PASSWORD 가 동일하지 않습니다
+            </div>
+			<div class="memberInputbox">
+				<input type="text" id="name" name="name" autocomplete="off">
 				<label for="name" class="register_label">이름</label>
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="nickName" name="nickname" placeholder="이메일을 입력해주세요.">
+				<input type="text" id="nickname" name="nickname" autocomplete="off">
 				<label for="nickName" class="register_label">닉네임</label>
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="phone" name="phone" placeholder="이메일을 입력해주세요.">
+				<input type="text" id="phone" name="phone" autocomplete="off">
 				<label for="phone" class="register_label">전화번호</label>
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="birth" name="age" placeholder="이메일을 입력해주세요.">
-				<label for="birth" class="register_label">생년월일</label>
+				<input type="text" id="age" name="age" autocomplete="off">
+				<label for="birth" class="register_label">나이</label>
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="gender" name="gender" placeholder="이메일을 입력해주세요.">
+				<input type="text" id="gender" name="gender" autocomplete="off">
 				<label for="gender" class="register_label">성별</label>
 			</div>
+			<div class = "postCodeFind">
+					<input type="text" id="postcode"  autocomplete="off">
+					<label for="postcode" class="register_label">우편번호</label>
+				<button type="button" onclick="execDaumPostcode()" class="registerFormBtn">우편번호 찾기</button>
+			</div>
 			<div class="memberInputbox">
-				<input type="text" id="addr" name="address" placeholder="이메일을 입력해주세요.">
-				<label for="addr" class="register_label">주소</label>
+				<input type="text" id="address" name="address" autocomplete="off">
+				<label for="address" class="register_label">주소</label>
+			</div>
+			<div class="memberInputbox">
+				<input type="text" id="detailAddress" autocomplete="off">
+				<label for="detailAddress" class="register_label">상세주소</label>
+			</div>
+			<div class="memberInputbox" id="exAddr">
+				<input type="text" id="extraAddress" autocomplete="off">
+				<label for="extraAddress" class="register_label">참고항목</label>
 			</div>
 			<br>
 			<div class="btn_group">
@@ -54,6 +84,7 @@
 </div>
 
 </html>
+
 
 <script>
 let pwdFlag = false;
@@ -73,11 +104,11 @@ function flagCheck() {
 // 비밀번호 유효성 검사
 function validatePassword() {
 	const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[@$!%*?&\#])[A-Za-z\d@$!%*?&\#]{6,20}$/;
-	const password = document.getElementById("password").value;
-	const msg = document.getElementById("pwdMsg");
+	const password = document.getElementById("password").value;	
+	const msg = document.getElementById("PwdMsg");
 	
-	const passwordChk = document.getElementById("passwordChk").value;
-	//const pwdChkMsg = document.getElementById("pwdChkMsg");
+	const passwordChk = document.getElementById("passwordCheck").value;
+	const pwdChkMsg = document.getElementById("PwdcheckMsg");
 	
 	if(passwordRegex.test(password)) {
 		msg.innerHTML = "사용 가능한 비밀번호입니다.";
@@ -124,6 +155,21 @@ function checkEmail() {
 	
 	flagCheck();
 }
+// 비밀번호 일치
+function pwdCheck() {
+    let password = document.getElementById("password").value;
+    let passwordCheck = document.getElementById("passwordCheck").vaule;
+ 
+    if (password!==passwordCheck) {
+        $("#check").show();
+    } else{
+        $("#check").hide();
+    }
+}
+    $(document).ready(function() {
+    $("#check").hide();
+});
+
 
 
 </script>

@@ -38,6 +38,9 @@ public class MemberController {
 			session.setAttribute("memberIdx", loginUser.getNo());
 			session.setAttribute("memberName", loginUser.getName());
 			
+			session.setAttribute("msg", "로그인 성공");
+			
+			
 			System.out.println("로그인 성공 완료");
 			return "home";
 		}else {
@@ -72,8 +75,10 @@ public class MemberController {
 		
 		if(result == 1) {
 			System.out.println(member.getAge());
+			System.out.println("회원가입 성공");
 			return "member/login";			
 		}else {
+			System.out.println("회원가입 실패");
 			return "common/error";
 		}
 		

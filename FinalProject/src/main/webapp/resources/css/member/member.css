@@ -1,0 +1,145 @@
+/* 회원가입 폼 css */
+.registerContainer {
+	display: flex;
+	align-content: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+	padding-top: 50px;
+}
+
+.registerContain {
+	width: 450px;
+	border: 1px solid #aaa;
+	border-radius: .5em;
+	box-shadow: 0 1px 0 1px rgba(0, 0, 0, .04);
+}
+
+.register_h2 {
+	text-align: center;
+}
+
+.registerForm {
+	display: flex;
+	align-content: center;
+	flex-wrap: wrap;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: center;
+}
+
+.memberInputbox {
+	position: relative;
+	margin: 10px 0;
+	width: 400px;
+}
+
+.memberInputbox>input {
+	background: transparent;
+	border: none;
+	border-bottom: solid 1px #ccc;
+	padding: 20px 0px 5px 0px;
+	font-size: 14pt;
+	width: 100%;
+}
+
+input::placeholder {
+	color: transparent;
+}
+
+input:not(:placeholder-shown) + label,
+input:focus + label {
+    top: 0px;
+    font-size: 10pt;
+    color: #8aa1a1;
+}
+
+input + label {
+    position: absolute;
+    top: 15px; /* 라벨의 기본 위치를 조정합니다. */
+    left: 0;
+    transition: all 0.2s ease;
+    color: #aaa; /* 라벨의 기본 색상 */
+    pointer-events: none; /* 라벨을 클릭해도 입력란에 포커스가 가도록 */
+    font-size: 10pt;
+    color: #8aa1a1;
+}
+
+input + label.active {
+    top: 0px;
+    font-size: 10pt;
+    color: #8aa1a1;
+    transition: all 0.2s ease;
+}
+
+input:focus + label {
+    color: #8aa1a1;
+    font-size: 10pt;
+    pointer-events: none;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transition: all 0.2s ease;
+}
+
+input:focus {
+    outline: none; /* 테두리 제거 */
+    border-bottom: solid 1px #8aa1a1; /* 필요하다면 색상을 바꿀 수 있습니다. */
+}
+
+input:not(:placeholder-shown) + label {
+    top: 0px;
+    font-size: 10pt;
+    color: #8aa1a1;
+    outline: none;
+}
+
+.btn_group{
+	display: flex;
+	justify-content: center;
+}
+
+.registerBtn {
+   width: 150px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid rgb(224, 162, 86);
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(224, 162, 86);
+    padding: 5px;
+    cursor: pointer;
+     margin-bottom:20px;
+}
+
+.registerBtn:hover{
+    color: white;
+    background-color: rgb(224, 162, 86);
+}
+
+.postCodeFind {
+	display: flex;
+}
+
+.registerFormBtn {
+	margin-top: 25px;
+	width: 100px;
+	height: 30px;
+	border-radius: 5px;
+    border: 1px solid rgb(224, 162, 86);
+    background-color: rgba(0, 0, 0, 0);
+    color: rgb(224, 162, 86);
+    cursor: pointer;
+}
+
+.postCodeFind .memberInputbox {
+	width: 300px;
+}
+
+#exAddr {
+	width: 100px;
+}
+
+#passwordHelpInline{
+	font-size: 10px;
+}
