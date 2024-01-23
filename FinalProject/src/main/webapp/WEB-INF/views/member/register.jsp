@@ -5,6 +5,7 @@
 
 <html>
 <head>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
 	<%@ include file="../../views/common/head.jsp" %>
 	<link rel="stylesheet" href="/resources/css/member/member.css">
 	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -31,13 +32,10 @@
 				<span id="PwdMsg"></span>
 			</div>
 			<div class="memberInputbox">
-				<input type="password" id="passwordCheck" onkeyup="validatePassword()" autocomplete="off" onchange="pwdCheck">
+				<input type="password" id="passwordCheck" onkeyup="validatePassword()" autocomplete="off" onchange="pwdCheck()">
 				<label for="passwordCheck" class="register_label">비밀번호확인</label>
-				<span id="PwdcheckMsg"></span>			
+				<span id="pwdcheckMsg"></span>			
 			</div>
-			<div id="check" class="invalid-feedback mb-1 m-1" >
-                        PASSWORD 가 동일하지 않습니다
-            </div>
 			<div class="memberInputbox">
 				<input type="text" id="name" name="name" autocomplete="off">
 				<label for="name" class="register_label">이름</label>
@@ -68,8 +66,8 @@
 				<label for="address" class="register_label">주소</label>
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="detailAddress" autocomplete="off">
-				<label for="detailAddress" class="register_label">상세주소</label>
+				<input type="text" id="detailAddress" name="detailAddress" autocomplete="off">
+				<label for="detailAddress" name="address" class="register_label">상세주소</label>
 			</div>
 			<div class="memberInputbox" id="exAddr">
 				<input type="text" id="extraAddress" autocomplete="off">
@@ -108,7 +106,7 @@ function validatePassword() {
 	const msg = document.getElementById("PwdMsg");
 	
 	const passwordChk = document.getElementById("passwordCheck").value;
-	const pwdChkMsg = document.getElementById("PwdcheckMsg");
+	const pwdChkMsg = document.getElementById("pwdcheckMsg");
 	
 	if(passwordRegex.test(password)) {
 		msg.innerHTML = "사용 가능한 비밀번호입니다.";
@@ -118,6 +116,15 @@ function validatePassword() {
 		msg.innerHTML = "패스워드 정책에 맞지 않습니다.";
 		msg.style.color = "red";
 		pwdFlag = false;
+	}
+	if(password === passwordChk) {
+		pwdChkMsg.innerHTML = "패스워드가 동일합니다.";
+		pwdChkMsg.style.color = "green";
+		pwdCheckFlag = true;
+	} else {
+		pwdChkMsg.innerHTML = "패스워드가 동일하지 않습니다.";
+		pwdChkMsg.style.color = "red";
+		pwdCheckFlag = false;
 	}
 		
 	flagCheck();
@@ -155,20 +162,7 @@ function checkEmail() {
 	
 	flagCheck();
 }
-// 비밀번호 일치
-function pwdCheck() {
-    let password = document.getElementById("password").value;
-    let passwordCheck = document.getElementById("passwordCheck").vaule;
- 
-    if (password!==passwordCheck) {
-        $("#check").show();
-    } else{
-        $("#check").hide();
-    }
-}
-    $(document).ready(function() {
-    $("#check").hide();
-});
+
 
 
 

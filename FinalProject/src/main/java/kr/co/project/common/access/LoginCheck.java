@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 public class LoginCheck {
 
 	public static boolean loginCheck(HttpSession session) {
-		Integer memberIdx = (Integer) session.getAttribute("memberIdx");
+		Integer memberIdx = (Integer) session.getAttribute("no");
 		
 		if(memberIdx == null) {
 			return false;

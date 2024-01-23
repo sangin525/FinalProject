@@ -11,6 +11,7 @@
 		<result column = "M_AGE" property="age"></result>
 		<result column = "M_GENDER" property="gender"></result>
 		<result column = "M_ADDRESS" property="address"></result>
+		<result column = "M_DETAIL_ADDRESS" property="detailAddress"></result>		
 		<result column = "M_REMOVE_DATE" property="removeDate"></result>
 		<result column = "M_IN_DATE" property="indate"></result>
 		<result column = "M_TYPE" property="type"></result>
@@ -33,6 +34,7 @@
 								#{age},
 								#{gender},
 								#{address},
+								#{detailAddress},
 								null,
 								SYSDATE,
 								1,

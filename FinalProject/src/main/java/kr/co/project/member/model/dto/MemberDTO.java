@@ -18,6 +18,7 @@ public class MemberDTO {
 	private int age = 0;
 	private String gender;
 	private String address;
+	private String detailAddress;
 	private Date removeDate;
 	private Date indate;
 	private int type = 0;
