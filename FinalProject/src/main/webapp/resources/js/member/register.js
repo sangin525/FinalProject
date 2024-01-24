@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
     var inputs = document.querySelectorAll('.memberInputbox input');
-    
+
     // 페이지 로딩 시 모든 입력란 검사
     inputs.forEach(function(input) {
         handleLabelPosition(input);
-        
+
         // 각 입력란에 이벤트 리스너 추가
         input.addEventListener('input', function() { handleLabelPosition(input); });
         input.addEventListener('focus', function() { handleLabelPosition(input); });
@@ -59,11 +59,10 @@ function execDaumPostcode() {
             var postcodeInput = document.getElementById('postcode');
             var addressInput = document.getElementById("address");
             var extraAddressInput = document.getElementById("extraAddress");
-
-            // 우편번호와 주소 정보를 해당 필드에 넣는다.
-            postcodeInput.value = data.zonecode;
+           
+			postcodeInput.value = data.zonecode;
             addressInput.value = addr;
-            extraAddressInput.value = extraAddr;
+            extraAddressInput.value = extraAddr ? extraAddr : ''; // extraAddr이 비어있지 않으면 값을 설정, 그렇지 않으면 빈 문자열
 
             // 각 입력란에 대해 'input' 이벤트를 강제로 발생시킨다.
             triggerInputEvent(postcodeInput);
@@ -97,7 +96,7 @@ function moveLabelAbove(input) {
        const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[@$!%*?&\#])[A-Za-z\d@$!%*?&\#]{8,20}$/;
        const password = document.getElementById("password").value;
        const msg = document.getElementById("PwdMsg");
-       
+
        if(password == "") {
            msg.innerHTML = "비밀번호를 입력하세요.";
            msg.style.color = "red";

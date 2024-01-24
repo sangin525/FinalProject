@@ -6,8 +6,10 @@
 <html>
 <head>
 <%@ include file="../../views/common/head.jsp"%>
-</head>
 <link rel="stylesheet" href="/resources/css/member/member.css">
+</head>
+
+<body>
 <%@ include file="../../views/common/header.jsp"%>
 
 <div class="registerContainer">
@@ -32,14 +34,6 @@
 	</div>
 </div>
 
+</body>
 </html>
 
-
-
-
-
-
-
-
-
-</html>
