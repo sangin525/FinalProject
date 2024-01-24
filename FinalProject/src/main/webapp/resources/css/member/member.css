@@ -20,7 +20,7 @@
 	text-align: center;
 }
 
-.registerForm {
+#registerForm {
 	display: flex;
 	align-content: center;
 	flex-wrap: wrap;
