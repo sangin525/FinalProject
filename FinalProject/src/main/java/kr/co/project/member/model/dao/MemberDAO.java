@@ -28,5 +28,10 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.findMember",idx);
 	}
 
+	public int checkNickName(SqlSessionTemplate sqlSession, String nickname) {
+		
+		return sqlSession.selectOne("memberMapper.checkNickName",nickname);
+	}
+
 	
 }
