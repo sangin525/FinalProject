@@ -7,7 +7,6 @@
 </head>
 <body>
 
-
 	<%@ include file="../views/common/header.jsp" %>
 	
 	
@@ -16,6 +15,7 @@
 			Video output space
 		</div>
 	</div>
+
 
 	<div>
 		<p>best 레시피</p>
