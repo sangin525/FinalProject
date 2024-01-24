@@ -66,6 +66,18 @@ public class MemberController {
 		}
 	}
 	
+	@PostMapping("/checkNickName.do")
+	@ResponseBody 
+	public String checkNickName(String nickname) {
+		int result = memberService.checkNickName(nickname);
+		
+		if(result == 1) {
+			return "duplication";
+		}else {
+			return "available";
+		}
+	}
+	
 	@PostMapping("/register.do")
 	public String register(MemberDTO member) {
 		String password = bcryptPasswordEncoder.encode(member.getPwd());

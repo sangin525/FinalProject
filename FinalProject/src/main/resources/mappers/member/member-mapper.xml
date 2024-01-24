@@ -46,6 +46,11 @@
 	WHERE m_email = #{email}
 </select>
 
+<select id="checkNickName" resultType="_int">
+	SELECT COUNT(*) FROM member
+	WHERE m_nickname = #{nickname}
+</select>
+
 <select id="findMember" resultMap="memberResultSet">
 	SELECT * FROM member
 	WHERE m_no = #{no}
