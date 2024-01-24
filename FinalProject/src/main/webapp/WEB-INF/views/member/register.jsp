@@ -33,9 +33,9 @@
 				<span id="PwdMsg"></span>
 			</div>
 			<div class="memberInputbox">
-				<input type="password" id="passwordCheck" name="pwd" onkeyup="validatePassword()" autocomplete="off">
+				<input type="password" id="passwordCheck" name="pwd2" onkeyup="validatePassword()" autocomplete="off">
 				<label for="passwordCheck" class="register_label">비밀번호확인</label>
-				<span id="PwdcheckMsg"></span>
+				<span id="pwdcheckMsg"></span>
 
 			</div>
 			
