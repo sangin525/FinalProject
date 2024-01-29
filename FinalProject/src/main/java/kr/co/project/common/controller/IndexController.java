@@ -45,4 +45,8 @@ public class IndexController {
 		return "category/category";
 	}
 	
+	@RequestMapping("/member_chefmake")
+	public String chefmake() {
+		return "member/chefmake";
+	}
 }

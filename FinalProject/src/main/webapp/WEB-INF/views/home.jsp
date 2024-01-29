@@ -15,9 +15,12 @@
 			Video output space
 		</div>
 	</div>
-
-
+<button class="btn" onclick="window.location.href='/recipe/addRecipeForm.do'" type="button" >글쓰기</button>
 	<div>
+		
+	</div>
+	<div>
+		${m_no}
 		<p>best 레시피</p>
 		<div>
 		<p>내용</p>

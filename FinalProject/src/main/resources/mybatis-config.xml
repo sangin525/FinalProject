@@ -9,6 +9,9 @@
 	<typeAliases>
 		
 		<typeAlias type="kr.co.project.member.model.dto.MemberDTO" alias="member"/>
+		<typeAlias type="kr.co.project.chef.model.dto.ChefDTO" alias="chef"/>
+		<typeAlias type="kr.co.project.recipe.model.dto.RecipeDTO" alias="recipe"/>
+		
 		<!-- 		 
 		 <typeAlias type="kr.co.green.board.model.dto.FreeDTO" alias="free"/>
 		<typeAlias type="kr.co.green.board.model.dto.InfoDTO" alias="info"/>
@@ -19,6 +22,8 @@
 	
 	<mappers>
 		<mapper resource="/mappers/member/member-mapper.xml"/>
+		<mapper resource="/mappers/chef/chef-mapper.xml"/>	
+		<mapper resource="/mappers/recipe/recipe-mapper.xml"/>	
 		
 	</mappers>
 </configuration>
