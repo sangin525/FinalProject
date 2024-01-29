@@ -30,31 +30,30 @@ body {
 
 /* nav 바 시작 */
 .overlay {
-  height: 0;
-  width: 100%;
   position: fixed;
-  z-index: 1;
   top: 50px;
   left: 0;
-  background-color: #111;
+  height: 0;
+  width: 100%;
+  background-color: rgba(17, 17, 17, 0.7);
   overflow-x: hidden;
-  transition: 0.5s;
-  opacity: 0.7;
+  z-index: 1;
+  transition: opacity 0.5s, height 0.5s;
 }
 .overlay-content {
   position: relative;
-  top: 25%;
+  top: 0%;
   width: 100%;
   text-align: center;
   margin-top: 30px;
 }
 .overlay a {
+  display: block;
   padding: 8px;
-  text-decoration: none;
   font-size: 36px;
   color: #818181;
-  display: block;
-  transition: 0.3s;
+  text-decoration: none;
+  transition: color 0.3s; /* 명확한 속성 지정 */
 }
 .overlay a:hover, .overlay a:focus {
   color: #f1f1f1;
@@ -160,14 +159,43 @@ body {
     flex-direction: column;  /* 요소들을 세로로 나열 */
 }
 
-.recentlyList{
-	display: flex;
- 	width: 100%; 
+.recentlyList {
+  display: flex;
+  width: 100%; 
+  padding: 20px;  /* 추가된 부분 */
+  overflow: hidden;
+  justify-content: space-between;
 }
 
 .recently-li {
-  margin: 20px;   /* 각 레시피 항목의 너비를 전체의 20%(=100%/5)로 설정 */
   list-style: none;
+  flex: 0 0 calc(20% - 40px);  /* 변경된 부분 */
+  margin: 0;  /* 변경된 부분 */
+}
+
+/* 미디어 쿼리도 비슷하게 수정해야 합니다. */
+@media (max-width: 1024px) {
+  .recently-li {
+    flex: 0 0 calc(25% - 40px);  
+  }
+}
+
+@media (max-width: 800px) {
+  .recently-li {
+    flex: 0 0 calc(33.33% - 40px);  
+  }
+}
+
+@media (max-width: 600px) {
+  .recently-li {
+    flex: 0 0 calc(50% - 40px);  
+  }
+}
+
+@media (max-width: 480px) {
+  .recently-li {
+    flex: 0 0 calc(100% - 40px);  
+  }
 }
 
 .recommendedRecipe-li {
