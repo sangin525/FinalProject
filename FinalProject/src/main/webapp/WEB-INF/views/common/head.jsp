@@ -7,5 +7,6 @@
 	 <link rel="stylesheet" href="/resources/css/common/main.css">
 	<title>Home</title>
 		   <script src="/resources/js/common/nav.js"></script>
+		   <script src="/resources/js/common/main.js"></script>
 		   <script src="/resources/js/member/register.js"></script>
 </head>
