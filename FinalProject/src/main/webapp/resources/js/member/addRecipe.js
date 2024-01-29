@@ -72,7 +72,9 @@ function addStep() {
 
 	var stepPhoto = document.createElement("div");
 	stepPhoto.id = "divStepPhoto";
-	
+	var input = document.createElement("input");
+	input.type = "file";
+	input.id = "recipeSeqeuncePhoto";
 	var img = document.createElement("img");	
 	img.id = "stepPhoto";
 	img.src = "/resources/uploads/사진추가.gif";
