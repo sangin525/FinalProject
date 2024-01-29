@@ -49,4 +49,9 @@ public class IndexController {
 	public String chefmake() {
 		return "member/chefmake";
 	}
+	
+	@RequestMapping("/foodStore")
+	public String foodStorePage() {
+		return "foodStore/foodStore";
+	}
 }

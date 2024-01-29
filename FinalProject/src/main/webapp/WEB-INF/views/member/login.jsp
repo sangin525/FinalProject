@@ -21,7 +21,7 @@
 				<label for="email" class="register_label">이메일</label>
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="pwd" name="pwd" placeholder="이메일을 입력해주세요.">
+				<input type="password" id="pwd" name="pwd" placeholder="이메일을 입력해주세요.">
 				<label for="password" class="register_label">비밀번호</label>
 			</div>
 		<br>
