@@ -22,10 +22,15 @@
 		</div>
 	</div>
 
+<button class="btn" onclick="window.location.href='/recipe/addRecipeForm.do'" type="button" >글쓰기</button>
+
+
+
 <%@ include file="../views/common/main/bestRecipe.jsp" %>
 <%@ include file="../views/common/main/recommendedRecipe.jsp" %>
 <%@ include file="../views/common/main/mainCategory.jsp" %>
 <%@ include file="../views/common/recentlyRecipe.jsp" %>
+
 
 	<%@ include file="../views/common/footer.jsp" %>
 	

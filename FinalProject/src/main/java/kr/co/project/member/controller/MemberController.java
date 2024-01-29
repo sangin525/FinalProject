@@ -36,15 +36,22 @@ public class MemberController {
 		MemberDTO loginUser = memberService.loginMember(member);
 		
 		if(!Objects.isNull(loginUser) && bcryptPasswordEncoder.matches(member.getPwd(),loginUser.getPwd())) {
-			session.setAttribute("memberIdx", loginUser.getNo());
+			
+			session.setAttribute("mno", loginUser.getMno());
+			session.setAttribute("memberName", loginUser.getName());
+			session.setAttribute("memberNickName", loginUser.getNickname());
 			session.setAttribute("memberName", loginUser.getName());
 			
+			model.addAttribute("m_no",loginUser.getMno());
 			session.setAttribute("msg", "로그인 성공");
-			
-			
+			session.setAttribute("status", "success");
+			System.out.println(session.getAttribute("mno"));
 			System.out.println("로그인 성공 완료");
 			return "home";
 		}else {
+			
+			model.addAttribute("msg","아이디 또는 비밀번호를 확인해주세요");
+			model.addAttribute("status","error");
 			System.out.println("로그인 실패");
 			return "member/login";
 		}	
@@ -53,6 +60,11 @@ public class MemberController {
 	@GetMapping("/registerForm.do")
 	public String registerForm() {
 		return "member/register";
+	}
+	
+	@GetMapping("/login.do")
+	public String loginForm() {
+		return "member/login";
 	}
 
 	@PostMapping("/checkEmail.do")

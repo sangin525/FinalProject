@@ -10,27 +10,27 @@ public class IndexController {
 		return "home";
 	}
 	
-	@RequestMapping("/member_login")
-	public String loginPage() {
-		return "member/login";
-	}
+//	@RequestMapping("/member_login")
+//	public String loginPage() {
+//		return "member/login";
+//	}
 	
-	@RequestMapping("/member_register")
-	public String registerPage() {
-		return "member/register";
-	}
+//	@RequestMapping("/member_register")
+//	public String registerPage() {
+//		return "member/register";
+//	}
 
-	@RequestMapping("/ranking_recipe")
+	@RequestMapping("ranking_recipe")
 	public String recipePage() {
 		return "ranking/recipe";
 	}
 	
-	@RequestMapping("/searchWordRank")
+	@RequestMapping("searchWordRank")
 	public String searchWordRankPage() {
 		return "ranking/searchWord";
 	}
 	
-	@RequestMapping("/chefRank")
+	@RequestMapping("chefRank")
 	public String chefRankPage() {
 		return "ranking/chef";
 	}
@@ -40,9 +40,13 @@ public class IndexController {
 		return "member/addRecipe";
 	}
 	
-	@RequestMapping("/recipe_category")
-	public String categoryPage() {
-		return "category/category";
-	}
+//	@RequestMapping("recipe_category")
+//	public String categoryPage() {
+//		return "category/category";
+//	}
 	
+	@RequestMapping("/member_chefmake")
+	public String chefmake() {
+		return "member/chefmake";
+	}
 }
