@@ -152,15 +152,119 @@
 
 	<div class="addRecipeContainer">
 
-		<h2 class="addRecipe">레시피 등록</h2>
+		<h2 class="addRecipe">재료 등록</h2>
 		<span class="guide">재료가 남거나 부족하지 않도록 정확한 계량정보를 적어주세요.</span>
 		<div>
-			<br> <br>
+			<br>
 			<ul id="ingredientList">
-				<li class=""></li>
+
+				<li class="ingredient"><input type="text" class="form-control"
+					placeholder="예) 돼지고기"> <input type="text"
+					class="form-control" placeholder="예) 500g"></li>
+				<li class="ingredient"><input type="text" class="form-control"
+					placeholder="예) 김치"> <input type="text"
+					class="form-control" placeholder="예) 300g"></li>
+				<li class="ingredient"><input type="text" class="form-control"
+					placeholder="예) 돼지고기"> <input type="text"
+					class="form-control" placeholder="예) 500g"></li>
 			</ul>
+			<button id="addIngredientBtn">재료 추가</button>
+			<button id="deleteIngredientBtn">재료 삭제</button>
 
 		</div>
 	</div>
+
+	<div class="cookingOrderContainer">
+		<h2 class="addRecipe">요리 순서</h2>
+		<span class="guide">요리의 맛이 좌우될 수 있는 중요한 부분은 빠짐없이 적어주세요. <br>&nbsp;&nbsp;&nbsp;예)
+			10분간 익혀주세요 ▷ 10분간 약한불로 익혀주세요. <br>&nbsp;&nbsp;&nbsp;마늘편은 익혀주세요 ▷
+			마늘편을 충분히 익혀주셔야 매운 맛이 사라집니다. <br>&nbsp;&nbsp;&nbsp;꿀을 조금 넣어주세요 ▷
+			꿀이 없는 경우, 설탕 1스푼으로 대체 가능합니다.
+		</span>
+		<div id="cookingStep" class="cookingStep">
+			<div id="amountStep_1" class="step">
+				<p id="stepNum_1" class="stepTitle">Step1</p>
+				<div id="stepText_1">
+					<textarea name="step_text" id="step_text" class="step-control"
+						placeholder="예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요."></textarea>
+				</div>
+
+				<div id="divStepPhoto">
+					<img id="stepPhoto" onclick="StepFile"
+						src="/resources/uploads/사진추가.gif">
+				</div>
+				<div id="stepButton">
+					<button id="addStepBtn" class="addStepBtn">순서 추가</button>
+					<button id="deleteStepBtn" class="deleteStepBtn">순서 삭제</button>
+				</div>
+			</div>
+		</div>
+		<div class="finalCookPic">
+			<p class="finalCook">요리 완성 사진</p>
+			<div class="finalPhoto">
+				<img id="finalPhoto" onclick="finalFile"
+					src="/resources/uploads/사진추가.gif">
+			</div>
+			<div class="finalPhoto">
+				<img id="finalPhoto" onclick="finalFile"
+					src="/resources/uploads/사진추가.gif">
+			</div>
+			<div class="finalPhoto">
+				<img id="finalPhoto" onclick="finalFile"
+					src="/resources/uploads/사진추가.gif">
+			</div>
+		</div>
+	</div>
+
+
+	<div class="tagCookContainer">
+		<h2 class="tipCook">요리팁</h2>
+		<textarea name="step_text" id="step_text" class="tip-control"
+			placeholder="예) 고기요리에는 소금보다 설탕을 먼저 넣어애 단맛이 겉돌지 않고 육질이 부드러워요."></textarea>
+	</div>
+
+	<div class="tipCookContainer">
+		<h2 class="tagCook">태그</h2>
+		<textarea name="step_text" id="step_text" class="tag-control"
+			placeholder="주재료, 목적, 효능, 대상 등을 태그로 남겨주세요. 예) 돼지고기, 다이어트, 비만, 칼슘, 감기예방, 이유식, 초간단"></textarea>
+	</div>
+
+	<div class="recipeBtnContainer">
+		<button id="enrollBtn" class="enrollBtn">레시피 등록</button>
+		<button id="cancelBtn" class="cancelBtn">레시피 취소</button>
+	</div>
+
+
+
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
+	<br>
 </body>
+<script src="/resources/js/member/addRecipe.js"></script>
 </html>

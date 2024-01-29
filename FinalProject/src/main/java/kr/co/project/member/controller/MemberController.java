@@ -34,6 +34,7 @@ public class MemberController {
 	@PostMapping("/login.do")
 	public String loginIndex(MemberDTO member,HttpSession session, Model model) {
 		MemberDTO loginUser = memberService.loginMember(member);
+		
 		if(!Objects.isNull(loginUser) && bcryptPasswordEncoder.matches(member.getPwd(),loginUser.getPwd())) {
 			session.setAttribute("memberIdx", loginUser.getNo());
 			session.setAttribute("memberName", loginUser.getName());
@@ -66,8 +67,21 @@ public class MemberController {
 		}
 	}
 	
+	@PostMapping("/checkNickName.do")
+	@ResponseBody 
+	public String checkNickName(String nickname) {
+		int result = memberService.checkNickName(nickname);
+		
+		if(result == 1) {
+			return "duplication";
+		}else {
+			return "available";
+		}
+	}
+	
 	@PostMapping("/register.do")
 	public String register(MemberDTO member) {
+		System.out.println(member.getPwd());
 		String password = bcryptPasswordEncoder.encode(member.getPwd());
 		member.setPwd(password);
 		
