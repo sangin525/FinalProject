@@ -39,7 +39,8 @@ public class RecipeDTO {
 	private int rino;
 	private String ingredient;
 	private String ingredientWeight;
-	private String rsSequence;
+	private int rsno;
+	private String rsSequence;	
 	private String filePath;
 	private String fileName;
 	private String fileOrigin;

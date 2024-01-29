@@ -186,12 +186,13 @@
 				</div>
 
 				<div id="divStepPhoto">
+					<input type="file" name="upload2">
 					<img id="stepPhoto" onclick="StepFile"
 						src="/resources/uploads/사진추가.gif">
 				</div>
 				<div id="stepButton">
-					<button id="addStepBtn" class="addStepBtn">순서 추가</button>
-					<button id="deleteStepBtn" class="deleteStepBtn">순서 삭제</button>
+					<button type="" id="addStepBtn" class="addStepBtn">순서 추가</button>
+					<button type="button" id="deleteStepBtn" class="deleteStepBtn">순서 삭제</button>
 				</div>
 			</div>
 		</div>

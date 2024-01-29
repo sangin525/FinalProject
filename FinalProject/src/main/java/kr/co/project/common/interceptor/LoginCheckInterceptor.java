@@ -18,13 +18,13 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 		
 		String requestURL = request.getRequestURL().toString();
 //		if(requestURL.equals("http://192.168.56.10/")) {
-		if(mno == null) {
+		if(requestURL.equals("http://localhost/")) {
+			return true;
+		} else if(mno == null) {
 			response.sendRedirect("/member/redirect.do");
 //			false : 컨트롤러 호출X
 			return false;
-		} else if(requestURL.equals("http://localhost/")) {
-			return true;
-		}
+		}  
 //		true : 컨트롤러 호출
 		return true;
 	}

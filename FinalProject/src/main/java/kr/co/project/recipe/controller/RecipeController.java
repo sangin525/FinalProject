@@ -67,7 +67,7 @@ public class RecipeController {
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
-			System.out.println("접근성공");
+		System.out.println("접근성공");
 			return "category/category";
 		
 //		}else{
@@ -113,6 +113,8 @@ public class RecipeController {
 //			model.addAttribute("rno",recipe.getRno());
 //			model.addAttribute("rno",recipe.getRno());
 			int rno = recipe.getRno();
+			model.addAttribute("rno",rno);
+			System.out.println(recipe);
 			System.out.println("게시글 작성됨");
 			return "home";
 		}else {
