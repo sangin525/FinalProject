@@ -114,7 +114,6 @@ public class RecipeController {
 //			model.addAttribute("rno",recipe.getRno());
 			int rno = recipe.getRno();
 			model.addAttribute("rno",rno);
-			System.out.println(recipe);
 			System.out.println("게시글 작성됨");
 			return "home";
 		}else {

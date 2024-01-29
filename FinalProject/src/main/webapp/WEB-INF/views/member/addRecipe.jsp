@@ -20,12 +20,12 @@
 
 				<div class="cont_box">
 					<div id="recipePhotoUpload" class="cont_pic2">
-						<input type="file" name="upload" id="recipe_photo" value="">
+						<input type="file" class="realUpload" name="upload" id="recipe_photo" value="" required multiple style="display: none;">
 						<input type="hidden" name="new_recipe_photo" id="new_recipe_photo" value=""> 
 						<input type="hidden" name="del_recipe_photo" id="del_recipe_photo" value="">
 
 						<div id="recipePhoto">
-							<img class="recipeImg" onclick="browseMainFile()"
+							<img class="recipeImg" id="mainFile" onclick="browseMainFile()"
 								src="/resources/uploads/레시피등록대표사진.gif">
 						</div>
 					</div>
@@ -186,12 +186,12 @@
 				</div>
 
 				<div id="divStepPhoto">
-					<input type="file" name="upload2">
+					<input type="file" id="recipeSequencePhoto" name="upload2">
 					<img id="stepPhoto" onclick="StepFile"
 						src="/resources/uploads/사진추가.gif">
 				</div>
 				<div id="stepButton">
-					<button type="" id="addStepBtn" class="addStepBtn">순서 추가</button>
+					<button type="button" id="addStepBtn" class="addStepBtn">순서 추가</button>
 					<button type="button" id="deleteStepBtn" class="deleteStepBtn">순서 삭제</button>
 				</div>
 			</div>
@@ -266,5 +266,56 @@
 	<br>
 	<br>
 </body>
-<script src="/resources/js/member/addRecipe.js"></script>
+<script src="/resources/js/member/addRecipe.js">
+
+</script>
+<script>
+document.getElementById('recipe_photo').onchange = function (evt) {
+    var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+    
+    // FileReader support
+    if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById('mainFile').src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+    }
+    
+    // Not supported
+    else {
+        // fallback -- perhaps submit the input to an iframe and temporarily store
+        // them on the server until the user's session ends.
+    }
+}
+
+</script>
+<script>
+document.getElementById('recipeSequencePhoto').onchange = function (evt) {
+    var tgt = evt.target || window.event.srcElement,
+        files = tgt.files;
+    
+    // FileReader support
+    if (FileReader && files && files.length) {
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById('stepPhoto').src = fr.result;
+        }
+        fr.readAsDataURL(files[0]);
+    }
+    
+    // Not supported
+    else {
+        // fallback -- perhaps submit the input to an iframe and temporarily store
+        // them on the server until the user's session ends.
+    }
+}
+</script>
+<script>
+	const realUpload = document.querySelector('.realUpload');
+	const upload = document.querySelector('.recipeImg');
+	
+	 upload.addEventListener('click', () => realUpload.click());
+</script>
 </html>

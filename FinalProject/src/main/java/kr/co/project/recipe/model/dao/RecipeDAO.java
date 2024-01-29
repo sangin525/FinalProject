@@ -30,7 +30,7 @@ public class RecipeDAO {
 		int addResult2 = sqlSession.insert("recipeIngredientMapper.addRecipe",recipe);
 		int addResult3 = sqlSession.insert("recipeSequenceMapper.addRecipe",recipe);
 		if(addResult1==1 && addResult2 ==1 && addResult3 ==1) {
-			System.out.println(recipe);
+
 			return 1;
 			
 		}else {

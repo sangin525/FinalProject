@@ -35,15 +35,8 @@ public class RecipeServiceImpl implements RecipeService{
 
 	@Override
 	public int addRecipe(RecipeDTO recipe) {
-		
-		int addResult1 = recipeDao.addRecipe(sqlSession,recipe);
-		int addResult2 = recipeDao.addRecipe(sqlSession, recipe);
-		int addResult3 = recipeDao.addRecipe(sqlSession, recipe);
-		if(addResult1 == 1 && addResult2 == 1 && addResult3 ==1) {
-			return 1;
-		} else {
-			return 0;
-		}
+
+		return recipeDao.addRecipe(sqlSession,recipe);
 	}
 
 }

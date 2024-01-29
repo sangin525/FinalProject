@@ -7,7 +7,8 @@ document.getElementById("addIngredientBtn").addEventListener("click", function()
 
 
 	var ingredientInput = document.createElement("input");
-	ingredientInput.type = "text";
+	ingredientInput.type = "text"
+	ingredientInput.name = "ingredient"
 	ingredientInput.className = "form-control";
 	ingredientInput.placeholder = "예) 돼지고기";
 
@@ -15,6 +16,7 @@ document.getElementById("addIngredientBtn").addEventListener("click", function()
 	var amountInput = document.createElement("input");
 	amountInput.type = "text";
 	amountInput.className = "form-control";
+	amountInput.name = "ingredientWeight"
 	amountInput.placeholder = "예) 500g";
 
 
@@ -61,7 +63,7 @@ function addStep() {
 	var stepText = document.createElement("div");
 	stepText.id = "stepText_" + stepCount;
 	var stepTextarea = document.createElement("textarea");
-	stepTextarea.name = "step_text";
+	stepTextarea.name = "rsSequence";
 	stepTextarea.id = "step_text_" + stepCount;
 	stepTextarea.className = "step-control";
 	stepTextarea.placeholder = "예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요.";
@@ -70,7 +72,8 @@ function addStep() {
 
 	var stepPhoto = document.createElement("div");
 	stepPhoto.id = "divStepPhoto";
-	var img = document.createElement("img");
+	input.type = "file";
+	var img = document.createElement("img");	
 	img.id = "stepPhoto";
 	img.src = "/resources/uploads/사진추가.gif";
 	img.onclick = function() { StepFile(); };

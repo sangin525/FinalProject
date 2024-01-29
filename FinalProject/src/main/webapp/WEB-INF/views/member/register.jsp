@@ -61,8 +61,13 @@
 					for="birth" class="register_label">나이</label>
 			</div>
 			<div class="memberInputbox">
-				<input type="text" id="gender" name="gender" autocomplete="off"> <label
-					for="gender" class="register_label">성별</label>
+				<span>성별</span>
+				<select name="gender">
+				<option value="성별">성별</option>
+				<option value="남자">남자</option>
+				<option value="여자">여자</option>
+				</select>
+				
 			</div>
 			<div class = "postCodeFind">
 				<div class="memberInputbox">
