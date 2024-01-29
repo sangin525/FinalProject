@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipeMapper">
+	<resultMap type="recipe" id="recipeResultSet">
+		<result column="R_NO" property="rno"></result>
+		<result column="R_WRITER" property="memberNickName"></result>
+		<result column="R_TITLE" property="title"></result>
+		<result column="R_INTRODUCTION" property="introduction"></result>
+		<result column="R_FOOD_CATEGORY" property="foodCategory"></result>
+		<result column="R_SITUATION_CATEGORY" property="situationCategory"></result>
+		<result column="R_HOW_CATEGORY" property="howCategory"></result>
+		<result column="R_INGREDIENT_CATEGORY" property="ingredientCategory"></result>
+		<result column="R_PERSON" property="person"></result>
+		<result column="R_TIME" property="time"></result>
+		<result column="R_DIFFICULTY" property="difficulty"></result>
+		<result column="R_TIP" property="tip"></result>
+		<result column="R_TAG" property="tag"></result>
+		<result column="R_VIEWS" property="views"></result>
+		<result column="R_IN_DATE" property="indate"></result>
+		<result column="R_UPDATE_DATE" property="updateDate"></result>
+		<result column="R_SAVE_COUNT" property="saveCount"></result>
+		<result column="M_NO" property="mno"></result>			
+	</resultMap>
+	
+	<select id="selectListCount" resultType="_int">
+	SELECT COUNT(*) FROM RECIPE
+	</select>
+	
+	<select id="selectListAll" resultMap="recipeResultSet">
+	SELECT * FROM RECIPE
+	</select>
+
+
+	<insert id="addRecipe">
+	INSERT INTO RECIPE VALUES(recipe_seq.NEXTVAL,
+								#{memberNickName},
+								#{title},
+								#{introduction},
+								#{foodCategory},
+								#{situationCategory},
+								#{howCategory},
+								#{ingredientCategory},
+								#{person},
+								#{time},
+								#{difficulty},
+								#{tip},
+								#{tag},
+								0,
+								SYSDATE,
+								null,
+								0,
+								#{uploadPath},
+								#{uploadName},
+								#{uploadOriginName},								
+								#{mno})
+	</insert>
+
+</mapper>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace = "memberMapper">
 	<resultMap type ="member" id="memberResultSet">
-		<result column = "M_NO" property="no"></result>
+		<result column = "M_NO" property="mno"></result>
 		<result column = "M_EMAIL" property="email"></result>
 		<result column = "M_PWD" property="pwd"></result>
 		<result column = "M_NAME" property="name"></result>
@@ -14,9 +14,14 @@
 		<result column = "M_DETAIL_ADDRESS" property="detailAddress"></result>		
 		<result column = "M_REMOVE_DATE" property="removeDate"></result>
 		<result column = "M_IN_DATE" property="indate"></result>
-		<result column = "M_TYPE" property="type"></result>
+		<result column = "M_TYPE" property="type"></result>		
+		<result column = "M_RECIPE_COUNT" property="recipeCount"></result>
+		<result column = "M_SUBSCRIBER" property="subscriber"></result>
 		<result column = "M_PURCHASE_AMOUNT" property="purchaseAmount"></result>
 	</resultMap>
+
+	
+
 
 <select id="loginMember" resultMap="memberResultSet">
 	SELECT * FROM member
@@ -38,12 +43,22 @@
 								null,
 								SYSDATE,
 								1,
+								null,
+								null,
+								null,
+								null,
+								null,
 								null)
 </insert>
 
 <select id="checkEmail" resultType="_int">
 	SELECT COUNT(*) FROM member
 	WHERE m_email = #{email}
+</select>
+
+<select id="checkNickName" resultType="_int">
+	SELECT COUNT(*) FROM member
+	WHERE m_nickname = #{nickname}
 </select>
 
 <select id="findMember" resultMap="memberResultSet">

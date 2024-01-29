@@ -10,5 +10,7 @@ public interface MemberService {
 	
 	public int checkEmail(String email);
 	
+	public int checkNickName(String nickname);
+	
 	public MemberDTO findMember(int idx);
 }

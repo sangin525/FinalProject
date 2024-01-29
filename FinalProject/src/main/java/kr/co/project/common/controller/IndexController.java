@@ -53,4 +53,8 @@ public class IndexController {
 		return "notice/notice_Board";
 	}
 	
+	@RequestMapping("/member_chefmake")
+	public String chefmake() {
+		return "member/chefmake";
+	}
 }
