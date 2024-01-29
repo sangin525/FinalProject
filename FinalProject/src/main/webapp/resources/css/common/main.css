@@ -159,14 +159,43 @@ body {
     flex-direction: column;  /* 요소들을 세로로 나열 */
 }
 
-.recentlyList{
-	display: flex;
- 	width: 100%; 
+.recentlyList {
+  display: flex;
+  width: 100%; 
+  padding: 20px;  /* 추가된 부분 */
+  overflow: hidden;
+  justify-content: space-between;
 }
 
 .recently-li {
-  margin: 20px;   /* 각 레시피 항목의 너비를 전체의 20%(=100%/5)로 설정 */
   list-style: none;
+  flex: 0 0 calc(20% - 40px);  /* 변경된 부분 */
+  margin: 0;  /* 변경된 부분 */
+}
+
+/* 미디어 쿼리도 비슷하게 수정해야 합니다. */
+@media (max-width: 1024px) {
+  .recently-li {
+    flex: 0 0 calc(25% - 40px);  
+  }
+}
+
+@media (max-width: 800px) {
+  .recently-li {
+    flex: 0 0 calc(33.33% - 40px);  
+  }
+}
+
+@media (max-width: 600px) {
+  .recently-li {
+    flex: 0 0 calc(50% - 40px);  
+  }
+}
+
+@media (max-width: 480px) {
+  .recently-li {
+    flex: 0 0 calc(100% - 40px);  
+  }
 }
 
 .recommendedRecipe-li {
