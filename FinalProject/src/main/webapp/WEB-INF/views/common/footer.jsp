@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 
 <footer>
-	<div>
+	<div style="width: 100%; height: 200px; background-color: pink">
 		<p>푸터</p>
 	</div>
 					
