@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 public class MemberDTO {
 
-	private int no = 0;
+	private int mno = 0;
 	private String email;
 	private String pwd;
 	private String name;
@@ -22,7 +22,12 @@ public class MemberDTO {
 	private Date removeDate;
 	private Date indate;
 	private int type = 0;
+	private int recipeCount =0;
+	private int subscriber =0;
 	private int purchaseAmount = 0;
+	private String uploadPath;
+	private String uploadName;
+	private String uploadOrigin;
 	
 	public MemberDTO() {
 		super();

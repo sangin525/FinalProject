@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "chefMapper">
+	<resultMap type = "chef" id="chefResultSet">
+	<result column = "C_NO" property="cno"></result>
+	<result column = "C_RECIPE_COUNT" property="recipeCount"></result>
+	<result column = "C_SUBSCRIBER" property="subscriber"></result>
+	<result column = "M_NO" property="mno"></result>
+	</resultMap>
+	
+	
+	
+	<insert id="registerChef">
+	INSERT INTO chef VALUES(chef_seq.NEXTVAL,
+								0,
+								0,
+								#{mno},
+								null,
+								null,
+								null
+								)
+	</insert>	
+
+
+</mapper>

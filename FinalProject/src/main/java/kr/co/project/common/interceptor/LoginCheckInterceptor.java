@@ -2,6 +2,7 @@ package kr.co.project.common.interceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.lang.Nullable;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -12,18 +13,18 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		/*
-		 * HttpSession session = request.getSession(); Integer memberIdx = (Integer)
-		 * session.getAttribute("memberIdx");
-		 * 
-		 * String requestURL = request.getRequestURL().toString();
-		 * if(requestURL.equals("http://192.168.56.10/")) { //
-		 * if(requestURL.equals("http://localhost/")) { return true; }
-		 * 
-		 * if(memberIdx == null) { response.sendRedirect("/member/redirect.do"); //
-		 * false : 컨트롤러 호출X return false; }
-		 */
+		HttpSession session = request.getSession();
+		Integer mno = (Integer) session.getAttribute("mno");
 		
+		String requestURL = request.getRequestURL().toString();
+//		if(requestURL.equals("http://192.168.56.10/")) {
+		if(mno == null) {
+			response.sendRedirect("/member/redirect.do");
+//			false : 컨트롤러 호출X
+			return false;
+		} else if(requestURL.equals("http://localhost/")) {
+			return true;
+		}
 //		true : 컨트롤러 호출
 		return true;
 	}
