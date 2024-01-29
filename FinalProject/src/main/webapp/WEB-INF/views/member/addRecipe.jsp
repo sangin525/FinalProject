@@ -6,7 +6,7 @@
 <html>
 <head>
 <%@ include file="../../views/common/head.jsp"%>
-<link rel="stylesheet" href="/resources/css/addRecipe.css">
+<link rel="stylesheet" href="/resources/css/recipeAdd/addRecipe.css">
 </head>
 <body class="recipeBody">
 

@@ -20,7 +20,7 @@
 		<li class="recipeRanking">
 			<p class="rankingNum"><b>1</b></p>
 			<div>
-				<a>
+				<a href="after_addRecipe">
 					<img src="/resources/uploads/고양이그림.png" class="rank-image">
 				</a>
 			</div>
