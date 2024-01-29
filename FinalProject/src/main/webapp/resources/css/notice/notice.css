@@ -1,0 +1,41 @@
+.navbar {
+	background-color: #f8f9fa;
+	margin-bottom: 20px;
+	padding: 10px 0;
+	text-align: center;
+}
+
+.navbar a {
+	margin: 0 15px;
+	color: #333;
+	text-decoration: none;
+}
+
+.board {
+	width: 80%;
+	margin: 0 auto;
+}
+
+.post {
+	border-bottom: 1px solid #ddd;
+	padding: 10px 0;
+}
+
+.post:last-child {
+	border-bottom: none;
+}
+/* 공지사항 */
+.boardSection {
+	/* common 내용 */
+	max-width: 1300px;
+	min-height:900px;
+	margin: 20px auto;
+	padding: 20px;
+	/* 추가 내용 */
+	height: 60%;
+	/* 정렬 */
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top:50px;
+}
