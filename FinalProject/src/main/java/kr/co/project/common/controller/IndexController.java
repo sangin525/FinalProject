@@ -44,5 +44,13 @@ public class IndexController {
 	public String categoryPage() {
 		return "category/category";
 	}
+	@RequestMapping("/after_addRecipe")
+	public String afterAddRecipe() {
+		return "member/afterAddRecipe";
+	}
+	@RequestMapping("/notice_Board")
+	public String noticePage() {
+		return "notice/notice_Board";
+	}
 	
 }
