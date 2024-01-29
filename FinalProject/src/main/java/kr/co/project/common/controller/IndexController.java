@@ -40,11 +40,15 @@ public class IndexController {
 		return "member/addRecipe";
 	}
 	
-//	@RequestMapping("recipe_category")
-//	public String categoryPage() {
-//		return "category/category";
-//	}
-	
+	@RequestMapping("/after_addRecipe")
+	public String afterAddRecipe() {
+		return "member/afterAddRecipe";
+	}
+	@RequestMapping("/notice_Board")
+	public String noticePage() {
+		return "notice/notice_Board";
+	}
+
 	@RequestMapping("/member_chefmake")
 	public String chefmake() {
 		return "member/chefmake";
