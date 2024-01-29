@@ -42,5 +42,6 @@ public class RecipeDTO {
 	private String rsSequence;
 	private String filePath;
 	private String fileName;
+	private String fileOrigin;
 	
 }
