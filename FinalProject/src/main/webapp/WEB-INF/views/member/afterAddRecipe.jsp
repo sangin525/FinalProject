@@ -239,7 +239,8 @@
 						<textarea id="comment" name="comment" placeholder="코멘트 및 후기를 써주세요!"></textarea>
 					</div>
 					<div>
-						<button class="comment_submit">댓글 작성</button>
+						<button class="comment_submit">댓글작성</button>
+						
 					</div>
 				</form>
 			</div>
