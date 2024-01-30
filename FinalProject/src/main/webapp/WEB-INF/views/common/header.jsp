@@ -8,7 +8,7 @@
 		<%@ include file="./nav.jsp"%>
 		<a href="/">logo</a>
 		<div id="login_logout">
-			<a href="member_addRecipe">레시피 등록</a>
+			<a href="/recipe/addRecipeForm.do">레시피 등록</a>
 			<c:choose>
 				<c:when test="${sessionScope.memberName != null}">
 					<a href="/MyPageForm.do" class="Main_a">마이페이지</a>

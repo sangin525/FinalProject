@@ -26,8 +26,17 @@ public class RecipeDAO {
 	}
 
 	public int addRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
-		
-		return sqlSession.insert("recipeMapper.addRecipe",recipe);
+		int addResult1 = sqlSession.insert("recipeMapper.addRecipe",recipe);
+		int addResult2 = sqlSession.insert("recipeIngredientMapper.addRecipe",recipe);
+		int addResult3 = sqlSession.insert("recipeSequenceMapper.addRecipe",recipe);
+		if(addResult1==1 && addResult2 ==1 && addResult3 ==1) {
+
+			return 1;
+			
+		}else {
+			return 0;
+		}
+//		return sqlSession.insert("recipeMapper.addRecipe",recipe);
 	}
 
 }
