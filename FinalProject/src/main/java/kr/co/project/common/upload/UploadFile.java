@@ -71,11 +71,17 @@ private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\Fi
 			
 			try {
 				upload.transferTo(filePath);
+				member.setUploadPath(UPLOAD_PATH + boardName);
+				member.setUploadName(filePathName);
+				member.setUploadOrigin(originName);
 				
 				recipe.setUploadPath(UPLOAD_PATH + boardName); // 업로드 경로
 				recipe.setUploadName(fileName); // 수정된 파일명
 				recipe.setUploadOriginName(originName); // 원본 파일명
 				
+				recipe.setFilePath(UPLOAD_PATH + boardName);;
+				recipe.setFileName(fileName);
+				recipe.setFileOrigin(originName);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
