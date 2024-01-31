@@ -61,6 +61,11 @@ public class MemberController {
 	public String registerForm() {
 		return "member/register";
 	}
+	
+	@GetMapping("/login.do")
+	public String loginForm() {
+		return "member/login";
+	}
 
 	@PostMapping("/checkEmail.do")
 	@ResponseBody

@@ -35,7 +35,7 @@ public class RecipeServiceImpl implements RecipeService{
 
 	@Override
 	public int addRecipe(RecipeDTO recipe) {
-		
+
 		return recipeDao.addRecipe(sqlSession,recipe);
 	}
 

@@ -108,14 +108,18 @@ public class RecipeController {
 //			model.addAttribute("rno",recipe.getRno());
 //			model.addAttribute("rno",recipe.getRno());
 //			model.addAttribute("rno",recipe.getRno());
+
 				int rno = recipe.getRno();
+				model.addAttribute("rno", rno);
 				System.out.println("게시글 작성됨");
 				return "home";
 			} else {
 				System.out.println("게시글 작성 실패");
 				return "common/error";
 			}
-		} else if (!titleLengthCheck) {
+		} else if (!titleLengthCheck)
+
+		{
 			return sessionMessage.setSessionMessage("제목이 너무 깁니다.", "error", "home", session);
 
 		} else if (!titleEmptyCheck) {

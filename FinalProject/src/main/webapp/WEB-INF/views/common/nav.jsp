@@ -4,10 +4,10 @@
 
 <div id="myNav" class="overlay">
   <div class="overlay-content">
-    <a href="ranking_recipe">레시피 랭킹</a>
+    <a href="/ranking_recipe">레시피 랭킹</a>
     <a href="/recipe/categoryList.do">분류</a>
-    <a href="#">밥친구</a>
-    <a href="#">상품 구매하기</a>
+    <a href="/foodFriend">밥친구</a>
+    <a href="/foodStore">상품 구매하기</a>
     <a href="notice_Board">게시판</a>
   </div>
 </div>

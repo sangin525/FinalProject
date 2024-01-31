@@ -43,6 +43,14 @@
 	font-size: 14pt;
 	width: 100%;
 }
+.memberInputbox>select {
+	background: transparent;
+	border: none;
+	border-bottom: solid 1px #ccc;
+	padding: 20px 0px 5px 0px;
+	font-size: 14pt;
+	width: 100%;
+}
 
 input::placeholder {
 	color: transparent;
@@ -74,6 +82,16 @@ input + label.active {
 }
 
 input:focus + label {
+    color: #8aa1a1;
+    font-size: 10pt;
+    pointer-events: none;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    transition: all 0.2s ease;
+}
+
+select + span {
     color: #8aa1a1;
     font-size: 10pt;
     pointer-events: none;

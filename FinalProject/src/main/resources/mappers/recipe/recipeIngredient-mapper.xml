@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipeIngredientMapper">
+	<resultMap type="recipe" id="recipeIngredientResultSet">
+		<result column="RI_NO" property="rino"></result>
+		<result column="R_NO" property ="rno"></result>
+		<result column="RI_INGREDIENT" property="ingredient"></result>
+		<result column="RI_INGREDIENT_WEIGHT" property="ingredientWeight"></result>
+	</resultMap>
+
+	<insert id="addRecipe">
+		INSERT INTO RECIPEINGREDIENT VALUES(recipeIngredient_seq.NEXTVAL,
+											#{rno},
+											#{ingredient},
+											#{ingredientWeight}
+											 )															
+	</insert>
+
+
+
+</mapper>
