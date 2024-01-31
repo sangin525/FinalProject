@@ -32,7 +32,7 @@
 	</select>
 
 
-	<insert id="addRecipe">
+	<insert id="addRecipe" useGeneratedKeys="true" keyColumn="R_NO" keyProperty="rno">
 	INSERT INTO RECIPE VALUES(recipe_seq.NEXTVAL,
 								#{memberNickName},
 								#{title},

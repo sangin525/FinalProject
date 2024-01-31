@@ -1,6 +1,7 @@
 package kr.co.project.common.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -62,5 +63,23 @@ public class IndexController {
 	@RequestMapping("/productDetail")
 	public String productDetailPage() {
 		return "foodStore/productDetail";
+	}
+	
+	@RequestMapping("/foodFriend")
+	public String friendPage() {
+		return "foodFriend/foodFriendList";
+	}
+	
+	@GetMapping("foodFriendEnroll")
+	public String enrollForm() {
+		return "foodFriend/foodFriendEnroll";
+	}
+	@GetMapping("foodFriendDetail")
+	public String detailForm() {
+		return "foodFriend/foodFriendDetail";
+	}
+	@GetMapping("foodFriendEdit")
+	public String editForm() {
+		return "foodFriend/foodFriendEdit";
 	}
 }
