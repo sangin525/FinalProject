@@ -196,21 +196,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="finalCookPic">
-			<p class="finalCook">요리 완성 사진</p>
-			<div class="finalPhoto">
-				<img id="finalPhoto" onclick="finalFile"
-					src="/resources/uploads/사진추가.gif">
-			</div>
-			<div class="finalPhoto">
-				<img id="finalPhoto" onclick="finalFile"
-					src="/resources/uploads/사진추가.gif">
-			</div>
-			<div class="finalPhoto">
-				<img id="finalPhoto" onclick="finalFile"
-					src="/resources/uploads/사진추가.gif">
-			</div>
-		</div>
+		
 	</div>
 
 
