@@ -65,6 +65,39 @@ public class IndexController {
 		return "foodFriend/foodFriendList";
 	}
 	
+	@GetMapping("/myPage")
+	public String myPage() {
+		return "myPage/myPage";
+	}
+	@RequestMapping("/myRecipes")
+	public String myRecipes() {
+		return "myPage/myRecipes";
+	}
+	@RequestMapping("/scrapRecipe")
+	public String scrapRecipe() {
+		return "myPage/scrapRecipe";
+	}
+	@RequestMapping("/notification")
+	public String notification() {
+		return "myPage/notification";
+	}
+	@RequestMapping("/quiries")
+	public String quiries() {
+		return "myPage/quiries";
+	}
+	@RequestMapping("/orders")
+	public String orders() {
+		return "myPage/orders";
+	}
+	@RequestMapping("/cart")
+	public String cart() {
+		return "myPage/cart";
+	}
+	@RequestMapping("/fixProfile")
+	public String fixProfile() {
+		return "myPage/fixProfile";
+	}
+	
 	@GetMapping("foodFriendEnroll")
 	public String enrollForm() {
 		return "foodFriend/foodFriendEnroll";
