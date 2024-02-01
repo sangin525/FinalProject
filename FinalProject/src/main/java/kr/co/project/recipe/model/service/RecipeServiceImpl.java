@@ -89,6 +89,7 @@ public class RecipeServiceImpl implements RecipeService{
 	public int deleteRecipe(int rno) {
 		
 		return recipeDao.deleteRecipe(sqlSession,rno);
+		
 	}
 
 	@Override
@@ -98,7 +99,7 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public String selectFileName(int rno) {
+	public List<RecipeDTO> selectFileName(int rno) {
 		
 		return recipeDao.selectFileName(sqlSession,rno);
 	}
@@ -107,6 +108,26 @@ public class RecipeServiceImpl implements RecipeService{
 	public RecipeDTO selectRecipe(int rno) {
 	
 		return recipeDao.selectRecipe(sqlSession,rno);
+	}
+	
+	public RecipeDTO editFormRecipe(int idx) {
+		
+		return recipeDao.detailRecipe(sqlSession, idx);
+	}
+
+	public RecipeDTO seqSelectRecipe(int rno) {
+		
+		return recipeDao.seqSelectRecipe(sqlSession,rno);
+	}
+
+	public List<RecipeDTO> seqPhoSelectRecipe(int rsno) {
+		
+		return recipeDao.seqPhoSelectRecipe(sqlSession,rsno);
+	}
+
+	public List<RecipeDTO> selectSequenceFileName(int rno) {
+		
+		return recipeDao.selectSequenceFileName(sqlSession,rno);
 	}
 
 }

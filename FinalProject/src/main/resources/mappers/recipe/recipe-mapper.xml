@@ -24,14 +24,18 @@
 		<result column="R_UPLOAD_NAME" property="uploadName"></result>
 		<result column="R_UPLOAD_ORIGIN" property="uploadOriginName"></result>
 		<result column="M_NO" property="mno"></result>			
+		<result column="R_DELETEDATE" property="deleteDate"></result>
 	</resultMap>
 	
 	<select id="selectListCount" resultType="_int">
 	SELECT COUNT(*) FROM RECIPE
+	WHERE R_DELETEDATE IS NULL 
+	
 	</select>
 	
 	<select id="selectListAll" resultMap="recipeResultSet">
 	SELECT * FROM RECIPE
+	WHERE R_DELETEDATE IS NULL
 	</select>
 
 
@@ -56,7 +60,8 @@
 								#{uploadPath},
 								#{uploadName},
 								#{uploadOriginName},								
-								#{mno})
+								#{mno},
+								null)
 	</insert>
 
 	<select id="detailRecipe" resultMap="recipeResultSet">
@@ -70,17 +75,17 @@
 				  WHERE R_NO = #{rno}
 	</update>
 	
-	<delete id="deleteRecipe" parameterType="recipe">
-	DELETE FROM RECIPE
+	<update id="deleteRecipe" parameterType="_int">
+	UPDATE RECIPE SET R_DELETEDATE = SYSDATE
 	WHERE R_NO = #{rno}
-	</delete>
+	</update>
 	
 	<select id="selectWriter" resultType="string">
 	SELECT R_WRITER FROM RECIPE
 	WHERE R_NO = #{rno}
 	</select>
 	
-	<select id="selectFileName" resultType="string">
+	<select id="selectFileName" resultMap="recipeResultSet">
 	SELECT R_UPLOAD_NAME FROM RECIPE
 	WHERE R_NO = #{rno}
 	</select>

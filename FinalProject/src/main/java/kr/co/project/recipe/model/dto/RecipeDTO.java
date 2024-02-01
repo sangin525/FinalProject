@@ -46,5 +46,9 @@ public class RecipeDTO {
 	private String fileName;
 	private String fileOrigin;
 	private String multiFile;
+	private String deleteDate;
+	private int rcno;
+	private String comment;
+	private String rcInDate;
 	
 }

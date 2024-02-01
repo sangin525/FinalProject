@@ -320,7 +320,7 @@
 					    </c:when>
 					    <c:otherwise>
 						    <li class="page-item">
-						      <a class="page-link" href="list.do?cpage=${pi.cpage-1}" aria-label="Previous">
+						      <a class="page-link" href="/recipe/list.do?cpage=${pi.cpage-1}" aria-label="Previous">
 						        <span aria-hidden="true">&laquo;</span>
 						      </a>
 						    </li>
@@ -329,7 +329,7 @@
 				    
 				    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 				    	<li class="page-item">
-				    		<a class="page-link" href="list.do?cpage=${page}">${page}</a>
+				    		<a class="page-link" href="/recipe/list.do?cpage=${page}">${page}</a>
 			    		</li>
 				    </c:forEach>
 				    
@@ -343,7 +343,7 @@
 					    </c:when>
 					    <c:otherwise>
   						    <li class="page-item">
-						      <a class="page-link" href="list.do?cpage=${pi.cpage+1}" aria-label="Next">
+						      <a class="page-link" href="/recipe/list.do?cpage=${pi.cpage+1}" aria-label="Next">
 						        <span aria-hidden="true">&raquo;</span>
 						      </a>
 						    </li>

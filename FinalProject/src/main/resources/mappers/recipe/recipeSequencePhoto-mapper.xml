@@ -5,6 +5,9 @@
 	<resultMap type = "recipe" id="recipeSequencePhotoResultSet">
 		<result column="RP_NO" property="rpno"></result>
 		<result column="RS_NO" property="rsno"></result>		
+		<result column="RP_FILE_PATH" property="filePath"></result>
+		<result column="RP_FILE_NAME" property="fileName"></result>
+		<result column="RP_FILE_ORIGIN" property="fileOrigin"></result>
 	</resultMap>
 	
 	<insert id="addRecipe">
@@ -20,6 +23,13 @@
 
 	</insert>
 
+	<select id="seqPhoSelectRecipe" resultMap="recipeSequencePhotoResultSet">
+	SELECT * FROM RECIPESEQUENCEPHOTO
+	WHERE RS_NO=#{rsno}
+	</select>
 
-
+	<select id="selectSequenceFileName" resultMap="recipeSequencePhotoResultSet">
+	SELECT * FROM RECIPESEQUENCEPHOTO
+	WHERE RS_NO=#{rsno}
+	</select>
 </mapper>

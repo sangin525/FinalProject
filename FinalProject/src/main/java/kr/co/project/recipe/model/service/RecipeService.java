@@ -19,7 +19,7 @@ public interface RecipeService {
 	
 	String selectWriter(int rno);
 	
-	String selectFileName(int rno);
+	List<RecipeDTO> selectFileName(int rno);
 	
 	RecipeDTO selectRecipe(int rno);
 	

@@ -123,7 +123,9 @@ public class RecipeController {
 			model.addAttribute("uploadName",recipe.getUploadName());
 			model.addAttribute("uploadOriginName",recipe.getUploadOriginName());
 			int rno = recipe.getRno();
+			int rsno = recipe.getRsno();
 			model.addAttribute("rno",rno);
+			model.addAttribute("rsno",rsno);
 			System.out.println("게시글 작성됨");
 			System.out.println(recipe.getFileName());
 			
@@ -150,60 +152,130 @@ public class RecipeController {
 												Model model,
 												HttpServletRequest request) {
 		
-		
 		RecipeDTO result =  recipeService.detailRecipe(rno);
 
 		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
 		
+		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
+		List<RecipeDTO> seqPhoresult = new ArrayList<>();
+//		List<RecipeDTO> list
 		if(!Objects.isNull(result)) {
 			if(!Objects.isNull(ingreresult)) {
-				
-				System.out.println("성공");
-				System.out.println(ingreresult);
-//				return "member/afterAddRecipe";		
-			}else {
-				System.out.println("실패");
-//				return "member/afterAddRecipe";
+				if(!Objects.isNull(seqresult)) {	
+					int rsno = seqresult.getRsno();
+//					System.out.println("rsno:"+rsno);
+					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
+//					if(!Objects.isNull(seqPhoresult)){
+						System.out.println("성공");	
+//						model.addAttribute("seqpho",seqPhoresult);
+//					}				
+				}
 			}
-			model.addAttribute("ingre",ingreresult);
-			model.addAttribute("recipe",result);
-		} 
-		System.out.println(result);
+		}
+		// 재료 꺼내기
+		String[] ingredient = new String[ingreresult.getIngredient().length()];
+		ingredient = ingreresult.getIngredient().split(",");
+		for(String s : ingredient) {
+//			System.out.println(s);
+		}
+		model.addAttribute("ingredient",ingredient);
+		
+		// 재료 무게 꺼내기
+		String[] ingredientWeight = new String[ingreresult.getIngredientWeight().length()];
+		ingredientWeight = ingreresult.getIngredientWeight().split(",");
+		for(String s: ingredientWeight) {
+//			System.out.println(s);
+		}
+		model.addAttribute("ingredientWeight",ingredientWeight);
+		
+		String[] sequence = new String[seqresult.getRsSequence().length()];
+		sequence = seqresult.getRsSequence().split(",");
+		for(String s: sequence) {
+			
+		}
+		model.addAttribute("sequence",sequence);
+		
+//		String[] sequencePhoto = new String[seqPhoresult.size()];
+//		sequencePhoto = seqPhoresult.size();
+		
+		
+		
+		model.addAttribute("photoList",seqPhoresult);
+		model.addAttribute("ingre",ingreresult);
+		model.addAttribute("recipe",result);
+		model.addAttribute("seqre",seqresult);
+//		System.out.println(result);
+		
 		return "member/afterAddRecipe";
 	}
+	
+	@GetMapping("/editForm.do")
+	public String editFormRecipe(@RequestParam(value="rno")int rno,
+			Model model) {
+		
+		RecipeDTO result = recipeService.editFormRecipe(rno);
+		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
+		
+		if(!Objects.isNull(result)) {
+			if(!Objects.isNull(ingreresult)) {	
+				System.out.println("성공");
+			}else {
+				System.out.println("실패");
+			}		
+			model.addAttribute("recipe",result);
+			model.addAttribute("ingre",result);		
+			}
+			return "member/recipe";
+		}
+	
+//	@PostMapping("/edit.do")
+//	public String editRecipe(List<MultipartFile> multiFileList,RecipeDTO recipe,HttpSession session) {
+//		String writer = recipeService.selectWriter(recipe.getRno());
+//		String loginWriter = (String) session.getAttribute("memberNickName");
+//		
+//		int result = 0;
+//		
+//		if(writer.equals(loginWriter) && !multiFileList.isEmpty()) {
+//			
+//			String fileName = recipeService.selectFileName(recipe.getRno());
+//			
+//			boolean deleteFile = MultiUploadFile.deleteFile(fileName,fileName);
+//			
+//			if(deleteFile) {
+//				MultiUploadFile.uploadMethod(multiFileList, loginWriter, recipe, null, null, session, fileName, null);
+//				result = recipeService.editFormRecipe(recipe);
+//			}
+//		}else if(writer.equals(loginWriter) && multiFileList.isEmpty()) {
+//			result = recipeService.editRecipeEmptyUpload(recipe);
+//		}
+//		
+//		if(result== 1) {
+//			System.out.println("수정성공");
+//			return "/recipe/categoryList.do";
+//		}else {
+//			System.out.println("수정실패");
+//			return "/recipe/categoryList.do";
+//		}
+//	}
 	
 	@GetMapping("/delete.do")
 	public String deleteRecipe(@RequestParam(value="rno") int rno,
 									HttpSession session) {
 		String writer = recipeService.selectWriter(rno);
+	
 		String loginWriter = (String) session.getAttribute("memberNickName");
-		
 		int result = 0;
 		
-		if(writer.equals(loginWriter)) {
-			String fileName = recipeService.selectFileName(rno);
-			
-			if(fileName !=null) {
-				boolean deleteFile = MultiUploadFile.deleteFile(fileName, fileName);
-				
-				if(deleteFile) {
-					result = recipeService.deleteRecipe(rno);	
-				}
-			} else {
-				result = recipeService.deleteRecipe(rno);
+		if(writer.equals(loginWriter)) {		
+			result = recipeService.deleteRecipe(rno);
+			if(result>0) {
+				System.out.println("삭제성공");
+			}else {
+				System.out.println("삭제실패 ㅜ");
 			}
-			
 		}
-		if(result == 1 ) {
-			System.out.println("삭제 완료");
-			return "redirect:/recipe/categoryList.do";
-		}else {
-			System.out.println("삭제 실패");
-			return "common/error";
-		}
-		
+		return "redirect:/recipe/categoryList.do";
 	}
-	
 	
 
 

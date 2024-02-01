@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -55,10 +56,10 @@
 			</div>
 			<div class="ready_ingre" id="divConfirmedMaterialArea">
 				<ul>
-
 					<b class="readyIngre">[재료]</b>
-					<li>${ingre.ingredient}<span class="ingre_unit">${ingre.ingredientWeight}</span></li>
-					<li><a>대파 흰부분 </a> <span class="ingre_unit">1/3개</span></li>
+					<c:forEach begin="0" end="${ fn:length(ingredient)-1}" varStatus="status">
+						<li>${ingredient[status.index]}<span class="ingre_unit">${ingredientWeight[status.index]}</span></li>
+					</c:forEach>					
 				</ul>
 
 			
@@ -75,13 +76,20 @@
 				<b>조리순서</b><span>Steps</span>
 			</div>
 		</div>
-		<div id="stepDiv1" class="view_step">
-			<div class="stepSubtitle">1. 키친타올로 고기 핏물을 제거하고 먹기 좋은 크기로 숭덩숭덩
-				잘라주세요.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
+		<div id="stepDiv1" class="view_step">		
+			<c:forEach begin="0" end="${ fn:length(sequence)-1}" varStatus="status">
+				<ul>
+				<li>${sequence[status.index]}</li>
+				</ul>
+			</c:forEach>
+			
 			</div>
-
+			
+			 <c:forEach var="item" items="${photoList}">
+			 <div class="stepImage">
+				<img src="/resources/uploads/recipe/${item.fileName}">
+			</div> 
+			 </c:forEach>
 		</div>
 		<!-- 
 		<div id="stepDiv2" class="view_step">

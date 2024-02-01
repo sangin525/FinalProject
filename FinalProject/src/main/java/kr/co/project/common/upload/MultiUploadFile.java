@@ -27,11 +27,29 @@ public class MultiUploadFile {
 
 private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads";
 	
-	public static boolean deleteFile(String fileName, String boardName) {
+	public static boolean deleteFile(List<RecipeDTO> fileName,List<RecipeDTO> sequenceFileName) {
 		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\        240103113409_cRvSeZPY.png
 		// 240103113409_cRvSeZPY.png
-		File file = new File(UPLOAD_PATH + "\\recipe\\");
-		return file.delete();
+		 int deleteCheck = 0;
+		
+		 for(RecipeDTO r : fileName) {
+			 for(RecipeDTO r2 : sequenceFileName) {
+			File seqfile = new File(UPLOAD_PATH + "\\recipe\\"+r2.getFileName());
+			System.out.println(seqfile);
+			 if(seqfile.delete()) {				 
+			 	}
+			 }
+			File file = new File(UPLOAD_PATH + "\\recipe\\"+r.getFileName());
+			System.out.println(file);
+			if(file.delete()) {
+			}
+			deleteCheck++;
+		}			
+			if(deleteCheck == fileName.size()) {
+				return true;
+			} else {
+				return false;
+			}
 		
 	}
 	

@@ -61,7 +61,7 @@ public class RecipeDAO {
 	}
 
 	public int deleteRecipe(SqlSessionTemplate sqlSession, int rno) {
-		
+
 		return sqlSession.delete("recipeMapper.deleteRecipe",rno);
 	}
 
@@ -70,14 +70,33 @@ public class RecipeDAO {
 		return sqlSession.selectOne("recipeMapper.selectWriter",rno);
 	}
 
-	public String selectFileName(SqlSessionTemplate sqlSession, int rno) {
+	public List<RecipeDTO> selectFileName(SqlSessionTemplate sqlSession, int rno) {
 		
-		return sqlSession.selectOne("recipeMapper.selectFileName",rno);
+		return sqlSession.selectList("recipeMapper.selectFileName",rno);
 	}
 
 	public RecipeDTO selectRecipe(SqlSessionTemplate sqlSession, int rno) {
 		
 		return sqlSession.selectOne("recipeIngredientMapper.selectRecipe",rno);
 	}
+	
+	public RecipeDTO editFormRecipe(SqlSessionTemplate sqlSession,int rno) {
+		
+		return sqlSession.selectOne("recipeMapper.detailRecipe",rno);
+	}
 
+	public RecipeDTO seqSelectRecipe(SqlSessionTemplate sqlSession, int rno) {
+		
+		return sqlSession.selectOne("recipeSequenceMapper.seqSelectRecipe",rno);
+	}
+
+	public List<RecipeDTO> seqPhoSelectRecipe(SqlSessionTemplate sqlSession, int rsno) {
+		
+		return sqlSession.selectList("recipeSequencePhotoMapper.seqPhoSelectRecipe",rsno);
+	}
+
+	public List<RecipeDTO> selectSequenceFileName(SqlSessionTemplate sqlSession, int rno) {
+		
+		return sqlSession.selectList("recipeSequencePhotoMapper.selectSequenceFileName",rno);
+	}
 }

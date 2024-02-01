@@ -15,6 +15,11 @@
 	</insert>
 	
 	
+	<select id="seqSelectRecipe" resultMap="recipeSequenceResultSet">
+	SELECT * FROM RECIPESEQUENCE
+	WHERE R_NO=#{rno}
+	</select>
+	
 	
 	
 	
