@@ -8,6 +8,7 @@
 <%@ include file="../../views/common/head.jsp"%>
 <link rel="stylesheet"
 	href="/resources/css/recipeAdd/afterAddRecipe.css">
+<script src="/resources/js/member/afterAddRecipe.js"></script>
 </head>
 <body class="afterRecipeBody">
 
@@ -218,32 +219,39 @@
 
 			<div class="reply_list">
 				<div class="media-left">
-					<a href="#"> <img class="profile_picture" src="/resources/uploads/레시피등록대표사진.gif"></a>
+					<a href="#"> <img class="profile_picture"
+						src="/resources/uploads/레시피등록대표사진.gif"></a>
 				</div>
 				<div class="media-body">
 					<h4 class="media-heading">
-						<b class="info_name_f">바비</b><span>2024-1-29 07:32</span>
-						<a onclick="#">답글</a><span>|</span>	<a>신고</a>
+						<b class="info_name_f">바비</b> <span class="ratingStar">★ ★ ★ ★
+							★</span> <span>2024-1-29 07:32</span> <a onclick="#">답글</a><span>|</span>
+						<a>신고</a>
 					</h4>
 					바비 <br>
 				</div>
-				
+
+
 			</div>
 
 			<div class="comment-section">
 				<h2>댓글 남기기</h2>
 				<form id="comment-form">
-				<div class="commentPic"><img src="/resources/uploads/레시피등록대표사진.gif"></div>
-					<div>
-						<br>
-						<textarea id="comment" name="comment" placeholder="코멘트 및 후기를 써주세요!"></textarea>
+					<div class="commentPic">
+						<img src="/resources/uploads/레시피등록대표사진.gif">
 					</div>
-					<div>
+					<div class="comment">
+						<div class="rating">
+							<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+						</div>
+
+						<textarea class="commentTextbox" name="comment"
+							placeholder="코멘트 및 후기를 써주세요!"></textarea>
 						<button class="comment_submit">댓글작성</button>
-						
 					</div>
 				</form>
 			</div>
+
 		</div>
 	</div>
 
@@ -252,17 +260,6 @@
 
 
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
 	<br>
 	<br>
 	<br>

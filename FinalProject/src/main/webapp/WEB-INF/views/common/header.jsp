@@ -17,7 +17,7 @@
 			<a href="/recipe/addRecipeForm.do">레시피 등록</a>
 			<c:choose>
 				<c:when test="${sessionScope.memberName != null}">
-					<a href="/MyPageForm.do" class="Main_a">마이페이지</a>
+					<a href="/myPage" class="Main_a">마이페이지</a>
 					<a href="/SignOut.do" class="Main_a">로그아웃</a>
 				</c:when>
 				<c:otherwise>
