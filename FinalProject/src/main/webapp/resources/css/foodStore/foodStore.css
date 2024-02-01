@@ -106,6 +106,7 @@
 	display: flex;
 	justify-content: center;
 	flex-direction: column;
+	margin-top: 100px;
 }
 
 .product-main-img img {
@@ -143,6 +144,7 @@
 	line-height: 1;
 	display: inline-block;
 	margin-right: 12px;
+	margin-bottom: 10px;
 }
 
 .price {
@@ -154,6 +156,7 @@
 	line-height: 1;
 	display: inline-block;
 	margin-right: 6px;
+	margin-bottom: 10px;
 }
 
 .del {
@@ -238,7 +241,7 @@
 	background-size: 14px;
 	display: inline-block;
 	border: none;
-	margin: -1px 6px 0 0;
+	margin: 10px 6px 0 0;
 }
 
 .count {
