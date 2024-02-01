@@ -1,8 +1,12 @@
 package kr.co.project.recipe.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Member;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.project.common.access.LoginCheck;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
 import kr.co.project.common.session.SessionMessage;
-import kr.co.project.common.upload.UploadFile;
+import kr.co.project.common.upload.MultiUploadFile;
 import kr.co.project.common.validation.DataValidation;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.recipe.model.dto.RecipeDTO;
@@ -58,7 +61,6 @@ public class RecipeController {
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		// 목록 불러오는 서비스
 		List<RecipeDTO> list = recipeService.selectListAll(pi,recipe);
-		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
 			item.setIndate(indate);
@@ -83,7 +85,7 @@ public class RecipeController {
 	}
 	
 	@PostMapping("/addRecipe.do")
-	public String addRecipe(RecipeDTO recipe,MemberDTO member,MultipartFile upload, 
+	public String addRecipe(RecipeDTO recipe,MemberDTO member,MultipartFile upload, List<MultipartFile> multiFileList,
 					HttpSession session,Model model)throws IllegalStateException, IOException {
 					
 		recipe.setMemberNickName((String)session.getAttribute("memberNickName"));
@@ -96,11 +98,16 @@ public class RecipeController {
 		
 		if(titleLengthCheck && titleEmptyCheck) {
 			
-		if(!upload.isEmpty()) {
-			UploadFile.uploadMethod(upload, recipe, member, session, BOARD_NAME);
+//		if(!upload.isEmpty()) {
+//			UploadFile.uploadMethod(upload, recipe, member, session, BOARD_NAME);
+//		}
+			List<RecipeDTO> recipeList = new ArrayList<>();
+			
+		if(!multiFileList.isEmpty()) {
+			MultiUploadFile.uploadMethod(multiFileList, BOARD_NAME, recipe, member, null, session, BOARD_NAME, recipeList);			
 		}
+		int result = recipeService.addRecipe(recipe, recipeList);
 		
-		int result = recipeService.addRecipe(recipe);
 		
 		if(result > 0) {
 //			model.addAttribute("rno",recipe.getRno());
@@ -112,9 +119,14 @@ public class RecipeController {
 //			model.addAttribute("rno",recipe.getRno());
 //			model.addAttribute("rno",recipe.getRno());
 //			model.addAttribute("rno",recipe.getRno());
+			model.addAttribute("uploadPath",recipe.getUploadPath());
+			model.addAttribute("uploadName",recipe.getUploadName());
+			model.addAttribute("uploadOriginName",recipe.getUploadOriginName());
 			int rno = recipe.getRno();
 			model.addAttribute("rno",rno);
 			System.out.println("게시글 작성됨");
+			System.out.println(recipe.getFileName());
+			
 			return "home";
 		}else {
 			System.out.println("게시글 작성 실패");
@@ -131,6 +143,66 @@ public class RecipeController {
 	}	
 }
 	
+	@GetMapping("/detail.do")
+	
+	public String detailRecipe(@RequestParam(value="rno") int rno,
+												RecipeDTO recipe,
+												Model model,
+												HttpServletRequest request) {
+		
+		
+		RecipeDTO result =  recipeService.detailRecipe(rno);
+
+		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
+		
+		if(!Objects.isNull(result)) {
+			if(!Objects.isNull(ingreresult)) {
+				
+				System.out.println("성공");
+				System.out.println(ingreresult);
+//				return "member/afterAddRecipe";		
+			}else {
+				System.out.println("실패");
+//				return "member/afterAddRecipe";
+			}
+			model.addAttribute("ingre",ingreresult);
+			model.addAttribute("recipe",result);
+		} 
+		System.out.println(result);
+		return "member/afterAddRecipe";
+	}
+	
+	@GetMapping("/delete.do")
+	public String deleteRecipe(@RequestParam(value="rno") int rno,
+									HttpSession session) {
+		String writer = recipeService.selectWriter(rno);
+		String loginWriter = (String) session.getAttribute("memberNickName");
+		
+		int result = 0;
+		
+		if(writer.equals(loginWriter)) {
+			String fileName = recipeService.selectFileName(rno);
+			
+			if(fileName !=null) {
+				boolean deleteFile = MultiUploadFile.deleteFile(fileName, fileName);
+				
+				if(deleteFile) {
+					result = recipeService.deleteRecipe(rno);	
+				}
+			} else {
+				result = recipeService.deleteRecipe(rno);
+			}
+			
+		}
+		if(result == 1 ) {
+			System.out.println("삭제 완료");
+			return "redirect:/recipe/categoryList.do";
+		}else {
+			System.out.println("삭제 실패");
+			return "common/error";
+		}
+		
+	}
 	
 	
 

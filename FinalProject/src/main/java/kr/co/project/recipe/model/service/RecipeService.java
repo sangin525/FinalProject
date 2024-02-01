@@ -11,5 +11,16 @@ public interface RecipeService {
 	
 	List<RecipeDTO> selectListAll(PageInfo pi,RecipeDTO recipe);
 
-	int addRecipe(RecipeDTO recipe);
+	int addRecipe(RecipeDTO recipe, List<RecipeDTO> recipeList);
+	
+	RecipeDTO detailRecipe(int rno);
+	
+	int deleteRecipe(int rno);
+	
+	String selectWriter(int rno);
+	
+	String selectFileName(int rno);
+	
+	RecipeDTO selectRecipe(int rno);
+	
 }

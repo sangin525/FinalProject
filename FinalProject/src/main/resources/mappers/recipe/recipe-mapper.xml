@@ -20,6 +20,9 @@
 		<result column="R_IN_DATE" property="indate"></result>
 		<result column="R_UPDATE_DATE" property="updateDate"></result>
 		<result column="R_SAVE_COUNT" property="saveCount"></result>
+		<result column="R_UPLOAD_PATH" property="uploadPath"></result>
+		<result column="R_UPLOAD_NAME" property="uploadName"></result>
+		<result column="R_UPLOAD_ORIGIN" property="uploadOriginName"></result>
 		<result column="M_NO" property="mno"></result>			
 	</resultMap>
 	
@@ -55,5 +58,31 @@
 								#{uploadOriginName},								
 								#{mno})
 	</insert>
+
+	<select id="detailRecipe" resultMap="recipeResultSet">
+	SELECT *
+	FROM RECIPE
+	WHERE R_NO = #{rno}	
+	</select>
+
+	<update id="views" parameterType="recipe">
+	UPDATE RECIPE SET R_VIEWS =#{views}
+				  WHERE R_NO = #{rno}
+	</update>
+	
+	<delete id="deleteRecipe" parameterType="recipe">
+	DELETE FROM RECIPE
+	WHERE R_NO = #{rno}
+	</delete>
+	
+	<select id="selectWriter" resultType="string">
+	SELECT R_WRITER FROM RECIPE
+	WHERE R_NO = #{rno}
+	</select>
+	
+	<select id="selectFileName" resultType="string">
+	SELECT R_UPLOAD_NAME FROM RECIPE
+	WHERE R_NO = #{rno}
+	</select>
 
 </mapper>

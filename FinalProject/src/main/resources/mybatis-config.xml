@@ -26,6 +26,7 @@
 		<mapper resource="/mappers/recipe/recipe-mapper.xml"/>	
 		<mapper resource="/mappers/recipe/recipeIngredient-mapper.xml"/>
 		<mapper resource="/mappers/recipe/recipeSequence-mapper.xml"/>
+		<mapper resource="/mappers/recipe/recipeSequencePhoto-mapper.xml"/>
 	</mappers>
 </configuration>
 

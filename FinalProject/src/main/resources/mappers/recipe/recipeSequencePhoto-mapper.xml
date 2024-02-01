@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipeSequencePhotoMapper">
+	<resultMap type = "recipe" id="recipeSequencePhotoResultSet">
+		<result column="RP_NO" property="rpno"></result>
+		<result column="RS_NO" property="rsno"></result>		
+	</resultMap>
+	
+	<insert id="addRecipe">
+	INSERT INTO RECIPESEQUENCEPHOTO VALUES(recipeSequencePhoto_seq.NEXTVAL,
+										#{rsno},
+										#{filePath},
+										#{fileName},
+										#{fileOrigin}
+										)
+
+
+
+
+	</insert>
+
+
+
+</mapper>

@@ -8,7 +8,7 @@
 		<result column="RS_SEQUENCE" property="rsSequence"></result>	
 	</resultMap>
 	
-	<insert id="addRecipe">
+	<insert id="addRecipe" useGeneratedKeys="true" keyColumn="RS_NO" keyProperty="rsno">
 		INSERT INTO RECIPESEQUENCE VALUES(recipeSequence_seq.NEXTVAL,
 								#{rno},
 								#{rsSequence})

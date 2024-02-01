@@ -16,7 +16,10 @@
 											#{ingredientWeight}
 											 )															
 	</insert>
-
+	<select id="selectRecipe" resultMap="recipeIngredientResultSet">
+	SELECT * FROM RECIPEINGREDIENT
+	WHERE R_NO=#{rno}
+	</select>
 
 
 </mapper>
