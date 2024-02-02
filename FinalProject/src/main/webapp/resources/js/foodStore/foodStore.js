@@ -264,6 +264,7 @@ $(document).ready(function(){
 $(document).ready(function(){
   $(".accordion_i_tit2").click(function(){
     $(this).next(".productQuestions").slideToggle(); // 가시성 전환
+	$(this).toggleClass("active"); // active 클래스 추가/제거
   });
 });
 
@@ -287,4 +288,43 @@ $(document).ready(function(){
       });
     }
   });
+});
+
+//문의하기 모달창
+document.addEventListener('DOMContentLoaded', function() {
+  var modal2 = document.getElementById("q_modal");
+  var btn = document.getElementById("q_modal_btn");
+  var span = document.getElementsByClassName("close2")[0];
+
+  btn.onclick = function() {
+    modal2.style.display = "block";
+  }
+
+  span.onclick = function() {
+    modal2.style.display = "none";
+  }
+
+  window.onclick = function(event) {
+    if (event.target == modal2) {
+      modal2.style.display = "none";
+    }
+  }
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // 첫 번째 그룹 (레시피, 쉐프, 검색어)에 대한 초기 활성화 설정
+    document.querySelector('.page-link').classList.add('active');
+
+    // 첫 번째 그룹의 a 태그에 클릭 이벤트 리스너 추가
+    var questionsATags = document.querySelectorAll('.page-link');
+    questionsATags.forEach(function(a) {
+        a.addEventListener('click', function() {
+            // 해당 그룹 내의 모든 a 태그의 active 클래스 제거
+            questionsATags.forEach(function(otherA) {
+                otherA.classList.remove('active');
+            });
+            // 클릭된 a 태그에만 active 클래스 추가
+            a.classList.add('active');
+        });
+    });
 });
