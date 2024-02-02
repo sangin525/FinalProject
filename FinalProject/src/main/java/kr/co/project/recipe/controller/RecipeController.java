@@ -40,12 +40,32 @@ public class RecipeController {
 	@Autowired
 	private SessionMessage sessionMessage;
 	
-	
-	@GetMapping("/categoryListForm.do")
-	public String categoryListForm() {
-		return "category/category";
+	@GetMapping("/rankingRecipe.do")
+	public String rankingRecipe(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
+									Model model,
+									HttpSession session) {
+		
+		int listCount = recipeService.selectListCount(recipe);
+		int pageLimit = 12;
+		int boardLimit =12;
+		
+		int row = listCount-(cpage-1) * boardLimit;
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		
+		List<RecipeDTO> list = recipeService.selectListAll(pi, recipe);
+		for(RecipeDTO item : list) {
+			String indate = item.getIndate().substring(0,10);
+			item.setIndate(indate);			
+		}
+		model.addAttribute("row",row);
+		model.addAttribute("list",list);
+		model.addAttribute("pi",pi);
+		System.out.println("접근성공");
+		
+		return "ranking/recipe";		
 	}
-	
+		
 	@GetMapping("/categoryList.do")
 	public String RecipeCategoryList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
 									Model model,
