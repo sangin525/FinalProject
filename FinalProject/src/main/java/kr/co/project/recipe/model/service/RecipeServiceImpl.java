@@ -140,4 +140,9 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.selectComment(sqlSession,rno);
 	}
 
+	public int commentCount(int rno) {
+		
+		return recipeDao.commentCount(sqlSession,rno);
+	}
+
 }

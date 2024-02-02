@@ -189,6 +189,9 @@ public class RecipeController {
 					int rsno = seqresult.getRsno();
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
 					if(!Objects.isNull(comresult)) {
+						int commentCount = recipeService.commentCount(rno);
+						System.out.println(commentCount);
+						model.addAttribute("commentCount",commentCount);
 						System.out.println("성공");	
 						model.addAttribute("comment",comresult);
 						System.out.println("값입니다"+comresult);

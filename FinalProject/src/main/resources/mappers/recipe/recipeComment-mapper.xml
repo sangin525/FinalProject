@@ -16,6 +16,11 @@ SELECT * FROM RECIPECOMMENT
 WHERE R_NO=#{rno}
 </select>
 
+<select id="commentCount" resultType="_int">
+SELECT COUNT (*) FROM RECIPECOMMENT
+WHERE R_NO=#{rno}
+</select>
+
 
 <insert id="addComment">
 	INSERT INTO RECIPECOMMENT VALUES(recipeComment_seq.nextval,

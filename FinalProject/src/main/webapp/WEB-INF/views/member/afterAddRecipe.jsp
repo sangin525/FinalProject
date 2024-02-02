@@ -41,7 +41,7 @@
 						class="st2">204</b></span></a> <a onclick=""> <img
 					src="/resources/uploads/공유사진누끼.png"><span>공유</span></a> <a
 					href="#"> <img src="/resources/uploads/댓글사진누끼.png"> <span>댓글
-						<b class="st3">0</b>
+						<b class="st3">${commentCount}</b>
 				</span></a>
 			</div>
 		</div>
