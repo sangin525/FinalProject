@@ -23,7 +23,7 @@
 				<li><a href="quiries">문의</a></li>
 				<li><a href="orders">주문조회</a></li>
 				<li><a href="cart">장바구니</a></li>
-				<li><a href="fixProfile">회원정보 수정</a></li>
+				<li><a href="/member/fixProfile.do">회원정보 수정</a></li>
 			</ul>
 
 			<div class="content">
@@ -38,16 +38,18 @@
 					<br>
 					<div class="result">
 						<c:choose>
-							<c:when test="${not empty recipeList}">
+							<c:when test="${not empty list}">
+								<c:forEach var="item" items="${list}">
 									<div class="result">
 									<a href="after_addRecipe">
-									<img src="/resources/uploads/고양이그림.png" class="recipe-image">
+									<img src="/resources/uploads/recipe/${item.uploadName}" class="recipe-image">
 									<div class="recipe-info">
-										<p class="recipe-title">탕후루</p>
-										<p class="recipe-date">작성날짜: 2024-02-01</p>
+										<p class="">${item.title }</p>
+										<p class="">${item.indate }</p>
 									</div>
 									</a>
 								</div>
+								</c:forEach>
 							</c:when>
 							<c:otherwise>
 								<div class="result_none">

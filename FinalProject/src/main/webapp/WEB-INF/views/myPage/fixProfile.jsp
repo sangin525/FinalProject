@@ -25,7 +25,7 @@
 			<h2>회원정보 수정</h2>
 			<div class="showEmail">
 				<p class="flexLine">
-					<strong>jxbkc@naver.com&nbsp;</strong>
+					<strong>${email}</strong>
 					<button id="btnUpdateEmail" type="button" class="btn_update">이메일
 						수정</button>
 				</p>
@@ -43,7 +43,7 @@
 				</div>
 				<hr>
 				<p class="flexLine">
-					<strong>jxbkc123</strong>
+					<strong>${memberNickName}</strong>
 						<button id="btnUpdateNick" type="button" class="btn_update btn_nick">닉네임
 							수정</button>
 				</p>

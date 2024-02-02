@@ -45,5 +45,10 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.checkNickName",nickname);
 	}
 
+	public int plusRecipeCount(SqlSessionTemplate sqlSession) {
+		System.out.println("hi");
+		return sqlSession.update("memberMapper.plusRecipeCount");
+	}
+
 	
 }

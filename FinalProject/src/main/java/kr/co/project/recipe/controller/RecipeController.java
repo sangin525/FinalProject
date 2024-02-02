@@ -23,6 +23,7 @@ import kr.co.project.common.session.SessionMessage;
 import kr.co.project.common.upload.MultiUploadFile;
 import kr.co.project.common.validation.DataValidation;
 import kr.co.project.member.model.dto.MemberDTO;
+import kr.co.project.member.model.service.MemberServiceImpl;
 import kr.co.project.recipe.model.dto.RecipeDTO;
 import kr.co.project.recipe.model.service.RecipeServiceImpl;
 
@@ -36,6 +37,9 @@ public class RecipeController {
 	
 	@Autowired
 	private RecipeServiceImpl recipeService;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
 	
 	@Autowired
 	private SessionMessage sessionMessage;
@@ -139,6 +143,8 @@ public class RecipeController {
 //			model.addAttribute("rno",recipe.getRno());
 //			model.addAttribute("rno",recipe.getRno());
 //			model.addAttribute("rno",recipe.getRno());
+
+//			memberService.plusRecipeCount();
 			model.addAttribute("uploadPath",recipe.getUploadPath());
 			model.addAttribute("uploadName",recipe.getUploadName());
 			model.addAttribute("uploadOriginName",recipe.getUploadOriginName());
@@ -321,8 +327,8 @@ public class RecipeController {
 			System.out.println("회원번호"+recipe.getMno());
 			
 			int result = recipeService.addComment(recipe);
-			System.out.println(recipe.getComment());
-			model.addAttribute("recipe2",recipe);
+			
+			
 			if(result>0) {
 				System.out.println("댓글작성 성공");
 			}else {

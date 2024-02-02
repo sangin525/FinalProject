@@ -114,4 +114,14 @@ public class RecipeDAO {
 		
 		return sqlSession.selectOne("recipeCommentMapper.commentCount",rno);
 	}
+
+	public int myRecipeCount(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.selectOne("recipeMapper.myRecipeCount",recipe);
+	}
+
+	public List<RecipeDTO> selectMyRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.selectList("recipeMapper.selectMyRecipe",recipe);
+	}
 }

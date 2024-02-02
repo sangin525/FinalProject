@@ -225,8 +225,9 @@
 
 					<div class="comment">
 						<div class="rating">
-							<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+							<span id="test" onclick="ratingTest()">★</span><span>★</span><span>★</span><span>★</span><span>★</span>
 						</div>
+
 					</div>
 						<textarea class="commentTextbox" name="comment"
 							placeholder="코멘트 및 후기를 써주세요!"></textarea>
@@ -264,3 +265,10 @@
 	<br>
 </body>
 </html>
+						<script>
+							function ratingTest() {
+								console.log("asdasd");
+								const rating = documnet.getElementById('test');
+								console.log("a "  +  rating);
+							}
+						</script>
