@@ -14,7 +14,7 @@
 
 <div class="rankingContainer">
 	<div class="rankingContain">
-<%@ include file="../../views/common/rankingNav.jsp"%>
+<%@ include file="../../views/ranking/rankingNav.jsp"%>
 	
 	<ul class="recipeList">
 		<li class="recipeRanking">
