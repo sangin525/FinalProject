@@ -1,0 +1,227 @@
+.Main_body {
+	background: #f0f0f0;
+	margin: 0;
+	padding: 0;
+}
+
+.container {
+	max-width: 1200px;
+	margin: 20px auto;
+	padding: 20px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	border-radius: 8px;
+	background: #fff;
+}
+
+.myPage {
+	width: 80%;
+	margin: auto;
+}
+
+.myPage h2 {
+	font-size: 24px;
+	color: #333;
+	margin-bottom: 20px;
+}
+
+.menu {
+	list-style-type: none;
+	margin: 0 0 30px 0;
+	padding: 0;
+	display: flex;
+	justify-content: space-around;
+	flex-wrap: wrap;
+	border-bottom: 1px solid #ddd;
+}
+
+.menu li {
+	padding: 10px 0;
+}
+
+.menu li a {
+	color: #333;
+	text-decoration: none;
+	font-size: 16px;
+}
+
+.menu li a:hover {
+	color: #649243;
+}
+
+.content {
+	width: 100%;
+	padding: 20px;
+}
+
+.chef_cont {
+	width: 100%;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-between;
+	list-style-type: none;
+	padding: 0;
+	margin-bottom: 20px;
+}
+
+.nav li {
+	font-size: 20px;
+}
+
+.nav a {
+	color: #333;
+	text-decoration: none;
+	font-size: 20px;
+}
+
+.list a:hover {
+	color: #649243;
+}
+
+.list {
+	display: flex;
+	justify-content: space-between;
+	margin-right: 20px;
+}
+
+.list a {
+	margin-right: 10px;
+}
+
+.cont_list {
+	width: 100%;
+}
+
+.result_none {
+	text-align: center;
+	padding: 20px 0;
+}
+
+.result_none img {
+	width: 100px;
+	height: 100px;
+}
+
+.result_none p {
+	font-size: 18px;
+	margin: 10px 0;
+}
+
+.btn-lg.btn-primary {
+	background-color: #649243;
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	margin-top: 10px;
+	cursor: pointer;
+}
+
+.result a {
+	color: inherit;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+}
+
+
+.recipe-image {
+	width: 150px;
+	height: 150px;
+	margin-right: 20px;
+	cursor: pointer;
+}
+
+.recipe-info {
+	display: flex;
+	flex-direction: column;
+	margin-left: 30px;
+}
+
+.recipe-title {
+	font-size: 30px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+
+.recipe-date {
+	font-size: 20px;
+	color: #888;
+}
+
+/* fixProfile */
+.container_profile {
+	width: 30%;
+	margin: auto;
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+.container_profile h2 {
+	color: #333;
+	font-size: 2em;
+	margin-bottom: 20px;
+}
+
+.btn_update, .btn-default, .changeBtn {
+	background-color: #4CAF50;
+	color: white;
+	padding: 10px 24px;
+	border: none;
+	cursor: pointer;
+	border-radius: 4px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 4px 2px;
+	transition-duration: 0.4s;
+}
+
+.btn_update:hover, .btn-default:hover, .changeBtn:hover {
+	background-color: #449d44;
+}
+
+.btn.btn-default {
+	background-color: #4CAF50;
+}
+
+.btn.btn-default:hover {
+	background-color: #449d44;
+}
+
+.flexLine {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.form-group {
+	margin-bottom: 15px;
+}
+
+.form-control {
+	display: block;
+	width: 70%;
+	margin: auto;
+	height: calc(1.5em + .75rem + 2px);
+	padding: .375rem .75rem;
+	font-size: 1rem;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #495057;
+	background-color: #fff;
+	background-clip: padding-box;
+	border: 1px solid #ced4da;
+	border-radius: .25rem;
+	transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+.btn_update, .changeBtn, .deleteIdBtn {
+	float: right;
+}
+
+/* 스크랩 css */

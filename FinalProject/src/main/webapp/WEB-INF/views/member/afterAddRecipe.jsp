@@ -9,6 +9,7 @@
 <%@ include file="../../views/common/head.jsp"%>
 <link rel="stylesheet"
 	href="/resources/css/recipeAdd/afterAddRecipe.css">
+<script src="/resources/js/member/afterAddRecipe.js"></script>
 </head>
 <body class="afterRecipeBody">
 
@@ -194,12 +195,13 @@
 		
 
 		<div class="commentList">
+
 			 <c:forEach var="item" items="${comment}">
-			 ${item.comname}
 				<div class="reply_list">
 					<div class="media-left">
 						<a href="#"> <img class="profile_picture" src="/resources/uploads/레시피등록대표사진.gif"></a>
 					</div>
+							 ${item.comname}
 					<div class="media-body">
 						<h4 class="media-heading">
 						
@@ -208,43 +210,40 @@
 						</h4>
 						 <br>
 					</div>
-					
-				</div>
+					</div>
+
+
 			</c:forEach> 
+			</div>
+
 
 			<div class="comment-section">
 				<h2>댓글 남기기</h2>
+
 				<form id="comment-form" method="post" action="/recipe/comment.do?rno=${recipe.rno}">
 				<div class="commentPic"><img src="/resources/uploads/레시피등록대표사진.gif"></div>
-					<div>
-						<br>
-						<textarea id="comment" name="comment" placeholder="코멘트 및 후기를 써주세요!"></textarea>
+
+					<div class="comment">
+						<div class="rating">
+							<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+						</div>
 					</div>
-					<div>
+						<textarea class="commentTextbox" name="comment"
+							placeholder="코멘트 및 후기를 써주세요!"></textarea>
 						<button type="submit" class="comment_submit">댓글작성</button>
-						
-					</div>
+
 				</form>
+					</div>
 			</div>
-		</div>
-	</div>
+
+		
 
 
 
 
 
 
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<br>
 	<br>
 	<br>

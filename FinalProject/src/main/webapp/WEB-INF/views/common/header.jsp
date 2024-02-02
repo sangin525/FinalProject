@@ -6,17 +6,27 @@
 
 	<div id="common_header">
 		<%@ include file="./nav.jsp"%>
+		<div class="main-logo">
 		<a href="/">logo</a>
+		<form>
+			<input type="text" class="searchCategory">
+			<button type="button">검색</button>
+		</form>
+		</div>
 		<div id="login_logout">
 			<a href="/recipe/addRecipeForm.do">레시피 등록</a>
 			<c:choose>
 				<c:when test="${sessionScope.memberName != null}">
+
 					<a href="/MyPageForm.do">마이페이지</a>
 					<a href="/member/logOut.do">로그아웃</a>
+
 				</c:when>
 				<c:otherwise>
+
 					<a href="/member/loginForm.do">로그인</a>
 					<a href="/member/registerForm.do">회원가입</a>
+
 				</c:otherwise>
 			</c:choose>
 

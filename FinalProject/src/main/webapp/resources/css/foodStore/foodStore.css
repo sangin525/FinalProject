@@ -1,84 +1,948 @@
 .storeContainer {
 	width: 1200px;
-    margin: 0 auto;
-    position: relative;
-    padding: 0;
+	margin: 0 auto;
+	position: relative;
+	padding: 0;
 }
 
 .storeTitle {
 	padding: 60px 0 50px 0;
-    text-align: center;
-    line-height: 1;
+	text-align: center;
+	line-height: 1;
 }
 
 .storeCategory {
 	border-top: 1px solid #ebebeb;
-    border-bottom: 2px solid #2b2f3a;
-    margin-bottom: 20px;
+	border-bottom: 2px solid #2b2f3a;
+	margin-bottom: 20px;
 }
 
 .storeCategory ul {
 	display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    text-align: center;
-    padding: 8px 0;
+	flex-wrap: wrap;
+	width: 100%;
+	text-align: center;
+	padding: 8px 0;
 }
 
 .storeCategory ul li {
 	position: relative;
-    width: 11.1%;
-    list-style: none;
+	width: 11.1%;
+	list-style: none;
 }
 
 .storeCategory ul li a {
-    color: #000;
-    font-size: 14px;
-    margin: 12px 0;
-    padding: 10px 0;
-    display: block;
+	color: #000;
+	font-size: 14px;
+	margin: 12px 0;
+	padding: 10px 0;
+	display: block;
 }
 
 .products-ul {
 	display: flex;
-    flex-wrap: wrap;
-    width: 100%;
-    padding: 0;
-    list-style: none;
-    margin: 0 auto;
-    vertical-align: top;
+	flex-wrap: wrap;
+	width: 100%;
+	padding: 0;
+	list-style: none;
+	margin: 0 auto;
+	vertical-align: top;
+	justify-content: space-around;
 }
 
 .products-ul li {
 	width: 30%;
 	height: 501px;
 	padding: 0 8px 0;
-    margin-bottom: 80px;
-    position: relative;
-    margin-right: 0;
-    list-style: none;
-    display: inline-block;
-    vertical-align: top;
+	margin-bottom: 80px;
+	position: relative;
+	margin-right: 0;
+	list-style: none;
+	display: inline-block;
+	vertical-align: top;
 }
 
 .products-ul li a {
-    position: absolute;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    z-index: 1;
+	position: absolute;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	z-index: 1;
 }
 
-.products-ul li a img {	
+.storeCategory ul li a.active {
+	color: #f00; /* 활성화된 링크에 대한 색상 */
+	/* 기타 스타일링 속성 */
+}
+
+.products-ul li a img {
+	position: relative;
+	overflow: hidden;
+	line-height: 0;
+	width: 100%
+}
+
+.product-caption {
+	padding: 12px 5px 8px;
+	text-align: left;
+}
+
+/* 상품디테일페이지 css */
+.productContents {
+	width: 1200px;
+	margin: 0 auto;
+	position: relative;
+	padding: 0;
+}
+
+.product-top-section {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+
+.product-view {
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	margin-top: 100px;
+}
+
+.product-main-img img {
+	width: 600px;
+	height: auto;
+}
+
+.product-sub-img img {
+	width: 80px;
+	height: 80px;
+	margin: 2px 2px 2px 2px;
+}
+
+.product-view-pic {
+	display: flex;
+	flex-direction: column;
+}
+
+.product-sub-img {
+	margin-left: 80px;
+}
+
+.product-info {
+	display: inline-block;
+	margin: 0 0 0 65px;
+	width: 440px;
+	vertical-align: top;
+}
+
+.dc {
+	font-size: 35px;
+	color: #ff5e5e;
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	display: inline-block;
+	margin-right: 12px;
+	margin-bottom: 10px;
+}
+
+.price {
+	font-size: 35px;
+	color: #000;
+	font-family: 'Montserrat';
+	font-weight: 600;
+	letter-spacing: -0.02em;
+	line-height: 1;
+	display: inline-block;
+	margin-right: 6px;
+	margin-bottom: 10px;
+}
+
+.del {
+	font-size: 18px;
+	color: #333;
+	line-height: 1;
+	display: block;
+	margin: 2px 0 10px;
+	text-decoration: line-through;
+	font-family: 'Montserrat';
+}
+
+.info-delivery-area {
+	border-top: 1px solid #f1f1f1;
+	margin-bottom: 26px;
+	margin-top: 40px;
+}
+
+.info-delivery {
+	margin: 0 0 2px;
+	padding: 13px 15px;
+	list-style: none;
+	border-bottom: 1px solid #f1f1f1;
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+}
+
+.info-delevery dt {
+	display: inline-block;
+	padding-right: 5px;
+	vertical-align: top;
+	color: #666;
+	line-height: 1.8;
+	font-weight: normal;
+	width: 80px;
+	display: flex;
+	align-items: center; /* 세로 중앙 정렬을 원한다면 추가하세요 */
+	gap: 10px;
+}
+
+.info-delivery img {
+	width: 22px;
+	height: 22px;
+	margin: -3px 5px 0 0;
+	width: 22px;
+}
+
+.info-delivery dd {
+	display: inline-block;
+	vertical-align: top;
+	color: #666;
+	line-height: 1.8;
+}
+
+.down-product {
+	background: url(/resources/uploads/icon_count_m.png) center center
+		no-repeat;
+	background-size: 14px;
+	display: inline-block;
+	border: none;
+	margin: -1px 0 0 6px;
+}
+
+.product-count {
+	padding: 0px 5px 2px;
+	width: 54px;
+	outline: none;
+	height: 33px;
+	color: #222;
+	font-size: 16px;
+	line-height: 31px;
+	text-align: center;
+	display: inline-block;
+	float: none;
+	border: none;
+}
+
+.up-product {
+	background: url(/resources/uploads/icon_count_p.png) center center
+		no-repeat;
+	background-size: 14px;
+	display: inline-block;
+	border: none;
+	margin: 10px 6px 0 0;
+}
+
+.count {
+	display: table-cell;
+	vertical-align: middle;
+	padding: 0 14px 0 24px;
+	float: right;
+}
+
+.option-display-tbody {
+	border-bottom: 8px solid #fff
+}
+
+.option-display-table {
+	width: 100%;
+	background: #f5f5f5;
+}
+
+.count-btn {
+	display: inline-block;
+	vertical-align: middle;
+	border-radius: 6px;
+	border: 1px solid #dbdbdb;
+	background: #fff;
+}
+
+.count-btn button {
+	width: 23px;
+	height: 17px;
+	text-indent: -9999px;
+}
+
+.price-total-area {
+	border-top: 2px solid rgb(34, 34, 34);
+	padding-top: 8px;
+}
+
+.price-total {
+	padding: 20px 4px 0;
+	font-size: 22px;
+	text-align: right;
+}
+
+.payment-btn-box {
+	padding: 24px 0 8px;
+	display: table;
+	width: 100%;
+}
+
+.payment-btn-box button {
+	display: table-cell;
+	text-align: center;
+	border-radius: 6px;
+	font-size: 19px;
+	line-height: 1;
+	padding: 18px 0 19px;
+}
+
+.go_to_cart {
+	width: 39%;
+	background: #fff;
+	color: #46ae4f;
+	border: 1px solid #46ae4f;
+	margin-right: 1%;
+}
+
+.go_to_payment {
+	width: 60%;
+	background: #46ae4f;
+	border: 1px solid #46ae4f;
+	color: #fff;
+}
+
+/* 상세설명 */
+.product-detail-box {
+	margin-top: 40px;
+}
+
+.product-detail-ul {
+	border-bottom: 1px solid #ebebeb;
+	border-top: 2px solid #000;
+	display: table;
+	padding: 0 2px;
+	background: #fff;
+	list-style: none;
+}
+
+.product-detail-ul li {
+	display: table-cell;
+	width: 1%;
+	text-align: center;
+	list-style: none;
+}
+
+.product-detail-ul a {
+	color: #222;
+	display: inline-block;
+	padding: 22px 16px 0;
+	height: 44px;
+	vertical-align: top;
+	font-size: 18px;
+	line-height: 1;
+	text-decoration: none;
+}
+
+.product-detail-ul li a.active {
+    color: #46ae4f;
+    border-bottom: 2px solid #46ae4f;
+    font-weight: 600;
+}
+
+.detail-img {
+	position: relative;
+	text-align: center;
+	max-height: 500px; /* 원하는 높이로 설정 */
+	overflow: hidden;
+	transition: max-height 0.5s ease-out; /* 부드럽게 전환되도록 설정 */
+	padding-bottom: 30px;
+}
+
+.detail-img-pull {
+	margin-top: 50px;
+	background: #fff;
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	padding: 30px 0 15px;
+	text-align: center; /* 텍스트를 중앙 정렬 */
+}
+
+.detail-img.expanded {
+	max-height: none; /* 모든 이미지가 보이도록 설정 */
+}
+
+.detail-img-pull a {
+	display: block;
+	background: #46ae4f;
+	color: #fff;
+	text-align: center;
+	padding: 20px 0;
+	margin: 0 auto;
+	font-size: 20px;
+	width: 680px;
+}
+
+/* 후기칸 css */
+.reviewCount {
+	font-size: 26px;
+	color: #000;
+	display: flex; /* flex 레이아웃 사용 */
+	justify-content: space-between; /* 요소들 사이에 공간을 최대로 배분 */
+	margin-top: 40px;
+}
+
+.reviewCount div {
+	display: flex; /* flex 레이아웃 사용 */
+}
+
+.reviewCount div p {
+	margin-right: 10px; /* p 태그 사이에 간격 추가 */
+}
+
+.review-li {
+	list-style: none;
+	border-bottom: 1px solid #ebebeb;
+	padding: 30px 10px 40px;
+}
+
+.moreReviews {
+	text-align: center;
+	margin-top: 22px;
+}
+
+.moreReviews a {
+	display: inline-block;
+	padding: 22px 90px;
+	border: 1px solid #2b2f3a;
+	font-size: 20px;
+	line-height: 1;
+}
+
+/* 리뷰작성 */
+.modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /*Black w/ opacity */
+}
+
+.modal-content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 30px;
+	border: 1px solid #888;
+	width: 1100px; 
+    height: 600px; 
+	overflow-y: auto; /* 세로 스크롤바 표시 */
+	max-height: 70vh; /* 모달 창의 최대 높이를 뷰포트 높이의 90%로 설정 */
+}
+
+.review-content {
+	margin-top: 40px;
+	position: relative;
+	display: flex;
+}
+
+.content-column {
+	display: block;
+	margin-left: 30px;
+	position: relative;
+	flex: 1;
+}
+
+#previewContainer {
+	display: flex;
+	justify-content: flex-start;
+}
+
+#imageContainer {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.remove-button {
+	background: none;
+	color: black;
+	border: none;
+	cursor: pointer;
+}
+
+#fileUpload {
+	display: none; /* 파일 업로드 버튼을 숨깁니다. */
+}
+
+.custom-file-upload {
+	display: flex;
+	justify-content: center;
+	align-content: center;
+	width: 100px;
+	height: 100px;
+	border: 1px solid black;
+	cursor: pointer; /* 이미지 버튼 위로 마우스가 올라갈 때마다 커서를 포인터로 변경합니다. */
+}
+
+.review-btn {
+	text-align: center;
+}
+
+.file-upload-input {
+	display: none;
+}
+
+.custom-file-upload:not(:first-of-type) {
+	display: none;
+}
+
+.form-label {
+	position: relative;
+	display: block;
+	flex: 0 0 100%;
+	margin-bottom: 20px;
+	font-size: 16px;
+}
+
+.textis-requied {
+	color: red;
+}
+
+.review-text {
+	display: block;
+	width: 100%;
+	height: 40px;
+	background-clip: padding-box;
+	background-color: transparent;
+	border: none;
+	border-bottom: solid 1px #d0d0d0;
+	border-width: 0 0 1px;
+	border-radius: 0;
+	font-size: 1rem;
+	font-family: 'sejong';
+}
+
+.review-text:focus {
+	display: block;
+	width: 100%;
+	height: 40px;
+	background-clip: padding-box;
+	background-color: transparent;
+	border: none;
+	border-bottom: solid 1px black;
+	border-width: 0 0 1px;
+	border-radius: 0;
+	outline: none;
+	font-size: 1rem;
+}
+
+.text-muted {
+	position: absolute;
+	right: 80px;
+	font-size: 1rem;
+	line-height: 24px;
+	letter-spacing: -.26px;
+	padding-top: 50px;
+	bottom: 30px;
+	top: inherit;
+	transform: inherit;
+	color: #999;
+}
+
+.column-text {
+	position: relative;
+}
+
+.review-area {
+	border: 1px solid #d0d0d0;
+	border-width: 1px;
+	min-height: 260px;
+	display: block;
+	width: 1000px;
+	background-clip: padding-box;
+	background-color: transparent;
+	overflow: scroll; /* 스크롤 항상 보이게 */
+	resize: vertical;
+	font-size: 1rem;
+	color: black;
+	font-family: 'sejong';
+	padding-right: 50px;
+	line-height: 1.75;
+}
+
+textarea::-webkit-scrollbar {
+	display: block;
+	width: 12px;
+}
+
+textarea::-webkit-scrollbar-track {
+	background: #f1f1f1;
+}
+
+textarea::-webkit-scrollbar-thumb {
+	background: #888;
+}
+
+textarea::-webkit-scrollbar-thumb:hover {
+	background: #555;
+}
+
+/* 별점 */
+.rating-container {
+	display: flex;
+	align-items: center;
+}
+
+.rating__star {
+	color: yellow; /* 노란색으로 변경 */
+}
+
+.rating__star.far {
+	color: gray; /* 비활성화된 별의 색 */
+}
+
+.rating__result {
+	margin-left: 10px;
+}
+
+.reviewEnroll {
+	width: 100px;
+	height: 40px;
+	background-color: white;
+}
+
+.reviewEnroll-btn {
+	float: right;
+}
+
+/* 배송정보 및 문의 */
+.shipping_Questions {	
+	margin-bottom: 0;
+    list-style: none;
+    padding: 0;
+    border-top: 1px solid #ebebeb;
+}
+
+.shipping_Questions li {	
+    border-bottom: 1px solid #ebebeb;
     position: relative;
-    overflow: hidden;
-    line-height: 0;
-    width: 100%
 }
 
-.product-caption{	
-    padding: 12px 5px 8px;
+.accordion_i_tit {
+	display: block;
+    font-weight: 400;
+    line-height: 1;
+    font-size: 24px;
+    color: #222;
+    padding: 22px 18px 24px;
+}
+
+.openblock_content {
+	display: none;
+}
+
+.openblock_content dl dd {
+    padding: 20px 10px 40px;
+    color: #555555;
+    vertical-align: top;
+}
+
+.openblock_content dl dt h3 {
+    font-size: 20px;
+}
+
+.openblock_content dl dt {
+    padding: 5px 10px 0;
+    white-space: normal;
+    font-weight: bold;
+    color: #111111;
+}
+
+.accordion_i_tit:after, .accordion_i_tit2:after {
+    width: 12px;
+    height: 12px;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+    position: absolute;
+    right: 25px;
+    content: " ";
+    top: 30px;
+    transform: rotate(315deg);
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.accordion_i_tit.active:after, .accordion_i_tit2.active:after {
+    transform: rotate(225deg);
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+    top: 30px;
+}
+
+/* 문의사항 */
+.accordion_i_tit2{
+	display: block;
+    font-weight: 400;
+    line-height: 1;
+    font-size: 24px;
+    color: #222;
+    padding: 22px 18px 24px;
+}
+    
+.productQuestions {
+	display: none; 
+    color: #6b97a4;
+    background: #fff;
+    padding: 15px;
+    border-top: 1px solid #e8e8e8;
+}
+
+.productQuestions li {
+    border-bottom: 1px solid #e8e8e8;
+    position: relative;
+    list-style: none;
+}
+
+.productQuestions_a{
+    display: flex;
+    line-height: 1;
+    font-size: 15px;
+    color: #222;
+    padding: 28px 28px;
+    align-items: center; /* 요소들을 세로 중앙에 배치 */
+    justify-content: space-between; /* 요소들 사이에 공간을 균등하게 배치 */
+
+}
+
+.accordion_q_tit2{
+    padding: 1px 0 4px 0;
+    font-size: 14px;
+    width: 724px;
+    display: inline-block;
+}
+
+.accordion_q_tit1 span{
+	width: 150px;
+    font-weight: normal;
+    font-size: 14px;
+    color: #888;
+    margin-left: 60px;
+}
+
+.questionsDetail{
+    border-top: 1px solid #e8e8e8;
+    background: #f6f6f6;
+    padding: 40px 60px;
+    color: #222;
+    font-size: 14px;
+    letter-spacing: -0.02em;
+    display: none;
+}
+
+.goods_board_view {
+    font-size: 15px;
+    display: table-cell;
+    width: 10000px;
+}
+
+.contents_holder{
+	background: url(/resources/uploads/img_qna_q.png) left 4px no-repeat;
+    background-size: 14px;
+    padding: 0 0 4px 26px;
+    font-size: 14px;
+    float: none;
+    color: #222;
+    line-height: 1.8;
+}
+
+.contents_holder.answer {
+    background: url(/resources/uploads/img_qna_a.png) left 4px no-repeat;
+    background-size: 14px;
+    margin-top: 8px;
+}
+
+.goods_board_view .reply_box .item_list_summary {
+    margin: 15px 0 10px 8px;
+    padding: 15px 0 0 0;
+    border-top: 1px solid #e2e2e2;
+    color: #ccc;
+    line-height: 1;
+}
+
+/* 문의하기 모달 */
+.questionsModal {
+  display: none; /* 초기에는 모달을 숨김 */
+  	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /*Black w/ opacity */
+  /* 모달 스타일링 */
+}
+
+.questionsModal.active {
+  display: block; /* 모달을 보이도록 변경 */
+}
+
+.q_modal_content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 30px;
+	border: 1px solid #888;
+	width: 1100px; 
+    height: 600px; 
+	overflow-y: auto; /* 세로 스크롤바 표시 */
+	max-height: 70vh; /* 모달 창의 최대 높이를 뷰포트 높이의 90%로 설정 */
+}
+
+.productTit{
+	display: flex;
+	overflow: hidden;
+    padding: 0 0 15px 0;
+}
+
+.questionsTit{
+    padding: 13px 15px 11px 15px;
+}
+
+.questionsTit h4{
+	padding: 0 30px 15px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #999999;
+    margin: 0px;
+}
+
+.productTit h5 {
+	padding: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.productTit img {
+	width: 100px;
+	height: 100px;
+}
+
+.questionsTable {
+    width: 100%;
+    margin: 0 0 20px 0;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-top: 1px solid #3c3c3c;
+}
+
+.questionsTable th {
+	padding: 13px 0 7px 25px;
+    font-weight: bold;
+    border-bottom: 1px solid #dbdbdb;
+    background: #fbfbfb;
     text-align: left;
+    vertical-align: top;
+}
+
+.questionsTable td {
+	height: 32px;
+    margin: 0;
+    padding: 7px 0 7px 15px;
+    border-bottom: 1px solid #dbdbdb;
+    background: #ffffff;
+}
+
+.questionsInput {
+	width: 312px;
+    padding: 0 10px;
+    outline: none;
+    font-size: 12px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 33px;
+    color: #333333;
+    border: 1px solid #d6d6d6;
+    line-height: 33px;
+}
+.questionsSubTit {
+	width: 90%;
+	padding: 0 10px;
+    outline: none;
+    font-size: 12px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 33px;
+    color: #333333;
+    border: 1px solid #d6d6d6;
+    line-height: 33px;
+}
+
+.questionsText {
+	width: 90%;
+	min-height: 400px;
+}
+
+#q_modal_btn {
+	float: right;
+	width: 100px;
+	height: 40px;
+	background-color: white;
+	margin-top: 20px;
+}
+
+.questionsEnroll-btn {
+	float: right;
+}
+
+.pagination-box {
+	display: inline-block;
+    padding-left: 0;
+    margin: 30px 0;
+    border-radius: 0;
+    width: 100%;
+}
+
+.pagination {
+	padding: 20px 0 0;
+    text-align: center;
+}
+
+.page-item {
+	display: inline-block;
+    min-width: 24px;
+    vertical-align: middle;
+    height: 30px;
+    line-height: 1;
+    padding: 2px;
+    border: 1px solid #ebebeb;
+    margin: 0 2px;
+}
+
+.page-link {
+	display: block;
+    padding: 0 10px;
+    height: 30px;
+    color: #888;
+    font-size: 14px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.page-link.active {
+  color: red;
 }
 

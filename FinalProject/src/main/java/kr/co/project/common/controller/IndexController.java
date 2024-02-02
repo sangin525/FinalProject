@@ -55,14 +55,52 @@ public class IndexController {
 		return "member/chefmake";
 	}
 	
-	@RequestMapping("/foodStore")
+	@RequestMapping("/products")
 	public String foodStorePage() {
-		return "foodStore/foodStore";
+		return "foodStore/products";
+	}
+	
+	@RequestMapping("/productDetail")
+	public String productDetailPage() {
+		return "foodStore/productDetail";
 	}
 	
 	@RequestMapping("/foodFriend")
 	public String friendPage() {
 		return "foodFriend/foodFriendList";
+	}
+	
+	@GetMapping("/myPage")
+	public String myPage() {
+		return "myPage/myPage";
+	}
+	@RequestMapping("/myRecipes")
+	public String myRecipes() {
+		return "myPage/myRecipes";
+	}
+	@RequestMapping("/scrapRecipe")
+	public String scrapRecipe() {
+		return "myPage/scrapRecipe";
+	}
+	@RequestMapping("/notification")
+	public String notification() {
+		return "myPage/notification";
+	}
+	@RequestMapping("/quiries")
+	public String quiries() {
+		return "myPage/quiries";
+	}
+	@RequestMapping("/orders")
+	public String orders() {
+		return "myPage/orders";
+	}
+	@RequestMapping("/cart")
+	public String cart() {
+		return "myPage/cart";
+	}
+	@RequestMapping("/fixProfile")
+	public String fixProfile() {
+		return "myPage/fixProfile";
 	}
 	
 	@GetMapping("foodFriendEnroll")
