@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipeCommentMapper">
+	<resultMap type = "recipe" id="recipeCommentResultSet">
+		<result column="RC_NO" property="rcno"></result>
+		<result column="RC_COMMENT" property="comment"></result>
+		<result column="RC_IN_DATE" property="rcInDate"></result>
+		<result column="R_NO" property="rno"></result>
+		<result column="M_NO" property="mno"></result>	
+		<result column="R_COMNAME" property="comname"></result>
+	</resultMap>
+
+<select id="selectComment" resultMap="recipeCommentResultSet">
+SELECT * FROM RECIPECOMMENT 
+WHERE R_NO=#{rno}
+</select>
+
+<select id="commentCount" resultType="_int">
+SELECT COUNT (*) FROM RECIPECOMMENT
+WHERE R_NO=#{rno}
+</select>
+
+
+<insert id="addComment">
+	INSERT INTO RECIPECOMMENT VALUES(recipeComment_seq.nextval,
+									#{comment},
+									SYSDATE,
+									#{rno},
+									#{mno},
+									#{memberNickName}
+						)
+</insert>
+
+
+
+
+
+
+
+
+
+</mapper>
