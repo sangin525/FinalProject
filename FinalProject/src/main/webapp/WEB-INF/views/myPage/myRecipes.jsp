@@ -54,7 +54,7 @@
 								<div class="result_none">
 									<img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
 									<p>레시피를 직접 올려보세요!</p>
-									자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br>
+									자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br><br>
 									<button type="button"
 										onclick="location.href='/recipe/addRecipeForm.do'"
 										class="btn-lg btn-primary">레시피 등록하기</button>

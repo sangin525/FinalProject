@@ -102,6 +102,10 @@ public class IndexController {
 	public String fixProfile() {
 		return "myPage/fixProfile";
 	}
+	@RequestMapping("/contectUs")
+	public String contectUs() {
+		return "myPage/contectUs";
+	}
 	
 	@GetMapping("foodFriendEnroll")
 	public String enrollForm() {

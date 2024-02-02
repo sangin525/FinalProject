@@ -30,9 +30,7 @@
 				<div class="chef_cont">
 					<ul class="nav">
 						<li><a>스크랩한 레시피</a></li>
-						<div class="list">
-							<a href="#">최신순</a><a href="#">조회순</a>
-						</div>
+						
 					</ul>
 						<hr />
 					<br>
@@ -53,7 +51,7 @@
 								<div class="result_none">
 									<img src="/resources/uploads/스크랩사진누끼.png">
 									<p>사람들의 레시피를 스크랩해보세요!</p>
-									레시피를 스크립하고 두고두고 맛있는 레시피로 요리해보세요.<br>
+									레시피를 스크립하고 두고두고 맛있는 레시피로 요리해보세요.<br><br>
 									<button type="button"
 										onclick="location.href='/ranking_recipe'"
 										class="btn-lg btn-primary">레시피 구경하러가기</button>

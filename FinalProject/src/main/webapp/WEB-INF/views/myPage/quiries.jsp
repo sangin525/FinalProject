@@ -29,22 +29,36 @@
 			<div class="content">
 				<div class="chef_cont">
 					<ul class="nav">
-						<li><a>공개중</a></li>
-						<div class="list">
-							<a href="#">최신순</a><a href="#">조회순</a>
-						</div>
+						<li><a>문의하기</a>
 					</ul>
-						<hr />
+					<hr />
 					<br>
-					<div class="cont_list">
-						<div class="result_none">
-							<img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
-							<p>레시피를 직접 올려보세요!</p>
-							자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br>
-							<button type="button" onclick="location.href='/recipe/addRecipeForm.do'" class="btn-lg btn-primary">
-							레시피 등록하기</button>
-						</div>
-
+					<div class="contactBox">
+						<c:choose>
+							<c:when test="${not empty scrapRecipeList}">
+								<div class="result">
+									<a href="after_addRecipe"> <!-- src 바꿔야한다 -->
+										<div class="contactUs">
+											<p class="contact">접수</p>
+											<p class="contactName">접수이름</p>
+											<p class="contactDate">접수 날짜: 2024-02-02</p>
+										</div>
+									</a>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="cont_list">
+									<div class="result_none">
+										<img src="resources/uploads/문의.png">
+										<p>궁금하신 사항은 언제든지 문의하세요!</p>
+										최선을 다해 답변 드리겠습니다.<br>
+										<button type="button"
+											onclick="location.href='/contectUs'"
+											class="btn-lg btn-primary">문의하기</button>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</div>
 				</div>
 			</div>
