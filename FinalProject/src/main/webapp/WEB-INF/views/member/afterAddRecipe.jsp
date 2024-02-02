@@ -189,36 +189,39 @@
 	</c:if>
 		<br>
 		<div class="comment_title">
-			댓글 <span>21</span>
+			댓글 <span></span>
 		</div>
 		
 
 		<div class="commentList">
-
-			<div class="reply_list">
-				<div class="media-left">
-					<a href="#"> <img class="profile_picture" src="/resources/uploads/레시피등록대표사진.gif"></a>
+			 <c:forEach var="item" items="${comment}">
+			 ${item.comname}
+				<div class="reply_list">
+					<div class="media-left">
+						<a href="#"> <img class="profile_picture" src="/resources/uploads/레시피등록대표사진.gif"></a>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">
+						
+							<b class="info_name_f">${item.comment}</b><span></span>
+							<a onclick="#">답글</a><span></span>	<a>신고</a>
+						</h4>
+						 <br>
+					</div>
+					
 				</div>
-				<div class="media-body">
-					<h4 class="media-heading">
-						<b class="info_name_f">바비</b><span>2024-1-29 07:32</span>
-						<a onclick="#">답글</a><span>|</span>	<a>신고</a>
-					</h4>
-					바비 <br>
-				</div>
-				
-			</div>
+			</c:forEach> 
 
 			<div class="comment-section">
 				<h2>댓글 남기기</h2>
-				<form id="comment-form">
+				<form id="comment-form" method="post" action="/recipe/comment.do?rno=${recipe.rno}">
 				<div class="commentPic"><img src="/resources/uploads/레시피등록대표사진.gif"></div>
 					<div>
 						<br>
 						<textarea id="comment" name="comment" placeholder="코멘트 및 후기를 써주세요!"></textarea>
 					</div>
 					<div>
-						<button class="comment_submit">댓글작성</button>
+						<button type="submit" class="comment_submit">댓글작성</button>
 						
 					</div>
 				</form>

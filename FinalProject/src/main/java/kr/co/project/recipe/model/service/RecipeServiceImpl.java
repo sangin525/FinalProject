@@ -130,4 +130,14 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.selectSequenceFileName(sqlSession,rno);
 	}
 
+	public int addComment(RecipeDTO recipe) {
+		
+		return recipeDao.addComment(sqlSession,recipe);
+	}
+
+	public List<RecipeDTO> selectComment(int rno) {
+		
+		return recipeDao.selectComment(sqlSession,rno);
+	}
+
 }

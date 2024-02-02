@@ -139,7 +139,7 @@
 				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">${item.memberNickName }</a>
 			</div>
 			<div class="RecipeScore">
-				<span>요리번호 : ${row}</span>
+				<span>요리번호 : ${item.rno}</span>
 				<span>별점</span>
 				<span>요리제목 : ${item.title}</span>
 				<span>조회수 : ${item.views}</span>

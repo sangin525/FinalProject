@@ -99,4 +99,14 @@ public class RecipeDAO {
 		
 		return sqlSession.selectList("recipeSequencePhotoMapper.selectSequenceFileName",rno);
 	}
+
+	public int addComment(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.insert("recipeCommentMapper.addComment",recipe);
+	}
+
+	public List<RecipeDTO> selectComment(SqlSessionTemplate sqlSession, int rno) {
+		
+		return sqlSession.selectList("recipeCommentMapper.selectComment",rno);
+	}
 }

@@ -1,7 +1,6 @@
 package kr.co.project.recipe.controller;
 
 import java.io.IOException;
-import java.lang.reflect.Member;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -90,6 +89,7 @@ public class RecipeController {
 					
 		recipe.setMemberNickName((String)session.getAttribute("memberNickName"));
 		recipe.setMno((int) session.getAttribute("mno"));
+		System.out.println(recipe.getMemberNickName());
 		// 제목 길이 검사
 		boolean titleLengthCheck = DataValidation.CheckLength(recipe.getTitle(), 150);
 		
@@ -157,18 +157,22 @@ public class RecipeController {
 		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
 		
 		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
+		
+		List<RecipeDTO> comresult = recipeService.selectComment(rno);
+//		RecipeDTO comresult = recipeService.selectComment(rno);
+		
 		List<RecipeDTO> seqPhoresult = new ArrayList<>();
 //		List<RecipeDTO> list
 		if(!Objects.isNull(result)) {
 			if(!Objects.isNull(ingreresult)) {
 				if(!Objects.isNull(seqresult)) {	
 					int rsno = seqresult.getRsno();
-//					System.out.println("rsno:"+rsno);
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
-//					if(!Objects.isNull(seqPhoresult)){
+					if(!Objects.isNull(comresult)) {
 						System.out.println("성공");	
-//						model.addAttribute("seqpho",seqPhoresult);
-//					}				
+						model.addAttribute("comment",comresult);
+						System.out.println("값입니다"+comresult);
+					}
 				}
 			}
 		}
@@ -188,12 +192,17 @@ public class RecipeController {
 		}
 		model.addAttribute("ingredientWeight",ingredientWeight);
 		
+		// 레시피 순서 꺼내기
 		String[] sequence = new String[seqresult.getRsSequence().length()];
 		sequence = seqresult.getRsSequence().split(",");
 		for(String s: sequence) {
 			
 		}
 		model.addAttribute("sequence",sequence);
+	
+//		String[] comment = new String[comresult.size()];
+//		comment = comresult.size();
+		
 		
 //		String[] sequencePhoto = new String[seqPhoresult.size()];
 //		sequencePhoto = seqPhoresult.size();
@@ -277,9 +286,28 @@ public class RecipeController {
 		return "redirect:/recipe/categoryList.do";
 	}
 	
-
-
-
+	@PostMapping("/comment.do")
+	public String comment(@RequestParam(value="rno")int rno,
+			HttpSession session,RecipeDTO recipe,Model model) {
+			
+			
+		recipe.setMemberNickName((String)session.getAttribute("memberNickName"));
+		recipe.setMno((int) session.getAttribute("mno"));
+			
+			System.out.println("작성자"+recipe.getMemberNickName());
+			System.out.println("회원번호"+recipe.getMno());
+			
+			int result = recipeService.addComment(recipe);
+			System.out.println(recipe.getComment());
+			model.addAttribute("recipe2",recipe);
+			if(result>0) {
+				System.out.println("댓글작성 성공");
+			}else {
+				System.out.println("댓글작성 실패");
+			}
+			return"redirect:/recipe/categoryList.do";
+			
+	}
 
 
 

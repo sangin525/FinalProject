@@ -49,6 +49,7 @@ public class RecipeDTO {
 	private String deleteDate;
 	private int rcno;
 	private String comment;
+	private String comname;
 	private String rcInDate;
 	
 }
