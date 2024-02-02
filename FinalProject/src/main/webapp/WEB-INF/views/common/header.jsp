@@ -21,8 +21,10 @@
 					<a href="/SignOut.do" class="Main_a">로그아웃</a>
 				</c:when>
 				<c:otherwise>
-					<a href="/member/login.do" class="Main_a">로그인</a>
-					<a href="/member/registerForm.do" class="Main_a">회원가입</a>
+
+					<a href="/member/loginForm.do">로그인</a>
+					<a href="/member/registerForm.do">회원가입</a>
+
 				</c:otherwise>
 			</c:choose>
 

@@ -17,176 +17,32 @@
 <%@ include file="../../views/ranking/rankingNav.jsp"%>
 	
 	<ul class="recipeList">
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a href="after_addRecipe">
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
+	<c:choose>
+		<c:when test="${empty list}">
+			<h3 class = "text-center">등록된 글이 없습니다.</h3>
+		</c:when>
+		<c:otherwise>
+			<c:forEach var="item" items="${list}">
 		<li class="recipeRanking">
 			<p class="rankingNum"><b>1</b></p>
 			<div>
 				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
+					<img src="/resources/uploads/recipe/${item.uploadName}" class="rank-image" onclick="location.href='/recipe/detail.do?rno=${item.rno}'">
 				</a>
 			</div>
-			<div class="recipeTitle">레시피 제목</div>
+			<div class="recipeTitle">${item.title}</div>
 			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
+				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">${item.memberNickName}</a>
 			</div>
 			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
+				<span>별점</span>	
+				<span>조회수 ${item.views}</span>
 			</div>
 		</li>
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
-		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
-			<div>
-				<a>
-					<img src="/resources/uploads/고양이그림.png" class="rank-image">
-				</a>
-			</div>
-			<div class="recipeTitle">레시피 제목</div>
-			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">쉐프이름</a>
-			</div>
-			<div class="RecipeScore">
-				<span>별점</span>
-				<span>리뷰수</span>
-				<span>조회수</span>
-			</div>
-		</li>
+				</c:forEach>
+		</c:otherwise>
+	</c:choose>
+		
 	</ul>
 	</div>
 </div>

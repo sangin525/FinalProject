@@ -2,6 +2,7 @@ package kr.co.project.member.controller;
 
 import java.util.Objects;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,11 +63,20 @@ public class MemberController {
 		return "member/register";
 	}
 	
-	@GetMapping("/login.do")
+	@GetMapping("/loginForm.do")
 	public String loginForm() {
 		return "member/login";
 	}
 
+	@GetMapping("/logOut.do")
+	public String logOut(HttpServletRequest request)throws Exception {
+		
+		HttpSession session =request.getSession();
+		
+		session.invalidate();
+		return "home";
+	}
+	
 	@PostMapping("/checkEmail.do")
 	@ResponseBody
 	public String checkEmail(String email) {
