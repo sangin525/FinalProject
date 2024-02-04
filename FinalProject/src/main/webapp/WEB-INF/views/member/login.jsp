@@ -13,7 +13,8 @@
 <%@ include file="../../views/common/header.jsp"%>
 
 <div class="registerContainer">
-	<div class="registerContain">
+	<div class="loginContain">
+		<div class="loginForm">
 		<h2 class="register_h2">로그인</h2>
 		<form action="/member/login.do" method="post">
 			<div class="memberInputbox">
@@ -31,6 +32,7 @@
 			</button>
 		</div>
 		</form>
+		</div>
 	</div>
 </div>
 <%@ include file="../../views/common/footer.jsp"%>

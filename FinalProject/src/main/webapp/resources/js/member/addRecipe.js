@@ -37,6 +37,9 @@ document.getElementById("deleteIngredientBtn").addEventListener("click", functio
 
 
 var stepCount = 1;
+var imgCount = 1;
+var imgCount2 = 1;
+var imgCount3 =1;
 var stepButton = document.getElementById('stepButton');
 var initialStepButton = stepButton.cloneNode(true); // 처음 '순서 추가'와 '순서 삭제' 버튼 복사
 
@@ -49,7 +52,10 @@ document.getElementById("deleteStepBtn").addEventListener("click", deleteStep);
 
 function addStep() {
 	stepCount++;
-
+	imgCount++;
+	imgCount2++;
+	imgCount3++;
+	
 	var step = document.createElement("div");
 	step.id = "amountStep_" + stepCount;
 	step.className = "step";
@@ -64,21 +70,25 @@ function addStep() {
 	stepText.id = "stepText_" + stepCount;
 	var stepTextarea = document.createElement("textarea");
 	stepTextarea.name = "rsSequence";
-	stepTextarea.id = "step_text_" + stepCount;
 	stepTextarea.className = "step-control";
+	stepTextarea.id = "step_text_" + stepCount;
 	stepTextarea.placeholder = "예) 소고기는 기름기를 떼어내고 적당한 크기로 썰어주세요.";
 	stepText.appendChild(stepTextarea);
 	step.appendChild(stepText);
 
 	var stepPhoto = document.createElement("div");
 	stepPhoto.id = "divStepPhoto";
-	var input = document.createElement("input");
-	input.type = "file";
-	input.id = "recipeSeqeuncePhoto";
+	var inputFile = document.createElement("input");
+	inputFile.type = "file";
+	inputFile.id = "recipeSeqeuncePhoto_" + imgCount;
+	inputFile.className = "rsPhotouUpload_" + imgCount2;
+	inputFile.name = "multiFileList";
 	var img = document.createElement("img");	
 	img.id = "stepPhoto";
+	img.className = "recipeImg_" + imgCount3;
 	img.src = "/resources/uploads/사진추가.gif";
 	img.onclick = function() { StepFile(); };
+	stepPhoto.appendChild(inputFile);
 	stepPhoto.appendChild(img);
 	step.appendChild(stepPhoto);
 

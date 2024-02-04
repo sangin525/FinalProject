@@ -615,8 +615,18 @@ textarea::-webkit-scrollbar-thumb:hover {
 	margin-left: 10px;
 }
 
-.reviewEnroll-btn {
+.reviewEnroll {
+	width: 100px;
+	height: 40px;
+	background-color: white;
+}
+
+.reviewEnroll-btn button{
 	float: right;
+	width: 100px;
+	height: 40px;
+	background-color: white;
+	margin: 10px 10px 10px 0;
 }
 
 /* 배송정보 및 문의 */
@@ -662,7 +672,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     color: #111111;
 }
 
-.accordion_i_tit:after {
+.accordion_i_tit:after, .accordion_i_tit2:after {
     width: 12px;
     height: 12px;
     border-right: 1px solid #808080;
@@ -671,14 +681,14 @@ textarea::-webkit-scrollbar-thumb:hover {
     right: 25px;
     content: " ";
     top: 30px;
-    transform: rotate(225deg);
+    transform: rotate(315deg);
     -webkit-transition: all 0.1s ease-in-out;
     -moz-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
 }
 
-.accordion_i_tit.active:after {
-    transform: rotate(315deg);
+.accordion_i_tit.active:after, .accordion_i_tit2.active:after {
+    transform: rotate(225deg);
     -webkit-transition: all 0.1s ease-in-out;
     -moz-transition: all 0.1s ease-in-out;
     transition: all 0.1s ease-in-out;
@@ -709,7 +719,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     list-style: none;
 }
 
-.productQuestions a{
+.productQuestions_a{
     display: flex;
     line-height: 1;
     font-size: 15px;
@@ -773,4 +783,177 @@ textarea::-webkit-scrollbar-thumb:hover {
     border-top: 1px solid #e2e2e2;
     color: #ccc;
     line-height: 1;
+}
+
+/* 문의하기 모달 */
+.questionsModal {
+  display: none; /* 초기에는 모달을 숨김 */
+  	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /*Black w/ opacity */
+  /* 모달 스타일링 */
+}
+
+.questionsModal.active {
+  display: block; /* 모달을 보이도록 변경 */
+}
+
+.q_modal_content {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 30px;
+	border: 1px solid #888;
+	width: 1100px; 
+    height: 600px; 
+	overflow-y: auto; /* 세로 스크롤바 표시 */
+	max-height: 70vh; /* 모달 창의 최대 높이를 뷰포트 높이의 90%로 설정 */
+}
+
+.productTit{
+	display: flex;
+	overflow: hidden;
+    padding: 0 0 15px 0;
+}
+
+.questionsTit{
+    padding: 13px 15px 11px 15px;
+}
+
+.questionsTit h4{
+	padding: 0 30px 15px 0;
+    font-size: 18px;
+    border-bottom: 1px solid #999999;
+    margin: 0px;
+}
+
+.productTit h5 {
+	padding: 0 0 5px 0;
+    font-size: 18px;
+}
+
+.productTit img {
+	width: 100px;
+	height: 100px;
+}
+
+.questionsTable {
+    width: 100%;
+    margin: 0 0 20px 0;
+    border: 0;
+    border-spacing: 0;
+    border-collapse: collapse;
+    border-top: 1px solid #3c3c3c;
+}
+
+.questionsTable th {
+	padding: 13px 0 7px 25px;
+    font-weight: bold;
+    border-bottom: 1px solid #dbdbdb;
+    background: #fbfbfb;
+    text-align: left;
+    vertical-align: top;
+}
+
+.questionsTable td {
+	height: 32px;
+    margin: 0;
+    padding: 7px 0 7px 15px;
+    border-bottom: 1px solid #dbdbdb;
+    background: #ffffff;
+}
+
+.questionsInput {
+	width: 312px;
+    padding: 0 10px;
+    outline: none;
+    font-size: 12px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 33px;
+    color: #333333;
+    border: 1px solid #d6d6d6;
+    line-height: 33px;
+}
+.questionsSubTit {
+	width: 90%;
+	padding: 0 10px;
+    outline: none;
+    font-size: 12px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 33px;
+    color: #333333;
+    border: 1px solid #d6d6d6;
+    line-height: 33px;
+}
+
+.questionsText {
+	width: 90%;
+	min-height: 400px;
+}
+
+#q_modal_btn {
+	float: right;
+	width: 100px;
+	height: 40px;
+	background-color: white;
+	margin-top: 20px;
+}
+
+.questionsEnroll-btn {
+	float: right;
+}
+
+.pagination-box {
+	display: inline-block;
+    padding-left: 0;
+    margin: 30px 0;
+    border-radius: 0;
+    width: 100%;
+}
+
+.pagination {
+	padding: 20px 0 0;
+    text-align: center;
+}
+
+.page-item {
+	display: inline-block;
+    min-width: 24px;
+    vertical-align: middle;
+    height: 30px;
+    line-height: 1;
+    padding: 2px;
+    border: 1px solid #ebebeb;
+    margin: 0 2px;
+}
+
+.page-link {
+	display: block;
+    padding: 0 10px;
+    height: 30px;
+    color: #888;
+    font-size: 14px;
+    line-height: 30px;
+    text-decoration: none;
+}
+
+.page-link.active {
+  color: red;
+}
+
+.questionsEnroll-btn button{
+	width: 100px;
+	height: 40px;
+	background-color: white;
+	margin: 10px 10px 10px 0;
+	cursor: pointer;
 }

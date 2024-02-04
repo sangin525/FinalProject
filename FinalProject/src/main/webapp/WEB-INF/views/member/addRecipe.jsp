@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<!DOCTYPE>
 
 <html>
 <head>
@@ -15,17 +15,17 @@
 	<div class="addRecipeContainer">
 		<div class="recipeContain">
 			<h2 class="addRecipe">레시피 등록</h2>
-			<form class="addRecipeForm" action="/recipe/addRecipe.do" method="post" enctype="multipart/form-data">
+			<form class="addRecipeForm" action="/recipe/addRecipe.do" method="post" enctype="multipart/form-data" novalidate>
 
 
 				<div class="cont_box">
 					<div id="recipePhotoUpload" class="cont_pic2">
-						<input type="file" class="realUpload" name="upload" id="recipe_photo" value="" required multiple style="display: none;">
+						<input type="file" class="realUpload" name="multiFileList" id="recipe_photo" value="" required multiple style="display: none;">
 						<input type="hidden" name="new_recipe_photo" id="new_recipe_photo" value=""> 
 						<input type="hidden" name="del_recipe_photo" id="del_recipe_photo" value="">
 
 						<div id="recipePhoto">
-							<img class="recipeImg" id="mainFile" onclick="browseMainFile()"
+							<img class="recipeImg" id="mainFile"
 								src="/resources/uploads/레시피등록대표사진.gif">
 						</div>
 					</div>
@@ -120,28 +120,28 @@
 						<span>인원</span> <select name="person" id="cok_portion"
 							text="인원">
 							<option value="">인원</option>
-							<option value="one">1인분</option>
-							<option value="two">2인분</option>
-							<option value="three">3인분</option>
-							<option value="four">4인분</option>
-							<option value="five">5인분</option>
-							<option value="six">6인분이상</option>
+							<option value="1인분">1인분</option>
+							<option value="2인분">2인분</option>
+							<option value="3인분">3인분</option>
+							<option value="4인분">4인분</option>
+							<option value="5인분">5인분</option>
+							<option value="6인분">6인분이상</option>
 						</select> <span>시간 </span> <select name="time" id="cok_time"
 							text="요리시간">
 							<option value="">시간</option>
-							<option value="ten">10분이내</option>
-							<option value="twenty">20분이내</option>
-							<option value="half-hour">30분이내</option>
-							<option value="hour">60분이내</option>
-							<option value="twoHour">2시간이상</option>
+							<option value="10분">10분이내</option>
+							<option value="20분">20분이내</option>
+							<option value="30분">30분이내</option>
+							<option value="60분">60분이내</option>
+							<option value="2시간이상">2시간이상</option>
 						</select> <span>난이도 </span> <select name="difficulty" id="cok_degree"
 							text="난이도">
 							<option value="">난이도</option>
-							<option value="everyOne">아무나</option>
-							<option value="east">초급</option>
-							<option value="normal">중급</option>
-							<option value="hard">고급</option>
-							<option value="veryHard">신의경지</option>
+							<option value="아무나">아무나</option>
+							<option value="초급">초급</option>
+							<option value="중급">중급</option>
+							<option value="고급">고급</option>
+							<option value="신의경지">신의경지</option>
 						</select>
 					</div>
 				</div>
@@ -186,31 +186,17 @@
 				</div>
 
 				<div id="divStepPhoto">
-					<input type="file" id="recipeSequencePhoto" name="upload2">
-					<img id="stepPhoto" onclick="StepFile"
+					<input type="file" class="rsPhotoUpload_" name="multiFileList" id="recipeSequencePhoto_" required multiple style="display: none;">
+					<img id="stepPhoto_" class="recipeImg_" 
 						src="/resources/uploads/사진추가.gif">
 				</div>
 				<div id="stepButton">
-					<button type="button" id="addStepBtn" class="addStepBtn">순서 추가</button>
+					<button type="button" id="addStepBtn" class="addStepBtn" >순서 추가</button>
 					<button type="button" id="deleteStepBtn" class="deleteStepBtn">순서 삭제</button>
 				</div>
 			</div>
 		</div>
-		<div class="finalCookPic">
-			<p class="finalCook">요리 완성 사진</p>
-			<div class="finalPhoto">
-				<img id="finalPhoto" onclick="finalFile"
-					src="/resources/uploads/사진추가.gif">
-			</div>
-			<div class="finalPhoto">
-				<img id="finalPhoto" onclick="finalFile"
-					src="/resources/uploads/사진추가.gif">
-			</div>
-			<div class="finalPhoto">
-				<img id="finalPhoto" onclick="finalFile"
-					src="/resources/uploads/사진추가.gif">
-			</div>
-		</div>
+		
 	</div>
 
 
@@ -227,7 +213,7 @@
 	</div>
 
 	<div class="recipeBtnContainer">
-		<button type="submit" id="enrollBtn" class="enrollBtn" onclick="save()">레시피 등록</button>
+		<button type="submit" id="enrollBtn" class="enrollBtn">레시피 등록</button>
 		<button type="button" id="cancelBtn" class="cancelBtn" onclick="history.back()">레시피 등록 취소</button>
 	</div>
 
@@ -269,6 +255,7 @@
 <script src="/resources/js/member/addRecipe.js">
 
 </script>
+<!-- 레시피 메인사진 업로드 -->
 <script>
 document.getElementById('recipe_photo').onchange = function (evt) {
     var tgt = evt.target || window.event.srcElement,
@@ -291,8 +278,20 @@ document.getElementById('recipe_photo').onchange = function (evt) {
 }
 
 </script>
+
 <script>
-document.getElementById('recipeSequencePhoto').onchange = function (evt) {
+	const realUpload = document.querySelector('.realUpload');
+	const upload = document.querySelector('.recipeImg');
+	
+	 upload.addEventListener('click', () => realUpload.click());
+</script>
+
+
+
+<!-- 레시피 과정사진 업로드 -->
+<script>
+	
+	document.getElementById("recipeSequencePhoto_").onchange = function (evt) {
     var tgt = evt.target || window.event.srcElement,
         files = tgt.files;
     
@@ -300,7 +299,7 @@ document.getElementById('recipeSequencePhoto').onchange = function (evt) {
     if (FileReader && files && files.length) {
         var fr = new FileReader();
         fr.onload = function () {
-            document.getElementById('stepPhoto').src = fr.result;
+            document.getElementById("stepPhoto_").src = fr.result;
         }
         fr.readAsDataURL(files[0]);
     }
@@ -310,12 +309,23 @@ document.getElementById('recipeSequencePhoto').onchange = function (evt) {
         // fallback -- perhaps submit the input to an iframe and temporarily store
         // them on the server until the user's session ends.
     }
-}
+} 
+	
 </script>
 <script>
-	const realUpload = document.querySelector('.realUpload');
-	const upload = document.querySelector('.recipeImg');
+
+ 	const realUpload2 = document.querySelector('.rsPhotoUpload_');
+	const upload2 = document.querySelector('.recipeImg_');
 	
-	 upload.addEventListener('click', () => realUpload.click());
+	 upload2.addEventListener('click', () => realUpload2.click());
+	
 </script>
+
+ <script type="text/javascript">
+	function replyClick(recipeSequencePhoto_){
+		
+		console.log(recipeSequencePhoto_);
+	}
+</script> 
+
 </html>

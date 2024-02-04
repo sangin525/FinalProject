@@ -40,9 +40,17 @@ public class RecipeDTO {
 	private String ingredient;
 	private String ingredientWeight;
 	private int rsno;
+	private int rpno;
 	private String rsSequence;	
 	private String filePath;
 	private String fileName;
 	private String fileOrigin;
+	private String multiFile;
+	private String deleteDate;
+	private int rcno;
+	private String comment;
+	private String comname;
+	private String rcInDate;
+	private char star;
 	
 }
