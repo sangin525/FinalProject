@@ -61,15 +61,29 @@
 					<c:forEach begin="0" end="${ fn:length(ingredient)-1}" varStatus="status">
 						<li>${ingredient[status.index]}<span class="ingre_unit">${ingredientWeight[status.index]}</span></li>
 					</c:forEach>					
-				</ul>
-
-			
-			</div>
-
-		
+				</ul>			
+			</div>		
 		</div>
 	</div>
 
+	<div class="container">
+		<div class="cont_ingre2">
+			<div class="best_tit">
+				<b>카테고리</b><span> Category</span>
+			</div>
+			<div class="ready_ingre" id="divConfirmedMaterialArea">
+				<ul>
+					<b class="readyIngre">[카테고리]</b>
+					<p>음식 종류 : ${recipe.foodCategory }</p>				
+					<p>상황별 : ${recipe.situationCategory }</p>				
+					<p>조리 방법 : ${recipe.howCategory }</p>				
+					<p>주재료 : ${recipe.ingredientCategory }</p>				
+				</ul>			
+			</div>		
+		</div>
+	</div>
+	
+	
 
 	<div class="container">
 		<div class="view_step">
@@ -204,8 +218,50 @@
 							 ${item.comname}
 					<div class="media-body">
 						<h4 class="media-heading">
-						
-							<b class="info_name_f">${item.comment}</b> ${item.rcInDate}<span></span>
+							<c:choose>
+							<c:when test="${item.star eq 5}">
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							</c:when>
+							
+							<c:when test="${item.star eq 4}">
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: lightgray;">★</span>
+							</c:when>
+							
+							<c:when test="${item.star eq 3}">
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: lightgray;">★</span>
+							<span  style="color: lightgray;">★</span>
+							</c:when>
+							
+							<c:when test="${item.star eq 2}">
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: lightgray;">★</span>
+							<span  style="color: lightgray;">★</span>
+							<span  style="color: lightgray;">★</span>
+							</c:when>
+							
+							<c:when test="${item.star eq 1}">
+							<span  style="color: goldenrod;">★</span>
+							<span  style="color: lightgray;">★</span>
+							<span  style="color: lightgray;">★</span>
+							<span  style="color: lightgray;">★</span>
+							<span  style="color: lightgray;">★</span>
+							</c:when>
+							</c:choose>
+
+							<br><br>
+							<b class="info_name_f">${item.comment}</b> ${item.rcInDate}<b></b><span></span>
 							<a onclick="#">답글</a><span></span>	<a>신고</a>
 						</h4>
 						 <br>
@@ -268,8 +324,10 @@
 </html>
 <script>
 function ratingTest(rating) {
+	
 	// 1. hidden 요소 가져오기
-	let star = document.getElementById("star");
+	var starValue = document.getElementById("star");
+	starValue.value = rating;
 	
 	// 2. 가져온 요소의 value 바꾸기
 	
