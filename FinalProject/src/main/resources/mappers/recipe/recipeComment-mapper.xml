@@ -28,7 +28,8 @@ WHERE R_NO=#{rno}
 									SYSDATE,
 									#{rno},
 									#{mno},
-									#{memberNickName}
+									#{memberNickName},
+									#{star}
 						)
 </insert>
 
