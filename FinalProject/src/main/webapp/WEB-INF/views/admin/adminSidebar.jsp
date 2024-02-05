@@ -29,7 +29,7 @@
                     <ul class="big_menu">
                         <li>상품관리 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
-                            <li><a href="#">상품목록</a></li>
+                            <li><a href="/productList">상품목록</a></li>
                             <li><a href="/productRegistration">상품등록</a></li>
                         </ul>
                     </ul>

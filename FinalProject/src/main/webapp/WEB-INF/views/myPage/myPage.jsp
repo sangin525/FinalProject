@@ -18,7 +18,7 @@
 		<div class="container">
 			<ul class="menu">
 				<li><a href="/member/myRecipe.do">레시피</a></li>
-				<li><a href="scrapRecipe">스크랩한 레시피</a></li>
+				<li><a href="/myPage/scrapRecipe">스크랩한 레시피</a></li>
 				<li><a href="notification">밥친구알림</a></li>
 				<li><a href="/member/quiries.do">문의</a></li>
 				<li><a href="orders">주문조회</a></li>

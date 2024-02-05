@@ -76,6 +76,12 @@ input[type="search"] {
 
 .sub_menu {
 	margin-top: 50px;
+	height: 85vh;
+	overflow: auto scroll;
+}
+
+.sub_menu::-webkit-scrollbar {
+  display: none;
 }
 
 .left_sub_menu>.sub_menu li:hover {
@@ -151,6 +157,8 @@ ol, ul {
 .hide_sidemenu {
 	display: none;
 }
+
+
 
 /*멤버리스트*/
 .memberTable{
@@ -312,4 +320,15 @@ tr:last-child td:last-child {
 	height: 40px;
 	background-color: white;
 	margin-top: 20px;
+}
+
+/*상품리스트*/
+.productTable{
+	margin-left: 250px;
+}
+
+.pagination {
+	display: flex;
+	justify-content: center;
+	margin-left: 250px;
 }
