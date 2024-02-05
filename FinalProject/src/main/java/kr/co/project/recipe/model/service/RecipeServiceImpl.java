@@ -168,4 +168,14 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.selectMyRecipe(sqlSession,recipe);
 	}
 
+	public List<RecipeDTO> newList(PageInfo pi, RecipeDTO recipe) {
+		
+		return recipeDao.newList(sqlSession,pi,recipe);
+	}
+
+	public List<RecipeDTO> viewList(PageInfo pi, RecipeDTO recipe) {
+		
+		return recipeDao.viewList(sqlSession,pi,recipe);
+	}
+
 }

@@ -124,4 +124,25 @@ public class RecipeDAO {
 		
 		return sqlSession.selectList("recipeMapper.selectMyRecipe",recipe);
 	}
+
+	public List<RecipeDTO> newList(SqlSessionTemplate sqlSession, PageInfo pi, RecipeDTO recipe) {
+		
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());		
+		return sqlSession.selectList("recipeMapper.newList",recipe,rb);
+	}
+
+	public List<RecipeDTO> viewList(SqlSessionTemplate sqlSession, PageInfo pi, RecipeDTO recipe) {
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());	
+		return sqlSession.selectList("recipeMapper.viewList",recipe,rb);
+	}
+
+
+
+
+
+
+
+
 }
