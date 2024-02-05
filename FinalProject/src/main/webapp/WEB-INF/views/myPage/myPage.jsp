@@ -17,13 +17,13 @@
 		<h2>마이페이지</h2>
 		<div class="container">
 			<ul class="menu">
-				<li><a href="myRecipes">레시피</a></li>
+				<li><a href="/member/myRecipe.do">레시피</a></li>
 				<li><a href="scrapRecipe">스크랩한 레시피</a></li>
 				<li><a href="notification">밥친구알림</a></li>
-				<li><a href="quiries">문의</a></li>
+				<li><a href="/member/quiries.do">문의</a></li>
 				<li><a href="orders">주문조회</a></li>
 				<li><a href="cart">장바구니</a></li>
-				<li><a href="fixProfile">회원정보 수정</a></li>
+				<li><a href="/member/fixProfile.do">회원정보 수정</a></li>
 			</ul>
 
 			<div class="content">
@@ -38,16 +38,20 @@
 					<br>
 					<div class="result">
 						<c:choose>
-							<c:when test="${not empty recipeList}">
+							<c:when test="${not empty list}">
+								<c:forEach var="item" items="${list}">
 									<div class="result">
-									<a href="after_addRecipe">
-									<img src="/resources/uploads/고양이그림.png" class="recipe-image">
+									<a onclick="location.href='/member/detail.do?rno=${item.rno}'">
+									<img src="/resources/uploads/recipe/${item.uploadName}"  class="recipe-image">
 									<div class="recipe-info">
-										<p class="recipe-title">탕후루</p>
-										<p class="recipe-date">작성날짜: 2024-02-01</p>
+										<p class="">레시피 제목: ${item.title }</p>
+										<p class="">레시피 올린 날짜: ${item.indate }</p>										
+										<p class="">레시피 번호 : ${item.rno }</p>
+										<p class="">레시피 조회수 : ${item.views }</p>									
 									</div>
 									</a>
 								</div>
+								</c:forEach>
 							</c:when>
 							<c:otherwise>
 								<div class="result_none">

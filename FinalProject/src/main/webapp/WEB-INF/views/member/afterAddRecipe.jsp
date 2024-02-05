@@ -205,7 +205,7 @@
 					<div class="media-body">
 						<h4 class="media-heading">
 						
-							<b class="info_name_f">${item.comment}</b><span></span>
+							<b class="info_name_f">${item.comment}</b> ${item.rcInDate}<span></span>
 							<a onclick="#">답글</a><span></span>	<a>신고</a>
 						</h4>
 						 <br>
@@ -221,12 +221,14 @@
 				<h2>댓글 남기기</h2>
 
 				<form id="comment-form" method="post" action="/recipe/comment.do?rno=${recipe.rno}">
-				<div class="commentPic"><img src="/resources/uploads/레시피등록대표사진.gif"></div>
+					<input type="hidden" id="star" name="star">
+					<div class="commentPic"><img src="/resources/uploads/레시피등록대표사진.gif"></div>
 
 					<div class="comment">
 						<div class="rating">
-							<span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+							<span id="star" onclick="ratingTest(5);">★</span><span onclick="ratingTest(4);">★</span><span onclick="ratingTest(3);">★</span><span onclick="ratingTest(2);">★</span><span onclick="ratingTest(1);">★</span>
 						</div>
+
 					</div>
 						<textarea class="commentTextbox" name="comment"
 							placeholder="코멘트 및 후기를 써주세요!"></textarea>
@@ -264,3 +266,12 @@
 	<br>
 </body>
 </html>
+<script>
+function ratingTest(rating) {
+	// 1. hidden 요소 가져오기
+	let star = document.getElementById("star");
+	
+	// 2. 가져온 요소의 value 바꾸기
+	
+}
+</script>
