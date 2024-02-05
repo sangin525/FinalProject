@@ -45,6 +45,27 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.checkNickName(sqlSession,nickname);
 	}
+
+	public int memberEmailUpdate(MemberDTO member) {
+		
+		return memberDao.memberEmailUpdate(sqlSession,member);
+		
+	}
+
+	public MemberDTO selectMember(int mno) {
+		
+		return memberDao.selectMember(sqlSession,mno);
+	}
+
+	public int memberNickNameUpdate(MemberDTO member) {
+		
+		return memberDao.memberNickNameUpdate(sqlSession,member);
+	}
+
+	public int secessionMember(MemberDTO member) {
+		
+		return memberDao.secessionMember(sqlSession,member);
+	}
 	
 	
 }

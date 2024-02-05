@@ -13,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
 import kr.co.project.common.pageing.PageInfo;
+import kr.co.project.member.model.dao.MemberDAO;
+import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.recipe.model.dao.RecipeDAO;
 import kr.co.project.recipe.model.dto.RecipeDTO;
 
@@ -25,6 +27,9 @@ public class RecipeServiceImpl implements RecipeService{
 		
 		@Autowired 
 		private RecipeDAO recipeDao;
+		
+		@Autowired
+		private MemberDAO memberDao;
 		
 		// 트랜젝션 관리해주는 객체 
 		@Autowired
@@ -45,8 +50,16 @@ public class RecipeServiceImpl implements RecipeService{
 
 	@Override
 	public int addRecipe(RecipeDTO recipe, List<RecipeDTO> recipeList) {
-
-		return recipeDao.addRecipe(sqlSession, recipe, recipeList);
+		
+		int result = memberDao.plusRecipeCount(sqlSession, recipe.getMno());
+		int result2 = recipeDao.addRecipe(sqlSession, recipe, recipeList);
+		if(result==1 && result2==1) {
+		
+			
+		}
+		return 1;
+		
+		
 	}
 	
 	@Transactional
@@ -143,6 +156,16 @@ public class RecipeServiceImpl implements RecipeService{
 	public int commentCount(int rno) {
 		
 		return recipeDao.commentCount(sqlSession,rno);
+	}
+
+	public int myRecipeCount(RecipeDTO recipe) {
+		
+		return recipeDao.myRecipeCount(sqlSession,recipe);
+	}
+
+	public List<RecipeDTO> selectMyRecipe(PageInfo pi, RecipeDTO recipe) {
+		
+		return recipeDao.selectMyRecipe(sqlSession,recipe);
 	}
 
 }

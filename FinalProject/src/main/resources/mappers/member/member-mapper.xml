@@ -1,79 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="memberMapper">
-	<resultMap type="member" id="memberResultSet">
-		<result column="M_NO" property="mno"></result>
-		<result column="M_EMAIL" property="email"></result>
-		<result column="M_PWD" property="pwd"></result>
-		<result column="M_NAME" property="name"></result>
-		<result column="M_NICKNAME" property="nickname"></result>
-		<result column="M_PHONE" property="phone"></result>
-		<result column="M_AGE" property="age"></result>
-		<result column="M_GENDER" property="gender"></result>
-		<result column="M_ADDRESS" property="address"></result>
-		<result column="M_DETAIL_ADDRESS" property="detailAddress"></result>
-		<result column="M_REMOVE_DATE" property="removeDate"></result>
-		<result column="M_IN_DATE" property="indate"></result>
-		<result column="M_TYPE" property="type"></result>
-		<result column="M_RECIPE_COUNT" property="recipeCount"></result>
-		<result column="M_SUBSCRIBER" property="subscriber"></result>
-		<result column="M_PURCHASE_AMOUNT" property="purchaseAmount"></result>
+<mapper namespace = "memberMapper">
+	<resultMap type ="member" id="memberResultSet">
+		<result column = "M_NO" property="mno"></result>
+		<result column = "M_EMAIL" property="email"></result>
+		<result column = "M_PWD" property="pwd"></result>
+		<result column = "M_NAME" property="name"></result>
+		<result column = "M_NICKNAME" property="nickname"></result>
+		<result column = "M_PHONE" property="phone"></result>
+		<result column = "M_AGE" property="age"></result>
+		<result column = "M_GENDER" property="gender"></result>
+		<result column = "M_ADDRESS" property="address"></result>
+		<result column = "M_DETAIL_ADDRESS" property="detailAddress"></result>		
+		<result column = "M_REMOVE_DATE" property="removeDate"></result>
+		<result column = "M_IN_DATE" property="indate"></result>
+		<result column = "M_TYPE" property="type"></result>		
+		<result column = "M_RECIPE_COUNT" property="recipeCount"></result>
+		<result column = "M_SUBSCRIBER" property="subscriber"></result>
+		<result column = "M_PURCHASE_AMOUNT" property="purchaseAmount"></result>
 	</resultMap>
 
+	
 
 
+<select id="loginMember" resultMap="memberResultSet">
+	SELECT * FROM member
+	WHERE m_email = #{email}
+	AND m_remove_date IS NULL
+</select>	
 
-	<select id="loginMember" resultMap="memberResultSet">
-		SELECT * FROM member
-		WHERE m_email = #{email}
-		AND m_remove_date IS NULL
-	</select>
+<insert id="registerMember">
+	INSERT INTO member VALUES(member_seq.NEXTVAL,
+								#{email},
+								#{pwd},
+								#{name},
+								#{nickname},
+								#{phone},
+								#{age},
+								#{gender},
+								#{address},
+								#{detailAddress},
+								null,
+								SYSDATE,
+								1,
+								0,
+								null,
+								null,
+								null,
+								null,
+								null)
+</insert>
 
-	<insert id="registerMember">
-		INSERT INTO member VALUES(member_seq.NEXTVAL,
-		#{email},
-		#{pwd},
-		#{name},
-		#{nickname},
-		#{phone},
-		#{age},
-		#{gender},
-		#{address},
-		#{detailAddress},
-		null,
-		SYSDATE,
-		1,
-		null,
-		null,
-		null,
-		null,
-		null,
-		null)
-	</insert>
+<select id="checkEmail" resultType="_int">
+	SELECT COUNT(*) FROM member
+	WHERE m_email = #{email}
+</select>
 
-	<select id="checkEmail" resultType="_int">
-		SELECT COUNT(*) FROM member
-		WHERE m_email = #{email}
-	</select>
+<select id="checkNickName" resultType="_int">
+	SELECT COUNT(*) FROM member
+	WHERE m_nickname = #{nickname}
+</select>
 
-	<select id="checkNickName" resultType="_int">
-		SELECT COUNT(*) FROM member
-		WHERE m_nickname = #{nickname}
-	</select>
+<select id="findMember" resultMap="memberResultSet">
+	SELECT * FROM member
+	WHERE m_no = #{mno}
+</select>
 
-	<select id="findMember" resultMap="memberResultSet">
-		SELECT * FROM member
-		WHERE m_no = #{no}
-	</select>
+<select id="selectMember" resultMap ="memberResultSet">
+SELECT * FROM member
+WHERE m_no = #{mno}
+</select>
 
+<update id="plusRecipeCount" parameterType="member">
+UPDATE MEMBER SET M_RECIPE_COUNT = M_RECIPE_COUNT+1
+WHERE M_NO = #{mno}
 
-	<select id="selectNickname" resultType="String">
-		SELECT M_NICKNAME FROM
-		MEMBER
-		WHERE M_NO = #{m_no}
-	</select>
+</update>
 
+<update id="memberEmailUpdate" parameterType="member" >
+UPDATE MEMBER SET M_EMAIL = #{email}
+WHERE M_NO = #{mno}
+</update>
 
+<update id="memberNickNameUpdate" parameterType="member">
+UPDATE MEMBER SET M_NICKNAME = #{nickname}
+WHERE M_NO = #{mno}
+</update>
+
+<update id="secessionMember" parameterType="member">
+UPDATE MEMBER SET M_REMOVE_DATE = SYSDATE
+WHERE M_NO =#{mno}
+</update>
+	
 
 
 
