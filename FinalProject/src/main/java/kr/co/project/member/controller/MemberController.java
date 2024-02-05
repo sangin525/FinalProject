@@ -1,5 +1,6 @@
 package kr.co.project.member.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -57,7 +58,7 @@ public class MemberController {
 			session.setAttribute("status", "success");
 			session.setAttribute("recipeCount", loginUser.getRecipeCount());
 			session.setAttribute("email", loginUser.getEmail());
-	
+			session.setAttribute("recipeCount", loginUser.getRecipeCount());
 			
 			return "home";
 		}else {
@@ -102,11 +103,13 @@ public class MemberController {
 	@GetMapping("/MyPageForm.do")
 	public String myPageForm(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
 			Model model,
+			MemberDTO member,
 			HttpSession session) {
 		
-		
+		recipe.setMno((int)session.getAttribute("mno"));
 		int listCount = recipeService.myRecipeCount(recipe);
-		System.out.println(listCount);
+		
+		
 		int pageLimit = 12;
 		int boardLimit =12;
 		
@@ -115,22 +118,123 @@ public class MemberController {
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		// 목록 불러오는 서비스
 		List<RecipeDTO> list = recipeService.selectMyRecipe(pi,recipe);
-		System.out.println(list);
+		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
 			item.setIndate(indate);
+			
 		}
 		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
-		System.out.println("접근성공");
+	
 		
 		return "/myPage/myPage";
 	}
+	
 	@GetMapping("/fixProfile.do")
 	public String pixProfile() {
 		return "/myPage/fixProfile";
+	}
+	
+	@GetMapping("/quiries.do")
+	public String quiries() {
+		return "/myPage/quiries";
+	}
+	
+//	@GetMapping("/emailUpdateForm.do")
+//	public String emailUpdateForm() {
+//		return "redirect:/member/emailUpdate.do";
+//	}
+	
+	@PostMapping("/emailUpdate.do")
+	public String emailUpdate(MemberDTO member,HttpSession session,Model model) {
+		int mno = (int) session.getAttribute("mno");
+		
+		member.setMno(mno);
+		int memberEmailUpdate = memberService.memberEmailUpdate(member);
+		
+		if(memberEmailUpdate>0) {
+		MemberDTO selectMember = memberService.selectMember(mno);
+			System.out.println("변경성공");
+			System.out.println(selectMember.getEmail());
+			String newEmail = member.getEmail();
+			model.addAttribute("newEamil",newEmail);
+			model.addAttribute("member",member);
+			model.addAttribute("member",selectMember);
+		}else {
+			System.out.println("변경실패");
+		}
+		
+		return "redirect:/member/logOut.do";
+		
+	}
+	
+	@PostMapping("/nickNameUpdate.do")
+	public String nickNameUpdate(MemberDTO member,HttpSession session,Model model) {
+		int mno = (int) session.getAttribute("mno");
+		
+		member.setMno(mno);
+		
+		int memberNickNameUpdate = memberService.memberNickNameUpdate(member);
+		if(memberNickNameUpdate>0) {
+			System.out.println("변경성공");
+		}else {
+			System.out.println("변경실패");
+		}
+		return "redirect:/member/logOut.do";
+	}
+	
+	@PostMapping("/secessionMember.do")
+	public String secessionMember(MemberDTO member,HttpSession session) {
+		int mno = (int) session.getAttribute("mno");
+		
+		member.setMno(mno);
+		
+		int secessionMember = memberService.secessionMember(member);
+		if(secessionMember>0) {
+			System.out.println("회원탈퇴 완료");
+		}else {
+			System.out.println("회원탈퇴 실패");
+			
+		}
+		return "redirect:/member/logOut.do";
+	}
+	
+	
+	@GetMapping("/myRecipe.do")
+	public String myRecipe(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
+			Model model,
+			MemberDTO member,
+			HttpSession session) {
+		
+		recipe.setMno((int)session.getAttribute("mno"));
+		int listCount = recipeService.myRecipeCount(recipe);
+		
+		System.out.println(listCount);
+		int pageLimit = 12;
+		int boardLimit =12;
+		
+		int row = listCount - (cpage-1) * boardLimit;
+		MemberDTO selectMember = memberService.selectMember(recipe.getMno());
+		
+	
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		// 목록 불러오는 서비스
+		List<RecipeDTO> list = recipeService.selectMyRecipe(pi,recipe);
+		
+		for(RecipeDTO item : list) {
+			String indate = item.getIndate().substring(0,10);
+			item.setIndate(indate);
+			
+		}
+		model.addAttribute("selectMember",selectMember);
+		model.addAttribute("row",row);
+		model.addAttribute("list",list);
+		model.addAttribute("pi",pi);
+		
+		return "/myPage/myRecipes";
 	}
 	
 	@PostMapping("/checkNickName.do")
@@ -163,7 +267,83 @@ public class MemberController {
 		}
 		
 	}
+// 디테일페이지 불러오기	
 	
+@GetMapping("/detail.do")
+	
+	public String detailRecipe(@RequestParam(value="rno") int rno,
+												RecipeDTO recipe,
+												Model model,
+												HttpServletRequest request) {
+		
+		RecipeDTO result =  recipeService.detailRecipe(rno);
+
+		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
+		
+		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
+		
+		List<RecipeDTO> comresult = recipeService.selectComment(rno);
+//		RecipeDTO comresult = recipeService.selectComment(rno);
+		
+		List<RecipeDTO> seqPhoresult = new ArrayList<>();
+//		List<RecipeDTO> list
+		if(!Objects.isNull(result)) {
+			if(!Objects.isNull(ingreresult)) {
+				if(!Objects.isNull(seqresult)) {	
+					int rsno = seqresult.getRsno();
+					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
+					if(!Objects.isNull(comresult)) {
+						int commentCount = recipeService.commentCount(rno);
+						
+						model.addAttribute("commentCount",commentCount);
+						
+						model.addAttribute("comment",comresult);
+						
+					}
+				}
+			}
+		}
+		// 재료 꺼내기
+		String[] ingredient = new String[ingreresult.getIngredient().length()];
+		ingredient = ingreresult.getIngredient().split(",");
+		for(String s : ingredient) {
+//			System.out.println(s);
+		}
+		model.addAttribute("ingredient",ingredient);
+		
+		// 재료 무게 꺼내기
+		String[] ingredientWeight = new String[ingreresult.getIngredientWeight().length()];
+		ingredientWeight = ingreresult.getIngredientWeight().split(",");
+		for(String s: ingredientWeight) {
+//			System.out.println(s);
+		}
+		model.addAttribute("ingredientWeight",ingredientWeight);
+		
+		// 레시피 순서 꺼내기
+		String[] sequence = new String[seqresult.getRsSequence().length()];
+		sequence = seqresult.getRsSequence().split(",");
+		for(String s: sequence) {
+			
+		}
+		model.addAttribute("sequence",sequence);
+	
+//		String[] comment = new String[comresult.size()];
+//		comment = comresult.size();
+		
+		
+//		String[] sequencePhoto = new String[seqPhoresult.size()];
+//		sequencePhoto = seqPhoresult.size();
+		
+		
+		
+		model.addAttribute("photoList",seqPhoresult);
+		model.addAttribute("ingre",ingreresult);
+		model.addAttribute("recipe",result);
+		model.addAttribute("seqre",seqresult);
+//		System.out.println(result);
+		
+		return "member/afterAddRecipe";
+	}
 	
 	
 	

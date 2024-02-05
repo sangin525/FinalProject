@@ -51,11 +51,11 @@ public class RecipeServiceImpl implements RecipeService{
 	@Override
 	public int addRecipe(RecipeDTO recipe, List<RecipeDTO> recipeList) {
 		
-		int result = memberDao.plusRecipeCount(sqlSession);
+		int result = memberDao.plusRecipeCount(sqlSession, recipe.getMno());
 		int result2 = recipeDao.addRecipe(sqlSession, recipe, recipeList);
 		if(result==1 && result2==1) {
 		
-			System.out.println("hello");
+			
 		}
 		return 1;
 		

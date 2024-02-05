@@ -31,15 +31,19 @@
 				</p>
 
 				<div id="updEmail" style="display: none;">
+					<form action="/member/emailUpdate.do" method="POST">
 					<div id="emailFrms" class="form-group">
-						<input type="text" class="form-control" id="id_email"
+						<input type="text" class="form-control" id="email" name="email"
 							placeholder="이메일"> <span id="emailStatus"
 							class="form-control-feedback" aria-hidden="true"></span>
 					</div>
+					
 					<p class="help-block">변경할 이메일을 입력해주세요.</p>
 					<p class="flexLine">
-						<button id="btnEmail" type="button" class="changeBtn">변경</button>
+						<!-- <button id="btnEmail" type="button" class="changeBtn" onclick="window.location.href='/member/emailUpdateForm.do'">변경</button> -->
+						<button id="btnEmail" type="submit" class="changeBtn">변경</button>
 					</p>
+					</form>
 				</div>
 				<hr>
 				<p class="flexLine">
@@ -48,8 +52,9 @@
 							수정</button>
 				</p>
 				<div id="updNick" style="display: none;">
+					<form action="/member/nickNameUpdate.do" method="POST">
 					<div id="nickFrms" class="form-group">
-						<input type="text" class="form-control" id="nm_user"
+						<input type="text" class="form-control" id="nm_user" name="nickname"
 							placeholder="닉네임"> <span id="nickStatus"
 							class="form-control-feedback" aria-hidden="true"></span>
 					</div>
@@ -57,14 +62,19 @@
 						닉네임은 변경후 24시간동안 다시 변경할 수 없습니다.<br>변경전에 잘 확인해 주세요.
 					</p>
 					<p class="flexLine">
-						<button type="button" class="changeBtn">변경</button>
+						<button type="submit" class="changeBtn">변경</button>
 					</p>
+					</form>
 				</div>
 				<hr>
+				<div>
+				<form action="/member/secessionMember.do" method="post">
 				<p class="flexLine">
 					회원탈퇴
-					<button type="button" class="changeBtn">탈퇴하기</button>
+					<button type="submit" class="changeBtn">탈퇴하기</button>
 				</p>
+				</form>
+				</div>
 			</div>
 		</div>
 	</div>

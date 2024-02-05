@@ -171,82 +171,6 @@ public class RecipeController {
 	}	
 }
 	
-	@GetMapping("/detail.do")
-	
-	public String detailRecipe(@RequestParam(value="rno") int rno,
-												RecipeDTO recipe,
-												Model model,
-												HttpServletRequest request) {
-		
-		RecipeDTO result =  recipeService.detailRecipe(rno);
-
-		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
-		
-		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
-		
-		List<RecipeDTO> comresult = recipeService.selectComment(rno);
-//		RecipeDTO comresult = recipeService.selectComment(rno);
-		
-		List<RecipeDTO> seqPhoresult = new ArrayList<>();
-//		List<RecipeDTO> list
-		if(!Objects.isNull(result)) {
-			if(!Objects.isNull(ingreresult)) {
-				if(!Objects.isNull(seqresult)) {	
-					int rsno = seqresult.getRsno();
-					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
-					if(!Objects.isNull(comresult)) {
-						int commentCount = recipeService.commentCount(rno);
-						System.out.println(commentCount);
-						model.addAttribute("commentCount",commentCount);
-						System.out.println("성공");	
-						model.addAttribute("comment",comresult);
-						System.out.println("값입니다"+comresult);
-					}
-				}
-			}
-		}
-		// 재료 꺼내기
-		String[] ingredient = new String[ingreresult.getIngredient().length()];
-		ingredient = ingreresult.getIngredient().split(",");
-		for(String s : ingredient) {
-//			System.out.println(s);
-		}
-		model.addAttribute("ingredient",ingredient);
-		
-		// 재료 무게 꺼내기
-		String[] ingredientWeight = new String[ingreresult.getIngredientWeight().length()];
-		ingredientWeight = ingreresult.getIngredientWeight().split(",");
-		for(String s: ingredientWeight) {
-//			System.out.println(s);
-		}
-		model.addAttribute("ingredientWeight",ingredientWeight);
-		
-		// 레시피 순서 꺼내기
-		String[] sequence = new String[seqresult.getRsSequence().length()];
-		sequence = seqresult.getRsSequence().split(",");
-		for(String s: sequence) {
-			
-		}
-		model.addAttribute("sequence",sequence);
-	
-//		String[] comment = new String[comresult.size()];
-//		comment = comresult.size();
-		
-		
-//		String[] sequencePhoto = new String[seqPhoresult.size()];
-//		sequencePhoto = seqPhoresult.size();
-		
-		
-		
-		model.addAttribute("photoList",seqPhoresult);
-		model.addAttribute("ingre",ingreresult);
-		model.addAttribute("recipe",result);
-		model.addAttribute("seqre",seqresult);
-//		System.out.println(result);
-		
-		return "member/afterAddRecipe";
-	}
-	
 	@GetMapping("/editForm.do")
 	public String editFormRecipe(@RequestParam(value="rno")int rno,
 			Model model) {
@@ -338,7 +262,81 @@ public class RecipeController {
 			
 	}
 
+@GetMapping("/detail.do")
+	
+	public String detailRecipe(@RequestParam(value="rno") int rno,
+												RecipeDTO recipe,
+												Model model,
+												HttpServletRequest request) {
+		
+		RecipeDTO result =  recipeService.detailRecipe(rno);
 
+		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
+		
+		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
+		
+		List<RecipeDTO> comresult = recipeService.selectComment(rno);
+//		RecipeDTO comresult = recipeService.selectComment(rno);
+		
+		List<RecipeDTO> seqPhoresult = new ArrayList<>();
+//		List<RecipeDTO> list
+		if(!Objects.isNull(result)) {
+			if(!Objects.isNull(ingreresult)) {
+				if(!Objects.isNull(seqresult)) {	
+					int rsno = seqresult.getRsno();
+					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
+					if(!Objects.isNull(comresult)) {
+						int commentCount = recipeService.commentCount(rno);
+						System.out.println(commentCount);
+						model.addAttribute("commentCount",commentCount);
+						System.out.println("성공");	
+						model.addAttribute("comment",comresult);
+						System.out.println("값입니다"+comresult);
+					}
+				}
+			}
+		}
+		// 재료 꺼내기
+		String[] ingredient = new String[ingreresult.getIngredient().length()];
+		ingredient = ingreresult.getIngredient().split(",");
+		for(String s : ingredient) {
+//			System.out.println(s);
+		}
+		model.addAttribute("ingredient",ingredient);
+		
+		// 재료 무게 꺼내기
+		String[] ingredientWeight = new String[ingreresult.getIngredientWeight().length()];
+		ingredientWeight = ingreresult.getIngredientWeight().split(",");
+		for(String s: ingredientWeight) {
+//			System.out.println(s);
+		}
+		model.addAttribute("ingredientWeight",ingredientWeight);
+		
+		// 레시피 순서 꺼내기
+		String[] sequence = new String[seqresult.getRsSequence().length()];
+		sequence = seqresult.getRsSequence().split(",");
+		for(String s: sequence) {
+			
+		}
+		model.addAttribute("sequence",sequence);
+	
+//		String[] comment = new String[comresult.size()];
+//		comment = comresult.size();
+		
+		
+//		String[] sequencePhoto = new String[seqPhoresult.size()];
+//		sequencePhoto = seqPhoresult.size();
+		
+		
+		
+		model.addAttribute("photoList",seqPhoresult);
+		model.addAttribute("ingre",ingreresult);
+		model.addAttribute("recipe",result);
+		model.addAttribute("seqre",seqresult);
+//		System.out.println(result);
+		
+		return "member/afterAddRecipe";
+	}
 
 
 

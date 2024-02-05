@@ -99,7 +99,7 @@
 	<select id="selectMyRecipe" resultMap="recipeResultSet">
 	SELECT * FROM RECIPE
 	WHERE R_DELETEDATE IS NULL
-	AND M_NO =#{mno}
+	AND M_NO =#{mno} 
 	</select>
 
 </mapper>

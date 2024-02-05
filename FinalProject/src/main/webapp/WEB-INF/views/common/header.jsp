@@ -18,7 +18,7 @@
 				<c:when test="${sessionScope.memberName != null}">
 
 					<a href="/recipe/addRecipeForm.do" class="Main_a">레시피 등록</a>
-					<a href="/myPage" class="Main_a">마이페이지</a>
+					<a href="/member/MyPageForm.do" class="Main_a">마이페이지</a>
 					<a href="/member/logOut.do" class="Main_a">로그아웃</a>
 
 				</c:when>
