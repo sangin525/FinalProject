@@ -289,46 +289,125 @@
     margin-top: 5px;
 }
 
-/* 문의하는 페이지 */
 
 
-.content-form {
-    width: 100%;
-}
-
-.content-form label {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.content-form .content-title, .content-form .content {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-}
-
-.content-form .contentBtn {
+/* 문의하기 css */
+/* 문의하기 버튼 */
+.nav li button {
     padding: 10px 20px;
     border: none;
     background-color: #5cb85c;
     color: white;
     cursor: pointer;
+        border-radius: 5px;
+    font-size: 16px;
+    margin-right:30px;
 }
 
-.content-form .contentBtn:hover {
-    background-color: #449d44;
+
+
+#q_modal_btn {
+    padding: 10px 20px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+	margin-top:30px;
 }
 
+/* 페이지네이션 */
 
+.page-item {
+    display: inline-block;
+}
 
+.page-link {
+    margin: 0 5px;
+    padding: 10px 15px;
+    background-color: #f8f9fa;
+    border: 1px solid #dee2e6;
+    color: #495057;
+    text-decoration: none;
+}
 
+/* 모달창 */
+.questionsModal {
+    display: none; /* 기본적으로 안보이게 설정 */
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* 배경 반투명 검은색 */
+}
 
+.q_modal_content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
 
+.questionsTit {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
 
+.questionsTable {
+    width: 100%;
+}
+
+.questionsTable th {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.questionsTable td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.questionsInput, .questionsSubTit {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.questionsText {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    height: 150px;
+    resize: none;
+}
+
+.questionsEnroll-btn {
+    text-align: right;
+    margin-top: 20px;
+}
+
+.questionsEnroll-btn button {
+    padding: 10px 20px;
+    border: none;
+    background-color: #5cb85c;
+    color: white;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.questionsEnroll-btn button.close2 {
+    background-color: #dc3545;
+}
 
 
 

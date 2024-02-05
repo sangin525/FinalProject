@@ -36,7 +36,7 @@
 					<br>
 					<div class="result">
 						<c:choose>
-							<c:when test="${not empty scrapRecipeList}">
+							<c:when test="${ empty scrapRecipeList}">
 									<div class="result">
 								<a href="after_addRecipe">
 									<img src="/resources/uploads/고양이그림.png" class="recipe-image">

@@ -11,32 +11,42 @@
 <body>
 
 	<%@ include file="../../views/common/header.jsp" %>
-
 	<div class="container">
-			<h3>글쓰기</h3>
-			<hr>
-			<br>
+	<div class="board_wrap">
+        <div class="board_title">
+            <strong>글 작성</strong>
+            <p>밥친구를 구하는 게시글을 써보세요</p>
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" placeholder="제목 입력"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd><input type="text" placeholder="글쓴이 입력"></dd>
+                    </dl>
+                   
+                </div>
+                <div class="cont">
+                    <textarea placeholder="내용 입력"></textarea>
+                </div>
+                <br>
+                 <input type="file" name="upload">
+                 <br>
+            </div>
+            <div class="bt_wrap">
+                <a href="foodFriendDetail" class="on">등록</a>
+                <a href="foodFriendList" onclick="history.back()">취소</a>
+            </div>
+        </div>
+    </div>
+    </div>
 
-			<form class="register-form">
-				<div class="enrollTitle">
-					<input type="text" class="title-form"
-						name="title" id="exampleFormControlInput1" placeholder="제목을 입력하세요.">
-				</div>
-				<div class="enrollContent">
-					<textarea name="content" id="editorTxt" class="content-form"
-						rows="13" cols="10" placeholder="내용을 입력해주세요"></textarea>
-				</div>
-				
-				<input type="file" name="upload"/>
-				
-				<div class="row">
-					<div class="text-center">
-						<button type="button" class="cancelBtn" onclick="history.back()">취소</button>
-						<button type="submit" onclick="save()" class="agreeBtn">작성</button>
-					</div>
-				</div>
-			</form>
-			</div>
 			
 	
 

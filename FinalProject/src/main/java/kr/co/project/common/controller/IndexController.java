@@ -119,4 +119,12 @@ public class IndexController {
 	public String editForm() {
 		return "foodFriend/foodFriendEdit";
 	}
+	@GetMapping("foodFriendList")
+	public String listForm() {
+		return "foodFriend/foodFriendList";
+	}
+	@GetMapping("foodFriendConv")
+	public String ConvForm() {
+		return "foodFriend/foodFriendConv";
+	}
 }
