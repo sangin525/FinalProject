@@ -51,6 +51,6 @@ public class RecipeDTO {
 	private String comment;
 	private String comname;
 	private String rcInDate;
-	private String star;
+	private int star;
 	
 }
