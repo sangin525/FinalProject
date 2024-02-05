@@ -16,15 +16,7 @@
 	<div class="myPage">
 		<h2>마이페이지</h2>
 		<div class="container">
-			<ul class="menu">
-				<li><a href="myRecipes">레시피</a></li>
-				<li><a href="scrapRecipe">스크랩한 레시피</a></li>
-				<li><a href="notification">밥친구알림</a></li>
-				<li><a href="quiries">문의</a></li>
-				<li><a href="orders">주문조회</a></li>
-				<li><a href="cart">장바구니</a></li>
-				<li><a href="fixProfile">회원정보 수정</a></li>
-			</ul>
+				<%@ include file="../../views/myPage/myPageMenu.jsp"%>
 
 			<div class="content">
 				<div class="chef_cont">

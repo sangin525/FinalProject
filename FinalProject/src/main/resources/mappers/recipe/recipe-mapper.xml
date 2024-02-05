@@ -20,15 +20,22 @@
 		<result column="R_IN_DATE" property="indate"></result>
 		<result column="R_UPDATE_DATE" property="updateDate"></result>
 		<result column="R_SAVE_COUNT" property="saveCount"></result>
+		<result column="R_UPLOAD_PATH" property="uploadPath"></result>
+		<result column="R_UPLOAD_NAME" property="uploadName"></result>
+		<result column="R_UPLOAD_ORIGIN" property="uploadOriginName"></result>
 		<result column="M_NO" property="mno"></result>			
+		<result column="R_DELETEDATE" property="deleteDate"></result>
 	</resultMap>
 	
 	<select id="selectListCount" resultType="_int">
 	SELECT COUNT(*) FROM RECIPE
+	WHERE R_DELETEDATE IS NULL 
+	
 	</select>
 	
 	<select id="selectListAll" resultMap="recipeResultSet">
 	SELECT * FROM RECIPE
+	WHERE R_DELETEDATE IS NULL
 	</select>
 
 
@@ -53,7 +60,46 @@
 								#{uploadPath},
 								#{uploadName},
 								#{uploadOriginName},								
-								#{mno})
+								#{mno},
+								null)
 	</insert>
+
+	<select id="detailRecipe" resultMap="recipeResultSet">
+	SELECT *
+	FROM RECIPE
+	WHERE R_NO = #{rno}	
+	</select>
+
+	<update id="views" parameterType="recipe">
+	UPDATE RECIPE SET R_VIEWS =#{views}
+				  WHERE R_NO = #{rno}
+	</update>
+	
+	<update id="deleteRecipe" parameterType="_int">
+	UPDATE RECIPE SET R_DELETEDATE = SYSDATE
+	WHERE R_NO = #{rno}
+	</update>
+	
+	<select id="selectWriter" resultType="string">
+	SELECT R_WRITER FROM RECIPE
+	WHERE R_NO = #{rno}
+	</select>
+	
+	<select id="selectFileName" resultMap="recipeResultSet">
+	SELECT R_UPLOAD_NAME FROM RECIPE
+	WHERE R_NO = #{rno}
+	</select>
+	
+	<select id="myRecipeCount" resultType="_int">
+	SELECT COUNT(*) FROM RECIPE
+	WHERE R_DELETEDATE IS NULL
+	AND M_NO =#{mno}
+	</select>
+	
+	<select id="selectMyRecipe" resultMap="recipeResultSet">
+	SELECT * FROM RECIPE
+	WHERE R_DELETEDATE IS NULL
+	AND M_NO =#{mno} 
+	</select>
 
 </mapper>

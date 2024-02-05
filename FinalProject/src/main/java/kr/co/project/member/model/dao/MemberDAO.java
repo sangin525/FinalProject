@@ -45,5 +45,30 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.checkNickName",nickname);
 	}
 
+	public int plusRecipeCount(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.update("memberMapper.plusRecipeCount", mno);
+	}
+
+	public int memberEmailUpdate(SqlSessionTemplate sqlSession, MemberDTO member) {
+		
+		return sqlSession.update("memberMapper.memberEmailUpdate", member);
+	}
+
+	public MemberDTO selectMember(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.selectOne("memberMapper.selectMember",mno);
+	}
+
+	public int memberNickNameUpdate(SqlSessionTemplate sqlSession, MemberDTO member) {
+	
+		return sqlSession.update("memberMapper.memberNickNameUpdate",member);
+	}
+
+	public int secessionMember(SqlSessionTemplate sqlSession, MemberDTO member) {
+	
+		return sqlSession.update("memberMapper.secessionMember",member);
+	}
+
 	
 }
