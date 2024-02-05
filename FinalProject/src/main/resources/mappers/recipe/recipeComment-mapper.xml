@@ -9,6 +9,7 @@
 		<result column="R_NO" property="rno"></result>
 		<result column="M_NO" property="mno"></result>	
 		<result column="R_COMNAME" property="comname"></result>
+		<result column="RC_STAR" property="star"></result>
 	</resultMap>
 
 <select id="selectComment" resultMap="recipeCommentResultSet">
@@ -28,7 +29,8 @@ WHERE R_NO=#{rno}
 									SYSDATE,
 									#{rno},
 									#{mno},
-									#{memberNickName}
+									#{memberNickName},
+									#{star}
 						)
 </insert>
 

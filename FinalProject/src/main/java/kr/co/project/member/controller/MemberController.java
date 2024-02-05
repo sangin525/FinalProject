@@ -133,6 +133,68 @@ public class MemberController {
 		return "/myPage/myPage";
 	}
 	
+	@GetMapping("/newList.do")
+	public String newList(@RequestParam(value="cpage",defaultValue="1")int cpage,MemberDTO member,HttpSession session,RecipeDTO recipe,Model model) {
+		
+		recipe.setMno((int)session.getAttribute("mno"));
+		int listCount = recipeService.myRecipeCount(recipe);
+		
+		System.out.println(recipe.getMno());
+		int pageLimit = 12;
+		int boardLimit =12;
+		
+		int row = listCount - (cpage-1) * boardLimit;
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		// 목록 불러오는 서비스
+		List<RecipeDTO> list = recipeService.newList(pi,recipe);
+		
+		for(RecipeDTO item : list) {
+			String indate = item.getIndate().substring(0,10);
+			item.setIndate(indate);
+			
+		}
+		
+		model.addAttribute("row",row);
+		model.addAttribute("list",list);
+		model.addAttribute("pi",pi);
+	
+		
+		return "/myPage/myRecipes";
+	}
+	
+	@GetMapping("/viewList.do")
+	public String viewList(@RequestParam(value="cpage",defaultValue="1")int cpage,
+			MemberDTO member,HttpSession session,
+			RecipeDTO recipe,Model model) {		
+		
+		recipe.setMno((int)session.getAttribute("mno"));
+		int listCount = recipeService.myRecipeCount(recipe); 
+		
+		System.out.println(recipe.getMno());
+		int pageLimit = 12;
+		int boardLimit =12;
+		
+		int row = listCount - (cpage-1) * boardLimit;
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		// 목록 불러오는 서비스
+		List<RecipeDTO> list = recipeService.viewList(pi,recipe);
+		
+		for(RecipeDTO item : list) {
+			String indate = item.getIndate().substring(0,10);
+			item.setIndate(indate);
+			
+		}
+		
+		model.addAttribute("row",row);
+		model.addAttribute("list",list);
+		model.addAttribute("pi",pi);
+	
+		
+		return "/myPage/myRecipes";
+	}
+	
 	@GetMapping("/fixProfile.do")
 	public String pixProfile() {
 		return "/myPage/fixProfile";

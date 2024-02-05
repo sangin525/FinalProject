@@ -44,6 +44,48 @@
 	</c:choose>
 		
 	</ul>
+	
+		<ul class="pagination justify-content-center">
+				 <c:choose>
+				  		<c:when test="${pi.cpage eq 1}">
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+					    </c:when>
+					    <c:otherwise>
+						    <li class="page-item">
+						      <a class="page-link" href="/recipe/rankingRecipe.do?cpage=${pi.cpage-1}" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+					    </c:otherwise>
+				    </c:choose>
+				    
+				    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+				    	<li class="page-item">
+				    		<a class="page-link" href="/recipe/rankingRecipe.do?cpage=${page}">${page}</a>
+			    		</li>
+				    </c:forEach>
+				    
+				    <c:choose>
+					    <c:when test="${pi.cpage eq pi.maxPage}">
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+					    </c:when>
+					    <c:otherwise>
+  						    <li class="page-item">
+						      <a class="page-link" href="/recipe/c/rankingRecipe.do?cpage=${pi.cpage+1}" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+					    </c:otherwise>
+				    </c:choose>
+		</ul>
 	</div>
 </div>
 

@@ -87,8 +87,11 @@ public class RecipeController {
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
 			item.setIndate(indate);
+			
+			// item을 service -> dao -> mybatis 가서 
+			// select 별점 from 레시피 where recipe_no = #{recopeNo}
 		}
-		
+		System.out.println(list);
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);

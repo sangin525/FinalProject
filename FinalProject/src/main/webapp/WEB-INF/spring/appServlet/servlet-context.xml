@@ -43,8 +43,9 @@
 		<interceptor>
 			<mapping path="/free/*" />
 			<mapping path="/info/*" />
-			<exclude-mapping path="/**/**/*.css" />
-			<exclude-mapping path="/**/*.js" />
+			<!-- <exclude-mapping path="/**/**/*.css" />
+			<exclude-mapping path="/**/*.js" /> -->
+			<exclude-mapping path="/resources/**"></exclude-mapping>
 			<beans:ref bean="accessInterceptor" />
 		</interceptor>
 	
