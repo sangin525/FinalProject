@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="/resources/css/category/category.css">
 <link rel="stylesheet" href="/resources/css/ranking/ranking.css">
 <script src="/resources/js/category/category.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <%@ include file="../../views/common/header.jsp"%>
@@ -26,11 +27,10 @@
 			<c:otherwise>
 				<c:forEach var="item" items="${list}">
 		<li class="recipeRanking">
-		<input type="hidden" value="${item.foodCategory}"> <!-- 종류별 -->
-		<input type="hidden" value="${item.situationCategory }">	<!-- 상황별 -->
-		<input type="hidden" value="${item.howCategory}">	<!-- 방법별 -->
-		<input type="hidden" value="${item.ingredientCategory}">	<!-- 재료별 -->
-		
+		<input type="hidden" class="categoryListfood" value="${item.foodCategory}"> <!-- 종류별 -->
+      <input type="hidden" class="categoryListsituation" value="${item.situationCategory }">   <!-- 상황별 -->
+      <input type="hidden" class="categoryListhow" value="${item.howCategory}">   <!-- 방법별 -->
+      <input type="hidden" class="categoryListingredient" value="${item.ingredientCategory}">   <!-- 재료별 -->
 			<!--  
 			<p class="rankingNum"></p>
 			-->
