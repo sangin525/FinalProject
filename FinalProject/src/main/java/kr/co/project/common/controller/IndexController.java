@@ -115,4 +115,14 @@ public class IndexController {
 	public String editForm() {
 		return "foodFriend/foodFriendEdit";
 	}
+	
+	@GetMapping("memberList")
+	public String sidebarForm() {
+		return "admin/memberList";
+	}
+	
+	@GetMapping("/productRegistration")
+	public String productRegistrationForm() {
+		return "admin/productRegistration";
+	}
 }
