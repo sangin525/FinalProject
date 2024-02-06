@@ -17,7 +17,6 @@
 		<h2>마이페이지</h2>
 		<div class="container">
 				<%@ include file="../../views/myPage/myPageMenu.jsp"%>
-
 			<div class="content">
 				<div class="chef_cont">
 					<ul class="nav">
