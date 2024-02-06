@@ -16,15 +16,7 @@
 	<div class="myPage">
 		<h2>마이페이지</h2>
 		<div class="container">
-			<ul class="menu">
-				<li><a href="/member/myRecipe.do">레시피</a></li>
-				<li><a href="scrapRecipe">스크랩한 레시피</a></li>
-				<li><a href="notification">밥친구알림</a></li>
-				<li><a href="/member/quiries.do">문의</a></li>
-				<li><a href="orders">주문조회</a></li>
-				<li><a href="cart">장바구니</a></li>
-				<li><a href="/member/fixProfile.do">회원정보 수정</a></li>
-			</ul>
+	<%@ include file="../../views/myPage/myPageMenu.jsp"%>
 
 			<div class="content">
 				<div class="chef_cont">
@@ -57,7 +49,7 @@
 								<div class="result_none">
 									<img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
 									<p>레시피를 직접 올려보세요!</p>
-									자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br>
+									자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br><br>
 									<button type="button"
 										onclick="location.href='/recipe/addRecipeForm.do'"
 										class="btn-lg btn-primary">레시피 등록하기</button>
