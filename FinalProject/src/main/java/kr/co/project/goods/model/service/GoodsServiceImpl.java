@@ -31,4 +31,9 @@ public class GoodsServiceImpl implements GoodsService {
 	public GoodsDTO detailGoods(int g_no) {
 		return goodsDAO.detailGoods(sqlSession, g_no);
 	}
+
+	@Override
+	public int addGoods(GoodsDTO goodsDTO) {
+		return goodsDAO.addGoods(sqlSession, goodsDTO);
+	}
 }

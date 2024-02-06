@@ -12,6 +12,8 @@
 		<typeAlias type="kr.co.project.chef.model.dto.ChefDTO" alias="chef"/>
 		<typeAlias type="kr.co.project.recipe.model.dto.RecipeDTO" alias="recipe"/>
 		
+		<typeAlias type="kr.co.project.goods.model.dto.GoodsDTO" alias="goods"/>
+		
 		<!-- 		 
 		 <typeAlias type="kr.co.green.board.model.dto.FreeDTO" alias="free"/>
 		<typeAlias type="kr.co.green.board.model.dto.InfoDTO" alias="info"/>
@@ -28,6 +30,9 @@
 		<mapper resource="/mappers/recipe/recipeSequence-mapper.xml"/>
 		<mapper resource="/mappers/recipe/recipeSequencePhoto-mapper.xml"/>
 		<mapper resource="/mappers/recipe/recipeComment-mapper.xml"/>
+		
+		<mapper resource="/mappers/goods/goods-mapper.xml"/>
+		
 	</mappers>
 </configuration>
 

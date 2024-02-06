@@ -4,16 +4,20 @@ import java.util.List;
 import java.util.Objects;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
+import kr.co.project.common.upload.UploadFile;
 import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.goods.model.service.GoodsServiceImpl;
 
@@ -49,6 +53,26 @@ public class GoodsController {
 
 			return "common/error";
 		}
-
 	}
+
+	@PostMapping("/addGoods.do")
+	public String addGoods(GoodsDTO goodsDTO, MultipartFile upload, HttpSession session, Model model) {
+//		int m_no = (int) session.getAttribute("mno");
+
+		if (!upload.isEmpty()) {
+			UploadFile.goodsUploadMethod(upload, goodsDTO, session);
+		}
+		
+
+		int result = goodsService.addGoods(goodsDTO);
+		if (result > 0) {
+			model.addAttribute("goods", result);
+
+			return "redirect:/goods/list.do";
+		} else {
+			System.out.println("상품 등록 실패");
+			return "common/error";
+		}
+	}
+
 }

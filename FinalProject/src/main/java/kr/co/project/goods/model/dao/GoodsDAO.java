@@ -24,4 +24,8 @@ public class GoodsDAO {
 	public GoodsDTO detailGoods(SqlSessionTemplate sqlSession, int g_no) {
 		return sqlSession.selectOne("goodsMapper.detailGoods", g_no);
 	}
+
+	public int addGoods(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
+		return sqlSession.insert("goodsMapper.addGoods", goodsDTO);
+	}
 }

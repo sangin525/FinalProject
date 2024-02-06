@@ -57,12 +57,17 @@ public class IndexController {
 	
 	@RequestMapping("/products")
 	public String foodStorePage() {
-		return "foodStore/products";
+		return "redirect:/goods/list.do";
 	}
 	
 	@RequestMapping("/productDetail")
 	public String productDetailPage() {
 		return "foodStore/productDetail";
+	}
+	
+	@RequestMapping("/sgjGoods")
+	public String sgjGoodsPage() {
+		return "foodStore/sgjGoods";
 	}
 	
 	@RequestMapping("/foodFriend")

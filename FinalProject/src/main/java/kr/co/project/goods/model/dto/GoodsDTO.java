@@ -14,6 +14,7 @@ public class GoodsDTO {
 	private String g_introduce;
 	private int g_regular_price;
 	private int g_price;
+	private int g_dcRate;
 	private String g_in_date;
 	private int g_stock;
 	private String g_delete_check;

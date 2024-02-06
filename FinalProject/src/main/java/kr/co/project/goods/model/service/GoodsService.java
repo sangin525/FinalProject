@@ -14,4 +14,6 @@ public interface GoodsService {
 	
 	//상세페이지 이동
 	GoodsDTO detailGoods(int gno);
+
+	int addGoods(GoodsDTO goodsDTO);
 }

@@ -19,7 +19,7 @@ import kr.co.project.recipe.model.dto.RecipeDTO;
 
 public class UploadFile {
 
-	private static final String UPLOAD_PATH = "C:\\Users\\pje97\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
+	private static final String UPLOAD_PATH = "C:\\Users\\rlwjd\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
 
 	public static boolean deleteFile(String fileName, String boardName) {
 		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\
@@ -92,13 +92,12 @@ public class UploadFile {
 		}
 	}
 
-	public static void goodsploadMethod(MultipartFile upload, 
+	public static void goodsUploadMethod(MultipartFile upload, 
 										GoodsDTO goodsDTO, 
-										MemberDTO member, 
 										HttpSession session) {
 		
-		String boardName= "goods";
-		
+		String boardName = "goods";
+
 		if (!upload.isEmpty()) {
 			// 원본 파일명 구하기
 			String originName = upload.getOriginalFilename();
@@ -131,25 +130,21 @@ public class UploadFile {
 			// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\
 			// 240103113409_cRvSeZPY.png
 			// 240103113409_cRvSeZPY.png
-			String filePathName = UPLOAD_PATH + boardName + fileName;
+			String filePathName = UPLOAD_PATH + boardName + "\\" + fileName;
 
 			// 서버에 파일 저장
 			Path filePath = Paths.get(filePathName);
 
 			try {
 				upload.transferTo(filePath);
-				member.setUploadPath(UPLOAD_PATH + boardName);
-				member.setUploadName(filePathName);
-				member.setUploadOrigin(originName);
-
 //				goodsDTO.setUploadPath(UPLOAD_PATH + boardName); // 업로드 경로
 //				goodsDTO.setUploadName(fileName); // 수정된 파일명
 //				goodsDTO.setUploadOriginName(originName); // 원본 파일명
-				
-				goodsDTO.setG_file_path(UPLOAD_PATH + boardName+"\\"+fileName);
+
+				goodsDTO.setG_file_path(UPLOAD_PATH + boardName + "\\" + fileName);
 				goodsDTO.setG_file_name(fileName);
 				goodsDTO.setG_origin_name(originName);
-				
+
 //				goodsDTO.setFileName(fileName);
 //				goodsDTO.setFileOrigin(originName);
 			} catch (IllegalStateException e) {
