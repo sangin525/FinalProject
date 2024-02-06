@@ -16,29 +16,19 @@
 	<div class="myPage">
 		<h2>마이페이지</h2>
 		<div class="container">
-			<ul class="menu">
-				<li><a href="myRecipes">레시피</a></li>
-				<li><a href="scrapRecipe">스크랩한 레시피</a></li>
-				<li><a href="notification">밥친구알림</a></li>
-				<li><a href="quiries">문의</a></li>
-				<li><a href="orders">주문조회</a></li>
-				<li><a href="cart">장바구니</a></li>
-				<li><a href="fixProfile">회원정보 수정</a></li>
-			</ul>
+			<%@ include file="../../views/myPage/myPageMenu.jsp"%>
 
 			<div class="content">
 				<div class="chef_cont">
 					<ul class="nav">
 						<li><a>스크랩한 레시피</a></li>
-						<div class="list">
-							<a href="#">최신순</a><a href="#">조회순</a>
-						</div>
+						
 					</ul>
 						<hr />
 					<br>
 					<div class="result">
 						<c:choose>
-							<c:when test="${not empty scrapRecipeList}">
+							<c:when test="${ empty scrapRecipeList}">
 									<div class="result">
 								<a href="after_addRecipe">
 									<img src="/resources/uploads/고양이그림.png" class="recipe-image">
@@ -53,7 +43,7 @@
 								<div class="result_none">
 									<img src="/resources/uploads/스크랩사진누끼.png">
 									<p>사람들의 레시피를 스크랩해보세요!</p>
-									레시피를 스크립하고 두고두고 맛있는 레시피로 요리해보세요.<br>
+									레시피를 스크립하고 두고두고 맛있는 레시피로 요리해보세요.<br><br>
 									<button type="button"
 										onclick="location.href='/ranking_recipe'"
 										class="btn-lg btn-primary">레시피 구경하러가기</button>
