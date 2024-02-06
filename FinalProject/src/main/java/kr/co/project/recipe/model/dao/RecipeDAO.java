@@ -138,6 +138,23 @@ public class RecipeDAO {
 		return sqlSession.selectList("recipeMapper.viewList",recipe,rb);
 	}
 
+	public double avgComment(SqlSessionTemplate sqlSession,RecipeDTO item) {
+		
+		return sqlSession.selectOne("recipeCommentMapper.avgComment",item);
+	}
+
+	public List<RecipeDTO> rankingList(SqlSessionTemplate sqlSession, PageInfo pi, RecipeDTO recipe) {
+		
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		return sqlSession.selectList("recipeMapper.rankingList",recipe,rb);
+	}
+
+	public int countComment(SqlSessionTemplate sqlSession, RecipeDTO item) {
+		
+		return sqlSession.selectOne("recipeCommentMapper.countComment",item);
+	}
+
 
 
 

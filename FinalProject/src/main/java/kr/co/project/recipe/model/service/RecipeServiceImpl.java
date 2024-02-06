@@ -178,4 +178,23 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.viewList(sqlSession,pi,recipe);
 	}
 
+	public double avgComment(RecipeDTO item) {
+		
+		return recipeDao.avgComment(sqlSession,item);
+	}
+
+	public List<RecipeDTO> rankingList(PageInfo pi, RecipeDTO recipe) {
+		
+		return recipeDao.rankingList(sqlSession,pi,recipe);
+	}
+
+
+	public int countComment(RecipeDTO item) {
+		
+		return recipeDao.countComment(sqlSession,item);
+	}
+
+	
+	
+
 }

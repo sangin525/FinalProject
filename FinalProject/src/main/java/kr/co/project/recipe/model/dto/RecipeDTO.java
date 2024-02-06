@@ -49,8 +49,14 @@ public class RecipeDTO {
 	private String deleteDate;
 	private int rcno;
 	private String comment;
-	private String comname;
+	private int commentCount;
+	private String comname;	
 	private String rcInDate;
-	private int star;
+	private double star;
+	private String searchText = "";
+	private String searchCategory = "";
+	
+	
+	
 	
 }

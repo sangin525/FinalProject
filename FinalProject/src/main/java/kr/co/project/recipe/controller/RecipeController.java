@@ -44,6 +44,7 @@ public class RecipeController {
 	@Autowired
 	private SessionMessage sessionMessage;
 	
+	
 	@GetMapping("/rankingRecipe.do")
 	public String rankingRecipe(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
 									Model model,
@@ -57,17 +58,26 @@ public class RecipeController {
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
-		List<RecipeDTO> list = recipeService.selectListAll(pi, recipe);
+		List<RecipeDTO> list = recipeService.rankingList(pi, recipe);
+		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
-			item.setIndate(indate);			
-		}
+			item.setIndate(indate);	
+			int recipeCommentCount  = recipeService.countComment(item);
+			item.setCommentCount(recipeCommentCount);
+			if(recipeCommentCount >= 1) {
+				double starAvg = recipeService.avgComment(item);
+				item.setStar(starAvg);				
+			}else {
+				item.setStar(0);
+			}
+		}		
+		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
 		System.out.println("접근성공");
-		
-		return "ranking/recipe";		
+			return "ranking/recipe";		
 	}
 		
 	@GetMapping("/categoryList.do")
@@ -84,24 +94,25 @@ public class RecipeController {
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		// 목록 불러오는 서비스
 		List<RecipeDTO> list = recipeService.selectListAll(pi,recipe);
+		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
-			item.setIndate(indate);
-			
-			// item을 service -> dao -> mybatis 가서 
-			// select 별점 from 레시피 where recipe_no = #{recopeNo}
-		}
-		System.out.println(list);
+			item.setIndate(indate);	
+			int recipeCommentCount  = recipeService.countComment(item);
+			item.setCommentCount(recipeCommentCount);
+			if(recipeCommentCount >= 1) {
+				double starAvg = recipeService.avgComment(item);
+				item.setStar(starAvg);				
+			}else {
+				item.setStar(0);
+			}
+		}		
+		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
 		System.out.println("접근성공");
 			return "category/category";
-		
-//		}else{
-//			System.out.println("접근실패");
-//			return "member/login";
-//		}	
 	}
 
 
@@ -290,11 +301,9 @@ public class RecipeController {
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
 					if(!Objects.isNull(comresult)) {
 						int commentCount = recipeService.commentCount(rno);
-						System.out.println(commentCount);
-						model.addAttribute("commentCount",commentCount);
-						System.out.println("성공");	
+						model.addAttribute("commentCount",commentCount);						
 						model.addAttribute("comment",comresult);
-						System.out.println("값입니다"+comresult);
+						System.out.println("게시판 들어오기 완료");
 					}
 				}
 			}
