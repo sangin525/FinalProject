@@ -187,8 +187,7 @@
 
 				<div id="divStepPhoto">
 					<input type="file" class="rsPhotoUpload_" name="multiFileList" id="recipeSequencePhoto_" required multiple style="display: none;">
-					<img id="stepPhoto_" class="recipeImg_" 
-						src="/resources/uploads/사진추가.gif">
+					<img id="stepPhoto_" class="recipeImg_" src="/resources/uploads/사진추가.gif">
 				</div>
 				<div id="stepButton">
 					<button type="button" id="addStepBtn" class="addStepBtn" >순서 추가</button>

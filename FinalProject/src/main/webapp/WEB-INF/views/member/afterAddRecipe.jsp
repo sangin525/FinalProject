@@ -7,8 +7,7 @@
 <html>
 <head>
 <%@ include file="../../views/common/head.jsp"%>
-<link rel="stylesheet"
-	href="/resources/css/recipeAdd/afterAddRecipe.css">
+<link rel="stylesheet" href="/resources/css/recipeAdd/afterAddRecipe.css">
 <script src="/resources/js/member/afterAddRecipe.js"></script>
 </head>
 <body class="afterRecipeBody">
