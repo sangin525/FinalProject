@@ -70,37 +70,41 @@ public class IndexController {
 		return "foodFriend/foodFriendList";
 	}
 	
-	@GetMapping("/myPage")
+	@GetMapping("myPage/myPage")
 	public String myPage() {
 		return "myPage/myPage";
 	}
-	@RequestMapping("/myRecipes")
+	@RequestMapping("myPage/myRecipes")
 	public String myRecipes() {
 		return "myPage/myRecipes";
 	}
-	@RequestMapping("/scrapRecipe")
+	@RequestMapping("myPage/scrapRecipe")
 	public String scrapRecipe() {
 		return "myPage/scrapRecipe";
 	}
-	@RequestMapping("/notification")
+	@RequestMapping("myPage/notification")
 	public String notification() {
 		return "myPage/notification";
 	}
-	@RequestMapping("/quiries")
+	@RequestMapping("myPage/quiries")
 	public String quiries() {
 		return "myPage/quiries";
 	}
-	@RequestMapping("/orders")
+	@RequestMapping("myPage/orders")
 	public String orders() {
 		return "myPage/orders";
 	}
-	@RequestMapping("/cart")
+	@RequestMapping("myPage/cart")
 	public String cart() {
 		return "myPage/cart";
 	}
-	@RequestMapping("/fixProfile")
+	@RequestMapping("myPage/fixProfile")
 	public String fixProfile() {
 		return "myPage/fixProfile";
+	}
+	@RequestMapping("/contectUs")
+	public String contectUs() {
+		return "myPage/contectUs";
 	}
 	
 	@GetMapping("foodFriendEnroll")
@@ -114,6 +118,15 @@ public class IndexController {
 	@GetMapping("foodFriendEdit")
 	public String editForm() {
 		return "foodFriend/foodFriendEdit";
+	}
+
+	@GetMapping("foodFriendList")
+	public String listForm() {
+		return "foodFriend/foodFriendList";
+	}
+	@GetMapping("foodFriendConv")
+	public String ConvForm() {
+		return "foodFriend/foodFriendConv";
 	}
 	
 	@GetMapping("memberList")

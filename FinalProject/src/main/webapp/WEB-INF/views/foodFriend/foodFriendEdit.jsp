@@ -12,35 +12,47 @@
 
 	<%@ include file="../../views/common/header.jsp"%>
 
-	<main>
-		<div class="container">
-			<h3>수정</h3>
-			<hr>
-			<br>
-
-			<form action="/foodFriendEdit" method="post" class="edit">
-				<input type="hidden">
-
-				<div class="editControl">
-					<input type="text" class="editTitle" name="title"
-						id="exampleFormControlInput1"
-						placeholder="제목을 입력하세요.">
-				</div>
-				<div id="editControl">
-					<textarea name="content" id="editorTxt" class="editContnet" placeholder="내용을 입력해주세요">content</textarea>
-
-				</div>
-
-				<input type="file" name="upload">
-
-				<div class="row">
-					<div class="col text-center">
-						<button type="button" class="cancelBtn" onclick="history.back()">취소</button>
-						<button type="submit" onclick="save()" class="editBtn">수정</button>
-					</div>
-				</div>
-			</form>
-	</main>
+	<div class="container">
+		<div class="board_wrap">
+        <div class="board_title">
+            <strong>게시글 수정</strong>
+        </div>
+        <div class="board_write_wrap">
+            <div class="board_write">
+                <div class="title">
+                    <dl>
+                        <dt>제목</dt>
+                        <dd><input type="text" placeholder="제목 입력" value="글 제목이 들어갑니다"></dd>
+                    </dl>
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>글쓴이</dt>
+                        <dd><input type="text" placeholder="글쓴이 입력" value="바비"></dd>
+                    </dl>
+                </div>
+                <div class="cont">
+                    <textarea placeholder="내용 입력">
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.
+글 내용이 들어갑니다.</textarea>
+                </div>
+                <br>
+                <input type="file" name="upload">
+                <br>
+            </div>
+            <div class="bt_wrap">
+                <a href="foodFriendDetail" class="on">수정</a>
+                <a href="foodFriendDetail" onclick="history.back()">취소</a>
+            </div>
+        </div>
+    </div>
+    </div>
 
 
 
