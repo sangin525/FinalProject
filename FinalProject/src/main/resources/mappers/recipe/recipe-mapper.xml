@@ -30,14 +30,41 @@
 	<select id="selectListCount" resultType="_int">
 	SELECT COUNT(*) FROM RECIPE
 	WHERE R_DELETEDATE IS NULL 
-	
+	<choose>
+			<when test='searchCategory.equals("title")'>
+				AND R_TITLE LIKE '%' || #{searchText} || '%'
+			</when>
+			<when test='searchCategory.equals("ingredientCategory")'>
+				AND R_INGREDIENT_CATEGORY LIKE '%' || #{searchText} || '%'
+			</when>
+			<when test='searchCategory.equals("memberNickName")'>
+				AND R_WRITER LIKE '%' || #{searchText} || '%'
+			</when>
+		</choose>
 	</select>
 	
 	<select id="selectListAll" resultMap="recipeResultSet">
 	SELECT * FROM RECIPE
 	WHERE R_DELETEDATE IS NULL
+	<choose>
+			<when test='searchCategory.equals("title")'>
+				AND R_TITLE LIKE '%' || #{searchText} || '%'
+			</when>
+			<when test='searchCategory.equals("ingredientCategory")'>
+				AND R_INGREDIENT_CATEGORY LIKE '%' || #{searchText} || '%'
+			</when>
+			<when test='searchCategory.equals("memberNickName")'>
+				AND R_WRITER LIKE '%' || #{searchText} || '%'
+			</when>
+		</choose>
+	
 	</select>
-
+			
+	<select id="rankingList" resultMap="recipeResultSet">
+	SELECT * FROM RECIPE
+	WHERE R_DELETEDATE IS NULL
+	ORDER BY R_VIEWS DESC
+	</select>
 
 	<insert id="addRecipe" useGeneratedKeys="true" keyColumn="R_NO" keyProperty="rno">
 	INSERT INTO RECIPE VALUES(recipe_seq.NEXTVAL,
