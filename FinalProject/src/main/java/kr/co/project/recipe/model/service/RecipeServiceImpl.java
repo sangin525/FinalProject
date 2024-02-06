@@ -188,15 +188,6 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.rankingList(sqlSession,pi,recipe);
 	}
 
-	public List<RecipeDTO> searchList(PageInfo pi, RecipeDTO recipe) {
-		
-		return recipeDao.searchList(sqlSession,pi,recipe);
-	}
-
-	public int searchListCount(RecipeDTO recipe) {
-		
-		return recipeDao.searchListCount(sqlSession,recipe);
-	}
 
 	public int countComment(RecipeDTO item) {
 		

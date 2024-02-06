@@ -63,7 +63,20 @@
 	<select id="rankingList" resultMap="recipeResultSet">
 	SELECT * FROM RECIPE
 	WHERE R_DELETEDATE IS NULL
+	
+	<choose>
+			<when test='searchCategory.equals("title")'>
+				AND R_TITLE LIKE '%' || #{searchText} || '%'
+			</when>
+			<when test='searchCategory.equals("ingredientCategory")'>
+				AND R_INGREDIENT_CATEGORY LIKE '%' || #{searchText} || '%'
+			</when>
+			<when test='searchCategory.equals("memberNickName")'>
+				AND R_WRITER LIKE '%' || #{searchText} || '%'
+			</when>
+		</choose>
 	ORDER BY R_VIEWS DESC
+		
 	</select>
 
 	<insert id="addRecipe" useGeneratedKeys="true" keyColumn="R_NO" keyProperty="rno">
