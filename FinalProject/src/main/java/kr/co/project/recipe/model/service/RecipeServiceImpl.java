@@ -194,6 +194,28 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.countComment(sqlSession,item);
 	}
 
+	public int scrapRecipe(RecipeDTO recipe) {
+		
+		return recipeDao.scrapRecipe(sqlSession,recipe);
+	}
+
+	public int scrapListCount(RecipeDTO recipe) {
+		
+		return recipeDao.scrapListCount(sqlSession,recipe);
+	}
+
+	public List<RecipeDTO> scrapRecipeList(RecipeDTO recipe, PageInfo pi) {
+		
+		return recipeDao.scrapRecipeList(sqlSession,recipe,pi);
+	}
+
+	public List<RecipeDTO> selectScrapRecipe(RecipeDTO recipe, PageInfo pi) {
+		
+		return recipeDao.selectScrapRecipe(sqlSession,recipe,pi);
+	}
+
+	
+
 	
 	
 

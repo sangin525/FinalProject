@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipeScrapMapper">
+	<resultMap type="recipe" id="recipeScrapResultSet">
+		<result column="FR_NO" property="frno"></result>
+		<result column="FR_SCRAP" property="scrapDate"></result>
+		<result column="M_NO" property="mno"></result>
+		<result column="R_NO" property="rno"></result>	
+	</resultMap>
+
+<insert id="scrapRecipe">
+	INSERT INTO FAVORITERECIPE VALUES(favoriteRecipe_seq.nextval,
+										SYSDATE,
+										#{mno},
+										#{rno})
+					
+</insert>
+
+<select id="scrapListCount" resultType="_int">
+SELECT COUNT (*) FROM FAVORITERECIPE
+</select>
+
+<select id="scrapRecipeList" resultMap="recipeScrapResultSet">
+SELECT * FROM FAVORITERECIPE
+</select>
+
+
+</mapper>

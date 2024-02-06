@@ -33,7 +33,6 @@ public class RecipeDTO {
 	private int views;
 	private String indate;
 	private String updateDate;
-	private int saveCount;
 	private int mno;
 	private String memberNickName;
 	private int rino;
@@ -55,6 +54,11 @@ public class RecipeDTO {
 	private double star;
 	private String searchText = "";
 	private String searchCategory = "";
+	private int frno;
+	private int saveCount;
+	private String scrapDate;
+
+	
 	
 	
 	
