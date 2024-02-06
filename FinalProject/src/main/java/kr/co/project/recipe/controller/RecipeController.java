@@ -301,11 +301,9 @@ public class RecipeController {
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
 					if(!Objects.isNull(comresult)) {
 						int commentCount = recipeService.commentCount(rno);
-						System.out.println(commentCount);
-						model.addAttribute("commentCount",commentCount);
-						System.out.println("성공");	
+						model.addAttribute("commentCount",commentCount);						
 						model.addAttribute("comment",comresult);
-						System.out.println("값입니다"+comresult);
+						System.out.println("게시판 들어오기 완료");
 					}
 				}
 			}
