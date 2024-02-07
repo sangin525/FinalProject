@@ -8,9 +8,14 @@
 		<%@ include file="./nav.jsp"%>
 		<div class="main-logo">
 		<a href="/">logo</a>
-		<form>
-			<input type="text" class="searchCategory">
-			<button type="button" class="searchBtn">검색</button>
+		<form action="${sessionScope.action}" method="GET" role="search" >
+			<input type="search" class="searchCategory" name="searchText">
+			<button type="submit" class="searchBtn">검색</button>
+			<select class="btn btn-outline-success" name="searchCategory" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+			      <option value="title">제목</option>
+			      <option value="ingredientCategory">재료</option>
+			      <option value="memberNickName">작성자</option>
+			</select>
 		</form>
 		</div>
 		<div id="login_logout">
