@@ -162,5 +162,6 @@
 	join FAVORITERECIPE f
 	on r.R_NO = f.R_NO
 	WHERE R.M_NO=#{mno}
+	AND R_DELETEDATE IS NULL
 	</select>
 </mapper>

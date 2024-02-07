@@ -40,7 +40,7 @@
 								</div>
 							</c:when>
 							<c:otherwise>
-								<c:forEach var="item" items="${list }">
+								<c:forEach var="item" items="${list}">
 								<li class="recipeRanking">
 								<div class="RecipeScore">
 									<img src="/resources/uploads/recipe/${item.uploadName}" class="rank-image" onclick="location.href='/recipe/detail.do?rno=${item.rno}'">
@@ -50,6 +50,7 @@
 									
 									</div>			
 								</li>
+									<c:set var="row" value="${row-1 }"/>
 								</c:forEach>
 							</c:otherwise>
 						</c:choose>
@@ -61,6 +62,48 @@
 
 		</div>
 	</div>
+	
+	<ul class="pagination justify-content-center">
+				 <c:choose>
+				  		<c:when test="${pi.cpage eq 1}">
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+					    </c:when>
+					    <c:otherwise>
+						    <li class="page-item">
+						      <a class="page-link" href="/recipe/scrapRecipeList.do?cpage=${pi.cpage-1}" aria-label="Previous">
+						        <span aria-hidden="true">&laquo;</span>
+						      </a>
+						    </li>
+					    </c:otherwise>
+				    </c:choose>
+				    
+				    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+				    	<li class="page-item">
+				    		<a class="page-link" href="/recipe/scrapRecipeList.do?cpage=${page}">${page}</a>
+			    		</li>
+				    </c:forEach>
+				    
+				    <c:choose>
+					    <c:when test="${pi.cpage eq pi.maxPage}">
+						    <li class="page-item">
+						      <a class="page-link" href="#" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+					    </c:when>
+					    <c:otherwise>
+  						    <li class="page-item">
+						      <a class="page-link" href="/recipe/scrapRecipeList.do?cpage=${pi.cpage+1}" aria-label="Next">
+						        <span aria-hidden="true">&raquo;</span>
+						      </a>
+						    </li>
+					    </c:otherwise>
+				    </c:choose>
+		</ul>
 
 								<!-- <div class="result_none">
 									<img src="/resources/uploads/스크랩사진누끼.png">

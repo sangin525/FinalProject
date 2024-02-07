@@ -2,24 +2,18 @@ package kr.co.project.common.upload;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.project.foodMate.model.dto.FoodMateDTO;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.recipe.model.dto.RecipeDTO;
 
@@ -53,13 +47,16 @@ private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\Fi
 		
 	}
 	
-	public static String uploadMethod(List<MultipartFile> multiFileList, String fileContent, 
+	public static String uploadMethod(List<MultipartFile> multiFileList,
+									MultipartFile file,
+									String fileContent, 
 									RecipeDTO recipe,
 									MemberDTO member,
 									HttpServletRequest request,
 									HttpSession session,
 									String boardName,
-									List<RecipeDTO> recipeList) {
+									List<RecipeDTO> recipeList,
+									List<FoodMateDTO> foodMate) {
 //			File fileCheck = new File(UPLOAD_PATH);
 		
 		List<Map<String, String>> fileList = new ArrayList<>();

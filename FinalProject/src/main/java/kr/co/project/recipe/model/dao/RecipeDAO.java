@@ -173,7 +173,7 @@ public class RecipeDAO {
 	}
 
 	public List<RecipeDTO> selectScrapRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe, PageInfo pi) {
-		
+		System.out.println(recipe.getMno());
 		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
 		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
 		return sqlSession.selectList("recipeMapper.selectScrapRecipe",recipe,rb);

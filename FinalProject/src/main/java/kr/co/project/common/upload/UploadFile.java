@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.project.foodMate.model.dto.FoodMateDTO;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.recipe.model.dto.RecipeDTO;
 
@@ -32,7 +33,9 @@ private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\Fi
 									RecipeDTO recipe,
 									MemberDTO member,
 									HttpSession session,
-									String boardName) {
+									String boardName,
+									FoodMateDTO food	
+									) {
 		if(!upload.isEmpty()) {
 			// 원본 파일명 구하기
 			String originName = upload.getOriginalFilename();
@@ -71,17 +74,21 @@ private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\Fi
 			
 			try {
 				upload.transferTo(filePath);
-				member.setUploadPath(UPLOAD_PATH + boardName);
-				member.setUploadName(filePathName);
-				member.setUploadOrigin(originName);
+//				member.setUploadPath(UPLOAD_PATH + boardName);
+//				member.setUploadName(filePathName);
+//				member.setUploadOrigin(originName);
+//				
+//				recipe.setUploadPath(UPLOAD_PATH + boardName); // 업로드 경로
+//				recipe.setUploadName(fileName); // 수정된 파일명
+//				recipe.setUploadOriginName(originName); // 원본 파일명
+//				
+//				recipe.setFilePath(UPLOAD_PATH + boardName);;
+//				recipe.setFileName(fileName);
+//				recipe.setFileOrigin(originName);
 				
-				recipe.setUploadPath(UPLOAD_PATH + boardName); // 업로드 경로
-				recipe.setUploadName(fileName); // 수정된 파일명
-				recipe.setUploadOriginName(originName); // 원본 파일명
-				
-				recipe.setFilePath(UPLOAD_PATH + boardName);;
-				recipe.setFileName(fileName);
-				recipe.setFileOrigin(originName);
+				food.setUploadPath(UPLOAD_PATH + boardName);
+				food.setUploadName(fileName);
+				food.setUploadOrigin(originName);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

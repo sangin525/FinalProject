@@ -130,7 +130,7 @@ public class RecipeController {
 		}else {
 			System.out.println("레시피 스크랩 실패 ㅜㅜ");
 		}		
-		return"myPage/scrapRecipe" ;
+		return"redirect:/recipe/scrapRecipeList.do" ;
 	}
 	
 	// 스크랩 레시피 리스트
@@ -140,8 +140,9 @@ public class RecipeController {
 			HttpSession session){
 		
 		int listCount = recipeService.scrapListCount(recipe);
-		int pageLimit = 12;
-		int boardLimit =12;
+		
+		int pageLimit = 6;
+		int boardLimit =6;
 		
 		int row = listCount - (cpage-1) * boardLimit;
 		
@@ -153,6 +154,7 @@ public class RecipeController {
 				recipe.setRno(item.getRno());
 				
 				List<RecipeDTO> list = recipeService.selectScrapRecipe(recipe,pi);
+				
 				model.addAttribute("list",list);
 			}
 		
@@ -194,7 +196,7 @@ public class RecipeController {
 			List<RecipeDTO> recipeList = new ArrayList<>();
 			
 		if(!multiFileList.isEmpty()) {
-			MultiUploadFile.uploadMethod(multiFileList, BOARD_NAME, recipe, member, null, session, BOARD_NAME, recipeList);			
+			MultiUploadFile.uploadMethod(multiFileList,null, BOARD_NAME, recipe, member, null, session, BOARD_NAME, recipeList,null);			
 		}
 		int result = recipeService.addRecipe(recipe, recipeList);
 		
