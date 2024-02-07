@@ -1,3 +1,6 @@
+.adminContainer {
+	height: 100%;
+}
 .side-menu {
 	top: 50px;
 	width: 45px;
@@ -5,7 +8,7 @@
 	background: #ff5858;
 	border-right: 1px solid rgba(0, 0, 0, 0.07);
 	bottom: 50px;
-	height: 100%;
+	height: 77.5%;
 	margin-bottom: -70px;
 	margin-top: 0px;
 	padding-bottom: 70px;
@@ -46,17 +49,6 @@
 }
 
 /* 사이드 메뉴 */
-input[type="search"] {
-	width: 180px;
-	margin: 0 auto;
-	margin-left: 9px;
-	border: 2px solid #797979;
-	font-size: 14px;
-	margin-top: 10px;
-	padding: 4px 0 4px 14px;
-	border-radius: 50px;
-}
-
 .left_sub_menu {
 	position: fixed;
 	top: 50px;
@@ -66,7 +58,7 @@ input[type="search"] {
 	background: white;
 	border-right: 1px solid rgba(0, 0, 0, 0.07);
 	bottom: 50px;
-	height: 100%;
+	height: 85.5%;
 	margin-bottom: -70px;
 	margin-top: 0px;
 	padding-bottom: 0px;
@@ -81,7 +73,7 @@ input[type="search"] {
 }
 
 .sub_menu::-webkit-scrollbar {
-  display: none;
+	display: none;
 }
 
 .left_sub_menu>.sub_menu li:hover {
@@ -158,48 +150,50 @@ ol, ul {
 	display: none;
 }
 
-
-
 /*멤버리스트*/
-.memberTable{
+.memberTable {
 	margin-left: 250px;
 }
 
 table {
-  border-collapse: separate;
-  border-spacing: 0;
-  width: 100%;
+	border-collapse: separate;
+	border-spacing: 0;
+	width: 100%;
 }
-th,
-td {
-  padding: 6px 15px;
+
+th, td {
+	padding: 6px 15px;
 }
+
 th {
-  background: #42444e;
-  color: #fff;
-  text-align: left;
+	background: #42444e;
+	color: #fff;
+	text-align: left;
 }
+
 tr:first-child th:first-child {
-  border-top-left-radius: 6px;
+	border-top-left-radius: 6px;
 }
+
 tr:first-child th:last-child {
-  border-top-right-radius: 6px;
+	border-top-right-radius: 6px;
 }
+
 td {
-  border-right: 1px solid #c6c9cc;
-  border-bottom: 1px solid #c6c9cc;
+	border-right: 1px solid #c6c9cc;
+	border-bottom: 1px solid #c6c9cc;
 }
+
 td:first-child {
-  border-left: 1px solid #c6c9cc;
+	border-left: 1px solid #c6c9cc;
 }
-tr:nth-child(even) td {
-  background: #eaeaed;
-}
+
 tr:last-child td:first-child {
-  border-bottom-left-radius: 6px;
+	border-bottom-left-radius: 6px;
 }
+
 tr:last-child td:last-child {
-  border-bottom-right-radius: 6px;
+	border-bottom-right-radius: 6px;
 }
 
 .pagination {
@@ -208,17 +202,16 @@ tr:last-child td:last-child {
 	margin-left: 250px;
 }
 
-
 /*상품등록페이지*/
 .product-upload img {
-	padding-top: 14px; 
-	width: 100px; 
+	padding-top: 14px;
+	width: 100px;
 	height: 64px;
 }
 
 .info-upload img {
-	padding-top: 14px; 
-	width: 100px; 
+	padding-top: 14px;
+	width: 100px;
 	height: 64px;
 }
 
@@ -226,7 +219,7 @@ tr:last-child td:last-child {
 	margin-left: 300px;
 }
 
-.productInfoText{
+.productInfoText {
 	display: flex;
 	flex-direction: column;
 }
@@ -323,12 +316,166 @@ tr:last-child td:last-child {
 }
 
 /*상품리스트*/
-.productTable{
+.productTable {
 	margin-left: 250px;
 }
 
-.pagination {
+/*주문리스트*/
+.orderTable {
+	margin-left: 250px;
+	display: flex;
+}
+
+.orderBtn {
+	width: 78px;
+	height: 78px;
+	background-color: white;
+	font-size: 20px;
+}
+
+/*배송관리*/
+.deliveryContainer {
+	border-bottom: 3px solid black;
+	margin-left: 250px;
+}
+
+.deliveryTable {
+	margin-top: 30px;
+	float: left;
+	height: 80%;
+}
+
+.deliveryTable .pagination {
+	display: flex;
+	justify-content: flex-start;
+}
+
+.deliveryTable table{
+	width: 650px;
+}
+
+.orderDetail {
+	padding-left: 30px;
+	border-left: 1px solid #e1e1e1;
+	margin-top: 10px;
+	margin-right: 150px;
+	width: 300px;
+	height: 80%;
+	float: right;
+}
+
+.orderDetail h4 {
+	border-bottom: 3px solid black;
+	margin-top: 20px;
+	padding-bottom: 10px;
+}
+
+.orderDetail ul {
+	display: none;
+}
+
+.orderDetail ul.active {
+	display: block;
+}
+
+.orderDetail ul li {
+	border-bottom: 1px solid #e1e1e1;
+	padding: 10px;
+}
+
+/*게시글관리*/
+.managingPostsContainer {
+	margin-left: 250px;
+}
+
+.postCategoryBtn {
 	display: flex;
 	justify-content: center;
-	margin-left: 250px;
+}
+
+.postCategoryBtn button {
+	width: 150px;
+	height: 70px;
+	background-color: white;
+	margin: 30px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.postCategoryBtn button:hover {
+	width: 150px;
+	height: 70px;
+	background-color: green;
+	color: white;
+	margin: 30px;
+	font-size: 20px;
+	font-weight: 600;
+}
+
+.notice_List .pagination {
+	margin: 0px;
+}
+
+.free_List .pagination {
+	margin: 0px;
+}
+
+.event_List .pagination {
+	margin: 0px;
+}
+
+.boardNum {
+	width: 10%;
+}
+
+.boardTit {
+	width: 50%;
+}
+
+.boardwriter {
+	width: 15%;
+}
+
+.boardDate {
+	width: 15%;
+}
+.boardView {
+	width: 10%;
+}
+
+.added {
+	height: 400px;
+	background-color: white;
+}
+
+.update-delete-btn {
+	float: right;
+	margin-right: 30px;
+	margin-bottom: 20px;
+}
+
+/* 게시글 수정 모달창 */
+.board_modal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0, 0, 0); /* Fallback color */
+	background-color: rgba(0, 0, 0, 0.4); /*Black w/ opacity */
+}
+
+.modal_container {
+	background-color: #fefefe;
+	margin: auto;
+	padding: 30px;
+	border: 1px solid #888;
+	width: 1100px; 
+    height: 600px; 
+	overflow-y: auto; /* 세로 스크롤바 표시 */
+	max-height: 70vh; /* 모달 창의 최대 높이를 뷰포트 높이의 90%로 설정 */
 }

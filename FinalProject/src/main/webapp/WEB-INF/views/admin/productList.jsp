@@ -16,7 +16,7 @@
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
-
+<div class="adminContainer">
 	<div class="productTable">
 		<table>
 			<thead>
@@ -86,7 +86,8 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
-
+</div>
+<%@ include file="../../views/common/footer.jsp" %>
 </body>
 
 </html>

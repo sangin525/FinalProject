@@ -143,4 +143,30 @@ public class IndexController {
 	public String productListForm() {
 		return "admin/productList";
 	}
+	
+	@GetMapping("/orderList")
+	public String orderListForm() {
+		return "admin/orderList";
+	}
+	
+	@GetMapping("/delivery")
+	public String deliveryForm() {
+		return "admin/delivery";
+	}
+	@GetMapping("/managingPosts")
+	public String managingPostsForm() {
+		return "admin/managingPosts";
+	}
+	@GetMapping("/noticeEnroll")
+	public String noticeEnrollForm() {
+		return "admin/noticeEnroll";
+	}
+	@GetMapping("/eventEnroll")
+	public String eventEnrollForm() {
+		return "admin/eventEnroll";
+	}
+	@GetMapping("/productAnswer")
+	public String productAnswerForm() {
+		return "admin/productAnswer";
+	}
 }
