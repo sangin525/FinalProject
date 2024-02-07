@@ -15,7 +15,7 @@
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
-
+<div class="adminContainer">
 	<div class="productRegistrationContainer">
 		<div class="productRegistrationContain">
 			<div class="registrationTit">
@@ -125,7 +125,7 @@
 			</form>
 		</div>
 	</div>
-
-
+</div>
+<%@ include file="../../views/common/footer.jsp" %>
 </body>
 </html>
