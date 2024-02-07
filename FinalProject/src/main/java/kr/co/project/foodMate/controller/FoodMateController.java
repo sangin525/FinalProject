@@ -174,7 +174,7 @@ public class FoodMateController {
 		if(result == 1) {
 			System.out.println("삭제완료");
 		}else {
-			System.out.println("삭제실패");
+			System.out.println("삭제실패 ㅜㅜ");
 		}
 		
 		return "redirect:/foodMate/foodMateList.do";
