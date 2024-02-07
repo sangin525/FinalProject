@@ -19,98 +19,36 @@
         </div>
         <div class="board_list_wrap">
             <div class="board_list">
-                <div class="top">
+            <c:choose>
+            	<c:when test="${empty list}">
+            		<p>등록된 글이 없습니다.</p>
+            	</c:when>
+            	<c:otherwise>
+            	<div class="top">
                     <div class="num">번호</div>
-                    <div class="title">제목</div>
+                    <div class="title" >제목</div>
                     <div class="writer">글쓴이</div>
                     <div class="date">작성일</div>
                     <div class="count">조회</div>
                 </div>
-                 <div>
-                    <div class="num">5</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
+            		<c:forEach var="item" items="${list }">
+                
+            		
+                 <div onclick="location.href='/foodMate/foodMateDetail.do?fno=${item.fno}'">
+                    <div class="num">${row}</div>
+                    <div class="title">${item.title }</div>
+                    <div class="writer">${item.writer }</div>
+                    <div class="date">${item.indate }</div>
+                    <div class="count">${item.views }</div>
                 </div>
-                 <div>
-                    <div class="num">5</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                 <div>
-                    <div class="num">5</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                 <div>
-                    <div class="num">5</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                 <div>
-                    <div class="num">5</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                 <div>
-                    <div class="num">5</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                 <div>
-                    <div class="num">5</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                <div>
-                    <div class="num">5</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                <div>
-                    <div class="num">4</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                <div>
-                    <div class="num">3</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                <div>
-                    <div class="num">2</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
-                <div>
-                    <div class="num">1</div>
-                    <div class="title"><a href="foodFriendDetail">글 제목이 들어갑니다.</a></div>
-                    <div class="writer">김이름</div>
-                    <div class="date">2021.1.15</div>
-                    <div class="count">33</div>
-                </div>
+                 
+          				<c:set var="row" value="${row -1}"/>
+            		</c:forEach>
+            	</c:otherwise>
+            </c:choose>
             </div>
+            
+            
             <div class="board_page">
                 <a href="#" class="bt first"><<</a>
                 <a href="#" class="bt prev"><</a>
@@ -123,7 +61,7 @@
                 <a href="#" class="bt last">>></a>
             </div>
             <div class="bt_wrap">
-                <a href="foodFriendEnroll" class="on">등록</a>
+                <a href="/foodMate/addFoodMateForm.do" class="on">등록</a>
                
             </div>
         </div>

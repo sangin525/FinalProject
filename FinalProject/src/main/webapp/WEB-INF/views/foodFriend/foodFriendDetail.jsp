@@ -19,38 +19,46 @@
 			</div>
 			<div class="board_view_wrap">
 				<div class="board_view">
-					<div class="title">글 제목이 들어갑니다.</div>
+					<div class="title">${food.title}</div>
 					<div class="info">
 						<dl>
 							<dt>번호</dt>
-							<dd>1</dd>
+							<dd>${food.fno}</dd>
 						</dl>
 						<dl>
 							<dt>글쓴이</dt>
-							<dd>김이름</dd>
+							<dd>${food.writer}</dd>
 						</dl>
 						<dl>
 							<dt>작성일</dt>
-							<dd>2021.1.16</dd>
+							<dd>${food.indate}</dd>
 						</dl>
 						<dl>
 							<dt>조회</dt>
-							<dd>33</dd>
+							<dd>${food.views }</dd>
 						</dl>
 					</div>
 					<div class="cont">
-						<img src="/resources/uploads/고양이그림.png"> 글 내용이 들어갑니다<br>
-						글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글
-						내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이
-						들어갑니다
+						<img src="/resources/uploads/foodMate/${food.uploadName}"> 
+						<br><br> 
+						${food.contents}
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<a href="foodFriendList" class="on">목록</a> <a href="foodFriendEdit">수정</a><a href="foodFriendConv">1:1대화</a>
+				<c:if test="${sessionScope.memberNickName == food.writer}">					
+					<a href="/foodMate/foodMateDelete.do?fno=${food.fno}">삭제</a> <a href="/foodMate/foodMateEditForm.do?fno=${food.fno}">수정</a>
+				</c:if>	
+					<a href="/foodMate/foodMateList.do" class="on">목록</a><a href="foodFriendConv">1:1대화</a>
 				</div>
 			</div>
 		</div>
-
+		<c:if test="${sessionScope.memberNickName == food.writer}">
+		<div>
+			<form action="/foodMate/foodMateDelete.do?fno=${food.fno}" method="GET">
+			<button type ="submit">삭제</button>
+			</form>
+		</div>
+		</c:if>
 		<div class="comment_title">
 			댓글 <span>21</span>
 

@@ -266,7 +266,8 @@ public class MemberController {
 	
 	
 	@GetMapping("/myRecipe.do")
-	public String myRecipe(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
+	public String myRecipe(RecipeDTO recipe,
+			@RequestParam(value="cpage",defaultValue="1")int cpage,
 			Model model,
 			MemberDTO member,
 			HttpSession session) {
@@ -276,7 +277,7 @@ public class MemberController {
 		
 		System.out.println(listCount);
 		int pageLimit = 12;
-		int boardLimit =12;
+		int boardLimit = 8 ;
 		
 		int row = listCount - (cpage-1) * boardLimit;
 		MemberDTO selectMember = memberService.selectMember(recipe.getMno());

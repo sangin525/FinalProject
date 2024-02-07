@@ -44,6 +44,7 @@
 									</div>
 									</a>
 								</div>
+								<c:set var="row" value="${row-1 }"/>
 								</c:forEach>
 							</c:when>
 							<c:otherwise>
@@ -74,7 +75,7 @@
 					    </c:when>
 					    <c:otherwise>
 						    <li class="page-item">
-						      <a class="page-link" href="/member/myRecipe.do.do?cpage=${pi.cpage-1}" aria-label="Previous">
+						      <a class="page-link" href="/member/myRecipe.do?cpage=${pi.cpage-1}" aria-label="Previous">
 						        <span aria-hidden="true">&laquo;</span>
 						      </a>
 						    </li>

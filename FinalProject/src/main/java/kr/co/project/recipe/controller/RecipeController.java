@@ -44,7 +44,7 @@ public class RecipeController {
 	@Autowired
 	private SessionMessage sessionMessage;
 	
-	
+	// 레시피 랭킹 리스트
 	@GetMapping("/rankingRecipe.do")
 	public String rankingRecipe(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
 									Model model,
@@ -79,7 +79,8 @@ public class RecipeController {
 		System.out.println("접근성공");
 			return "ranking/recipe";		
 	}
-		
+	
+	//레시피 카테고리 리스트
 	@GetMapping("/categoryList.do")
 	public String RecipeCategoryList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
 									Model model,
@@ -114,13 +115,66 @@ public class RecipeController {
 		System.out.println("접근성공");
 			return "category/category";
 	}
+	
+	// 레시피 스크랩 하기
+	@PostMapping("/scrapRecipe.do")
+	public String scrapRecipe(@RequestParam(value="rno") int rno,
+								RecipeDTO recipe,HttpSession session,
+								Model model) {
 
-
+		recipe.setRno(rno);
+		recipe.setMno((int) session.getAttribute("mno"));
+		int scrapRecipe = recipeService.scrapRecipe(recipe);
+		if(scrapRecipe>0) {
+			System.out.println("레시피 스크랩 성공");
+		}else {
+			System.out.println("레시피 스크랩 실패 ㅜㅜ");
+		}		
+		return"redirect:/recipe/scrapRecipeList.do" ;
+	}
+	
+	// 스크랩 레시피 리스트
+	@GetMapping("/scrapRecipeList.do")
+	public String scrapRecipeList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
+			Model model,
+			HttpSession session){
+		
+		int listCount = recipeService.scrapListCount(recipe);
+		
+		int pageLimit = 6;
+		int boardLimit =6;
+		
+		int row = listCount - (cpage-1) * boardLimit;
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		
+		List<RecipeDTO> scrapList = recipeService.scrapRecipeList(recipe,pi);
+			for(RecipeDTO item:scrapList) {
+				recipe.setMno(item.getMno());
+				recipe.setRno(item.getRno());
+				
+				List<RecipeDTO> list = recipeService.selectScrapRecipe(recipe,pi);
+				
+				model.addAttribute("list",list);
+			}
+		
+		
+		
+		model.addAttribute("row",row);
+		model.addAttribute("scrapList",scrapList);
+		model.addAttribute("pi",pi);
+		
+		return "myPage/scrapRecipe";
+	}
+	
+	
+	// 레시피 추가 폼
 	@GetMapping("/addRecipeForm.do")
 	public String addRecipeForm() {
 		return "member/addRecipe";
 	}
 	
+	//레시피 추가
 	@PostMapping("/addRecipe.do")
 	public String addRecipe(RecipeDTO recipe,MemberDTO member,MultipartFile upload, List<MultipartFile> multiFileList,
 					HttpSession session,Model model)throws IllegalStateException, IOException {
@@ -142,7 +196,7 @@ public class RecipeController {
 			List<RecipeDTO> recipeList = new ArrayList<>();
 			
 		if(!multiFileList.isEmpty()) {
-			MultiUploadFile.uploadMethod(multiFileList, BOARD_NAME, recipe, member, null, session, BOARD_NAME, recipeList);			
+			MultiUploadFile.uploadMethod(multiFileList,null, BOARD_NAME, recipe, member, null, session, BOARD_NAME, recipeList,null);			
 		}
 		int result = recipeService.addRecipe(recipe, recipeList);
 		
@@ -185,6 +239,7 @@ public class RecipeController {
 	}	
 }
 	
+	// 레시피수정 폼
 	@GetMapping("/editForm.do")
 	public String editFormRecipe(@RequestParam(value="rno")int rno,
 			Model model) {
@@ -204,6 +259,7 @@ public class RecipeController {
 			return "member/recipe";
 		}
 	
+	// 레시피 수정
 //	@PostMapping("/edit.do")
 //	public String editRecipe(List<MultipartFile> multiFileList,RecipeDTO recipe,HttpSession session) {
 //		String writer = recipeService.selectWriter(recipe.getRno());
@@ -234,6 +290,7 @@ public class RecipeController {
 //		}
 //	}
 	
+	// 레시피 삭제
 	@GetMapping("/delete.do")
 	public String deleteRecipe(@RequestParam(value="rno") int rno,
 									HttpSession session) {
@@ -253,6 +310,7 @@ public class RecipeController {
 		return "redirect:/recipe/categoryList.do";
 	}
 	
+	// 레시피 댓글 달기
 	@PostMapping("/comment.do")
 	public String comment(@RequestParam(value="rno")int rno,
 			HttpSession session,RecipeDTO recipe,Model model) {
@@ -275,8 +333,9 @@ public class RecipeController {
 			return"redirect:/recipe/categoryList.do";
 			
 	}
-
-@GetMapping("/detail.do")
+	
+	//레시피 상세보기
+	@GetMapping("/detail.do")
 	
 	public String detailRecipe(@RequestParam(value="rno") int rno,
 												RecipeDTO recipe,

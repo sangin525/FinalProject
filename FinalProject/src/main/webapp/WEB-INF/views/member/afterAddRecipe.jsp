@@ -36,9 +36,9 @@
 					class="view_summary_info3">${recipe.difficulty}</span> <br> <br> <br>
 			</div>
 			<div class="btn_list">
-				<a href="#" onclick=""> <img
-					src="/resources/uploads/스크랩사진누끼.png"> <span>스크랩 <b
-						class="st2">204</b></span></a> <a onclick=""> <img
+				<form action="/recipe/scrapRecipe.do?rno=${recipe.rno}" method="POST">
+				<a><img src="/resources/uploads/스크랩사진누끼.png"><span>스크랩<b class="st2"></b>	<button type="submit"></button>	</span></a> 			
+				</form><a onclick=""> <img
 					src="/resources/uploads/공유사진누끼.png"><span>공유</span></a> <a
 					href="#"> <img src="/resources/uploads/댓글사진누끼.png"> <span>댓글
 						<b class="st3">${commentCount}</b>
