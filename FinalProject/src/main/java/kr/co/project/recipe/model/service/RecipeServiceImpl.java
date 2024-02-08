@@ -111,11 +111,6 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.selectWriter(sqlSession,rno);
 	}
 
-	@Override
-	public List<RecipeDTO> selectFileName(int rno) {
-		
-		return recipeDao.selectFileName(sqlSession,rno);
-	}
 	
 	@Override
 	public RecipeDTO selectRecipe(int rno) {
@@ -212,6 +207,27 @@ public class RecipeServiceImpl implements RecipeService{
 	public List<RecipeDTO> selectScrapRecipe(RecipeDTO recipe, PageInfo pi) {
 		
 		return recipeDao.selectScrapRecipe(sqlSession,recipe,pi);
+	}
+		
+	@Override
+	public List<RecipeDTO> selectFileName(int rno) {
+		
+		return recipeDao.selectFileName(sqlSession,rno);
+	}
+
+	public List<RecipeDTO> selectPhotoList(int rpno) {
+		
+		return recipeDao.selectPhotoList(sqlSession,rpno);
+	}
+
+	public int editRecipe(RecipeDTO recipe) {
+		
+		return recipeDao.editRecipe(sqlSession,recipe);
+	}
+
+	public int editRecipeEmpty(RecipeDTO recipe) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	

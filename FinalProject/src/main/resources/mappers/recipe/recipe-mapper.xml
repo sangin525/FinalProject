@@ -104,6 +104,24 @@
 								#{mno},
 								null)
 	</insert>
+	
+	<update id="editRecipe" parameterType="recipe">
+		UPDATE RECIPE SET R_TITLE = #{title},
+						  R_INTRODUCTION = #{introduction},
+						  R_FOOD_CATEGORY = #{foodCategory},
+						  R_SITUATION_CATEGORY = #{situationCategory},
+						  R_HOW_CATEGORY =#{howCategory},
+						  R_INGREDIENT_CATEGORY =#{ingredientCategory},
+						  R_PERSON =#{person},
+						  R_TIME =#{time},
+						  R_DIFFICULTY =#{difficulty},
+						  R_TIP =#{tip},
+						  R_TAG =#{tag},
+						  R_UPLOAD_PATH =#{uploadPath},
+						  R_UPLOAD_NAME =#{uploadName},
+						  R_UPLOAD_ORIGIN =#{uploadOriginName}
+						  WHERE R_NO =#{rno}
+	</update>
 
 	<select id="detailRecipe" resultMap="recipeResultSet">
 	SELECT *
@@ -161,7 +179,7 @@
 	SELECT * FROM RECIPE r
 	join FAVORITERECIPE f
 	on r.R_NO = f.R_NO
-	WHERE R.M_NO=#{mno}
+	WHERE F.M_NO=#{mno}
 	AND R_DELETEDATE IS NULL
 	</select>
 </mapper>

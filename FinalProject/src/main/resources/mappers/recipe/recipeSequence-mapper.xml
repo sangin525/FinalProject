@@ -14,6 +14,10 @@
 								#{rsSequence})
 	</insert>
 	
+	<update id="editRecipe" parameterType="recipe">
+		UPDATE RECIPESEQUENCE SET RS_SEQUENCE =#{rsSequence}
+								  WHERE R_NO =#{rno}
+	</update>
 	
 	<select id="seqSelectRecipe" resultMap="recipeSequenceResultSet">
 	SELECT * FROM RECIPESEQUENCE
