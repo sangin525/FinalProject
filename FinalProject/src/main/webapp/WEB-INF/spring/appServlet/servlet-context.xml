@@ -6,7 +6,9 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
 	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
-	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.3.xsd
 		http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
 		http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
@@ -65,10 +67,17 @@
 			<beans:ref bean="loginCheckInterceptor" />
 		</interceptor>
 	</interceptors>
+
+	<websocket:handlers>
+		<websocket:mapping handler="echoHandler"
+			path="/echo" />
+		<websocket:sockjs />
+	</websocket:handlers>
+	
+	<beans:bean id="echoHandler" class="kr.co.project.chat.handler.EchoHandler"></beans:bean>
 	
 	
-	<context:component-scan base-package="kr.co.project" />
 	
 	
-	
+	<context:component-scan base-package="kr.co.project" />	
 </beans:beans>
