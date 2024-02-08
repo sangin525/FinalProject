@@ -17,11 +17,15 @@
 										#{fileName},
 										#{fileOrigin}
 										)
-
-
-
-
 	</insert>
+	
+	<update id="editRecipe" parameterType="recipe">
+		UPDATE RECIPESEQUENCEPHOTO SET RP_FILE_PATH =#{filePath},
+									   RP_FILE_NAME =#{fileName},
+									   RP_FILE_ORIGIN =#{fileOrigin}
+									   WHERE RS_NO = #{rsno}
+	</update>
+
 
 	<select id="seqPhoSelectRecipe" resultMap="recipeSequencePhotoResultSet">
 	SELECT * FROM RECIPESEQUENCEPHOTO
@@ -29,6 +33,11 @@
 	</select>
 
 	<select id="selectSequenceFileName" resultMap="recipeSequencePhotoResultSet">
+	SELECT * FROM RECIPESEQUENCEPHOTO
+	WHERE RS_NO=#{rsno}
+	</select>
+	
+	<select id="selectPhotoList" resultMap="recipeSequencePhotoResultSet">
 	SELECT * FROM RECIPESEQUENCEPHOTO
 	WHERE RS_NO=#{rsno}
 	</select>

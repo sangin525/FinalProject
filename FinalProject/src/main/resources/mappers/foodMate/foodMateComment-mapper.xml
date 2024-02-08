@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foodMateCommentMapper">
+
+	<resultMap type ="foodMate" id="foodMateCommentResultSet">
+		<result column="FC_NO" property="fcno"></result>
+		<result column="FC_COMMENT" property="comment"></result>
+		<result column="FC_WRITER" property="commentWriter"></result>
+		<result column="FC_IN_DATE" property="commentIndate"></result>
+		<result column="M_NO" property="mno"></result>
+	</resultMap>
+
+	<select id="selectComment" resultMap="foodMateCommentResultSet">
+		SELECT * FROM FOODMATECOMMENT
+		WHERE F_NO=#{fno}
+	</select>
+
+	<select id="commentCount" resultType="_int">
+		SELECT COUNT(*) FROM FOODMATECOMMENT
+		WHERE F_NO =#{fno}
+	</select>
+
+	<insert id="addComment">
+		INSERT INTO FOODMATECOMMENT VALUES(foodMateComment_seq.nextval,
+											#{comment},
+											#{commentWriter},
+											SYSDATE,
+											#{fno},
+											#{mno}
+											)
+	</insert>	
+
+
+
+
+</mapper>

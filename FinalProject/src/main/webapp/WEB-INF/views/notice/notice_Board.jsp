@@ -13,10 +13,10 @@
 	<%@ include file="../../views/common/header.jsp"%>
 
 	<div class="navbar">
-		<a href="">공지사항</a>
-		<a href="">자유게시판</a>
-		<a href="">이벤트게시판</a>
-		<a href="">고객센터</a>
+		<a href="/notice/notice_Board">공지사항</a>
+		<a href="/notice/free_Board">자유게시판</a>
+		<a href="/notice/event_Board">이벤트게시판</a>
+		<a href="/notice/customer_Service">고객센터</a>
 	</div>
 
 

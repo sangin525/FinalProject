@@ -109,6 +109,21 @@ public class FoodMateServiceImpl implements FoodMateService{
 		return foodMateDao.deleteBoard(sqlSession,fno);
 	}
 
+	public int addComment(FoodMateDTO food) {
+		
+		return foodMateDao.addComment(sqlSession,food);
+	}
+
+	public List<FoodMateDTO> selectComment(int fno) {
+		
+		return foodMateDao.selectComment(sqlSession,fno);
+	}
+
+	public int commentCount(int fno) {
+		
+		return foodMateDao.commentCount(sqlSession,fno);
+	}
+
 	
 
 	

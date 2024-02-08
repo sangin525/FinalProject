@@ -16,6 +16,14 @@
 											#{ingredientWeight}
 											 )															
 	</insert>
+	
+	<update id="editRecipe" parameterType="recipe">
+		UPDATE RECIPEINGREDIENT SET RI_INGREDIENT =#{ingredient},
+									RI_INGREDIENT_WEIGHT =#{ingredientWeight}
+									WHERE R_NO =#{rno}
+	</update>
+	
+	
 	<select id="selectRecipe" resultMap="recipeIngredientResultSet">
 	SELECT * FROM RECIPEINGREDIENT
 	WHERE R_NO=#{rno}

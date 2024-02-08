@@ -99,10 +99,16 @@ public class FoodMateController {
 									HttpServletRequest request) {
 		
 		FoodMateDTO result = foodMateService.detailFoodMate(fno);
-		System.out.println(fno);
+		List<FoodMateDTO> comresult = foodMateService.selectComment(fno);
+		
 		if(!Objects.isNull(result)) {
 			model.addAttribute("food",result);
-			System.out.println("성공");
+			if(!Objects.isNull(comresult)) {
+				int commentCount = foodMateService.commentCount(fno);
+				model.addAttribute("comment",comresult);
+				model.addAttribute("commentCount",commentCount);
+				System.out.println("성공");				
+			}
 		}else {
 			System.out.println("실패");
 			
@@ -177,6 +183,26 @@ public class FoodMateController {
 			System.out.println("삭제실패 ㅜㅜ");
 		}
 		
+		return "redirect:/foodMate/foodMateList.do";
+	}
+	
+	@PostMapping("/comment.do")
+	public String comment(@RequestParam(value="fno")int fno,
+				HttpSession session,FoodMateDTO food,Model model) {
+		
+		food.setCommentWriter((String) session.getAttribute("memberNickName"));
+		food.setMno((int) session.getAttribute("mno"));
+		
+		System.out.println(food.getCommentWriter());
+		
+		int result = 0;
+		result = foodMateService.addComment(food);
+		
+		if(result>0) {
+			System.out.println("댓글 작성완료");
+		}else {
+			System.out.println("댓글 작성실패");
+		}
 		return "redirect:/foodMate/foodMateList.do";
 	}
 	

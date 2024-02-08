@@ -24,7 +24,7 @@
 			<div class="user_info2">
 				<a class="info_user"><img src="/resources/uploads/레시피등록대표사진.gif"></a>
 			</div>
-			<span class="user_infoName">${memberNickName}</span>
+			<span class="user_infoName">${recipe.memberNickName}</span>
 		</div>
 
 		<div class="view_summary">

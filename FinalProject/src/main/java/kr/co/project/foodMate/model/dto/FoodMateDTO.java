@@ -30,4 +30,9 @@ public class FoodMateDTO {
 	private String uploadPath;
 	private String uploadName;
 	private String uploadOrigin;
+	private int fcno;
+	private String comment;
+	private String commentIndate;
+	private String commentWriter;
+	
 }

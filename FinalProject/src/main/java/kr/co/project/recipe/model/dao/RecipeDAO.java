@@ -173,10 +173,33 @@ public class RecipeDAO {
 	}
 
 	public List<RecipeDTO> selectScrapRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe, PageInfo pi) {
-		System.out.println(recipe.getMno());
+		
 		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
 		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
 		return sqlSession.selectList("recipeMapper.selectScrapRecipe",recipe,rb);
+	}
+
+	public List<RecipeDTO> selectPhotoList(SqlSessionTemplate sqlSession, int rpno) {
+	
+		return sqlSession.selectList("recipeSequencePhotoMapper.selectPhotoList",rpno);
+	}
+
+	public int editRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		int recipeUp = sqlSession.update("recipeMapper.editRecipe",recipe);
+		int recipeingUp = sqlSession.update("recipeIngredientMapper.editRecipe",recipe);
+		int recipeseqUp = sqlSession.update("recipeSequenceMapper.editRecipe",recipe);
+		
+		// for  --> i=1 i<sequenceFileName.size()
+		// recipeDTO에 setter로 해당 인덱스의 fileName, fileOrigin, filePath
+		
+		// recipe.setFileName(sequenceFileName.get(i).getFileName())
+		int recipeseqPhoUp = sqlSession.update("recipeSequencePhotoMapper.editRecipe",recipe);
+		
+		if(recipeUp == 1 && recipeingUp == 1 && recipeseqUp == 1 && recipeseqPhoUp == 1) {
+			
+			System.out.println("업뎃완료");
+		}
+		return 1;
 	}
 
 	

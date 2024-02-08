@@ -54,11 +54,13 @@
 <select id="checkEmail" resultType="_int">
 	SELECT COUNT(*) FROM member
 	WHERE m_email = #{email}
+	AND M_REMOVE_DATE IS NULL
 </select>
 
 <select id="checkNickName" resultType="_int">
 	SELECT COUNT(*) FROM member
 	WHERE m_nickname = #{nickname}
+	AND M_REMOVE_DATE IS NULL
 </select>
 
 <select id="findMember" resultMap="memberResultSet">
