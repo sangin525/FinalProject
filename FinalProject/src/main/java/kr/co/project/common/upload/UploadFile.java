@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.project.foodMate.model.dto.FoodMateDTO;
 import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.recipe.model.dto.RecipeDTO;
@@ -31,7 +32,7 @@ public class UploadFile {
 	}
 
 	public static void uploadMethod(MultipartFile upload, RecipeDTO recipe, MemberDTO member, HttpSession session,
-			String boardName) {
+			String boardName, FoodMateDTO food) {
 		if (!upload.isEmpty()) {
 			// 원본 파일명 구하기
 			String originName = upload.getOriginalFilename();
@@ -71,18 +72,21 @@ public class UploadFile {
 
 			try {
 				upload.transferTo(filePath);
-				member.setUploadPath(UPLOAD_PATH + boardName);
-				member.setUploadName(filePathName);
-				member.setUploadOrigin(originName);
+//				member.setUploadPath(UPLOAD_PATH + boardName);
+//				member.setUploadName(filePathName);
+//				member.setUploadOrigin(originName);
+//				
+//				recipe.setUploadPath(UPLOAD_PATH + boardName); // 업로드 경로
+//				recipe.setUploadName(fileName); // 수정된 파일명
+//				recipe.setUploadOriginName(originName); // 원본 파일명
+//				
+//				recipe.setFilePath(UPLOAD_PATH + boardName);;
+//				recipe.setFileName(fileName);
+//				recipe.setFileOrigin(originName);
 
-				recipe.setUploadPath(UPLOAD_PATH + boardName); // 업로드 경로
-				recipe.setUploadName(fileName); // 수정된 파일명
-				recipe.setUploadOriginName(originName); // 원본 파일명
-
-				recipe.setFilePath(UPLOAD_PATH + boardName);
-				;
-				recipe.setFileName(fileName);
-				recipe.setFileOrigin(originName);
+				food.setUploadPath(UPLOAD_PATH + boardName);
+				food.setUploadName(fileName);
+				food.setUploadOrigin(originName);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
@@ -92,10 +96,8 @@ public class UploadFile {
 		}
 	}
 
-	public static void goodsUploadMethod(MultipartFile upload, 
-										GoodsDTO goodsDTO, 
-										HttpSession session) {
-		
+	public static void goodsUploadMethod(MultipartFile upload, GoodsDTO goodsDTO, HttpSession session) {
+
 		String boardName = "goods";
 
 		if (!upload.isEmpty()) {
@@ -137,16 +139,16 @@ public class UploadFile {
 
 			try {
 				upload.transferTo(filePath);
-//				goodsDTO.setUploadPath(UPLOAD_PATH + boardName); // 업로드 경로
-//				goodsDTO.setUploadName(fileName); // 수정된 파일명
-//				goodsDTO.setUploadOriginName(originName); // 원본 파일명
+				// goodsDTO.setUploadPath(UPLOAD_PATH + boardName); // 업로드 경로
+				// goodsDTO.setUploadName(fileName); // 수정된 파일명
+				// goodsDTO.setUploadOriginName(originName); // 원본 파일명
 
 				goodsDTO.setG_file_path(UPLOAD_PATH + boardName + "\\" + fileName);
 				goodsDTO.setG_file_name(fileName);
 				goodsDTO.setG_origin_name(originName);
 
-//				goodsDTO.setFileName(fileName);
-//				goodsDTO.setFileOrigin(originName);
+				// goodsDTO.setFileName(fileName);
+				// goodsDTO.setFileOrigin(originName);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

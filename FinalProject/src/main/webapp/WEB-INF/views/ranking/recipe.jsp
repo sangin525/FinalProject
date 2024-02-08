@@ -35,7 +35,8 @@
 				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">${item.memberNickName}</a>
 			</div>
 			<div class="RecipeScore">
-				<span>별점</span>	
+				<span>댓글수 ${item.commentCount}</span>					
+				<span>별점 ${item.star}</span>	
 				<span>조회수 ${item.views}</span>
 			</div>
 		</li>

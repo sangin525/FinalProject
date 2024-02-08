@@ -16,6 +16,7 @@
 	<div class="myPage">
 		<h2>마이페이지</h2>
 		<div class="container">
+
 	<%@ include file="../../views/myPage/myPageMenu.jsp"%>
 
 			<div class="content">
@@ -23,7 +24,7 @@
 					<ul class="nav">
 						<li><a>나의 레시피</a></li>
 						<div class="list">
-							<a href="#">최신순</a><a href="#">조회순</a>
+							<a onclick="window.location.href='/member/newList.do'">최신순</a><a onclick="window.location.href='/member/viewList.do'">조회순</a>
 						</div>
 					</ul>
 					<hr />

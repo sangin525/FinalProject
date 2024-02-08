@@ -138,6 +138,49 @@ public class RecipeDAO {
 		return sqlSession.selectList("recipeMapper.viewList",recipe,rb);
 	}
 
+	public double avgComment(SqlSessionTemplate sqlSession,RecipeDTO item) {
+		
+		return sqlSession.selectOne("recipeCommentMapper.avgComment",item);
+	}
+
+	public List<RecipeDTO> rankingList(SqlSessionTemplate sqlSession, PageInfo pi, RecipeDTO recipe) {
+		
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		return sqlSession.selectList("recipeMapper.rankingList",recipe,rb);
+	}
+
+	public int countComment(SqlSessionTemplate sqlSession, RecipeDTO item) {
+		
+		return sqlSession.selectOne("recipeCommentMapper.countComment",item);
+	}
+
+	public int scrapRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.insert("recipeScrapMapper.scrapRecipe",recipe);
+	}
+
+	public int scrapListCount(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.selectOne("recipeScrapMapper.scrapListCount",recipe);
+	}
+
+	public List<RecipeDTO> scrapRecipeList(SqlSessionTemplate sqlSession, RecipeDTO recipe, PageInfo pi) {
+	
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		return sqlSession.selectList("recipeScrapMapper.scrapRecipeList",recipe,rb);
+	}
+
+	public List<RecipeDTO> selectScrapRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe, PageInfo pi) {
+		System.out.println(recipe.getMno());
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		return sqlSession.selectList("recipeMapper.selectScrapRecipe",recipe,rb);
+	}
+
+	
+
 
 
 

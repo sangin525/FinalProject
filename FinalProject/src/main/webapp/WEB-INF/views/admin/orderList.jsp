@@ -18,41 +18,42 @@
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
 <div class="adminContainer">
-	<div class="memberTable">
+	<div class="orderTable">
 		<table>
 			<thead>
 				<tr>
-					<th>회원번호</th>
-					<th>이름</th>
-					<th>이메일</th>
+					<th>주문번호</th>
+					<th>주문날짜</th>
+					<th>상품이름</th>
+					<th>주문자이름</th>
 					<th>전화번호</th>
-					<th>주소</th>
-					<th>회원등급</th>
-					<th>포인트</th>
+					<th>배송주소</th>
+					<th>수량</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty memberList}">
+					<c:when test="${empty orderList}">
 						<tr>
 							<td>1</td>
+							<td>2024-02-06</td>
+							<td>상품이름</td>
 							<td>홍길동</td>
-							<td>test@test.com</td>
 							<td>010-0000-0000</td>
+							<td>1개</td>
 							<td>경기도 안양시 만안구 안양로</td>
-							<td>실버</td>
-							<td>1000</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="7">회원이 없습니다.</td>
+							<td colspan="7">주문이 없습니다.</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
 
 			</tbody>
 		</table>
+		<button class="orderBtn">배송<br>신청</button>
 	</div>
 
 	<ul class="pagination justify-content-center">

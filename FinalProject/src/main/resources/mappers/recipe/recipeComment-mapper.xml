@@ -22,6 +22,15 @@ SELECT COUNT (*) FROM RECIPECOMMENT
 WHERE R_NO=#{rno}
 </select>
 
+<select id="countComment" resultType="_int">
+SELECT COUNT (*) FROM RECIPECOMMENT
+WHERE R_NO=#{rno}
+</select>
+
+<select id="avgComment" resultType="_double">
+SELECT AVG(RC_STAR) AS RC_STAR FROM RECIPECOMMENT
+WHERE R_NO=#{rno}
+</select>
 
 <insert id="addComment">
 	INSERT INTO RECIPECOMMENT VALUES(recipeComment_seq.nextval,

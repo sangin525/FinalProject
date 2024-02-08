@@ -9,8 +9,7 @@
 <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/admin/admin.js"></script>
 </head>
 
@@ -18,17 +17,16 @@
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
 <div class="adminContainer">
-	<div class="memberTable">
+	<div class="productTable">
 		<table>
 			<thead>
 				<tr>
-					<th>회원번호</th>
-					<th>이름</th>
-					<th>이메일</th>
-					<th>전화번호</th>
-					<th>주소</th>
-					<th>회원등급</th>
-					<th>포인트</th>
+					<th>상품번호</th>
+					<th>상품명</th>
+					<th>상품가격</th>
+					<th>할인율</th>
+					<th>판매가격</th>
+					<th>재고</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -36,17 +34,16 @@
 					<c:when test="${empty memberList}">
 						<tr>
 							<td>1</td>
-							<td>홍길동</td>
-							<td>test@test.com</td>
-							<td>010-0000-0000</td>
-							<td>경기도 안양시 만안구 안양로</td>
-							<td>실버</td>
-							<td>1000</td>
+							<td>감동란</td>
+							<td>10000</td>
+							<td>10</td>
+							<td>9000</td>
+							<td>100판</td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td colspan="7">회원이 없습니다.</td>
+							<td colspan="7">등록된 상품이 없습니다.</td>
 						</tr>
 					</c:otherwise>
 				</c:choose>
@@ -72,7 +69,7 @@
 
 		<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 			<li class="page-item"><a class="page-link"
-				href="/recipe/list.do?cpage=${page}">${page}1</a></li>
+				href="/recipe/list.do?cpage=${page}">${page}</a></li>
 		</c:forEach>
 
 		<c:choose>
