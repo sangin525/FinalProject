@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="chatMapper">
+	<resultMap type="chatMsg" id="chatMsgResultSet">
+		<result column="cm_no" property="cm_no"></result>
+		<result column="cr_no" property="cr_no"></result>
+		<result column="m_no" property="m_no"></result>
+		<result column="cm_message" property="cm_message"></result>
+		<result column="cm_send_time" property="cm_send_time"></result>
+	</resultMap>
+
+	<resultMap type="chatRoom" id="chatRoomResultSet">
+		<result column="cr_no" property="cr_no"></result>
+		<result column="first_m_no" property="first_m_no"></result>
+		<result column="second_m_no" property="second_m_no"></result>
+		<result column="cr_start_date" property="cr_start_date"></result>
+		<result column="cr_end_date" property="cr_end_date"></result>
+	</resultMap>
+
+	<insert id="createChatRoom" parameterType="chatRoom">
+		INSERT INTO CHATROOM
+		VALUES(chatRoom_seq.NEXTVAL,
+		#{first_m_no},
+		#{second_m_no},
+		SYSDATE,
+		NULL
+		)
+	</insert>
+
+	<select id="tellmeCRNO" parameterType="chatRoom"
+		resultType="_int">
+		SELECT CR_NO FROM CHATROOM
+		WHERE first_m_no = #{first_m_no}
+		AND second_m_no = #{second_m_no}
+	</select>
+
+	<select id="enterChatRoom" parameterType="_int"
+		resultMap="chatRoomResultSet">
+		SELECT * FROM CHATROOM
+		WHERE CR_NO = #{cr_no}
+	</select>
+
+</mapper>

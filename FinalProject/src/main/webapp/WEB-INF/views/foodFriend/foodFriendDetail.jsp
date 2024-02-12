@@ -45,10 +45,21 @@
 					</div>
 				</div>
 				<div class="bt_wrap">
+				
 				<c:if test="${sessionScope.memberNickName == food.writer}">					
-					<a href="/foodMate/foodMateDelete.do?fno=${food.fno}">삭제</a> <a href="/foodMate/foodMateEditForm.do?fno=${food.fno}">수정</a>
+					<a href="/foodMate/foodMateDelete.do?fno=${food.fno}">삭제</a>
+					<a href="/foodMate/foodMateEditForm.do?fno=${food.fno}">수정</a>
 				</c:if>	
-					<a href="/foodMate/foodMateList.do" class="on">목록</a><a href="foodFriendConv">1:1대화</a>
+					<a href="/foodMate/foodMateList.do" class="on">목록</a>
+					
+					<form action="/chat/createChatRoom.do" method="POST">
+						<input type="number" value="${food.mno}" name="first_m_no" readonly>					
+					<button type="submit">채팅방만들기</button>
+					</form>
+					
+					<a href="/chat/enterChatRoom.do?cr_no=${cr_no}">대화방 입장</a>
+					<a href="/foodFriendConv">1:1대화</a>
+					
 				</div>
 			</div>
 		</div>
@@ -99,7 +110,7 @@
 		</div>
 	</div>
 
-
+숫자: ${cr_no }
 	<%@ include file="../../views/common/footer.jsp"%>
 
 

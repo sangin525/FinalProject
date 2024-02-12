@@ -30,12 +30,23 @@ public class ChatController {
 
 	@Autowired
 	private MemberServiceImpl memberService;
+	
+	
+	
+//	@RequestMapping("/checkChatRoom.do")
+//	public String checkChatRoom(int mno,HttpSession session) {
+//		
+////		ChatRoomDTO checkKey = new ChatRoomDTO();
+////		checkKey.set
+////		chatService.checkChatRoom
+//	}
 
 	@PostMapping("/createChatRoom.do")
 	public String createChatRoom(ChatRoomDTO chatRoom, HttpSession session) {
-
+		
+		//밥친구 게시글 쓴사람은 first_M_NO
 		int m_no = (int) session.getAttribute("mno");
-		chatRoom.setFirst_m_no(m_no);
+		chatRoom.setSecond_m_no(m_no);//게시글 타고 방만든 사람
 
 		int result = chatService.createChatRoom(chatRoom);
 
@@ -45,7 +56,7 @@ public class ChatController {
 
 			return "redirect:/chat/enterChatRoom.do?cr_no=" + this_cr_no;
 		} else {// 생성실패
-			return "/chat/main";
+			return "redirect:/foodMate/foodMateList.do";
 		}
 	}
 
@@ -54,23 +65,23 @@ public class ChatController {
 		ChatRoomDTO chatRoom = chatService.enterChatRoom(cr_no);
 
 		if (!Objects.isNull(chatRoom)) {// 조회한 채팅방이 있을때
-			MemberDTO firstMember = memberService.findMember(chatRoom.getFirst_m_no());
-			MemberDTO secondMember = memberService.findMember(chatRoom.getSecond_m_no());
+			MemberDTO firstMember = memberService.findMember(chatRoom.getFirst_m_no());//밥친구 게시글 주인
+			MemberDTO secondMember = memberService.findMember(chatRoom.getSecond_m_no());//게시글 타고 들어온 사람
 
 			model.addAttribute("chatRoom", chatRoom);
 			model.addAttribute("firstMember", firstMember);
 			model.addAttribute("secondMember", secondMember);
 
-			return "/chat/chatRoom";
+			return "/foodFriend/foodFriendConv";
 
 		} else {// 이 번호로된 채팅방 없을경우
-			return "/chat/main";
+			return "redirect:/foodMate/foodMateList.do";
 		}
 	}
 
 	@RequestMapping("/chatRoom.do")
 	public String chat(Model model) {
 		logger.info("[Controller]:/chat/chatRoom.do");
-		return "chat/chatRoom";
+		return "/foodFriend/foodFriendConv";
 	}
 }

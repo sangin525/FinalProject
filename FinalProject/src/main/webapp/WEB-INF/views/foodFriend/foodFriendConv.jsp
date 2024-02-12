@@ -6,14 +6,21 @@
 <head>
 <%@ include file="../../views/common/head.jsp"%>
 <link rel="stylesheet" href="/resources/css/foodFriend/foodFriend.css">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<script
+	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
 </head>
 
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
 
 	<div class="container">
+	게시글 주인:${firstMember.name }
+	<br><br>
+	사용자:${secondMember.name }
+	<input id="sender" value="${secondMemeber.mno }" readonly>
+	
 		<div class="chat-container">
 			<div class="chat-header">
 				<h2>1대1 채팅방</h2>
@@ -30,25 +37,28 @@
 </body>
 
 <script type="text/javascript">
-	
 	let messageInput = document.getElementById('messageInput');
 	let chatBox = document.getElementById('chatBox');
-	
+	let sender = docu
+
 	let sock = new SockJS("http://localhost:80/echo/");
 	sock.onmessage = onMessage;
 	sock.onclose = onClose;
 
 	document.getElementById("sendButton").addEventListener("click", function() {
 		sendMessage();
-		document.getElementById("messageInput").val("");
+		messageInput.value = null;
 	})
 
 	function sendMessage() {
+		
 		// 사용자가 입력한 텍스트를 가져옵니다.
 		text = messageInput.value;
 		// 메시지 입력 필드가 비어있으면 함수를 종료하고 메시지를 보내지 않습니다.
 		if (text.trim() === '') {
 			return;
+		}else{
+			
 		}
 		sock.send(text);
 	}

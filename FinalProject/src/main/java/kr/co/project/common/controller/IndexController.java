@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
+	
 	@RequestMapping("/")
 	public String indexPage() {
 		return "home";
@@ -112,24 +113,25 @@ public class IndexController {
 		return "myPage/contectUs";
 	}
 	
-	@GetMapping("foodFriendEnroll")
-	public String enrollForm() {
-		return "foodFriend/foodFriendEnroll";
-	}
-	@GetMapping("foodFriendDetail")
-	public String detailForm() {
-		return "foodFriend/foodFriendDetail";
-	}
-	@GetMapping("foodFriendEdit")
-	public String editForm() {
-		return "foodFriend/foodFriendEdit";
-	}
-
-	@GetMapping("foodFriendList")
-	public String listForm() {
-		return "foodFriend/foodFriendList";
-	}
-	@GetMapping("foodFriendConv")
+//	@GetMapping("foodFriendEnroll")
+//	public String enrollForm() {
+//		return "foodFriend/foodFriendEnroll";
+//	}
+//	@GetMapping("foodFriendDetail")
+//	public String detailForm() {
+//		return "foodFriend/foodFriendDetail";
+//	}
+//	@GetMapping("foodFriendEdit")
+//	public String editForm() {
+//		return "foodFriend/foodFriendEdit";
+//	}
+//
+//	@GetMapping("foodFriendList")
+//	public String listForm() {
+//		return "foodFriend/foodFriendList";
+//	}
+	
+	@RequestMapping("/foodFriendConv")
 	public String ConvForm() {
 		return "foodFriend/foodFriendConv";
 	}
