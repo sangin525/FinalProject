@@ -60,9 +60,9 @@ public class RecipeDAO {
 		return sqlSession.update("recipeMapper.views",recipe);
 	}
 
-	public int deleteRecipe(SqlSessionTemplate sqlSession, int rno) {
+	public int deleteRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
 
-		return sqlSession.delete("recipeMapper.deleteRecipe",rno);
+		return sqlSession.delete("recipeMapper.deleteRecipe",recipe);
 	}
 
 	public String selectWriter(SqlSessionTemplate sqlSession, int rno) {

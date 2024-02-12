@@ -312,14 +312,17 @@ public class RecipeController {
 	// 레시피 삭제
 	@GetMapping("/delete.do")
 	public String deleteRecipe(@RequestParam(value="rno") int rno,
-									HttpSession session) {
+								RecipeDTO recipe,
+								HttpSession session) {
+		recipe.setRno(rno);
+		recipe.setMno((int) session.getAttribute("mno"));
 		String writer = recipeService.selectWriter(rno);
-	
+		
 		String loginWriter = (String) session.getAttribute("memberNickName");
 		int result = 0;
 		
 		if(writer.equals(loginWriter)) {		
-			result = recipeService.deleteRecipe(rno);
+			result = recipeService.deleteRecipe(recipe);
 			if(result>0) {
 				System.out.println("삭제성공");
 			}else {

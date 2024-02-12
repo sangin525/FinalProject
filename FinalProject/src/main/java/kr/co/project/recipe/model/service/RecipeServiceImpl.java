@@ -98,14 +98,18 @@ public class RecipeServiceImpl implements RecipeService{
 		return null;
 	}
 
-	@Override
-	public int deleteRecipe(int rno) {
-		
-		return recipeDao.deleteRecipe(sqlSession,rno);
-		
+	
+	public int deleteRecipe(RecipeDTO recipe) {
+		int recipeDelete = recipeDao.deleteRecipe(sqlSession,recipe);
+		int recipeCountMinus = memberDao.minusRecipeCount(sqlSession, recipe);
+		if(recipeDelete==1 && recipeCountMinus==1) {
+			System.out.println("성공");
+		}
+		//		return recipeDao.deleteRecipe(sqlSession,rno);
+		return 1;
 	}
 
-	@Override
+	
 	public String selectWriter(int rno) {
 		
 		return recipeDao.selectWriter(sqlSession,rno);

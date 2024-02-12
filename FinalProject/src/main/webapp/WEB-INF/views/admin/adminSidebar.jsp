@@ -42,8 +42,8 @@
                         <li>게시판관리 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
                             <li><a href="/managingPosts">게시글 관리</a></li>
-                            <li><a href="/noticeEnroll">공지사항 등록</a></li>
-                            <li><a href="/eventEnroll">이벤트 등록</a></li>
+                            <li><a href="/admin/noticeEnrollForm">공지사항 등록</a></li>
+                            <li><a href="/admin/eventEnrollForm">이벤트 등록</a></li>
                             <li><a href="/productAnswer">문의사항 답변</a></li>
                         </ul>
                     </ul>
