@@ -21,6 +21,8 @@ import kr.co.project.common.pageing.Pagination;
 import kr.co.project.common.session.SessionMessage;
 import kr.co.project.common.upload.AdminUploadFile;
 import kr.co.project.common.upload.EventUploadFile;
+import kr.co.project.member.model.dto.MemberDTO;
+import kr.co.project.member.model.service.MemberServiceImpl;
 
 @Controller
 @RequestMapping("/admin")
@@ -29,6 +31,9 @@ public class AdminController {
 	
 	@Autowired
 	private AdminServiceImpl adminService;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
 	
 	@Autowired
 	private SessionMessage sessionMessage;
@@ -203,6 +208,25 @@ public class AdminController {
 		return "home";
 	}
 	
+	@GetMapping("/memberList")
+	public String memberList(@RequestParam(value="cpage",defaultValue="1")int cpage,
+			MemberDTO member,HttpSession session,
+			Model model,AdminDTO admin) {
+		
+		int listCount = memberService.chefCount(member);
+		
+		int pageLimit = 12;
+		int boardLimit = 12;
+		
+		int row = listCount - (cpage-1) * boardLimit;
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		
+		List<MemberDTO> list = memberService.chefRank(pi, member);
+		
+		model.addAttribute("list",list);
+		model.addAttribute("row",row);
+		return"admin/memberList";
+	}
 	
 	
 	

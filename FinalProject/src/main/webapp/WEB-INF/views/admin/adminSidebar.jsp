@@ -21,7 +21,7 @@
                     <ul class="big_menu">
                         <li>회원관리 <i class="arrow fas fa-angle-right"></i></li>
                         <ul class="small_menu">
-                            <li><a href="/memberList">회원목록</a></li>
+                            <li><a href="/admin/memberList">회원목록</a></li>
                         </ul>
                     </ul>
                     <ul class="big_menu">
