@@ -327,28 +327,32 @@ $(document).ready(function() {
 		});
 	});
 
-	$(".board_answer_btn").click(function() {
-		var checkboxes = $("input.Detail[type='checkbox']");
+$(".board_answer_btn").click(function() {
+	var checkboxes = $("input.Detail[type='checkbox']");
+	var answerContents = $(".answerTable .answerContent"); // .answerContent를 모두 가져옵니다.
 
-		checkboxes.each(function() {
-			if (this.checked) {
-				var row = $(this).parent().parent();
+	checkboxes.each(function(index) { // 체크박스를 순회하면서 인덱스도 함께 가져옵니다.
+		if (this.checked) {
+			var row = $(this).parent().parent();
 
-				if (row.closest('div').hasClass('answerTable')) {
-					modal.find('form').attr('action', 'productAnswer.do');
-				}
-
-				$("#boardTitle").val(row.find(".boardTit").text());
-				$("#boardNum").val(row.find(".boardNum").text());
-				$("#boardWriter").val(row.find(".boardwriter").text());
-
-				// 저장된 답변 내용을 모달창의 'boardContent'에 넣습니다.
-				$("#boardContent").val(answerContent);
-
-				modal.css("display", "block");
+			if (row.closest('div').hasClass('answerTable')) {
+				modal.find('form').attr('action', 'productAnswer.do');
 			}
-		});
+
+			$("#boardTitle").val(row.find(".boardTit").text());
+			$("#boardNum").val(row.find(".boardNum").text());
+			$("#boardWriter").val(row.find(".boardwriter").text());
+
+			// 체크된 체크박스와 같은 인덱스의 .answerContent의 내용을 가져옵니다.
+			var answerContent = $(answerContents[index]).text();
+
+			// 저장된 답변 내용을 모달창의 'boardContent'에 넣습니다.
+			$("#boardContent").val(answerContent);
+
+			modal.css("display", "block");
+		}
 	});
+});
 
 	// 삭제 버튼에 대한 이벤트 핸들러를 추가합니다.
 	$(".board_delete_btn").click(function() {
