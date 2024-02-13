@@ -5,7 +5,7 @@
 <ul class="rankingMenu">
 	<li class="RankingList"><a href="/recipe/rankingRecipe.do">레시피</a></li>
 	<li class="RankingList"><a href="/ranking/searchWord">검색어</a></li>
-	<li class="RankingList"><a href="/ranking/chef">쉐프</a></li>
+	<li class="RankingList"><a href="/member/chefRank">쉐프</a></li>
 	<ul class="RankingType">
 		<li class="rankingSubType"><a>일간</a></li>
 		<li class="rankingSubType"><a>주간</a></li>

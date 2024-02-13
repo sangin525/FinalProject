@@ -73,10 +73,27 @@ SELECT * FROM member
 WHERE m_no = #{mno}
 </select>
 
+<select id="chefCount" resultType="_int">
+SELECT COUNT(*) FROM MEMBER
+WHERE M_REMOVE_DATE IS NULL
+</select>
+
+<select id="chefRank" resultMap="memberResultSet">
+SELECT * FROM MEMBER
+WHERE M_REMOVE_DATE IS NULL
+ORDER BY M_RECIPE_COUNT DESC
+</select>
+
+
 <update id="plusRecipeCount" parameterType="member">
 UPDATE MEMBER SET M_RECIPE_COUNT = M_RECIPE_COUNT+1
 WHERE M_NO = #{mno}
 
+</update>
+
+<update id="minusRecipeCount" parameterType="member">
+UPDATE MEMBER SET M_RECIPE_COUNT = M_RECIPE_COUNT-1
+WHERE M_NO =#{mno}
 </update>
 
 <update id="memberEmailUpdate" parameterType="member" >

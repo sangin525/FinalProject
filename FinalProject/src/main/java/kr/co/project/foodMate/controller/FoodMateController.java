@@ -19,7 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
 import kr.co.project.common.session.SessionMessage;
-import kr.co.project.common.upload.UploadFile;
+import kr.co.project.common.upload.FoodMateUploadFile;
 import kr.co.project.foodMate.model.dto.FoodMateDTO;
 import kr.co.project.foodMate.model.service.FoodMateServiceImpl;
 
@@ -81,7 +81,7 @@ public class FoodMateController {
 		food.setMno((int) session.getAttribute("mno"));
 		
 		if(!upload.isEmpty()) {
-			UploadFile.uploadMethod(upload, null, null, session, BOARD_NAME, food);			
+			FoodMateUploadFile.uploadMethod(upload, null, null, session, BOARD_NAME, food,null);			
 		}
 		int result = foodMateService.enrollFoodMate(food);
 		if(result>0) {
@@ -141,10 +141,10 @@ public class FoodMateController {
 		if(!upload.isEmpty()) {
 			String fileName = foodMateService.selectFileName(food.getFno());
 			
-			boolean deleteFile = UploadFile.deleteFile(fileName, BOARD_NAME);
+			boolean deleteFile = FoodMateUploadFile.deleteFile(fileName, BOARD_NAME);
 			
 			if(deleteFile) {
-				UploadFile.uploadMethod(upload, null, null, session, BOARD_NAME, food);
+				FoodMateUploadFile.uploadMethod(upload, null, null, session, BOARD_NAME, food,null);
 				result = foodMateService.editBoard(food);
 			}			
 		}else if(upload.isEmpty()) {			
@@ -168,7 +168,7 @@ public class FoodMateController {
 		String fileName = foodMateService.selectFileName(fno);
 		
 		if(fileName != null) {
-			boolean deleteFile = UploadFile.deleteFile(fileName, BOARD_NAME);
+			boolean deleteFile = FoodMateUploadFile.deleteFile(fileName, BOARD_NAME);
 			
 			if(deleteFile) {
 				result = foodMateService.deleteBoard(fno);

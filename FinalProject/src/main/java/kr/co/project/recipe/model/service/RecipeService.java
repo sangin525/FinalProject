@@ -15,9 +15,9 @@ public interface RecipeService {
 	
 	RecipeDTO detailRecipe(int rno);
 	
-	int deleteRecipe(int rno);
+//	int deleteRecipe(int rno);
 	
-	String selectWriter(int rno);
+//	String selectWriter(int rno);
 	
 	List<RecipeDTO> selectFileName(int rno);
 	

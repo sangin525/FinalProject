@@ -12,6 +12,7 @@
 		<typeAlias type="kr.co.project.chef.model.dto.ChefDTO" alias="chef"/>
 		<typeAlias type="kr.co.project.recipe.model.dto.RecipeDTO" alias="recipe"/>
 		<typeAlias type="kr.co.project.foodMate.model.dto.FoodMateDTO" alias="foodMate"/>
+		<typeAlias type="kr.co.project.admin.model.dto.AdminDTO" alias="admin"/>
 		
 		<!-- 		 
 		 <typeAlias type="kr.co.green.board.model.dto.FreeDTO" alias="free"/>
@@ -32,6 +33,8 @@
 		<mapper resource="/mappers/recipe/recipeScrap-mapper.xml"/>
 		<mapper resource="/mappers/foodMate/foodMate-mapper.xml"/>
 		<mapper resource="/mappers/foodMate/foodMateComment-mapper.xml"/>
+		<mapper resource="/mappers/admin/admin-mapper.xml"/>
+		<mapper resource="/mappers/admin/event-mapper.xml"/>	
 	</mappers>
 </configuration>
 

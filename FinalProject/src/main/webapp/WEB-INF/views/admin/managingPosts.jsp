@@ -21,9 +21,9 @@
 <div class="managingPostsContainer">
 	<h2>게시글 관리</h2>
 	<div class="postCategoryBtn">
-		<button>공지사항</button>
+		<button onclick="location.href='/admin/adminNotice'">공지사항</button>
 		<button>자유게시판</button>
-		<button>이벤트게시판</button>
+		<button onclick="location.href='/admin/adminEvent'">이벤트게시판</button>
 	</div>
 	
 	<div class="update-delete-btn">
@@ -61,14 +61,13 @@
 					<th class="boardcheck">선택</th>
 					<th class="boardNum">글번호</th>
 					<th class="boardTit">제목</th>
-					<th class="boardwriter">작성자</th>
 					<th class="boardDate">작성일</th>
 					<th class="boardView">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty noticeList}">
+					<c:when test="${empty list}">
 						<tr>
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">1</td>
@@ -93,9 +92,16 @@
 						</div>
 					</c:when>
 					<c:otherwise>
+						<c:forEach var="item" items="${list}">
 						<tr>
-							<td colspan="7">글이 없습니다.</td>
+							<td><input type="checkbox" class="Detail"></td>
+							<td class="boardNum">${row}</td>
+							<td class="boardTit">${item.title}</td>
+							<td class="boardDate">${item.indate}</td>
+							<td class="boardView">${item.views}</td>
 						</tr>
+							<c:set var="row" value="${row -1}"/>
+						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 
@@ -231,7 +237,6 @@
 					<th class="boardcheck">선택</th>
 					<th class="boardNum">글번호</th>
 					<th class="boardTit">제목</th>
-					<th class="boardwriter">작성자</th>
 					<th class="boardDate">작성일</th>
 					<th class="boardView">조회수</th>
 				</tr>
@@ -263,9 +268,16 @@
 						</div>
 					</c:when>
 					<c:otherwise>
+					<c:forEach var="item" items="${eventList}">
 						<tr>
-							<td colspan="7">글이 없습니다.</td>
+							<td><input type="checkbox" class="Detail"></td>
+							<td class="boardNum">${erow}</td>
+							<td class="boardTit">${item.e_title}</td>
+							<td class="boardDate">${item.e_indate}</td>
+							<td class="boardView">${item.e_views}</td>
 						</tr>
+							<c:set var="erow" value="${erow -1}"/>
+						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 
