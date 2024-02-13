@@ -67,17 +67,8 @@
 			<beans:ref bean="loginCheckInterceptor" />
 		</interceptor>
 	</interceptors>
-
-	<websocket:handlers>
-		<websocket:mapping handler="echoHandler"
-			path="/echo" />
-		<websocket:sockjs />
-	</websocket:handlers>
 	
 	<beans:bean id="echoHandler" class="kr.co.project.chat.handler.EchoHandler"></beans:bean>
-	
-	
-	
 	
 	<context:component-scan base-package="kr.co.project" />	
 </beans:beans>

@@ -8,30 +8,37 @@
 <link rel="stylesheet" href="/resources/css/foodFriend/foodFriend.css">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script>
+<!-- <script type="text/javascript"
+	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script> -->
 </head>
 
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
 
 	<div class="container">
-	게시글 주인:${firstMember.name }
-	<br><br>
-	사용자:${secondMember.name }
-	<input id="sender" value="${secondMemeber.mno }" readonly>
-	
+
+		${firstMember.mno}<br> <br> ${firstMember.name}<br> <br>
+
+		${secondMember.mno}<br> <br> ${secondMember.name}<br> <br>
+
+		<input id="sender" value="${secondMember.name}" readonly>
+
 		<div class="chat-container">
 			<div class="chat-header">
 				<h2>1대1 채팅방</h2>
 			</div>
 			<div id="chatBox" class="chat-box"></div>
 			<div class="chat-input">
-				<input id="messageInput" type="text" placeholder="메시지를 입력하세요." value="">
+				<input id="messageInput" type="text" placeholder="메시지를 입력하세요."
+					value="">
 				<button id="sendButton">전송</button>
 			</div>
 		</div>
+
+		<button onclick="asd()">asd</button>
 	</div>
+
+
 
 	<%@ include file="../../views/common/footer.jsp"%>
 </body>
@@ -39,28 +46,36 @@
 <script type="text/javascript">
 	let messageInput = document.getElementById('messageInput');
 	let chatBox = document.getElementById('chatBox');
-	let sender = docu
+	let sender = document.getElementById("sender");
+	let a = document.getElementById("a");
 
-	let sock = new SockJS("http://localhost:80/echo/");
-	sock.onmessage = onMessage;
-	sock.onclose = onClose;
+	let websocket = new WebSocket("ws://localhost:80/echo/${chatRoom.cr_no}");
+	websocket.onmessage = onMessage;
+	websocket.onclose = onClose;
 
 	document.getElementById("sendButton").addEventListener("click", function() {
 		sendMessage();
 		messageInput.value = null;
 	})
 
+	function asd() {
+		var senderName = sender.vlaue;
+		console.log(senderName);
+	}
+
 	function sendMessage() {
-		
+		//사용자 이름을 가져옵니다.
+		senderName = sender.vlaue;
+		console.log(senderName);
 		// 사용자가 입력한 텍스트를 가져옵니다.
 		text = messageInput.value;
 		// 메시지 입력 필드가 비어있으면 함수를 종료하고 메시지를 보내지 않습니다.
 		if (text.trim() === '') {
 			return;
-		}else{
-			
+		} else {
+
 		}
-		sock.send(text);
+		websocket.send(senderName + " : " + text);
 	}
 
 	function onMessage(msg) {
@@ -93,15 +108,15 @@
 		chatBox.append("연결끊김")
 	}
 
-	document.getElementById('messageInput').addEventListener('keypress',function(event) {
-				// 엔터키가 눌렸는지 확인합니다 (엔터키의 keyCode는 13입니다).
-				if (event.keyCode == 13) {
-					// 기본 이벤트를 취소하여 엔터키를 눌렀을 때의 줄바꿈을 방지합니다.
-					event.preventDefault();
-					// '전송' 버튼의 클릭 이벤트를 실행합니다.
-					document.getElementById('sendButton').click();
-				}
-			});
+	document.getElementById('messageInput').addEventListener('keypress', function(event) {
+		// 엔터키가 눌렸는지 확인합니다 (엔터키의 keyCode는 13입니다).
+		if (event.keyCode == 13) {
+			// 기본 이벤트를 취소하여 엔터키를 눌렀을 때의 줄바꿈을 방지합니다.
+			event.preventDefault();
+			// '전송' 버튼의 클릭 이벤트를 실행합니다.
+			document.getElementById('sendButton').click();
+			}
+		});
 </script>
 
 </html>

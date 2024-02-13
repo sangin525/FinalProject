@@ -65,7 +65,9 @@ public class ChatController {
 		ChatRoomDTO chatRoom = chatService.enterChatRoom(cr_no);
 
 		if (!Objects.isNull(chatRoom)) {// 조회한 채팅방이 있을때
+			
 			MemberDTO firstMember = memberService.findMember(chatRoom.getFirst_m_no());//밥친구 게시글 주인
+			
 			MemberDTO secondMember = memberService.findMember(chatRoom.getSecond_m_no());//게시글 타고 들어온 사람
 
 			model.addAttribute("chatRoom", chatRoom);

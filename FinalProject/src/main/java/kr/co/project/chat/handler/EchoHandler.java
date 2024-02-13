@@ -5,13 +5,11 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
-@RequestMapping("/echo")
 public class EchoHandler extends TextWebSocketHandler {
 
 	private List<WebSocketSession> sessionList = new ArrayList<WebSocketSession>();
@@ -21,8 +19,14 @@ public class EchoHandler extends TextWebSocketHandler {
 	//
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
+
+		String uri = extractCr_no(session);
+
+		System.out.println(uri);
+
 		sessionList.add(session);
 		logger.info("{} 연결됨", session.getId());
+//		session.sendMessage();
 	}
 
 	//
@@ -41,4 +45,10 @@ public class EchoHandler extends TextWebSocketHandler {
 		sessionList.remove(session);
 		logger.info("{} 연결 끊김", session.getId());
 	}
+
+	private String extractCr_no(WebSocketSession session) {
+		String uri = session.getUri().toString();
+		return uri;
+	}
+
 }

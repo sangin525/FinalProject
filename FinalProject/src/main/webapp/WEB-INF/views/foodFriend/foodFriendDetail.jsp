@@ -58,7 +58,7 @@
 					</form>
 					
 					<a href="/chat/enterChatRoom.do?cr_no=${cr_no}">대화방 입장</a>
-					<a href="/foodFriendConv">1:1대화</a>
+					<!-- <a href="/foodFriendConv">1:1대화</a> -->
 					
 				</div>
 			</div>
