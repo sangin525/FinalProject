@@ -237,7 +237,7 @@ $(document).ready(function() {
 		// 클릭한 버튼에 따라 해당 리스트만 보여줍니다.
 		if (index == 0) {
 			$(".notice_List").show();
-		} else if  (inde == 1) {
+		} else if  (index == 1) {
 			$(".free_List").show();
 		} else if (index == 2) {
 			$(".event_List").show();

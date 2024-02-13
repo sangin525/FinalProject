@@ -1,11 +1,15 @@
 package kr.co.project.member.model.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.member.model.dao.MemberDAO;
 import kr.co.project.member.model.dto.MemberDTO;
+import kr.co.project.recipe.model.dto.RecipeDTO;
 
 @Service
 public class MemberServiceImpl implements MemberService{
@@ -65,6 +69,16 @@ public class MemberServiceImpl implements MemberService{
 	public int secessionMember(MemberDTO member) {
 		
 		return memberDao.secessionMember(sqlSession,member);
+	}
+
+	public int chefCount(MemberDTO member) {
+	
+		return memberDao.chefCount(sqlSession,member);
+	}
+
+	public List<MemberDTO> chefRank(PageInfo pi, MemberDTO member) {
+		
+		return memberDao.chefRank(sqlSession,pi,member);
 	}
 	
 	

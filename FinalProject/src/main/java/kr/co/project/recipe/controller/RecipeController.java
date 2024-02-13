@@ -44,7 +44,7 @@ public class RecipeController {
 	@Autowired
 	private SessionMessage sessionMessage;
 	
-	
+	// 레시피 랭킹 리스트
 	@GetMapping("/rankingRecipe.do")
 	public String rankingRecipe(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
 									Model model,
@@ -79,7 +79,8 @@ public class RecipeController {
 		System.out.println("접근성공");
 			return "ranking/recipe";		
 	}
-		
+	
+	//레시피 카테고리 리스트
 	@GetMapping("/categoryList.do")
 	public String RecipeCategoryList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
 									Model model,
@@ -114,13 +115,70 @@ public class RecipeController {
 		System.out.println("접근성공");
 			return "category/category";
 	}
+	
+	// 레시피 스크랩 하기
+	@PostMapping("/scrapRecipe.do")
+	public String scrapRecipe(@RequestParam(value="rno") int rno,
+								RecipeDTO recipe,HttpSession session,
+								Model model) {
 
+		recipe.setRno(rno);
+		recipe.setMno((int) session.getAttribute("mno"));
+		int scrapRecipe = recipeService.scrapRecipe(recipe);
+		if(scrapRecipe>0) {
+			System.out.println("레시피 스크랩 성공");
+		}else {
+			System.out.println("레시피 스크랩 실패 ㅜㅜ");
+		}		
+		return"redirect:/recipe/scrapRecipeList.do" ;
+	}
+	
+	// 스크랩 레시피 리스트
+	@GetMapping("/scrapRecipeList.do")
+	public String scrapRecipeList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
+			Model model,
+			HttpSession session){
+		
+		int listCount = recipeService.scrapListCount(recipe);
+		
+		int pageLimit = 6;
+		int boardLimit =6;
+		
+		int row = listCount - (cpage-1) * boardLimit;
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		
+		List<RecipeDTO> scrapList = recipeService.scrapRecipeList(recipe,pi);
+			for(RecipeDTO item:scrapList) {
+				
+				recipe.setMno((int) session.getAttribute("mno"));
+				recipe.setRno(item.getRno());
+				
+				String scrapDate = item.getScrapDate().substring(0,10);
+				item.setScrapDate(scrapDate);
 
+				List<RecipeDTO> list = recipeService.selectScrapRecipe(recipe,pi);
+				
+				model.addAttribute("list",list);
+			}
+		
+		
+		
+		model.addAttribute("row",row);
+		model.addAttribute("scrapList",scrapList);
+		model.addAttribute("pi",pi);
+		
+		return "myPage/scrapRecipe";
+	}
+	
+	
+	// 레시피 추가 폼
 	@GetMapping("/addRecipeForm.do")
 	public String addRecipeForm() {
 		return "member/addRecipe";
 	}
 	
+	//레시피 추가
 	@PostMapping("/addRecipe.do")
 	public String addRecipe(RecipeDTO recipe,MemberDTO member,MultipartFile upload, List<MultipartFile> multiFileList,
 					HttpSession session,Model model)throws IllegalStateException, IOException {
@@ -142,7 +200,7 @@ public class RecipeController {
 			List<RecipeDTO> recipeList = new ArrayList<>();
 			
 		if(!multiFileList.isEmpty()) {
-			MultiUploadFile.uploadMethod(multiFileList, BOARD_NAME, recipe, member, null, session, BOARD_NAME, recipeList);			
+			MultiUploadFile.uploadMethod(multiFileList,null, BOARD_NAME, recipe, member, null, session, BOARD_NAME, recipeList,null);			
 		}
 		int result = recipeService.addRecipe(recipe, recipeList);
 		
@@ -185,65 +243,86 @@ public class RecipeController {
 	}	
 }
 	
+	// 레시피수정 폼
 	@GetMapping("/editForm.do")
 	public String editFormRecipe(@RequestParam(value="rno")int rno,
 			Model model) {
 		
 		RecipeDTO result = recipeService.editFormRecipe(rno);
 		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
-		
+		RecipeDTO seqResult = recipeService.seqSelectRecipe(rno);
 		if(!Objects.isNull(result)) {
-			if(!Objects.isNull(ingreresult)) {	
-				System.out.println("성공");
-			}else {
-				System.out.println("실패");
-			}		
+			if(!Objects.isNull(ingreresult)) {
+				if(!Objects.isNull(seqResult)) {					
+					System.out.println("성공");				
+				}else {
+					System.out.println("실패");
+				}					
+			}	
 			model.addAttribute("recipe",result);
-			model.addAttribute("ingre",result);		
+			model.addAttribute("ingre",result);	
+			model.addAttribute("seq",seqResult);
 			}
-			return "member/recipe";
+			return "member/editRecipe";
 		}
 	
-//	@PostMapping("/edit.do")
-//	public String editRecipe(List<MultipartFile> multiFileList,RecipeDTO recipe,HttpSession session) {
-//		String writer = recipeService.selectWriter(recipe.getRno());
-//		String loginWriter = (String) session.getAttribute("memberNickName");
-//		
-//		int result = 0;
-//		
-//		if(writer.equals(loginWriter) && !multiFileList.isEmpty()) {
-//			
-//			String fileName = recipeService.selectFileName(recipe.getRno());
-//			
-//			boolean deleteFile = MultiUploadFile.deleteFile(fileName,fileName);
-//			
-//			if(deleteFile) {
-//				MultiUploadFile.uploadMethod(multiFileList, loginWriter, recipe, null, null, session, fileName, null);
-//				result = recipeService.editFormRecipe(recipe);
-//			}
-//		}else if(writer.equals(loginWriter) && multiFileList.isEmpty()) {
-//			result = recipeService.editRecipeEmptyUpload(recipe);
+	// 레시피 수정
+	@PostMapping("/editRecipe.do")
+	public String editRecipe(List<MultipartFile> multiFileList,RecipeDTO recipe,HttpSession session) {
+				
+		int result = 0;
+		
+		if(!multiFileList.isEmpty()) {
+			List<RecipeDTO> fileName = recipeService.selectFileName(recipe.getRno());
+			List<RecipeDTO> sequenceFileName = recipeService.selectPhotoList(recipe.getRsno());
+			System.out.println("레시피번호 가져오기"+recipe.getRno());
+			System.out.println("레시피시퀀스 번호 가져오기"+recipe.getRsno());
+			
+			boolean deleteFiles = MultiUploadFile.deleteFile(fileName,sequenceFileName);
+			sequenceFileName.remove(0);
+			
+			if(deleteFiles) {
+				MultiUploadFile.uploadMethod(multiFileList, null, BOARD_NAME, recipe, null, null, session, BOARD_NAME, sequenceFileName, null);
+				
+				recipe.setUploadPath(sequenceFileName.get(0).getUploadPath());
+				recipe.setUploadName(sequenceFileName.get(0).getUploadName());		
+				recipe.setUploadOriginName(sequenceFileName.get(0).getUploadOriginName());
+				
+				recipe.setFileName(sequenceFileName.get(1).getFileName());
+				recipe.setFileOrigin(sequenceFileName.get(1).getFileOrigin());
+				recipe.setFilePath(sequenceFileName.get(1).getFilePath());
+				
+				result = recipeService.editRecipe(recipe);
+			}
+		}
+// 		else if(multiFileList.isEmpty()) {
+//			result = recipeService.editRecipeEmpty(recipe);
 //		}
-//		
-//		if(result== 1) {
-//			System.out.println("수정성공");
-//			return "/recipe/categoryList.do";
-//		}else {
-//			System.out.println("수정실패");
-//			return "/recipe/categoryList.do";
-//		}
-//	}
+		
+		if(result == 1) {
+			System.out.println("수정성공");
+			return "redirect:/recipe/categoryList.do";
+		}else {
+			System.out.println("수정실패");
+			return "home";
+		}		
+	}
 	
+	
+	// 레시피 삭제
 	@GetMapping("/delete.do")
 	public String deleteRecipe(@RequestParam(value="rno") int rno,
-									HttpSession session) {
+								RecipeDTO recipe,
+								HttpSession session) {
+		recipe.setRno(rno);
+		recipe.setMno((int) session.getAttribute("mno"));
 		String writer = recipeService.selectWriter(rno);
-	
+		
 		String loginWriter = (String) session.getAttribute("memberNickName");
 		int result = 0;
 		
 		if(writer.equals(loginWriter)) {		
-			result = recipeService.deleteRecipe(rno);
+			result = recipeService.deleteRecipe(recipe);
 			if(result>0) {
 				System.out.println("삭제성공");
 			}else {
@@ -253,6 +332,7 @@ public class RecipeController {
 		return "redirect:/recipe/categoryList.do";
 	}
 	
+	// 레시피 댓글 달기
 	@PostMapping("/comment.do")
 	public String comment(@RequestParam(value="rno")int rno,
 			HttpSession session,RecipeDTO recipe,Model model) {
@@ -275,8 +355,9 @@ public class RecipeController {
 			return"redirect:/recipe/categoryList.do";
 			
 	}
-
-@GetMapping("/detail.do")
+	
+	//레시피 상세보기
+	@GetMapping("/detail.do")
 	
 	public String detailRecipe(@RequestParam(value="rno") int rno,
 												RecipeDTO recipe,

@@ -18,39 +18,66 @@
             <strong>게시글 수정</strong>
         </div>
         <div class="board_write_wrap">
-            <div class="board_write">
-                <div class="title">
+        	<form action="/foodMate/foodMateEdit.do" method="POST" enctype="multipart/form-data" novalidate>
+        <input type="hidden" name="fno" value="${food.fno}">
+            <div class="title">
                     <dl>
                         <dt>제목</dt>
-                        <dd><input type="text" placeholder="제목 입력" value="글 제목이 들어갑니다"></dd>
+                        <dd><input name="title" type="text" placeholder="제목 입력"></dd>
                     </dl>
                 </div>
                 <div class="info">
                     <dl>
-                        <dt>글쓴이</dt>
-                        <dd><input type="text" placeholder="글쓴이 입력" value="바비"></dd>
+                        <dt>소개글</dt>
+                        <dd><input name="introduction" type="text" placeholder="글쓴이 입력"></dd>
                     </dl>
+                   
                 </div>
+                <div class="info">
+                    <dl>
+                        <dt>같이 먹을 음식</dt>
+                        <dd><input name="food" type="text" placeholder="글쓴이 입력"></dd>
+                    </dl>
+
+                <div class="info">
+                    <dl>
+                        <dt>만날 시간</dt>
+                        <dd><input name="time" type="text" placeholder="글쓴이 입력"></dd>
+                    </dl>
+                   
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>인원수</dt>
+                        <dd><input name="personNumber" type="number" placeholder="글쓴이 입력"></dd>
+                    </dl>
+                   
+                </div>
+                <div class="info">
+                    <dl>
+                        <dt>나이제한</dt>
+                        <dd><input name="ageLimit" type="number" placeholder="글쓴이 입력"></dd>
+                    </dl>
+                   
+                </div>
+               
                 <div class="cont">
-                    <textarea placeholder="내용 입력">
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.</textarea>
+                    <textarea name="contents" placeholder="내용 입력"></textarea>
                 </div>
                 <br>
-                <input type="file" name="upload">
-                <br>
+                 <input type="file" name="upload">
+                 <br>
             </div>
             <div class="bt_wrap">
-                <a href="foodFriendDetail" class="on">수정</a>
-                <a href="foodFriendDetail" onclick="history.back()">취소</a>
+                
+                <button type="submit">수정</button>
+               	<button type="button" onclick="history.back()">취소</button>
+                
             </div>
+        	</form>
         </div>
+        
+        
     </div>
     </div>
 

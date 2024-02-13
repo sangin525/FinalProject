@@ -98,24 +98,23 @@ public class RecipeServiceImpl implements RecipeService{
 		return null;
 	}
 
-	@Override
-	public int deleteRecipe(int rno) {
-		
-		return recipeDao.deleteRecipe(sqlSession,rno);
-		
+	
+	public int deleteRecipe(RecipeDTO recipe) {
+		int recipeDelete = recipeDao.deleteRecipe(sqlSession,recipe);
+		int recipeCountMinus = memberDao.minusRecipeCount(sqlSession, recipe);
+		if(recipeDelete==1 && recipeCountMinus==1) {
+			System.out.println("성공");
+		}
+		//		return recipeDao.deleteRecipe(sqlSession,rno);
+		return 1;
 	}
 
-	@Override
+	
 	public String selectWriter(int rno) {
 		
 		return recipeDao.selectWriter(sqlSession,rno);
 	}
 
-	@Override
-	public List<RecipeDTO> selectFileName(int rno) {
-		
-		return recipeDao.selectFileName(sqlSession,rno);
-	}
 	
 	@Override
 	public RecipeDTO selectRecipe(int rno) {
@@ -193,6 +192,49 @@ public class RecipeServiceImpl implements RecipeService{
 		
 		return recipeDao.countComment(sqlSession,item);
 	}
+
+	public int scrapRecipe(RecipeDTO recipe) {
+		
+		return recipeDao.scrapRecipe(sqlSession,recipe);
+	}
+
+	public int scrapListCount(RecipeDTO recipe) {
+		
+		return recipeDao.scrapListCount(sqlSession,recipe);
+	}
+
+	public List<RecipeDTO> scrapRecipeList(RecipeDTO recipe, PageInfo pi) {
+		
+		return recipeDao.scrapRecipeList(sqlSession,recipe,pi);
+	}
+
+	public List<RecipeDTO> selectScrapRecipe(RecipeDTO recipe, PageInfo pi) {
+		
+		return recipeDao.selectScrapRecipe(sqlSession,recipe,pi);
+	}
+		
+	@Override
+	public List<RecipeDTO> selectFileName(int rno) {
+		
+		return recipeDao.selectFileName(sqlSession,rno);
+	}
+
+	public List<RecipeDTO> selectPhotoList(int rpno) {
+		
+		return recipeDao.selectPhotoList(sqlSession,rpno);
+	}
+
+	public int editRecipe(RecipeDTO recipe) {
+		
+		return recipeDao.editRecipe(sqlSession,recipe);
+	}
+
+	public int editRecipeEmpty(RecipeDTO recipe) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	
 
 	
 	

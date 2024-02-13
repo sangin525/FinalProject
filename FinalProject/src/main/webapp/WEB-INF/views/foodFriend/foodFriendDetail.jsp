@@ -19,44 +19,52 @@
 			</div>
 			<div class="board_view_wrap">
 				<div class="board_view">
-					<div class="title">글 제목이 들어갑니다.</div>
+					<div class="title">${food.title}</div>
 					<div class="info">
 						<dl>
 							<dt>번호</dt>
-							<dd>1</dd>
+							<dd>${food.fno}</dd>
 						</dl>
 						<dl>
 							<dt>글쓴이</dt>
-							<dd>김이름</dd>
+							<dd>${food.writer}</dd>
 						</dl>
 						<dl>
 							<dt>작성일</dt>
-							<dd>2021.1.16</dd>
+							<dd>${food.indate}</dd>
 						</dl>
 						<dl>
 							<dt>조회</dt>
-							<dd>33</dd>
+							<dd>${food.views }</dd>
 						</dl>
 					</div>
 					<div class="cont">
-						<img src="/resources/uploads/고양이그림.png"> 글 내용이 들어갑니다<br>
-						글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글
-						내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이
-						들어갑니다
+						<img src="/resources/uploads/foodMate/${food.uploadName}"> 
+						<br><br> 
+						${food.contents}
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<a href="foodFriendList" class="on">목록</a> <a href="foodFriendEdit">수정</a><a href="foodFriendConv">1:1대화</a>
+				<c:if test="${sessionScope.memberNickName == food.writer}">					
+					<a href="/foodMate/foodMateDelete.do?fno=${food.fno}">삭제</a> <a href="/foodMate/foodMateEditForm.do?fno=${food.fno}">수정</a>
+				</c:if>	
+					<a href="/foodMate/foodMateList.do" class="on">목록</a><a href="foodFriendConv">1:1대화</a>
 				</div>
 			</div>
 		</div>
-
+		<%-- <c:if test="${sessionScope.memberNickName == food.writer}">
+		<div>
+			<form action="/foodMate/foodMateDelete.do?fno=${food.fno}" method="GET">
+			<button type ="submit">삭제</button>
+			</form>
+		</div>
+		</c:if> --%>
 		<div class="comment_title">
-			댓글 <span>21</span>
+			댓글 <span>${commentCount }</span>
 
 		</div>
 		<div class="commentList">
-
+		<c:forEach var="item" items="${comment}">
 			<div class="reply_list">
 				<div class="media-left">
 					<a href="#"> <img class="profile_picture"
@@ -64,28 +72,27 @@
 				</div>
 				<div class="media-body">
 					<h4 class="media-heading">
-						<b class="info_name_f">바비</b> <span>2024-1-29 07:32</span> <a
+						<b class="info_name_f">${item.commentWriter}</b> <span>${item.commentIndate}</span> <a
 							onclick="#">답글</a>
 					</h4>
-					바비 <br>
+					${item.comment} <br>
 				</div>
 
 
 			</div>
+		</c:forEach>
 		</div>
 
 		<div class="comment-section">
 			<h2>댓글 남기기</h2>
-			<form id="comment-form">
+			<form id="comment-form" action="/foodMate/comment.do?fno=${food.fno}" method="post">
 				<div class="commentPic">
 					<img src="/resources/uploads/레시피등록대표사진.gif">
 				</div>
 				<div class="comment">
-
-
 					<textarea class="commentTextbox" name="comment"
 						placeholder="댓글을 작성하세요."></textarea>
-					<button class="comment_submit">댓글작성</button>
+					<button type="submit" class="comment_submit">댓글작성</button>
 				</div>
 			</form>
 		</div>
