@@ -52,9 +52,6 @@
 
 					<a href="/foodMate/foodMateList.do" class="on">목록</a>
 
-
-
-
 					<c:choose>
 						<c:when test="${cr_no eq 0}">
 							<c:choose>
@@ -84,14 +81,14 @@
 			</div>
 		</div>
 
-		<c:if test="${sessionScope.memberNickName == food.writer}">
+<%-- 		<c:if test="${sessionScope.memberNickName == food.writer}">
 			<div>
 				<form action="/foodMate/foodMateDelete.do?fno=${food.fno}"
 					method="GET">
 					<button type="submit">삭제</button>
 				</form>
 			</div>
-		</c:if>
+		</c:if> --%>
 
 		<div class="comment_title">
 			댓글 <span>${commentCount }</span>

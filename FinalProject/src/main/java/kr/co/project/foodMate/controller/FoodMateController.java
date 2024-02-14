@@ -101,8 +101,8 @@ public class FoodMateController {
 		FoodMateDTO result = foodMateService.detailFoodMate(fno);
 		List<FoodMateDTO> comresult = foodMateService.selectComment(fno);
 
-		if (!Objects.isNull(result)) {//게시글이 있다면
-			if (!Objects.isNull(comresult)) {//댓글
+		if (!Objects.isNull(result)) {// 게시글이 있다면
+			if (!Objects.isNull(comresult)) {// 댓글
 				int commentCount = foodMateService.commentCount(fno);
 				model.addAttribute("comment", comresult);
 				model.addAttribute("commentCount", commentCount);
@@ -135,9 +135,9 @@ public class FoodMateController {
 					return "/foodFriend/foodFriendDetail";
 				}
 			}
-		} else {//게시글이 없어용
+		} else {// 게시글이 없을때
 			System.out.println("실패");
-			return "/foodFriend/foodFriendList";
+			return "redirect:/foodMate/foodMateList.do";
 		}
 	}
 
@@ -201,7 +201,8 @@ public class FoodMateController {
 	}
 
 	@PostMapping("/comment.do")
-	public String comment(@RequestParam(value = "fno") int fno, HttpSession session, FoodMateDTO food, Model model) {
+	public String comment(@RequestParam(value = "fno") int fno, HttpSession session, FoodMateDTO food, Model model,
+			HttpServletRequest request) {
 
 		food.setCommentWriter((String) session.getAttribute("memberNickName"));
 		food.setMno((int) session.getAttribute("mno"));
@@ -212,10 +213,13 @@ public class FoodMateController {
 
 		if (result > 0) {
 			System.out.println("댓글 작성완료");
+			String referer = request.getHeader("Referer"); // 헤더에서 이전 페이지를 읽는다.
+			return "redirect:" + referer; // 이전 페이지로 리다이렉트
 		} else {
 			System.out.println("댓글 작성실패");
+			return "redirect:/foodMate/foodMateList.do";
 		}
-		return "redirect:/foodMate/foodMateList.do";
+
 	}
 
 }
