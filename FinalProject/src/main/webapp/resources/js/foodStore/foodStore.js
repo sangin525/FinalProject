@@ -328,3 +328,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// 맨위로 올라가기 버튼
+function topScroll() {
+	$("html, body").animate({scrollTop:0}, 300);
+}

@@ -8,13 +8,13 @@
 
 <%@ include file="../../views/common/head.jsp"%>
 <link rel="stylesheet" href="/resources/css/member/myPage.css">
-
 </head>
 <body class="Main_body">
 	<%@ include file="../../views/common/header.jsp"%>
 
 	<div class="myPage">
 		<h2>마이페이지</h2>
+		<div class="myPageContain">
 		<div class="container">
 				<%@ include file="../../views/myPage/myPageMenu.jsp"%>
 
@@ -59,11 +59,7 @@
 							</c:otherwise> 						</c:choose>
 					</div>
 				</div>
-			</div>
-
-		</div>
-	</div>
-	<div>
+	<div class="pageBtn">
 	<ul class="pagination justify-content-center">
 				 <c:choose>
 				  		<c:when test="${pi.cpage eq 1}">
@@ -106,7 +102,14 @@
 				    </c:choose>
 		</ul>	
 	</div>
+			</div>
 
+		</div>
+		<div class="rightBar">
+			<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
+		</div>
+		</div>
+	</div>
 
 
 	<%@ include file="../../views/common/footer.jsp"%>
