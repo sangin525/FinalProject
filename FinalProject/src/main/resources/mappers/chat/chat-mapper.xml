@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="chatMapper">
+
+	<resultMap type="chatMsg" id="chatMsgResultSet">
+		<result column="cm_no" property="cm_no"></result>
+		<result column="cr_no" property="cr_no"></result>
+		<result column="m_no" property="m_no"></result>
+		<result column="cm_message" property="cm_message"></result>
+		<result column="cm_send_time" property="cm_send_time"></result>
+	</resultMap>
+
+	<resultMap type="chatRoom" id="chatRoomResultSet">
+		<result column="cr_no" property="cr_no"></result>
+		<result column="first_m_no" property="first_m_no"></result>
+		<result column="second_m_no" property="second_m_no"></result>
+		<result column="cr_start_date" property="cr_start_date"></result>
+		<result column="cr_end_date" property="cr_end_date"></result>
+	</resultMap>
+
+	<insert id="createChatRoom" parameterType="chatRoom">
+		INSERT INTO CHATROOM
+		VALUES(chatRoom_seq.NEXTVAL,
+		#{first_m_no},
+		#{second_m_no},
+		SYSDATE,
+		NULL
+		)
+	</insert>
+
+	<insert id="saveMsg" parameterType="chatMsg">
+		INSERT INTO chatMessage
+		VALUES(chatMessage_seq.NEXTVAL,
+		#{cr_no},
+		#{m_no},
+		#{cm_message},
+		SYSDATE
+		)
+	</insert>
+
+
+	<select id="tellmeCRNO" parameterType="chatRoom"
+		resultType="_int">
+		SELECT CR_NO FROM CHATROOM
+		WHERE first_m_no = #{first_m_no}
+		AND second_m_no = #{second_m_no}
+	</select>
+
+	<select id="myChatRoomList" parameterType="_int"
+		resultMap="chatRoomResultSet">
+		SELECT * FROM CHATROOM
+		WHERE first_m_no = #{second_m_no}
+	</select>
+
+
+
+	<select id="enterChatRoom" parameterType="_int"
+		resultMap="chatRoomResultSet">
+		SELECT * FROM CHATROOM
+		WHERE CR_NO = #{cr_no}
+	</select>
+
+	<select id="previouseChat" parameterType="_int"
+		resultMap="chatMsgResultSet">
+		SELECT * FROM chatMessage
+		WHERE CR_NO = #{cr_no}
+		ORDER BY
+		CM_NO
+	</select>
+
+	<select id="getSendMsg" parameterType="chatMsg"
+		resultMap="chatMsgResultSet">
+		SELECT * FROM
+		(SELECT * FROM chatMessage
+		WHERE M_NO = #{m_no}
+		AND CM_MESSAGE = #{cm_message}
+		AND CR_NO = #{cr_no}
+		ORDER BY CM_NO DESC)
+		WHERE ROWNUM =1
+	</select>
+
+</mapper>

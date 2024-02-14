@@ -50,153 +50,33 @@
 			</ul>
 		</div>
 		
+	
 		<div class="storeList">
-			<ul class="products-ul">
-				<li>
-					<a href="/productDetail">
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a>
-						<img src="/resources/uploads/고양이그림.png">
-						<div class="product-caption">
-							<div>상품명</div>
-							<div>
-								<span style="color: red;">20%</span>
-								<strong>9,900원</strong>
-							</div>
-						</div>
-					</a>
-				</li>
-			</ul>
+			<c:choose>
+				<c:when test="${empty list}">
+					<h3>등록된 상품이없습니다.</h3>
+				</c:when>
+				<c:otherwise>
+					<ul class="products-ul">
+
+						<c:forEach var="item" items="${list}">
+							<li>
+							<a href="/goods/detail.do?g_no=${item.g_no}"> 
+							<img src="/resources/uploads/goods/${item.g_file_name}">
+									<div class="product-caption">
+										<div>상품명: ${item.g_name}</div> <br>
+										<div>정상가: ${item.g_regular_price}원</div>									
+										<div>
+											<span style="color: red;">${item.g_dcRate} %</span> 
+											<strong>판매가: ${item.g_price} 원</strong>
+										</div>
+									</div>
+							</a>
+							</li>
+						</c:forEach>
+					</ul>
+				</c:otherwise>
+			</c:choose>
 		</div>
 
 

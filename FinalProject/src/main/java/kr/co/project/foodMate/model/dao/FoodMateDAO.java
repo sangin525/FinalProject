@@ -13,13 +13,11 @@ import kr.co.project.foodMate.model.dto.FoodMateDTO;
 public class FoodMateDAO {
 
 
-	public int enrollFoodMate(SqlSessionTemplate sqlSession, FoodMateDTO food) {
-		
+	public int enrollFoodMate(SqlSessionTemplate sqlSession, FoodMateDTO food) {		
 		return sqlSession.insert("foodMateMapper.enrollFoodMate",food);
 	}
 
 	public int selectListCount(SqlSessionTemplate sqlSession, FoodMateDTO food) {
-		
 		return sqlSession.selectOne("foodMateMapper.selectListCount",food);
 	}
 
