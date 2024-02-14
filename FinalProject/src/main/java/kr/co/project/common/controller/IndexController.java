@@ -17,6 +17,7 @@ import kr.co.project.recipe.model.service.RecipeServiceImpl;
 @Controller
 public class IndexController {
 	
+
 	@Autowired
 	private RecipeServiceImpl recipeService;
 	
@@ -25,6 +26,7 @@ public class IndexController {
 	
 	
 	
+
 	@RequestMapping("/")
 	public String indexPage(RecipeDTO recipe,
 			Model model,
@@ -85,7 +87,7 @@ public class IndexController {
 	
 	@RequestMapping("/products")
 	public String foodStorePage() {
-		return "foodStore/products";
+		return "redirect:/goods/list.do";
 	}
 	
 	@RequestMapping("/productDetail")
@@ -93,6 +95,12 @@ public class IndexController {
 		return "foodStore/productDetail";
 	}
 	
+
+	@RequestMapping("/sgjGoods")
+	public String sgjGoodsPage() {
+		return "foodStore/sgjGoods";
+	}
+
 //	@RequestMapping("/foodFriend")
 //	public String friendPage() {
 //		return "foodFriend/foodFriendList";
@@ -135,25 +143,25 @@ public class IndexController {
 		return "myPage/contectUs";
 	}
 	
-	
 	@GetMapping("foodFriendEnroll")
 	public String enrollForm() {
 		return "foodFriend/foodFriendEnroll";
 	}
-	@GetMapping("foodFriendDetail")
-	public String detailForm() {
-		return "foodFriend/foodFriendDetail";
-	}
+
+//	@GetMapping("foodFriendDetail")
+//	public String detailForm() {
+//		return "foodFriend/foodFriendDetail";
+//	}
 	@GetMapping("foodFriendEdit")
 	public String editForm() {
 		return "foodFriend/foodFriendEdit";
 	}
 
-	@GetMapping("foodFriendList")
-	public String listForm() {
-		return "foodFriend/foodFriendList";
-	}
-	@GetMapping("foodFriendConv")
+//	@GetMapping("foodFriendList")
+//	public String listForm() {
+//		return "foodFriend/foodFriendList";
+//	}
+	@RequestMapping("/foodFriendConv")
 	public String ConvForm() {
 		return "foodFriend/foodFriendConv";
 	}
@@ -174,8 +182,6 @@ public class IndexController {
 	public String noticeBoardForm() {
 		return "notice/notice_Board";
 	}
-	
-	
 	
 	@GetMapping("memberList")
 	public String sidebarForm() {

@@ -183,7 +183,7 @@ public class RecipeController {
 	
 	//레시피 추가
 	@PostMapping("/addRecipe.do")
-	public String addRecipe(RecipeDTO recipe,MemberDTO member,MultipartFile upload, List<MultipartFile> multiFileList,
+	public String addRecipe(RecipeDTO recipe,MemberDTO member, MultipartFile upload, List<MultipartFile> multiFileList,
 					HttpSession session,Model model)throws IllegalStateException, IOException {
 					
 		recipe.setMemberNickName((String)session.getAttribute("memberNickName"));
