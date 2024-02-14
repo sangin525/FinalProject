@@ -202,6 +202,16 @@ public class RecipeDAO {
 		return 1;
 	}
 
+	public int recentRecipe(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.insert("recipeRecentMapper.recentRecipe",recipe);
+	}
+
+	public List<RecipeDTO> recentRecipeList(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.selectList("recipeRecentMapper.recentRecipeList",recipe);
+	}
+
 	
 
 

@@ -92,5 +92,15 @@ public class MemberDAO {
 		return sqlSession.selectList("memberMapper.chefRank",member,rb);
 	}
 
+	public int gradeCheck(SqlSessionTemplate sqlSession,MemberDTO member) {
+		
+		return sqlSession.update("memberMapper.gradeCheck",member);
+	}
+
+	public int selectMember2(SqlSessionTemplate sqlSession, MemberDTO memberSelect) {
+		
+		return sqlSession.selectOne("memberMapper.selectMember2",memberSelect);
+	}
+
 	
 }

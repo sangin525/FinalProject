@@ -28,6 +28,7 @@ public class MemberDTO {
 	private String uploadPath;
 	private String uploadName;
 	private String uploadOrigin;
+	private String grade;
 	
 	public MemberDTO() {
 		super();

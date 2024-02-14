@@ -80,6 +80,13 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.chefRank(sqlSession,pi,member);
 	}
+
+	
+
+	public int selectMember2(MemberDTO member) {
+		
+		return memberDao.selectMember2(sqlSession,member);
+	}
 	
 	
 }

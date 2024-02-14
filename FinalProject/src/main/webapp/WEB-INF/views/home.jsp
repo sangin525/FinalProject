@@ -24,6 +24,7 @@
 
 
 
+
 	<%@ include file="../views/common/main/bestRecipe.jsp"%>
 	<%@ include file="../views/common/main/recommendedRecipe.jsp"%>
 	<%@ include file="../views/common/main/mainCategory.jsp"%>

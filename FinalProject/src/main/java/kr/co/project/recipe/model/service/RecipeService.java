@@ -3,6 +3,7 @@ package kr.co.project.recipe.model.service;
 import java.util.List;
 
 import kr.co.project.common.pageing.PageInfo;
+import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.recipe.model.dto.RecipeDTO;
 
 public interface RecipeService {
@@ -11,7 +12,7 @@ public interface RecipeService {
 	
 	List<RecipeDTO> selectListAll(PageInfo pi,RecipeDTO recipe);
 
-	int addRecipe(RecipeDTO recipe, List<RecipeDTO> recipeList);
+	int addRecipe(RecipeDTO recipe, List<RecipeDTO> recipeList,MemberDTO memberSelect);
 	
 	RecipeDTO detailRecipe(int rno);
 	
