@@ -64,7 +64,7 @@
 		</div>
 	</div>
 
-
+<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
 
 	<%@ include file="../../views/common/footer.jsp"%>
 </body>

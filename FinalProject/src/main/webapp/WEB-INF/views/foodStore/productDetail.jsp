@@ -108,7 +108,11 @@
 		</div>
 	</div>
 		<div class="topBtnDiv">
-			<button class="topBtn">맨위로</button>
+			<div class="latestProduct">
+				<p>최근본상품</p>
+			</div>
+			<br><br>
+			<button class="topBtn" type="button" onclick="topScroll()">맨위로</button>
 		</div>
 
 

@@ -5,7 +5,7 @@
 }
 
 .container {
-	max-width: 1200px;
+	width: 1200px;
 	margin: 20px auto;
 	padding: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -16,6 +16,10 @@
 .myPage {
 	margin: auto;
 	max-width: 1200px;
+}
+
+.myPageContain {
+	display: flex;
 }
 
 .myPage h2 {
@@ -318,6 +322,10 @@
 }
 
 /* 페이지네이션 */
+.pageBtn {
+	display: flex;
+    justify-content: center;
+}
 
 .page-item {
     display: inline-block;
@@ -410,9 +418,184 @@
 }
 
 
+/* 마이페이지 사이드바 */
+.myhome_main {
+	margin: 20px auto;
+}
 
+.rightBar {
+	border-top: 1px solid #e6e7e8;
+    width: 335px;
+    margin-left: 10px;
+    padding: 0 0 30px 0;
+    height: auto;
+}
 
+.myhome_main_img {
+	background: url(/resources/uploads/myhome_img.png) left top no-repeat;
+    background-size: cover;
+    height: 150px;
+    margin: 0 auto;
+    padding-top: 22px;
+    position: relative;
+    border-bottom: 1px solid #ddd;
+}
 
+.myhome_pic {
+	display: inline-block;
+    vertical-align: top;
+    position: relative;
+    padding: 4px;
+    margin: 0 auto;
+    border-radius: 50%;
+}
 
+.myhome_profile img {
+	width: 100px;
+	height: 100px;
+}
 
+.myhome_main_info {
+	text-align: center;
+	margin-top: -70px;
+	padding-bottom: 30px;
+	background-color: white;
+}
 
+.myhome_main_info a {
+	cursor: pointer;	
+}
+
+.myhome_camera img {
+	width: 35px;
+	height: 35px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+}
+
+.myhome_nickName {
+	margin: 0;
+    color: #777;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 5px;
+}
+
+.myhome_nickName b {
+    font-size: 18px;
+    display: block;
+    color: #000;
+}
+
+.myhome_nickName span {
+	text-decoration: underline;
+}
+
+/* 프로필 사진등록 */
+.modal-dialog {
+    display: none;
+    width: 600px;
+    position: fixed; /* 모달 창을 화면 가운데에 고정 */
+    z-index: 1; /* 다른 요소 위에 모달 창이 오도록 */
+    left: 50%; /* 화면 가운데로 이동 */
+    top: 50%; /* 화면 가운데로 이동 */
+    transform: translate(-50%, -50%); /* 모달 창의 중앙이 화면 중앙에 오도록 조정 */
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 10px;
+    outline: 0;
+    margin: 15% auto;
+}
+
+.modal-dialog.show {
+    display: block;
+}
+
+.modal-header {
+    min-height: 16.43px;
+    padding: 15px 17px 14px;
+    border-bottom: 1px solid #b4b4b4;
+    background: #efefef;
+    border-radius: 10px 10px 0 0;
+}
+
+.modal-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.42857143;
+}
+
+.modal-body {
+	position: relative;
+	padding: 30px 0;
+    text-align: center;
+}
+
+.addpicture {
+	position: absolute;
+    width: 200px;
+    left: 50%;
+    margin-left: -100px;
+    bottom: 150px;
+}
+
+#vProfileImageModalSrc {
+	width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.self_info {
+	position: relative;
+    padding: 15px 40px 5px;
+}
+
+.self_info a {
+	position: absolute;
+    top: 21px;
+    right: 45px;
+}
+
+#self_intro {
+	border: 1px solid #ddd;
+    width: 100%;
+    padding-right: 24px;
+    height: 30px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 3px;
+}
+
+.myhome_modal_btn {
+	display: flex;
+    column-gap: 10px;
+    justify-content: center;
+    padding: 10px 0 0;
+}
+
+.btn_bottom_st2 {
+    display: block;
+    padding: 12px 40px 13px;
+    font-size: 14px;
+    text-align: center;
+    background: #EA4329;
+    border: 1px solid #EA4329;
+    color: #fff;
+    font-weight: 500;
+    box-sizing: border-box;
+    border-radius: 24px;
+    line-height: 1;
+}
+
+.btn_bottom_st2.st2 {
+    background: #fff;
+    border: 1px solid #e1e1e1;
+    color: #191919;
+}
