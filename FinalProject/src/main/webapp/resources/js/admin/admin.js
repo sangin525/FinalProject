@@ -224,28 +224,6 @@ $(document).ready(function() {
 
 // 게시글관리
 $(document).ready(function() {
-	// 모든 리스트를 숨깁니다.
-	$(".free_List, .event_List").hide();
-
-	// 각 버튼을 클릭하면 해당 리스트를 보여줍니다.
-	$(".postCategoryBtn button").click(function() {
-		var index = $(this).index();
-
-		// 모든 리스트를 숨깁니다.
-		$(".notice_List, .free_List, .event_List").hide();
-
-		// 클릭한 버튼에 따라 해당 리스트만 보여줍니다.
-		if (index == 0) {
-			$(".notice_List").show();
-		} else if  (index == 1) {
-			$(".free_List").show();
-		} else if (index == 2) {
-			$(".event_List").show();
-		}
-	});
-});
-
-$(document).ready(function() {
 	$(".noticeContent, .freeContent, .eventContent, .answerContent").hide();
 	var toggleContent = function(trSelector, contentClass) {
 
@@ -327,28 +305,32 @@ $(document).ready(function() {
 		});
 	});
 
-	$(".board_answer_btn").click(function() {
-		var checkboxes = $("input.Detail[type='checkbox']");
+$(".board_answer_btn").click(function() {
+	var checkboxes = $("input.Detail[type='checkbox']");
+	var answerContents = $(".answerTable .answerContent"); // .answerContent를 모두 가져옵니다.
 
-		checkboxes.each(function() {
-			if (this.checked) {
-				var row = $(this).parent().parent();
+	checkboxes.each(function(index) { // 체크박스를 순회하면서 인덱스도 함께 가져옵니다.
+		if (this.checked) {
+			var row = $(this).parent().parent();
 
-				if (row.closest('div').hasClass('answerTable')) {
-					modal.find('form').attr('action', 'productAnswer.do');
-				}
-
-				$("#boardTitle").val(row.find(".boardTit").text());
-				$("#boardNum").val(row.find(".boardNum").text());
-				$("#boardWriter").val(row.find(".boardwriter").text());
-
-				// 저장된 답변 내용을 모달창의 'boardContent'에 넣습니다.
-				$("#boardContent").val(answerContent);
-
-				modal.css("display", "block");
+			if (row.closest('div').hasClass('answerTable')) {
+				modal.find('form').attr('action', 'productAnswer.do');
 			}
-		});
+
+			$("#boardTitle").val(row.find(".boardTit").text());
+			$("#boardNum").val(row.find(".boardNum").text());
+			$("#boardWriter").val(row.find(".boardwriter").text());
+
+			// 체크된 체크박스와 같은 인덱스의 .answerContent의 내용을 가져옵니다.
+			var answerContent = $(answerContents[index]).text();
+
+			// 저장된 답변 내용을 모달창의 'boardContent'에 넣습니다.
+			$("#boardContent").val(answerContent);
+
+			modal.css("display", "block");
+		}
 	});
+});
 
 	// 삭제 버튼에 대한 이벤트 핸들러를 추가합니다.
 	$(".board_delete_btn").click(function() {

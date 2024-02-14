@@ -56,7 +56,7 @@
 
 	 
 	</ul>
-	
+		<div class="pageNav">
 	 		<ul class="pagination justify-content-center">
 				 <c:choose>
 				  		<c:when test="${pi.cpage eq 1}">
@@ -98,6 +98,7 @@
 					    </c:otherwise>
 				    </c:choose>
 		</ul>
+		</div>
 	
 
 	</div>
