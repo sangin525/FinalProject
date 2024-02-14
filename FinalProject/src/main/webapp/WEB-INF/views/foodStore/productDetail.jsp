@@ -107,6 +107,9 @@
 			</div>
 		</div>
 	</div>
+		<div class="topBtnDiv">
+			<button class="topBtn">맨위로</button>
+		</div>
 
 
 	<%@ include file="../../views/common/footer.jsp"%>

@@ -957,3 +957,9 @@ textarea::-webkit-scrollbar-thumb:hover {
 	margin: 10px 10px 10px 0;
 	cursor: pointer;
 }
+
+.topBtnDiv {
+	position: pixed;
+	bottom: 10px;
+	right: 10px;
+}

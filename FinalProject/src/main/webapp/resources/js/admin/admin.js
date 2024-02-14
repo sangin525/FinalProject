@@ -224,28 +224,6 @@ $(document).ready(function() {
 
 // 게시글관리
 $(document).ready(function() {
-	// 모든 리스트를 숨깁니다.
-	$(".free_List, .event_List").hide();
-
-	// 각 버튼을 클릭하면 해당 리스트를 보여줍니다.
-	$(".postCategoryBtn button").click(function() {
-		var index = $(this).index();
-
-		// 모든 리스트를 숨깁니다.
-		$(".notice_List, .free_List, .event_List").hide();
-
-		// 클릭한 버튼에 따라 해당 리스트만 보여줍니다.
-		if (index == 0) {
-			$(".notice_List").show();
-		} else if  (index == 1) {
-			$(".free_List").show();
-		} else if (index == 2) {
-			$(".event_List").show();
-		}
-	});
-});
-
-$(document).ready(function() {
 	$(".noticeContent, .freeContent, .eventContent, .answerContent").hide();
 	var toggleContent = function(trSelector, contentClass) {
 

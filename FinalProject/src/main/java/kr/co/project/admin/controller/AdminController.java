@@ -59,7 +59,7 @@ public class AdminController {
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
-		return "/admin/managingPosts";
+		return "/admin/adminNotice";
 	
 	}
 	
@@ -149,7 +149,7 @@ public class AdminController {
 		model.addAttribute("eventList", eventList);
 		model.addAttribute("pi", pi);
 		
-		return "/admin/managingPosts";
+		return "/admin/adminEvent";
 	}
 	
 	@GetMapping("/eventList")

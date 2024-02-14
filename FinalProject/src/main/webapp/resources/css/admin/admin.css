@@ -1,6 +1,7 @@
 .adminContainer {
 	height: 100%;
 }
+
 .side-menu {
 	top: 50px;
 	width: 45px;
@@ -8,7 +9,7 @@
 	background: #ff5858;
 	border-right: 1px solid rgba(0, 0, 0, 0.07);
 	bottom: 50px;
-	height: 77.5%;
+	height: 100%;
 	margin-bottom: -70px;
 	margin-top: 0px;
 	padding-bottom: 70px;
@@ -58,7 +59,7 @@
 	background: white;
 	border-right: 1px solid rgba(0, 0, 0, 0.07);
 	bottom: 50px;
-	height: 85.5%;
+	height: 100%;
 	margin-bottom: -70px;
 	margin-top: 0px;
 	padding-bottom: 0px;
