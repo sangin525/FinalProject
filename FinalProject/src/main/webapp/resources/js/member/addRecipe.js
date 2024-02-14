@@ -1,10 +1,6 @@
-
-
 document.getElementById("addIngredientBtn").addEventListener("click", function() {
-
 	var li = document.createElement("li");
 	li.className = "ingredient";
-
 
 	var ingredientInput = document.createElement("input");
 	ingredientInput.type = "text"
@@ -12,17 +8,14 @@ document.getElementById("addIngredientBtn").addEventListener("click", function()
 	ingredientInput.className = "form-control";
 	ingredientInput.placeholder = "예) 돼지고기";
 
-
 	var amountInput = document.createElement("input");
 	amountInput.type = "text";
 	amountInput.className = "form-control";
 	amountInput.name = "ingredientWeight"
 	amountInput.placeholder = "예) 500g";
 
-
 	li.appendChild(ingredientInput);
 	li.appendChild(amountInput);
-
 
 	document.getElementById("ingredientList").appendChild(li);
 });
@@ -34,12 +27,10 @@ document.getElementById("deleteIngredientBtn").addEventListener("click", functio
 	}
 });
 
-
-
 var stepCount = 1;
 var imgCount = 1;
 var imgCount2 = 1;
-var imgCount3 =1;
+var imgCount3 = 1;
 var stepButton = document.getElementById('stepButton');
 var initialStepButton = stepButton.cloneNode(true); // 처음 '순서 추가'와 '순서 삭제' 버튼 복사
 
@@ -55,7 +46,7 @@ function addStep() {
 	imgCount++;
 	imgCount2++;
 	imgCount3++;
-	
+
 	var step = document.createElement("div");
 	step.id = "amountStep_" + stepCount;
 	step.className = "step";
@@ -78,18 +69,34 @@ function addStep() {
 
 	var stepPhoto = document.createElement("div");
 	stepPhoto.id = "divStepPhoto";
+	var newDiv = document.createElement("div");
+
 	var inputFile = document.createElement("input");
 	inputFile.type = "file";
 	inputFile.id = "recipeSeqeuncePhoto_" + imgCount;
 	inputFile.className = "rsPhotouUpload_" + imgCount2;
 	inputFile.name = "multiFileList";
-	var img = document.createElement("img");	
+	inputFile.style.display = "none";  // inputFile 숨김
+	inputFile.onchange = function(e) {
+		var reader = new FileReader();
+		reader.onload = function(event) {
+			img.src = event.target.result;
+			img.style.width = "160px";  // 이미지의 너비를 160px로 설정
+			img.style.height = "160px";  // 이미지의 높이를 160px로 설정
+		};
+		reader.readAsDataURL(e.target.files[0]);
+	};
+	newDiv.appendChild(inputFile);  // 새로운 div에 inputFile 추가
+
+	var img = document.createElement("img");
 	img.id = "stepPhoto";
 	img.className = "recipeImg_" + imgCount3;
 	img.src = "/resources/uploads/사진추가.gif";
-	img.onclick = function() { StepFile(); };
-	stepPhoto.appendChild(inputFile);
-	stepPhoto.appendChild(img);
+	img.style.cursor = "pointer";
+	img.onclick = function() { inputFile.click(); };  // 이미지를 클릭하면 inputFile의 클릭 이벤트가 실행되도록 수정
+	newDiv.appendChild(img);  // 새로운 div에 img 추가
+
+	stepPhoto.appendChild(newDiv);  // stepPhoto에 새로운 div 추가
 	step.appendChild(stepPhoto);
 
 	document.getElementById("cookingStep").appendChild(step);
@@ -103,6 +110,7 @@ function addStep() {
 
 	var addStepBtn = document.createElement("button");
 	addStepBtn.innerText = "순서 추가";
+	addStepBtn.type = "button";
 	addStepBtn.id = "addStepBtn";
 	addStepBtn.className = "addStepBtn";
 	addStepBtn.addEventListener("click", addStep);
@@ -110,6 +118,7 @@ function addStep() {
 
 	var deleteStepBtn = document.createElement("button");
 	deleteStepBtn.innerText = "순서 삭제";
+	deleteStepBtn.type = "button";
 	deleteStepBtn.id = "deleteStepBtn";
 	deleteStepBtn.className = "deleteStepBtn";
 	deleteStepBtn.addEventListener("click", deleteStep);
@@ -139,16 +148,6 @@ function deleteStep() {
 		firstStep.appendChild(stepButton);
 	}
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

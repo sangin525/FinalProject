@@ -45,7 +45,7 @@ public class IndexController {
 	public String afterAddRecipe() {
 		return "member/afterAddRecipe";
 	}
-	@RequestMapping("/notice_Board")
+	@RequestMapping("/member/notice_Board")
 	public String noticePage() {
 		return "notice/notice_Board";
 	}
@@ -107,6 +107,7 @@ public class IndexController {
 		return "myPage/contectUs";
 	}
 	
+	
 	@GetMapping("foodFriendEnroll")
 	public String enrollForm() {
 		return "foodFriend/foodFriendEnroll";
@@ -129,6 +130,25 @@ public class IndexController {
 		return "foodFriend/foodFriendConv";
 	}
 	
+	@GetMapping("noticeEnroll")
+	public String noticeEnrollForm() {
+		return "notice/notice_Enroll";
+	}
+	@GetMapping("noticeDetail")
+	public String noticeDetailForm() {
+		return "notice/notice_Detail";
+	}
+	@GetMapping("noticeEdit")
+	public String noticeEditForm() {
+		return "notice/notice_Edit";
+	}
+	@GetMapping("noticeBoard")
+	public String noticeBoardForm() {
+		return "notice/notice_Board";
+	}
+	
+	
+	
 	@GetMapping("memberList")
 	public String sidebarForm() {
 		return "admin/memberList";
@@ -137,5 +157,9 @@ public class IndexController {
 	@GetMapping("/productRegistration")
 	public String productRegistrationForm() {
 		return "admin/productRegistration";
+	}
+	@RequestMapping("productPayment")
+	public String productPaymentForm() {
+		return "foodStore/productPayment";
 	}
 }

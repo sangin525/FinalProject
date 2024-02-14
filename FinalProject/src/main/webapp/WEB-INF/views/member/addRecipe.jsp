@@ -250,6 +250,7 @@
 	<br>
 	<br>
 	<br>
+	<%@ include file="../../views/common/footer.jsp"%>
 </body>
 <script src="/resources/js/member/addRecipe.js">
 
