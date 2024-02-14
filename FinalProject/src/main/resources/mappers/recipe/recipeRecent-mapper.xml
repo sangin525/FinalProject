@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipeRecentMapper">
+	
+	<resultMap type="recipe" id="recipeRecentResultSet">
+	<result column ="RR_NO" property="rrno"></result>
+	<result column ="RR_IN_DATE" property="rrInDate"></result>
+	<result column ="M_NO" property="mno"></result>
+	<result column ="R_NO" property="rno"></result>
+	</resultMap>
+	
+	<select id="recentRecipeList" resultMap="recipeRecentResultSet">
+		SELECT * FROM RECENTRECIPE
+		WHERE M_NO =#{mno}
+	</select>
+	<insert id="recentRecipe">
+		INSERT INTO RECENTRECIPE VALUES(recentRecipe_seq.NEXTVAL,
+				SYSDATE,
+				#{mno},
+				#{rno}
+		)
+	</insert>
+	
+</mapper>

@@ -57,8 +57,11 @@ public class RecipeDTO {
 	private int frno;
 	private int saveCount;
 	private String scrapDate;
-
+	private int rrno;
+	private String rrInDate;
 	
+	private Long postId;
+	private String rtitle;
 	
 	
 	

@@ -1,13 +1,41 @@
 package kr.co.project.common.controller;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.project.member.model.service.MemberServiceImpl;
+import kr.co.project.recipe.model.dto.RecipeDTO;
+import kr.co.project.recipe.model.service.RecipeServiceImpl;
+
 @Controller
 public class IndexController {
+	
+	@Autowired
+	private RecipeServiceImpl recipeService;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
+	
+	
+	
 	@RequestMapping("/")
-	public String indexPage() {
+	public String indexPage(RecipeDTO recipe,
+			Model model,
+			HttpSession session) {
+		recipe.setMno((int) session.getAttribute("mno"));
+		
+		
+		List<RecipeDTO> list = recipeService.recentRecipeList(recipe);
+		System.out.println(list);
+		
+		
 		return "home";
 	}
 	

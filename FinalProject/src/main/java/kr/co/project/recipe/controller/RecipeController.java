@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -34,6 +35,8 @@ public class RecipeController {
 	
 	
 	private static final String BOARD_NAME="recipe\\";
+	
+	
 	
 	@Autowired
 	private RecipeServiceImpl recipeService;
@@ -185,6 +188,9 @@ public class RecipeController {
 					
 		recipe.setMemberNickName((String)session.getAttribute("memberNickName"));
 		recipe.setMno((int) session.getAttribute("mno"));
+		member.setMno((int) session.getAttribute("mno"));
+		
+		System.out.println(member.getRecipeCount());
 		System.out.println(recipe.getMemberNickName());
 		// 제목 길이 검사
 		boolean titleLengthCheck = DataValidation.CheckLength(recipe.getTitle(), 150);
@@ -202,8 +208,7 @@ public class RecipeController {
 		if(!multiFileList.isEmpty()) {
 			MultiUploadFile.uploadMethod(multiFileList,null, BOARD_NAME, recipe, member, null, session, BOARD_NAME, recipeList,null);			
 		}
-		int result = recipeService.addRecipe(recipe, recipeList);
-		
+		int result = recipeService.addRecipe(recipe, recipeList,member);
 		
 		if(result > 0) {
 //			model.addAttribute("rno",recipe.getRno());
@@ -362,7 +367,10 @@ public class RecipeController {
 	public String detailRecipe(@RequestParam(value="rno") int rno,
 												RecipeDTO recipe,
 												Model model,
-												HttpServletRequest request) {
+												HttpServletRequest request,HttpSession session) {
+		
+		recipe.setMno((int) session.getAttribute("mno"));
+		recipe.setRno(rno);
 		
 		RecipeDTO result =  recipeService.detailRecipe(rno);
 
@@ -371,10 +379,10 @@ public class RecipeController {
 		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
 		
 		List<RecipeDTO> comresult = recipeService.selectComment(rno);
-//		RecipeDTO comresult = recipeService.selectComment(rno);
 		
 		List<RecipeDTO> seqPhoresult = new ArrayList<>();
-//		List<RecipeDTO> list
+		
+		
 		if(!Objects.isNull(result)) {
 			if(!Objects.isNull(ingreresult)) {
 				if(!Objects.isNull(seqresult)) {	
@@ -382,9 +390,13 @@ public class RecipeController {
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
 					if(!Objects.isNull(comresult)) {
 						int commentCount = recipeService.commentCount(rno);
+						int recentRecipe = recipeService.recentRecipe(recipe); 
+						
 						model.addAttribute("commentCount",commentCount);						
 						model.addAttribute("comment",comresult);
+						System.out.println(recentRecipe);
 						System.out.println("게시판 들어오기 완료");
+					
 					}
 				}
 			}
@@ -430,11 +442,20 @@ public class RecipeController {
 		
 		return "member/afterAddRecipe";
 	}
-
-
-
-
-
+	
+	@GetMapping("/recentRecipeList")
+	public String recentRecipeList(RecipeDTO recipe,
+			Model model,
+			HttpSession session) {
+		
+		recipe.setMno((int) session.getAttribute("mno"));
+		
+		
+		List<RecipeDTO> list = recipeService.recentRecipeList(recipe);
+		System.out.println(list);
+		return "common/recentlyRecipe";
+	}
+	
 
 
 }

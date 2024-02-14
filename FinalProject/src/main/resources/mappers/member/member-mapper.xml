@@ -18,6 +18,7 @@
 		<result column = "M_RECIPE_COUNT" property="recipeCount"></result>
 		<result column = "M_SUBSCRIBER" property="subscriber"></result>
 		<result column = "M_PURCHASE_AMOUNT" property="purchaseAmount"></result>
+		<result column = "M_GRADE" property="grade"></result>
 	</resultMap>
 
 	
@@ -48,7 +49,8 @@
 								null,
 								null,
 								null,
-								null)
+								null,
+								'왕초보')
 </insert>
 
 <select id="checkEmail" resultType="_int">
@@ -70,6 +72,11 @@
 
 <select id="selectMember" resultMap ="memberResultSet">
 SELECT * FROM member
+WHERE m_no = #{mno}
+</select>
+
+<select id="selectMember2" resultType ="_int">
+SELECT M_RECIPE_COUNT FROM member
 WHERE m_no = #{mno}
 </select>
 
@@ -110,7 +117,26 @@ WHERE M_NO = #{mno}
 UPDATE MEMBER SET M_REMOVE_DATE = SYSDATE
 WHERE M_NO =#{mno}
 </update>
-	
+
+<update id="gradeCheck" parameterType="member">
+UPDATE MEMBER SET
+<choose>
+	<when test=" 5 >= recipeCount ">
+	M_GRADE = '왕초보'
+	</when>
+	<when test=" 10 >= recipeCount ">
+	M_GRADE = '요리초보'
+	</when>
+	<when test=" 20 >= recipeCount ">
+	M_GRADE = '요리고수'
+	</when>
+	<when test=" 30 >= recipeCount ">
+	M_GRADE = '요리신'
+	</when>
+</choose>
+WHERE M_NO= #{mno}
+
+</update>
 
 
 

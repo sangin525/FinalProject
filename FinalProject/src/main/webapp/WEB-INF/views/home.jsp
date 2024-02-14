@@ -22,7 +22,7 @@
 		</div>
 	</div>
 
-<button class="btn" onclick="window.location.href='/recipe/addRecipeForm.do'" type="button" >글쓰기</button>
+
 
 
 
