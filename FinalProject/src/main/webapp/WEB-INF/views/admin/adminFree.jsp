@@ -19,11 +19,16 @@
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
 	<div class="adminContainer">
 <div class="managingPostsContainer">
-	<h2>문의사항</h2>
-	
+	<h2>게시글 관리</h2>
+	<div class="postCategoryBtn">
+		<button onclick="location.href='/admin/adminNotice'">공지사항</button>
+		<button onclick="location.href='/adminFree'">자유게시판</button>
+		<button onclick="location.href='/admin/adminEvent'">이벤트게시판</button>
+	</div>
 	
 	<div class="update-delete-btn">
-		<button class="board_answer_btn">답변하기</button>					<!-- notice, free, event -->
+		<button class="board_update_btn">수정</button>					<!-- notice, free, event -->
+		<button class="board_delete_btn">삭제</button> <!-- 체크박스에 따라 이동 /notice/delete.do?boardIdx=" + boardNum; -->
 	</div>
 	<div id="board_Modal" class="board_modal">
 		<form><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
@@ -50,26 +55,20 @@
 									<tr>
 										<th>내용</th>
 										<td>
-			                                 <textarea class="boardContent" id="boardContent" value="" disabled></textarea>
-										</td>
-									</tr>
-									<tr>
-										<th>답변</th>
-										<td>
-			                                 <textarea class="boardAnswer" id="boardAnswer"></textarea>
+			                                 <textarea class="boardContent" id="boardContent" value=""></textarea>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-							<div class="modal_btn">
-					<button type="submit">작성</button>
+				<div class="modal_btn">
+					<button type="submit">수정</button>
 					<button class="close" type="button">취소</button>
 				</div>
 			</div>
 		</form>
 	</div>
-<div class="answer_List">
-	<div class="answerTable">
+<div class="free_List">
+	<div class="freeTable">
 		<table>
 			<thead>
 				<tr>
@@ -78,33 +77,33 @@
 					<th class="boardTit">제목</th>
 					<th class="boardwriter">작성자</th>
 					<th class="boardDate">작성일</th>
-					<th class="boardAnswer">답변여부</th>
+					<th class="boardView">조회수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty noticeList}">
+					<c:when test="${empty freeList}">
 						<tr>
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">1</td>
-							<td class="boardTit">문의사항</td>
+							<td class="boardTit">자유게시판</td>
 							<td class="boardwriter">관리자</td>
 							<td class="boardDate">2024-02-06</td>
-							<td class="boardAnswer">답변완료</td>
+							<td class="boardView">10</td>
 						</tr>
-						<div class="answerContent">
-							문의사항 내용입니다.
+						<div class="freeContent">
+							자유게시판 내용입니다.
 						</div>
 						<tr>
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">2</td>
-							<td class="boardTit">문의사항2</td>
+							<td class="boardTit">자유게시판2</td>
 							<td class="boardwriter">관리자</td>
 							<td class="boardDate">2024-02-06</td>
-							<td class="boardAnswer">답변대기</td>
+							<td class="boardView">10</td>
 						</tr>
-						<div class="answerContent">
-							문의사항2 내용입니다.
+						<div class="freeContent">
+							자유게시판2 내용입니다.
 						</div>
 					</c:when>
 					<c:otherwise>
@@ -152,7 +151,6 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
-</div>
 </div>
 </div>
 </div>	

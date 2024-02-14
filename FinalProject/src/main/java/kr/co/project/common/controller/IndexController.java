@@ -65,10 +65,10 @@ public class IndexController {
 		return "foodStore/productDetail";
 	}
 	
-	@RequestMapping("/foodFriend")
-	public String friendPage() {
-		return "foodFriend/foodFriendList";
-	}
+//	@RequestMapping("/foodFriend")
+//	public String friendPage() {
+//		return "foodFriend/foodFriendList";
+//	}
 	
 	@GetMapping("myPage/myPage")
 	public String myPage() {
@@ -179,10 +179,20 @@ public class IndexController {
 	public String deliveryForm() {
 		return "admin/delivery";
 	}
-	@GetMapping("/managingPosts")
-	public String managingPostsForm() {
-		return "admin/managingPosts";
+//	@GetMapping("/adminNotice")
+//	public String adminNoticeForm() {
+//		return "admin/adminNotice";
+//	}
+	@GetMapping("/adminFree")
+	public String adminFreeForm() {
+		return "admin/adminFree";
 	}
+
+//	@GetMapping("/adminEvent")
+//	public String adminEventForm() {
+//		return "admin/adminEvent";
+//	}
+
 
 	@GetMapping("/eventEnroll")
 	public String eventEnrollForm() {
