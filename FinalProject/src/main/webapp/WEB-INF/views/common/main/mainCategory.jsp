@@ -2,9 +2,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	
-<div class="mainContainer" style="height: 150px">
-		<div class="slick_slide" style="height: 150px;">
-		<p>레시피 분류</p>
+<div class="mainContainer" >
+		<div class="slick_slide">
+		<p class="main-Title">레시피 분류</p>
 		<img src="/resources/uploads/icon_arrow3_pre.png" class="icon_arrow3_pre3">
 		<ul class="categoryList">
 		<li class="mainCategoryLi">

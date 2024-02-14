@@ -5,7 +5,7 @@
 	
 <div class="mainContainer">
 		<div class="slick_slide">
-		<p>추천 레시피</p>
+		<p class="main-Title">추천 레시피</p>
 		<img src="/resources/uploads/icon_arrow3_pre.png" class="icon_arrow3_pre2">
 		<ul class="randomRecipe">
 		<li class="recommendedRecipe-li">

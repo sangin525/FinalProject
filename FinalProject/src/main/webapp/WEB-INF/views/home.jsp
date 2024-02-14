@@ -14,15 +14,9 @@
 <body>
 
 	<%@ include file="../views/common/header.jsp" %>
-	
-	
-	<div >
-		<div class="main_video">
-			<iframe width="100%" height="700px" src="https://www.youtube.com/embed/uX9LWnMNtkA?si=UpTXbPyO5egQfoxq" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-		</div>
-	</div>
 
-<button class="btn" onclick="window.location.href='/recipe/addRecipeForm.do'" type="button" >글쓰기</button>
+	<%@ include file="../views/common/nav.jsp" %>
+	
 
 
 
