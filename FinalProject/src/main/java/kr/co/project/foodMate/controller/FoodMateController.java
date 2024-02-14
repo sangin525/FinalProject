@@ -41,6 +41,9 @@ public class FoodMateController {
 	@Autowired
 	private ChatServiceImpl chatService;
 
+	@Autowired
+	private MemberServiceImpl memberService;
+
 	@GetMapping("/foodMateList.do")
 	public String foodMateList(FoodMateDTO food, @RequestParam(value = "cpage", defaultValue = "1") int cpage,
 			Model model, HttpSession session) {
@@ -96,22 +99,38 @@ public class FoodMateController {
 
 		FoodMateDTO result = foodMateService.detailFoodMate(fno);
 
-		if (!Objects.isNull(result)) {
+		if (!Objects.isNull(result)) {// 게시물이 있다면
+			int first_m_no = result.getMno();// 게시물 작성자(주인)
+			int second_m_no = (int) session.getAttribute("mno");// 사용자
 
-			int first_m_no = result.getMno();
-			int second_m_no = (int) session.getAttribute("mno");
+			if (first_m_no == second_m_no) {// 게시물 작성자와 사용자가 동일하다면
+				List<ChatRoomDTO> myChatRoomList = chatService.myChatRoomList(second_m_no);// 주인 참여한 모든 채팅방
 
-			ChatRoomDTO chatRoom = new ChatRoomDTO();
-			chatRoom.setFirst_m_no(first_m_no);
-			chatRoom.setSecond_m_no(second_m_no);
-			
-			int this_cr_no = chatService.tellmeCRNO(chatRoom);// 생성한 채팅방번호 알기
+				for (ChatRoomDTO chatR : myChatRoomList) {// 채팅방 참여자 이름 구하기
+					String second_m_name = memberService.selectMember(chatR.getSecond_m_no()).getName();
+					chatR.setSecond_m_name(second_m_name);
+				}
 
-			model.addAttribute("cr_no", this_cr_no);
-			model.addAttribute("food", result);
+				model.addAttribute("cr_no", 0); // 넘겨주는 cr_no은 0
+				model.addAttribute("myChatRoomList", myChatRoomList);// 주인 참여한 모든 채팅방
+				model.addAttribute("food", result);
+				return "/foodFriend/foodFriendDetail";
 
-			return "/foodFriend/foodFriendDetail";
-			
+			} else {// 게시물 작성자와 사용자가 다르다면
+				ChatRoomDTO chatRoom = new ChatRoomDTO();
+				chatRoom.setFirst_m_no(first_m_no);
+				chatRoom.setSecond_m_no(second_m_no);
+				try {// 만든 채팅방이 있을때
+					int this_cr_no = chatService.tellmeCRNO(chatRoom);
+					model.addAttribute("cr_no", this_cr_no);
+					model.addAttribute("food", result);
+					return "/foodFriend/foodFriendDetail";
+				} catch (NullPointerException e) {// 만든 채팅방이 없을때
+					model.addAttribute("cr_no", 0);// 넘겨주는 cr_no은 0
+					model.addAttribute("food", result);
+					return "/foodFriend/foodFriendDetail";
+				}
+			}
 		} else {
 			System.out.println("실패");
 			return "/foodFriend/foodFriendList";

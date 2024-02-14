@@ -39,36 +39,56 @@
 						</dl>
 					</div>
 					<div class="cont">
-						<img src="/resources/uploads/foodMate/${food.uploadName}"> 
-						<br><br> 
-						${food.contents}
+						<img src="/resources/uploads/foodMate/${food.uploadName}"> <br>
+						<br> ${food.contents}
 					</div>
 				</div>
 				<div class="bt_wrap">
-				
-				<c:if test="${sessionScope.memberNickName == food.writer}">					
-					<a href="/foodMate/foodMateDelete.do?fno=${food.fno}">삭제</a>
-					<a href="/foodMate/foodMateEditForm.do?fno=${food.fno}">수정</a>
-				</c:if>	
+
+					<c:if test="${sessionScope.memberNickName == food.writer}">
+						<a href="/foodMate/foodMateDelete.do?fno=${food.fno}">삭제</a>
+						<a href="/foodMate/foodMateEditForm.do?fno=${food.fno}">수정</a>
+					</c:if>
+
 					<a href="/foodMate/foodMateList.do" class="on">목록</a>
-					
-					<form action="/chat/createChatRoom.do" method="POST">
-						<input type="number" value="${food.mno}" name="first_m_no" readonly>					
-					<button type="submit">채팅방만들기</button>
-					</form>
-					
-					<a href="/chat/enterChatRoom.do?cr_no=${cr_no}">대화방 입장</a>
-					<!-- <a href="/foodFriendConv">1:1대화</a> -->
-					
+
+
+
+
+					<c:choose>
+						<c:when test="${cr_no eq 0}">
+							<c:choose>
+								<c:when test="${myChatRoomList != NULL}">
+									<c:forEach var="item" items="${myChatRoomList }">
+										<a href="/chat/enterChatRoom.do?cr_no=${item.cr_no}">${item.second_m_name}
+											대화방</a>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:if test="${food.mno != mno}">
+										<form action="/chat/createChatRoom.do" method="POST">
+											<input type="hidden" value="${food.mno}" name="first_m_no" readonly>
+											<button type="submit">채팅방만들기</button>
+										</form>
+									</c:if>
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<a href="/chat/enterChatRoom.do?cr_no=${cr_no}">대화방 입장</a>
+						</c:otherwise>
+					</c:choose>
+
 				</div>
 			</div>
 		</div>
 		<c:if test="${sessionScope.memberNickName == food.writer}">
-		<div>
-			<form action="/foodMate/foodMateDelete.do?fno=${food.fno}" method="GET">
-			<button type ="submit">삭제</button>
-			</form>
-		</div>
+			<div>
+				<form action="/foodMate/foodMateDelete.do?fno=${food.fno}"
+					method="GET">
+					<button type="submit">삭제</button>
+				</form>
+			</div>
 		</c:if>
 		<div class="comment_title">
 			댓글 <span>21</span>
@@ -110,7 +130,7 @@
 		</div>
 	</div>
 
-숫자: ${cr_no }
+	채팅방: ${cr_no } host: ${food.mno} guest: ${mno}
 	<%@ include file="../../views/common/footer.jsp"%>
 
 

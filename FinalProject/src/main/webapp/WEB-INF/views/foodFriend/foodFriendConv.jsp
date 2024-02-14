@@ -17,11 +17,13 @@
 
 	<div class="container">
 
-		${firstMember.mno}<br> <br> ${firstMember.name}<br> <br>
+		${firstMember.mno}<br><br> 
+		${firstMember.name}<br><br>
 
-		${secondMember.mno}<br> <br> ${secondMember.name}<br> <br>
-
-		<input id="sender" value="${secondMember.name}" readonly>
+		${secondMember.mno}<br><br> 
+		${secondMember.name}<br><br>
+		
+		<input id="sender" value="${user.name}" readonly>
 
 		<div class="chat-container">
 			<div class="chat-header">
@@ -29,16 +31,11 @@
 			</div>
 			<div id="chatBox" class="chat-box"></div>
 			<div class="chat-input">
-				<input id="messageInput" type="text" placeholder="메시지를 입력하세요."
-					value="">
+				<input id="messageInput" type="text" placeholder="메시지를 입력하세요." value="">
 				<button id="sendButton">전송</button>
 			</div>
 		</div>
-
-		<button onclick="asd()">asd</button>
 	</div>
-
-
 
 	<%@ include file="../../views/common/footer.jsp"%>
 </body>
@@ -46,8 +43,8 @@
 <script type="text/javascript">
 	let messageInput = document.getElementById('messageInput');
 	let chatBox = document.getElementById('chatBox');
-	let sender = document.getElementById("sender");
-	let a = document.getElementById("a");
+	let sender = document.getElementById('sender');
+	
 
 	let websocket = new WebSocket("ws://localhost:80/echo/${chatRoom.cr_no}");
 	websocket.onmessage = onMessage;
@@ -58,14 +55,9 @@
 		messageInput.value = null;
 	})
 
-	function asd() {
-		var senderName = sender.vlaue;
-		console.log(senderName);
-	}
-
 	function sendMessage() {
 		//사용자 이름을 가져옵니다.
-		senderName = sender.vlaue;
+		senderName = sender.value;
 		console.log(senderName);
 		// 사용자가 입력한 텍스트를 가져옵니다.
 		text = messageInput.value;
@@ -75,7 +67,13 @@
 		} else {
 
 		}
-		websocket.send(senderName + " : " + text);
+		const obj ={"cr_no":"${chatRoom.cr_no}",
+					"m_no": "${user.mno}",
+					"cm_message":text,
+					"m_name":"${user.name}"
+					}
+		str=JSON.stringify(obj)
+		websocket.send(str);
 	}
 
 	function onMessage(msg) {

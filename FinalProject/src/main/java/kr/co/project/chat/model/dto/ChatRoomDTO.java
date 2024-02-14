@@ -12,5 +12,7 @@ public class ChatRoomDTO {
 	private int second_m_no;
 	private String cr_start_date;
 	private String cr_end_date;
+	
+	private String second_m_name;
 
 }

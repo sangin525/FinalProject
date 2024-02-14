@@ -3,6 +3,7 @@
 
 
 <mapper namespace="chatMapper">
+
 	<resultMap type="chatMsg" id="chatMsgResultSet">
 		<result column="cm_no" property="cm_no"></result>
 		<result column="cr_no" property="cr_no"></result>
@@ -29,6 +30,17 @@
 		)
 	</insert>
 
+	<insert id="saveMsg" parameterType="chatMsg">
+		INSERT INTO chatMessage
+		VALUES(chatMessage_seq.NEXTVAL,
+		#{cr_no},
+		#{m_no},
+		#{cm_message},
+		SYSDATE
+		)
+	</insert>
+
+
 	<select id="tellmeCRNO" parameterType="chatRoom"
 		resultType="_int">
 		SELECT CR_NO FROM CHATROOM
@@ -36,10 +48,37 @@
 		AND second_m_no = #{second_m_no}
 	</select>
 
+	<select id="myChatRoomList" parameterType="_int"
+		resultMap="chatRoomResultSet">
+		SELECT * FROM CHATROOM
+		WHERE first_m_no = #{second_m_no}
+	</select>
+
+
+
 	<select id="enterChatRoom" parameterType="_int"
 		resultMap="chatRoomResultSet">
 		SELECT * FROM CHATROOM
 		WHERE CR_NO = #{cr_no}
+	</select>
+
+	<select id="previouseChat" parameterType="_int"
+		resultMap="chatMsgResultSet">
+		SELECT * FROM chatMessage
+		WHERE CR_NO = #{cr_no}
+		ORDER BY
+		CM_NO
+	</select>
+
+	<select id="getSendMsg" parameterType="chatMsg"
+		resultMap="chatMsgResultSet">
+		SELECT * FROM
+		(SELECT * FROM chatMessage
+		WHERE M_NO = #{m_no}
+		AND CM_MESSAGE = #{cm_message}
+		AND CR_NO = #{cr_no}
+		ORDER BY CM_NO DESC)
+		WHERE ROWNUM =1
 	</select>
 
 </mapper>

@@ -11,5 +11,8 @@ public class ChatMsgDTO {
 	private int m_no;
 	private String cm_message;
 	private String cm_send_time;
+	
+	
+	private String m_name;
 
 }
