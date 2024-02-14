@@ -1,9 +1,14 @@
 package kr.co.project.member.model.dao;
 
+import java.util.List;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.member.model.dto.MemberDTO;
+import kr.co.project.recipe.model.dto.RecipeDTO;
 
 @Repository
 public class MemberDAO {
@@ -68,6 +73,23 @@ public class MemberDAO {
 	public int secessionMember(SqlSessionTemplate sqlSession, MemberDTO member) {
 	
 		return sqlSession.update("memberMapper.secessionMember",member);
+	}
+
+	public int minusRecipeCount(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.update("memberMapper.minusRecipeCount",recipe);
+	}
+
+	public int chefCount(SqlSessionTemplate sqlSession, MemberDTO member) {
+		
+		return sqlSession.selectOne("memberMapper.chefCount",member);
+	}
+
+	public List<MemberDTO> chefRank(SqlSessionTemplate sqlSession, PageInfo pi, MemberDTO member) {
+	
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		return sqlSession.selectList("memberMapper.chefRank",member,rb);
 	}
 
 	

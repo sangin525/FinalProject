@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="foodMateMapper">
+	<resultMap type="foodMate" id="foodMateResultSet">
+		<result column="F_NO" property="fno"></result>
+		<result column="M_NO" property="mno"></result>
+		<result column="F_WRITER" property="writer"></result>
+		<result column="F_TITLE" property="title"></result>
+		<result column="F_INTRODUCTION" property="introduction"></result>
+		<result column="F_FOOD" property="food"></result>
+		<result column="F_TIME" property="time"></result>
+		<result column="F_PERSON_NUMBER" property="personNumber"></result>
+		<result column="F_AGE_LIMIT" property="ageLimit"></result>	
+		<result column="F_CONTENTS" property="contents"></result>	
+		<result column="F_IN_DATE" property="indate"></result>	
+		<result column="F_DELETE_DATE" property="deleteDate"></result>	
+		<result column="F_COMPLETE_CHECK" property="completeCheck"></result>	
+		<result column="F_VIEWS" property="views"></result>	
+		<result column="F_UPLOAD_PATH" property="uploadPath"></result>	
+		<result column="F_UPLOAD_NAME" property="uploadName"></result>	
+		<result column="F_UPLOAD_ORIGIN" property="uploadOrigin"></result>		
+	</resultMap>
+
+	<select id="selectListCount" resultType="_int">
+	SELECT COUNT(*) FROM FINDMATE
+	WHERE F_DELETE_DATE IS NULL
+	</select>
+	
+	<select id="selectListAll" resultMap="foodMateResultSet">
+	SELECT * FROM FINDMATE
+	WHERE F_DELETE_DATE IS NULL
+	</select>
+
+	<select id="detailFoodMate" resultMap="foodMateResultSet">
+	SELECT * FROM FINDMATE
+	WHERE F_NO=#{fno}
+
+	</select>
+
+	<update id="views" parameterType="foodMate">
+	UPDATE FINDMATE SET F_VIEWS = #{views}
+	WHERE F_NO = #{fno}
+	</update>
+
+	<insert id="enrollFoodMate">
+		INSERT INTO FINDMATE VALUES(findeMate_seq.NEXTVAL,
+									#{mno},
+									#{writer},
+									#{title},
+									#{introduction},
+									#{food},
+									#{time},
+									#{personNumber},
+									#{ageLimit},
+									#{contents},
+									SYSDATE,
+									null,
+									null,
+									0,
+									#{uploadPath},
+									#{uploadName},
+									#{uploadOrigin})
+	</insert>
+
+	<select id="selectFileName" resultType="string">
+	SELECT F_UPLOAD_NAME FROM FINDMATE
+	WHERE F_NO = #{fno}
+	</select>
+
+	<update id="editBoard" parameterType="foodMate">
+		UPDATE FINDMATE SET F_TITLE = #{title},
+							F_INTRODUCTION = #{introduction},
+							F_FOOD = #{food},
+							F_TIME = #{time},
+							F_PERSON_NUMBER = #{personNumber},
+							F_AGE_LIMIT = #{ageLimit},
+							F_CONTENTS = #{contents},
+							F_UPLOAD_PATH = #{uploadPath},
+							F_UPLOAD_NAME = #{uploadName},
+							F_UPLOAD_ORIGIN = #{uploadOrigin}
+							WHERE F_NO = #{fno}							
+	</update>
+	
+	<update id="editBoardEmptyUpload" parameterType="foodMate">
+		UPDATE FINDMATE SET F_TITLE = #{title},
+							F_INTRODUCTION = #{introduction},
+							F_FOOD = #{food},
+							F_TIME = #{time},
+							F_PERSON_NUMBER = #{personNumber},
+							F_AGE_LIMIT = #{ageLimit},
+							F_CONTENTS = #{contents}
+							WHERE F_NO = #{fno}
+	</update>
+	
+	<update id="deleteBoard" parameterType="foodMate">
+		UPDATE FINDMATE SET F_DELETE_DATE = SYSDATE
+		WHERE F_NO= #{fno}
+	</update>
+
+</mapper>

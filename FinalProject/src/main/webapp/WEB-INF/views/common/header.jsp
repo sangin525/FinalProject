@@ -8,9 +8,14 @@
 		<%@ include file="./nav.jsp"%>
 		<div class="main-logo">
 		<a href="/">logo</a>
-		<form>
-			<input type="text" class="searchCategory">
-			<button type="button" class="searchBtn">검색</button>
+		<form action="${sessionScope.action}" method="GET" role="search" >
+			<input type="search" class="searchCategory" name="searchText">
+			<button type="submit" class="searchBtn">검색</button>
+			<select class="btn btn-outline-success" name="searchCategory" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
+			      <option value="title">제목</option>
+			      <option value="ingredientCategory">재료</option>
+			      <option value="memberNickName">작성자</option>
+			</select>
 		</form>
 		</div>
 		<div id="login_logout">
@@ -20,7 +25,9 @@
 					<a href="/recipe/addRecipeForm.do" class="Main_a">레시피 등록</a>
 					<a href="/member/MyPageForm.do" class="Main_a">마이페이지</a>
 					<a href="/member/logOut.do" class="Main_a">로그아웃</a>
+				
 					<a href="/memberList">관리자페이지</a>
+					
 
 				</c:when>
 				<c:otherwise>

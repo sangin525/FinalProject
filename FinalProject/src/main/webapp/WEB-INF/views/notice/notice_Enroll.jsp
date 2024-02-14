@@ -41,7 +41,7 @@
             </div>
             <div class="bt_wrap">
                 <a href="noticeDetail" class="on">등록</a>
-                <a href="noticeBoardList" onclick="history.back()">취소</a>
+                <a href="noticeBoard" onclick="history.back()">취소</a>
             </div>
         </div>
     </div>

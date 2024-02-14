@@ -17,7 +17,7 @@
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
-
+<div class="adminContainer">
 	<div class="memberTable">
 		<table>
 			<thead>
@@ -33,7 +33,7 @@
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty memberList}">
+					<c:when test="${empty list}">
 						<tr>
 							<td>1</td>
 							<td>홍길동</td>
@@ -45,9 +45,18 @@
 						</tr>
 					</c:when>
 					<c:otherwise>
+						<c:forEach var="item" items="${list}">
 						<tr>
-							<td colspan="7">회원이 없습니다.</td>
+							<td>${row }</td>
+							<td>${item.name}</td>
+							<td>${item.email }</td>
+							<td>${item.phone }</td>
+							<td>${item.address }</td>
+							<td>실버</td>
+							<td>1000</td>
 						</tr>
+						<c:set var="row" value="${row -1}"/>
+						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 
@@ -89,7 +98,8 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
-
+</div>
+<%@ include file="../../views/common/footer.jsp" %>
 </body>
 
 </html>

@@ -36,10 +36,10 @@ public class IndexController {
 		return "ranking/chef";
 	}
 
-	@RequestMapping("/member_addRecipe")
-	public String addRecipePage() {
-		return "member/addRecipe";
-	}
+//	@RequestMapping("/member_addRecipe")
+//	public String addRecipePage() {
+//		return "member/addRecipe";
+//	}
 	
 	@RequestMapping("/after_addRecipe")
 	public String afterAddRecipe() {
@@ -158,8 +158,38 @@ public class IndexController {
 	public String productRegistrationForm() {
 		return "admin/productRegistration";
 	}
+
 	@RequestMapping("productPayment")
 	public String productPaymentForm() {
 		return "foodStore/productPayment";
+	}
+
+	
+	@GetMapping("/productList")
+	public String productListForm() {
+		return "admin/productList";
+	}
+	
+	@GetMapping("/orderList")
+	public String orderListForm() {
+		return "admin/orderList";
+	}
+	
+	@GetMapping("/delivery")
+	public String deliveryForm() {
+		return "admin/delivery";
+	}
+	@GetMapping("/managingPosts")
+	public String managingPostsForm() {
+		return "admin/managingPosts";
+	}
+
+	@GetMapping("/eventEnroll")
+	public String eventEnrollForm() {
+		return "admin/eventEnroll";
+	}
+	@GetMapping("/productAnswer")
+	public String productAnswerForm() {
+		return "admin/productAnswer";
 	}
 }
