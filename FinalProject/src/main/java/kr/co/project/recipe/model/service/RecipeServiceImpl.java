@@ -1,7 +1,10 @@
 package kr.co.project.recipe.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
+import javax.servlet.http.HttpSession;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +24,46 @@ import kr.co.project.recipe.model.dto.RecipeDTO;
 @Service
 public class RecipeServiceImpl implements RecipeService{
 
+//		private static final String SESSION_KEY= "recipe";
+//		
+//		public List<RecipeDTO> getReadRecipe(HttpSession session){
+//			List<RecipeDTO> readRecipe = (List<RecipeDTO>) session.getAttribute(SESSION_KEY);
+//			
+//			if(readRecipe==null) {
+//				readRecipe = new ArrayList<>();
+//			}
+//			return readRecipe;
+//		}
+//		
+//		public void addReadRecipe(HttpSession session,RecipeDTO recipe) {
+//			List<RecipeDTO> readRecipe = getReadRecipe(session);
+//			
+//			readRecipe.removeIf(r -> r.getPostId().equals(recipe.getPostId()));
+//		
+//			readRecipe.add(0,recipe);
+//			
+//			session.setAttribute(SESSION_KEY, readRecipe);
+//		}
+		
+//		private List<RecipeDTO> recipe = new ArrayList<>();
+//		
+//		public List<RecipeDTO> getRecipe(){
+//			return recipe;
+//		}
+//		
+//		public void addRecipe(RecipeDTO reicpe) {
+//			
+//			recipe.removeIf(r -> r.getPostId().equals(reicpe.getPostId()));
+//			
+//			recipe.add(0,reicpe);
+//			
+//			if(recipe.size()>MAX_RECENT_POSTS) {
+//				recipe.remove(MAX_RECENT_POSTS);
+//			}
+//		}
+		
+		
+		
 	// DB 연결에 관련된 템플릿
 		@Autowired
 		private SqlSessionTemplate sqlSession;
@@ -49,11 +92,16 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public int addRecipe(RecipeDTO recipe, List<RecipeDTO> recipeList) {
+	public int addRecipe(RecipeDTO recipe, List<RecipeDTO> recipeList, MemberDTO member) {
 		
 		int result = memberDao.plusRecipeCount(sqlSession, recipe.getMno());
-		int result2 = recipeDao.addRecipe(sqlSession, recipe, recipeList);
-		if(result==1 && result2==1) {
+		int result2 = memberDao.selectMember2(sqlSession, member);
+		member.setRecipeCount(result2);
+		System.out.println(result2);
+		int result3 = recipeDao.addRecipe(sqlSession, recipe, recipeList);
+		
+		int result4 = memberDao.gradeCheck(sqlSession,member);
+		if(result==1 && result2==1 && result3==1 && result4==1) {
 		
 			
 		}
@@ -232,6 +280,16 @@ public class RecipeServiceImpl implements RecipeService{
 	public int editRecipeEmpty(RecipeDTO recipe) {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	public int recentRecipe(RecipeDTO recipe) {
+		
+		return recipeDao.recentRecipe(sqlSession,recipe);
+	}
+
+	public List<RecipeDTO> recentRecipeList(RecipeDTO recipe) {
+		
+		return recipeDao.recentRecipeList(sqlSession,recipe);
 	}
 
 	

@@ -15,6 +15,7 @@
 
 	<div class="myPage">
 		<h2>마이페이지</h2>
+		<div class="myPageContain">
 		<div class="container">
 
 	<%@ include file="../../views/myPage/myPageMenu.jsp"%>
@@ -60,10 +61,12 @@
 					</div>
 				</div>
 			</div>
-
+		</div>
+		<div class="rightBar">
+			<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
+		</div>
 		</div>
 	</div>
-
 
 
 	<%@ include file="../../views/common/footer.jsp"%>

@@ -110,9 +110,13 @@
 			</div>
 		</div>
 	</div>
-	<div class="topBtnDiv">
-		<button class="topBtn">맨위로</button>
-	</div>
+		<div class="topBtnDiv">
+			<div class="latestProduct">
+				<p>최근본상품</p>
+			</div>
+			<br><br>
+			<button class="topBtn" type="button" onclick="topScroll()">맨위로</button>
+		</div>
 
 	<%@ include file="../../views/common/footer.jsp"%>
 

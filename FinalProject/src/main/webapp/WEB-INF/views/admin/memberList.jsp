@@ -28,7 +28,7 @@
 					<th>전화번호</th>
 					<th>주소</th>
 					<th>회원등급</th>
-					<th>포인트</th>
+					<th>올린 레시피 수</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -52,8 +52,8 @@
 							<td>${item.email }</td>
 							<td>${item.phone }</td>
 							<td>${item.address }</td>
-							<td>실버</td>
-							<td>1000</td>
+							<td>${item.grade }</td>
+							<td>${item.recipeCount }</td>
 						</tr>
 						<c:set var="row" value="${row -1}"/>
 						</c:forEach>

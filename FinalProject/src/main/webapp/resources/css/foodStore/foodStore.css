@@ -959,7 +959,24 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 .topBtnDiv {
-	position: pixed;
-	bottom: 10px;
-	right: 10px;
+	position: fixed;
+	bottom: 200px;
+	right: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.latestProduct {
+	width: 130px;
+	background-color: gray;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.topBtn {
+	width: 50px;
+	height: 50px;
+	border-radius: 50px;
 }
