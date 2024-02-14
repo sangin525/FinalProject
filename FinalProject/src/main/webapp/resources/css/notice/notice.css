@@ -380,7 +380,7 @@ a {
 }
 
 .comment {
-	flex-grow: 1;
+	flex-grow: 2;
 	display: flex;
 	flex-direction: column;
 }
