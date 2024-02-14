@@ -4,7 +4,7 @@
 
 <div class="mainContainer">
 		<div class="recently-div">
-		<p>최근에 본 레시피</p>
+		<p class="main-Title">최근에 본 레시피</p>
 		<ul class="recentlyList">
 		<li class="recently-li">
 			<div class="recently-img">

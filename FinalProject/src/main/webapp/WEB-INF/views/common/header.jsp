@@ -4,20 +4,16 @@
 
 <header>
 
-	<div id="common_header">
-		<%@ include file="./nav.jsp"%>
+	<div id="common_header" class="common_header">
 		<div class="main-logo">
-		<a href="/">logo</a>
-		<form action="${sessionScope.action}" method="GET" role="search" >
+		<a href="/"><img src="/resources/uploads/로고사진.png"></a>
+		<form action="${sessionScope.action}" method="GET" role="search" class="">
 			<input type="search" class="searchCategory" name="searchText">
 			<button type="submit" class="searchBtn">검색</button>
-			<select class="btn btn-outline-success" name="searchCategory" id="dropdownMenuButton" aria-haspopup="true" aria-expanded="false">
-			      <option value="title">제목</option>
-			      <option value="ingredientCategory">재료</option>
-			      <option value="memberNickName">작성자</option>
-			</select>
 		</form>
 		</div>
+		
+		
 		<div id="login_logout">
 			<c:choose>
 				<c:when test="${sessionScope.memberName != null}">

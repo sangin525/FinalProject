@@ -61,7 +61,6 @@ a.active {
 .recipeRanking{
 	width: 282px;
 	list-style: none;
-	margin: 0 12px 40px 0;
 	position: relative; /* 오타 수정: realtive -> relative */
 	flex: 0 0 24%; /* 100%를 4로 나눈 값 */
     max-width: 24%; /* 100%를 4로 나눈 값 */
