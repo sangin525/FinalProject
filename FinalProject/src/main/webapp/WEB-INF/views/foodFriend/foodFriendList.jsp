@@ -31,9 +31,8 @@
                     <div class="date">작성일</div>
                     <div class="count">조회</div>
                 </div>
-            		<c:forEach var="item" items="${list }">
                 
-            		
+            		<c:forEach var="item" items="${list }">	
                  <div onclick="location.href='/foodMate/foodMateDetail.do?fno=${item.fno}'">
                     <div class="num">${row}</div>
                     <div class="title">${item.title }</div>
