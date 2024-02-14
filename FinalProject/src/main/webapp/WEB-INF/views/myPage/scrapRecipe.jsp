@@ -28,7 +28,9 @@
 					<br>
 					<div class="result">
 						<c:choose>
+
 							<c:when test="${empty list}">
+
 									<div class="result">
 								<a href="after_addRecipe">
 									<img src="/resources/uploads/고양이그림.png" class="recipe-image">

@@ -7,8 +7,10 @@
     <a href="/recipe/rankingRecipe.do">레시피 랭킹</a>
     <a href="/recipe/categoryList.do">분류</a>
     <a href="/products">상품 구매하기</a>
+    <a href="/noticeBoard">게시판</a>
     <a href="/foodMate/foodMateList.do">밥친구</a>
     <a href="/admin/noticeList">게시판</a>
+
   </div>
 </div>
 
