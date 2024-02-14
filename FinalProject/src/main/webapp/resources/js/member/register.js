@@ -71,6 +71,7 @@ function execDaumPostcode() {
 
             // 커서를 상세주소 필드로 이동한다.
             document.getElementById("detailAddress").focus();
+		
         }
     }).open();
 }

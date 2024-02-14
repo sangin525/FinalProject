@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class IndexController {
+	
 	@RequestMapping("/")
 	public String indexPage() {
 		return "home";
@@ -45,7 +46,7 @@ public class IndexController {
 	public String afterAddRecipe() {
 		return "member/afterAddRecipe";
 	}
-	@RequestMapping("/notice_Board")
+	@RequestMapping("/member/notice_Board")
 	public String noticePage() {
 		return "notice/notice_Board";
 	}
@@ -57,7 +58,7 @@ public class IndexController {
 	
 	@RequestMapping("/products")
 	public String foodStorePage() {
-		return "foodStore/products";
+		return "redirect:/goods/list.do";
 	}
 	
 	@RequestMapping("/productDetail")
@@ -65,6 +66,12 @@ public class IndexController {
 		return "foodStore/productDetail";
 	}
 	
+
+	@RequestMapping("/sgjGoods")
+	public String sgjGoodsPage() {
+		return "foodStore/sgjGoods";
+	}
+
 //	@RequestMapping("/foodFriend")
 //	public String friendPage() {
 //		return "foodFriend/foodFriendList";
@@ -111,22 +118,40 @@ public class IndexController {
 	public String enrollForm() {
 		return "foodFriend/foodFriendEnroll";
 	}
-	@GetMapping("foodFriendDetail")
-	public String detailForm() {
-		return "foodFriend/foodFriendDetail";
-	}
+
+//	@GetMapping("foodFriendDetail")
+//	public String detailForm() {
+//		return "foodFriend/foodFriendDetail";
+//	}
 	@GetMapping("foodFriendEdit")
 	public String editForm() {
 		return "foodFriend/foodFriendEdit";
 	}
 
-	@GetMapping("foodFriendList")
-	public String listForm() {
-		return "foodFriend/foodFriendList";
-	}
-	@GetMapping("foodFriendConv")
+//	@GetMapping("foodFriendList")
+//	public String listForm() {
+//		return "foodFriend/foodFriendList";
+//	}
+	@RequestMapping("/foodFriendConv")
 	public String ConvForm() {
 		return "foodFriend/foodFriendConv";
+	}
+	
+	@GetMapping("noticeEnroll")
+	public String noticeEnrollForm() {
+		return "notice/notice_Enroll";
+	}
+	@GetMapping("noticeDetail")
+	public String noticeDetailForm() {
+		return "notice/notice_Detail";
+	}
+	@GetMapping("noticeEdit")
+	public String noticeEditForm() {
+		return "notice/notice_Edit";
+	}
+	@GetMapping("noticeBoard")
+	public String noticeBoardForm() {
+		return "notice/notice_Board";
 	}
 	
 	@GetMapping("memberList")
@@ -138,6 +163,12 @@ public class IndexController {
 	public String productRegistrationForm() {
 		return "admin/productRegistration";
 	}
+
+	@RequestMapping("productPayment")
+	public String productPaymentForm() {
+		return "foodStore/productPayment";
+	}
+
 	
 	@GetMapping("/productList")
 	public String productListForm() {
@@ -161,14 +192,13 @@ public class IndexController {
 	public String adminFreeForm() {
 		return "admin/adminFree";
 	}
+
 //	@GetMapping("/adminEvent")
 //	public String adminEventForm() {
 //		return "admin/adminEvent";
 //	}
-	@GetMapping("/noticeEnroll")
-	public String noticeEnrollForm() {
-		return "admin/noticeEnroll";
-	}
+
+
 	@GetMapping("/eventEnroll")
 	public String eventEnrollForm() {
 		return "admin/eventEnroll";

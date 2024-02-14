@@ -17,29 +17,23 @@ public class ChefController {
 
 	@Autowired
 	private ChefServiceImpl chefService;
-	
-	
-	
-	
-	
+
 	@PostMapping("/register.do")
 	public String register(ChefDTO chef, MemberDTO member, HttpSession session) {
-		
-		int mno= (int) session.getAttribute("mno");
-		
+
+		int mno = (int) session.getAttribute("mno");
+
 		System.out.println(mno);
-		int result = chefService.registerChef(mno);	
-		if(result==1) {			
+		int result = chefService.registerChef(mno);
+		if (result == 1) {
 			chef.setCno(mno);
 			System.out.println(chef.getCno());
-			System.out.println("쉐프계정 생성 성공");			
+			System.out.println("쉐프계정 생성 성공");
 			return "home";
-		}else {
+		} else {
 			System.out.println("쉐프계정 생성 실패");
 			return "common/error";
 		}
 	}
-	
-	
-	
+
 }

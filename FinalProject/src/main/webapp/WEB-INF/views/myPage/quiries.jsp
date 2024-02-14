@@ -16,6 +16,7 @@
 
 	<div class="myPage">
 		<h2>마이페이지</h2>
+		<div class="myPageContain">
 		<div class="container">
 				<%@ include file="../../views/myPage/myPageMenu.jsp"%>
 
@@ -31,10 +32,10 @@
 
 					<div class="cont_list">
 						<div class="result_none">
-							<img src="resources/uploads/문의.png">
+							<img src="/resources/uploads/문의.png">
 							<p>궁금하신 사항은 언제든지 문의하세요!</p>
 							최선을 다해 답변 드리겠습니다.<br>
-							<button id="q_modal_btn">문의하기</button>
+							<button id="q_modal_bt" class="q_modal_btn">문의하기</button>
 							<br>
 
 							<div class="questionsModal" id="q_modal">
@@ -103,7 +104,10 @@
 
 				</div>
 			</div>
-
+			</div>
+			<div class="rightBar">
+			<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
+		</div>
 		</div>
 	</div>
 
