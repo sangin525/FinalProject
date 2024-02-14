@@ -48,7 +48,7 @@
             </div>
             
             
-            <div class="board_page">
+            <!-- <div class="board_page">
                 <a href="#" class="bt first"><<</a>
                 <a href="#" class="bt prev"><</a>
                 <a href="#" class="num on">1</a>
@@ -58,7 +58,7 @@
                 <a href="#" class="num">5</a>
                 <a href="#" class="bt next">></a>
                 <a href="#" class="bt last">>></a>
-            </div>
+            </div> -->
             <div class="bt_wrap">
                 <a href="/foodMate/addFoodMateForm.do" class="on">등록</a>
                

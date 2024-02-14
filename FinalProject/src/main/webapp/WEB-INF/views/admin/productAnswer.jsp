@@ -29,23 +29,39 @@
 		<form><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
 			<div class="modal_container">
 			<input type="hidden" class="boardNum" id="boardNum" value=""> <!-- idx 값 들어감 -->
-				<div class="boardTitle_modal">
-					<label for="boardTitle">제목 : </label>
-					<input type="text" class="boardTitle" id="boardTitle" value="">			
-				</div>
-				<div class="boardWriter_modal">
-					<label for="boardWriter">작성자:</label>
-					<input type="text" class="boardWriter" id="boardWriter" value="">
-				</div>
-				<div class="boardContent_modal">
-					<label for="boardContent">문의사항:</label>
-					<textarea class="boardContent" id="boardContent" disabled></textarea>
-				</div>
-				<div>
-					<label for="boardAnswer">답변:</label>
-					<textarea class="boardAnswer" id="boardAnswer"></textarea>
-				</div>
-				<div class="modal_btn">
+				<table class="questionsTable">
+								<colgroup>
+									<col style="width:15%">
+									<col style="width:85%">
+								</colgroup>
+								<tbody>
+									<tr>
+										<th>제목</th>
+										<td>
+											<input type="text" class="boardTitle" id="boardTitle" value="">
+										</td>
+									</tr>
+									<tr>
+										<th>작성자</th>
+										<td>
+											<input type="text" class="boardWriter" id="boardWriter" value="">
+										</td>
+									</tr>
+									<tr>
+										<th>내용</th>
+										<td>
+			                                 <textarea class="boardContent" id="boardContent" value="" disabled></textarea>
+										</td>
+									</tr>
+									<tr>
+										<th>답변</th>
+										<td>
+			                                 <textarea class="boardAnswer" id="boardAnswer"></textarea>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+							<div class="modal_btn">
 					<button type="submit">작성</button>
 					<button class="close" type="button">취소</button>
 				</div>

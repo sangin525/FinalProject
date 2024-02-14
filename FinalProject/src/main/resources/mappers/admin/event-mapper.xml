@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="eventMapper">
+	<resultMap type="admin" id="eventResultSet">
+		<result column="E_NO" property="eno"></result>
+		<result column="M_NO" property="mno"></result>
+		<result column="E_TITLE" property="e_title"></result>
+		<result column="E_CONTENTS" property="e_contents"></result>
+		<result column="E_FILE_PATH" property="e_file_path"></result>
+		<result column="E_FILE_NAME" property="e_file_name"></result>
+		<result column="E_FILE_ORIGIN" property="e_file_origin"></result>
+		<result column="E_IN_DATE" property="e_indate"></result>
+		<result column="E_UPDATE_DATE" property="e_updateDate"></result>
+		<result column="E_DELETE_DATE" property="e_deleteDate"></result>
+		<result column="E_VIEWS" property="e_views"></result>	
+	</resultMap>
+	
+	<select id="eventListCount" resultType="_int">
+	SELECT COUNT(*) FROM EVENTLIST
+	WHERE E_DELETE_DATE IS NULL
+	</select>
+	
+	<select id="eventListAll" resultMap="eventResultSet">
+	SELECT * FROM EVENTLIST
+	WHERE E_DELETE_DATE IS NULL
+	ORDER BY E_IN_DATE DESC
+	</select>
+	
+	<insert id="enrollEvent">
+		INSERT INTO EVENTLIST VALUES(event_seq.NEXTVAL,
+							#{mno},
+							#{e_title},
+							#{e_contents},
+							#{e_file_path},
+							#{e_file_name},
+							#{e_file_origin},
+							SYSDATE,
+							NULL,
+							NULL,
+							0)	
+	</insert>
+	
+	
+	
+	
+</mapper>

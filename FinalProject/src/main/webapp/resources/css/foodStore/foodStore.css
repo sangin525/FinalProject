@@ -900,7 +900,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 	min-height: 400px;
 }
 
-#q_modal_btn {
+.modal_btn button {
 	float: right;
 	width: 100px;
 	height: 40px;
@@ -956,4 +956,10 @@ textarea::-webkit-scrollbar-thumb:hover {
 	background-color: white;
 	margin: 10px 10px 10px 0;
 	cursor: pointer;
+}
+
+.topBtnDiv {
+	position: pixed;
+	bottom: 10px;
+	right: 10px;
 }

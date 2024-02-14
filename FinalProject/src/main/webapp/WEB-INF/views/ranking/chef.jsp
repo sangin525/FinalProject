@@ -17,91 +17,24 @@
 <%@ include file="../../views/ranking/rankingNav.jsp"%>
 	
 	<ul class="recipeList">
+		<c:choose>
+			<c:when test="${empty list}">
+				<h3 class = "text-center">등록된 쉐프가 없습니다.</h3>
+			</c:when>
+			<c:otherwise>
+				<c:forEach var="item" items="${list}">
 		<li class="chefRanking">
 			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
+			<p class="chefNum"><b>${row}</b></p>
+				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"
+				onclick="location.href='/member/chefDetail?mno=${item.mno}'" ></a>
 			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		<li class="chefRanking">
-			<div class="chefRank">
-			<p class="chefNum"><b>1</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"></a>
-			</div>
-			<div class="chefName">쉐프이름</div>
-		</li>
-		
+			<div class="chefName">${item.nickname}</div>
+		</li>		
+		<c:set var="row" value="${row -1}"/>
+				</c:forEach>
+			</c:otherwise>
+		</c:choose>
 	</ul>
 	</div>
 </div>

@@ -63,6 +63,21 @@ public class FoodMateDAO {
 		
 		return sqlSession.update("foodMateMapper.deleteBoard",fno);
 	}
+
+	public int addComment(SqlSessionTemplate sqlSession, FoodMateDTO food) {
+		
+		return sqlSession.insert("foodMateCommentMapper.addComment",food);
+	}
+
+	public List<FoodMateDTO> selectComment(SqlSessionTemplate sqlSession, int fno) {
+		
+		return sqlSession.selectList("foodMateCommentMapper.selectComment",fno);
+	}
+
+	public int commentCount(SqlSessionTemplate sqlSession, int fno) {
+		
+		return sqlSession.selectOne("foodMateCommentMapper.commentCount",fno);
+	}
 	
 	
 }

@@ -67,7 +67,8 @@
 								<c:otherwise>
 									<c:if test="${food.mno != mno}">
 										<form action="/chat/createChatRoom.do" method="POST">
-											<input type="hidden" value="${food.mno}" name="first_m_no" readonly>
+											<input type="hidden" value="${food.mno}" name="first_m_no"
+												readonly>
 											<button type="submit">채팅방만들기</button>
 										</form>
 									</c:if>
@@ -82,6 +83,7 @@
 				</div>
 			</div>
 		</div>
+
 		<c:if test="${sessionScope.memberNickName == food.writer}">
 			<div>
 				<form action="/foodMate/foodMateDelete.do?fno=${food.fno}"
@@ -90,41 +92,42 @@
 				</form>
 			</div>
 		</c:if>
+
 		<div class="comment_title">
-			댓글 <span>21</span>
+			댓글 <span>${commentCount }</span>
 
 		</div>
 		<div class="commentList">
+			<c:forEach var="item" items="${comment}">
+				<div class="reply_list">
+					<div class="media-left">
+						<a href="#"> <img class="profile_picture"
+							src="/resources/uploads/레시피등록대표사진.gif"></a>
+					</div>
+					<div class="media-body">
+						<h4 class="media-heading">
+							<b class="info_name_f">${item.commentWriter}</b> <span>${item.commentIndate}</span>
+							<a onclick="#">답글</a>
+						</h4>
+						${item.comment} <br>
+					</div>
 
-			<div class="reply_list">
-				<div class="media-left">
-					<a href="#"> <img class="profile_picture"
-						src="/resources/uploads/레시피등록대표사진.gif"></a>
+
 				</div>
-				<div class="media-body">
-					<h4 class="media-heading">
-						<b class="info_name_f">바비</b> <span>2024-1-29 07:32</span> <a
-							onclick="#">답글</a>
-					</h4>
-					바비 <br>
-				</div>
-
-
-			</div>
+			</c:forEach>
 		</div>
 
 		<div class="comment-section">
 			<h2>댓글 남기기</h2>
-			<form id="comment-form">
+			<form id="comment-form" action="/foodMate/comment.do?fno=${food.fno}"
+				method="post">
 				<div class="commentPic">
 					<img src="/resources/uploads/레시피등록대표사진.gif">
 				</div>
 				<div class="comment">
-
-
 					<textarea class="commentTextbox" name="comment"
 						placeholder="댓글을 작성하세요."></textarea>
-					<button class="comment_submit">댓글작성</button>
+					<button type="submit" class="comment_submit">댓글작성</button>
 				</div>
 			</form>
 		</div>

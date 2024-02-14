@@ -21,17 +21,15 @@
 		<div id="login_logout">
 			<c:choose>
 				<c:when test="${sessionScope.memberName != null}">
-
 					<a href="/recipe/addRecipeForm.do" class="Main_a">레시피 등록</a>
 					<a href="/member/MyPageForm.do" class="Main_a">마이페이지</a>
 					<a href="/member/logOut.do" class="Main_a">로그아웃</a>
 					<a href="/memberList">관리자페이지</a>
-
 				</c:when>
 				<c:otherwise>
 
-					<a href="/member/loginForm.do">로그인</a>
-					<a href="/member/registerForm.do">회원가입</a>
+					<a href="/member/loginForm.do" class="Main_a">로그인</a>
+					<a href="/member/registerForm.do" class="Main_a">회원가입</a>
 
 				</c:otherwise>
 			</c:choose>

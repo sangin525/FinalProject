@@ -150,9 +150,13 @@ public class RecipeController {
 		
 		List<RecipeDTO> scrapList = recipeService.scrapRecipeList(recipe,pi);
 			for(RecipeDTO item:scrapList) {
-				recipe.setMno(item.getMno());
+				
+				recipe.setMno((int) session.getAttribute("mno"));
 				recipe.setRno(item.getRno());
 				
+				String scrapDate = item.getScrapDate().substring(0,10);
+				item.setScrapDate(scrapDate);
+
 				List<RecipeDTO> list = recipeService.selectScrapRecipe(recipe,pi);
 				
 				model.addAttribute("list",list);
@@ -246,61 +250,79 @@ public class RecipeController {
 		
 		RecipeDTO result = recipeService.editFormRecipe(rno);
 		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
-		
+		RecipeDTO seqResult = recipeService.seqSelectRecipe(rno);
 		if(!Objects.isNull(result)) {
-			if(!Objects.isNull(ingreresult)) {	
-				System.out.println("성공");
-			}else {
-				System.out.println("실패");
-			}		
+			if(!Objects.isNull(ingreresult)) {
+				if(!Objects.isNull(seqResult)) {					
+					System.out.println("성공");				
+				}else {
+					System.out.println("실패");
+				}					
+			}	
 			model.addAttribute("recipe",result);
-			model.addAttribute("ingre",result);		
+			model.addAttribute("ingre",result);	
+			model.addAttribute("seq",seqResult);
 			}
-			return "member/recipe";
+			return "member/editRecipe";
 		}
 	
 	// 레시피 수정
-//	@PostMapping("/edit.do")
-//	public String editRecipe(List<MultipartFile> multiFileList,RecipeDTO recipe,HttpSession session) {
-//		String writer = recipeService.selectWriter(recipe.getRno());
-//		String loginWriter = (String) session.getAttribute("memberNickName");
-//		
-//		int result = 0;
-//		
-//		if(writer.equals(loginWriter) && !multiFileList.isEmpty()) {
-//			
-//			String fileName = recipeService.selectFileName(recipe.getRno());
-//			
-//			boolean deleteFile = MultiUploadFile.deleteFile(fileName,fileName);
-//			
-//			if(deleteFile) {
-//				MultiUploadFile.uploadMethod(multiFileList, loginWriter, recipe, null, null, session, fileName, null);
-//				result = recipeService.editFormRecipe(recipe);
-//			}
-//		}else if(writer.equals(loginWriter) && multiFileList.isEmpty()) {
-//			result = recipeService.editRecipeEmptyUpload(recipe);
+	@PostMapping("/editRecipe.do")
+	public String editRecipe(List<MultipartFile> multiFileList,RecipeDTO recipe,HttpSession session) {
+				
+		int result = 0;
+		
+		if(!multiFileList.isEmpty()) {
+			List<RecipeDTO> fileName = recipeService.selectFileName(recipe.getRno());
+			List<RecipeDTO> sequenceFileName = recipeService.selectPhotoList(recipe.getRsno());
+			System.out.println("레시피번호 가져오기"+recipe.getRno());
+			System.out.println("레시피시퀀스 번호 가져오기"+recipe.getRsno());
+			
+			boolean deleteFiles = MultiUploadFile.deleteFile(fileName,sequenceFileName);
+			sequenceFileName.remove(0);
+			
+			if(deleteFiles) {
+				MultiUploadFile.uploadMethod(multiFileList, null, BOARD_NAME, recipe, null, null, session, BOARD_NAME, sequenceFileName, null);
+				
+				recipe.setUploadPath(sequenceFileName.get(0).getUploadPath());
+				recipe.setUploadName(sequenceFileName.get(0).getUploadName());		
+				recipe.setUploadOriginName(sequenceFileName.get(0).getUploadOriginName());
+				
+				recipe.setFileName(sequenceFileName.get(1).getFileName());
+				recipe.setFileOrigin(sequenceFileName.get(1).getFileOrigin());
+				recipe.setFilePath(sequenceFileName.get(1).getFilePath());
+				
+				result = recipeService.editRecipe(recipe);
+			}
+		}
+// 		else if(multiFileList.isEmpty()) {
+//			result = recipeService.editRecipeEmpty(recipe);
 //		}
-//		
-//		if(result== 1) {
-//			System.out.println("수정성공");
-//			return "/recipe/categoryList.do";
-//		}else {
-//			System.out.println("수정실패");
-//			return "/recipe/categoryList.do";
-//		}
-//	}
+		
+		if(result == 1) {
+			System.out.println("수정성공");
+			return "redirect:/recipe/categoryList.do";
+		}else {
+			System.out.println("수정실패");
+			return "home";
+		}		
+	}
+	
 	
 	// 레시피 삭제
 	@GetMapping("/delete.do")
 	public String deleteRecipe(@RequestParam(value="rno") int rno,
-									HttpSession session) {
+								RecipeDTO recipe,
+								HttpSession session) {
+		recipe.setRno(rno);
+		recipe.setMno((int) session.getAttribute("mno"));
 		String writer = recipeService.selectWriter(rno);
-	
+		
 		String loginWriter = (String) session.getAttribute("memberNickName");
 		int result = 0;
 		
 		if(writer.equals(loginWriter)) {		
-			result = recipeService.deleteRecipe(rno);
+			result = recipeService.deleteRecipe(recipe);
 			if(result>0) {
 				System.out.println("삭제성공");
 			}else {

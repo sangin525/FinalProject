@@ -1,6 +1,7 @@
 .adminContainer {
 	height: 100%;
 }
+
 .side-menu {
 	top: 50px;
 	width: 45px;
@@ -8,7 +9,7 @@
 	background: #ff5858;
 	border-right: 1px solid rgba(0, 0, 0, 0.07);
 	bottom: 50px;
-	height: 77.5%;
+	height: 100%;
 	margin-bottom: -70px;
 	margin-top: 0px;
 	padding-bottom: 70px;
@@ -58,7 +59,7 @@
 	background: white;
 	border-right: 1px solid rgba(0, 0, 0, 0.07);
 	bottom: 50px;
-	height: 85.5%;
+	height: 100%;
 	margin-bottom: -70px;
 	margin-top: 0px;
 	padding-bottom: 0px;
@@ -454,6 +455,12 @@ tr:last-child td:last-child {
 	margin-bottom: 20px;
 }
 
+.update-delete-btn button {
+	width: 100px;
+	height: 40px;
+	background-color: white;
+}
+
 /* 게시글 수정 모달창 */
 .board_modal {
 	display: none; /* Hidden by default */
@@ -479,3 +486,49 @@ tr:last-child td:last-child {
 	overflow-y: auto; /* 세로 스크롤바 표시 */
 	max-height: 70vh; /* 모달 창의 최대 높이를 뷰포트 높이의 90%로 설정 */
 }
+
+/*문의사항 답변 모달*/
+.questionsTable th {
+	padding: 13px 0 7px 25px;
+    font-weight: bold;
+    border-bottom: 1px solid #dbdbdb;
+    background: #fbfbfb;
+    color: black;
+    text-align: left;
+    vertical-align: top;
+}
+
+.questionsTable td {
+	height: 32px;
+    margin: 0;
+    padding: 7px 0 7px 15px;
+    border-bottom: 1px solid #dbdbdb;
+    background: #ffffff;
+}
+
+.questionsTable input {
+	width: 312px;
+    padding: 0 10px;
+    outline: none;
+    font-size: 12px;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 33px;
+    color: #333333;
+    border: 1px solid #d6d6d6;
+    line-height: 33px;
+}
+
+.boardContent, .boardAnswer {
+	width: 90%;
+	min-height: 200px;
+}
+
+.modal_btn button {
+	float: right;
+	width: 100px;
+	height: 40px;
+	background-color: white;
+	margin-top: 20px;
+}
+

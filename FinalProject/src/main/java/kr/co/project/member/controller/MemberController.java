@@ -59,7 +59,7 @@ public class MemberController {
 			session.setAttribute("recipeCount", loginUser.getRecipeCount());
 			session.setAttribute("email", loginUser.getEmail());
 			session.setAttribute("recipeCount", loginUser.getRecipeCount());
-			
+			session.setAttribute("type", loginUser.getType());
 			return "home";
 		}else {
 			
@@ -193,6 +193,42 @@ public class MemberController {
 	
 		
 		return "/myPage/myRecipes";
+	}
+	
+	@GetMapping("/chefRank")
+	public String chefRank(@RequestParam(value="cpage",defaultValue="1")int cpage,
+			MemberDTO member,HttpSession session,
+			RecipeDTO recipe,Model model) {
+		
+		
+		int listCount = memberService.chefCount(member); 
+		
+		
+		int pageLimit = 12;
+		int boardLimit =12;
+		
+		int row = listCount - (cpage-1) * boardLimit;
+		
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		// 목록 불러오는 서비스
+		List<MemberDTO> list = memberService.chefRank(pi,member);
+		
+		model.addAttribute("row",row);
+		model.addAttribute("list",list);
+		model.addAttribute("pi",pi);
+		
+		return "/ranking/chef";
+	}
+	
+	@GetMapping("/chefDetail")
+	public String chefDetail(@RequestParam(value="mno")int mno,
+								MemberDTO member,RecipeDTO recipe,
+								HttpSession session,Model model) {
+		
+		List<RecipeDTO> list = recipeService.selectMyRecipe(null, recipe);
+		
+		model.addAttribute("list",list);		
+		return "/ranking/chefDetail";
 	}
 	
 	@GetMapping("/fixProfile.do")
@@ -407,6 +443,7 @@ public class MemberController {
 		
 		return "member/afterAddRecipe";
 	}
+	
 	
 	
 	
