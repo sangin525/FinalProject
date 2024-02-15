@@ -102,5 +102,20 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.selectMember2",memberSelect);
 	}
 
+	public int memberUpdate(SqlSessionTemplate sqlSession, MemberDTO member) {
+		
+		return sqlSession.update("memberMapper.memberUpdate",member);
+	}
+
+	public String selectFileName(SqlSessionTemplate sqlSession, MemberDTO member) {
+		
+		return sqlSession.selectOne("memberMapper.selectFileName",member);
+	}
+
+	public MemberDTO memberProfile(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.selectOne("memberMapper.memberProfile",mno);
+	}
+
 	
 }

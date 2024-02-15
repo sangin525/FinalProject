@@ -335,6 +335,7 @@ $(".board_answer_btn").click(function() {
 	// 삭제 버튼에 대한 이벤트 핸들러를 추가합니다.
 	$(".board_delete_btn").click(function() {
 		var checkboxes = $("input.Detail[type='checkbox']");
+		const acno = document.getElementById('hiddenAcno').value;
 
 		checkboxes.each(function() {
 			if (this.checked) {
@@ -342,7 +343,7 @@ $(".board_answer_btn").click(function() {
 
 				if (row.closest('div').hasClass('noticeTable')) {
 					var boardNum = row.find(".boardNum").text();
-					window.location.href = "/notice/delete.do?boardIdx=" + boardNum;
+					window.location.href = "/admin/noticeDelete.do?acno="+acno;
 				} else if (row.closest('div').hasClass('freeTable')) {
 					var boardNum = row.find(".boardNum").text();
 					window.location.href = "/free/delete.do?boardIdx=" + boardNum;

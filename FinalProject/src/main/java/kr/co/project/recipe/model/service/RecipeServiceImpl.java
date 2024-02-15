@@ -15,6 +15,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.member.model.dao.MemberDAO;
 import kr.co.project.member.model.dto.MemberDTO;
@@ -292,6 +293,49 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.recentRecipeList(sqlSession,recipe);
 	}
 
+	public int viewSum(int mno) {
+
+		return recipeDao.viewSum(sqlSession,mno);
+	}
+
+//	public List<RecipeDTO> rankingList(RecipeDTO recipe) {
+//		
+//		return recipeDao.rankingList(sqlSession, null, recipe);
+//	}
+
+	public List<RecipeDTO> rankingListMain(RecipeDTO recipe) {
+		
+		return recipeDao.rankingListMain(sqlSession,recipe);
+	}
+
+	public List<RecipeDTO> newListMain(RecipeDTO recipe) {
+		
+		return recipeDao.newListMain(sqlSession,recipe);
+	}
+
+	public int mbcomCount(RecipeDTO br) {
+		
+		return recipeDao.mbcomCount(sqlSession,br);
+	}
+
+	public int mncomCount(RecipeDTO nr) {
+		
+		return recipeDao.mncomCount(sqlSession,nr);
+	}
+
+	public List<RecipeDTO> selectRecentRecipe(int mno) {
+		
+		return recipeDao.selectRecentRecipe(sqlSession,mno);
+	}
+
+	public RecipeDTO recentSelectRecipe(int rno) {
+		
+		return recipeDao.recentSelectRecipe(sqlSession,rno);
+	}
+
+	
+
+	
 	
 
 	

@@ -29,6 +29,7 @@ public class MemberDTO {
 	private String uploadName;
 	private String uploadOrigin;
 	private String grade;
+	private String introduce;
 	
 	public MemberDTO() {
 		super();

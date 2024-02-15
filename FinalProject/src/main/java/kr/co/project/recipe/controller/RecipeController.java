@@ -133,13 +133,15 @@ public class RecipeController {
 		}else {
 			System.out.println("레시피 스크랩 실패 ㅜㅜ");
 		}		
+		
+		
 		return"redirect:/recipe/scrapRecipeList.do" ;
 	}
 	
 	// 스크랩 레시피 리스트
 	@GetMapping("/scrapRecipeList.do")
 	public String scrapRecipeList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
-			Model model,
+			Model model,MemberDTO member,
 			HttpSession session){
 		
 		int listCount = recipeService.scrapListCount(recipe);
@@ -163,6 +165,15 @@ public class RecipeController {
 				List<RecipeDTO> list = recipeService.selectScrapRecipe(recipe,pi);
 				
 				model.addAttribute("list",list);
+				
+				member.setMno((int) session.getAttribute("mno"));
+				int mno = member.getMno();
+				MemberDTO result = memberService.memberProfile(mno);
+				
+				int viewSum = recipeService.viewSum(mno);
+				System.out.println(viewSum);
+				model.addAttribute("result",result);
+				model.addAttribute("viewSum",viewSum);
 			}
 		
 		
