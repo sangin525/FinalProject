@@ -18,14 +18,6 @@ import kr.co.project.recipe.model.service.RecipeServiceImpl;
 public class IndexController {
 	@RequestMapping("/")
 	public String indexPage() {
-		/*
-		 * recipe.setMno((int) session.getAttribute("mno"));
-		 * 
-		 * 
-		 * List<RecipeDTO> list = recipeService.recentRecipeList(recipe);
-		 * System.out.println(list);
-		 */
-		
 		return "home";
 	}
 	
