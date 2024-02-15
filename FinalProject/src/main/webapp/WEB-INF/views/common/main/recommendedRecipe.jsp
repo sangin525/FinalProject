@@ -15,7 +15,7 @@
 			<!-- <p class="rankingNum"><b></b></p> -->
 			<div>
 				<a>
-					<img src="/resources/uploads/recipe/${item.uploadName }" class="rank-image">
+					<img src="/resources/uploads/recipe/${item.uploadName }" class="rank-image" onclick="location.href='/recipe/detail.do?rno=${item.rno}'">
 				</a>
 			</div>
 			<div class="recipeTitle">${item.title }</div>
