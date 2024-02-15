@@ -16,6 +16,7 @@
 
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
+			<%@ include file="../../views/common/nav.jsp" %>
 
 	<div class="productContainer">
 		<div class="productContents">

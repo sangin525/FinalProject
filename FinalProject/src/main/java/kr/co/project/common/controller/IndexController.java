@@ -16,27 +16,15 @@ import kr.co.project.recipe.model.service.RecipeServiceImpl;
 
 @Controller
 public class IndexController {
-	
-
-	@Autowired
-	private RecipeServiceImpl recipeService;
-	
-	@Autowired
-	private MemberServiceImpl memberService;
-	
-	
-	
-
 	@RequestMapping("/")
-	public String indexPage(RecipeDTO recipe,
-			Model model,
-			HttpSession session) {
-		recipe.setMno((int) session.getAttribute("mno"));
-		
-		
-		List<RecipeDTO> list = recipeService.recentRecipeList(recipe);
-		System.out.println(list);
-		
+	public String indexPage() {
+		/*
+		 * recipe.setMno((int) session.getAttribute("mno"));
+		 * 
+		 * 
+		 * List<RecipeDTO> list = recipeService.recentRecipeList(recipe);
+		 * System.out.println(list);
+		 */
 		
 		return "home";
 	}

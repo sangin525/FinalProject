@@ -13,6 +13,7 @@
 </head>
 <body class="Main_body">
 	<%@ include file="../../views/common/header.jsp"%>
+			<%@ include file="../../views/common/nav.jsp" %>
 
 	<div class="myPage">
 		<h2>마이페이지</h2>
@@ -21,7 +22,7 @@
 			<%@ include file="../../views/myPage/myPageMenu.jsp"%>
 			<div class="content">
 				<div class="chef_cont">
-					<ul class="nav">
+					<ul class="myPageNav">
 						<li><a>장바구니</a></li>
 					</ul>
 					<hr />

@@ -130,7 +130,7 @@ public class MemberController {
 		model.addAttribute("pi",pi);
 	
 		
-		return "/myPage/myPage";
+		return "/myPage/myRecipes";
 	}
 	
 	@GetMapping("/newList.do")

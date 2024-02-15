@@ -10,6 +10,7 @@
 </head>
 <body>
 	<%@ include file="../../views/common/header.jsp" %>
+			<%@ include file="../../views/common/nav.jsp" %>
 	
 		<div class="container">
     <div class="board_wrap">
