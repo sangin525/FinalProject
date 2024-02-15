@@ -228,9 +228,20 @@ public class AdminController {
 		return"admin/memberList";
 	}
 	
+	@GetMapping("noticeDelete.do")
+	public String noticeDelete(@RequestParam(value="acno")int acno,
+								AdminDTO admin,MemberDTO member){
 	
+		return "home";
 	
+		
+}
+	@PostMapping("noticeEdit.do")
+	public String noticeEdit(@RequestParam(value="acno")int acno,
+			AdminDTO admin,MemberDTO member) {
+		
+		return "home";
+	}
 	
-	
-	
+
 }

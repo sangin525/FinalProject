@@ -109,6 +109,7 @@
 					<c:otherwise>
 						<c:forEach var="item" items="${list}">
 						<tr>
+							<input type="hidden" id="hiddenAcno" value="${item.acno }">
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">${row}</td>
 							<td class="boardTit">${item.title}</td>

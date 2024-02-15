@@ -1,7 +1,9 @@
 package kr.co.project.common.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.member.model.service.MemberServiceImpl;
 import kr.co.project.recipe.model.dto.RecipeDTO;
 import kr.co.project.recipe.model.service.RecipeServiceImpl;
@@ -28,16 +31,58 @@ public class IndexController {
 	
 
 	@RequestMapping("/")
-	public String indexPage(RecipeDTO recipe,
-			Model model,
-			HttpSession session) {
-		recipe.setMno((int) session.getAttribute("mno"));
+	public String indexPage(MemberDTO member,RecipeDTO recipe,Model model,
+			HttpServletRequest request, HttpSession session) {
+	
+		List<RecipeDTO> bestRecipe = recipeService.rankingListMain(recipe);
+		for(RecipeDTO br : bestRecipe) {	
+//			int brno = br.getMno();
+			int mainBestRecipeComcount = recipeService.mbcomCount(br);
+			br.setCommentCount(mainBestRecipeComcount);
+			if(mainBestRecipeComcount>=1) {
+				double starAvg = recipeService.avgComment(br);
+				br.setStar(starAvg);
+			}
+			model.addAttribute("bestRecipe",bestRecipe);
+			model.addAttribute("mainBestRecipeComcount",mainBestRecipeComcount);
+		}
 		
 		
-		List<RecipeDTO> list = recipeService.recentRecipeList(recipe);
-		System.out.println(list);
 		
+		List<RecipeDTO> newRecipe = recipeService.newListMain(recipe);
+		for(RecipeDTO nr : newRecipe) {
+//			int nrno = nr.getMno();
+			int mainNewRecipeComcount = recipeService.mncomCount(nr);
+			nr.setCommentCount(mainNewRecipeComcount);
+			if(mainNewRecipeComcount>=1) {
+				double starAvg = recipeService.avgComment(nr);
+				nr.setStar(starAvg);
+			}
+			model.addAttribute("newRecipe",newRecipe);
+			model.addAttribute("mainNewRecipeComcount",mainNewRecipeComcount);
+		}
 		
+		if(session.getAttribute("mno") != null) {
+			int mno = (int) session.getAttribute("mno");
+			member.setMno(mno);
+			List<RecipeDTO> recentRecipe = recipeService.selectRecentRecipe(mno);
+			
+			List<RecipeDTO> recentSelectRecipe = new ArrayList<>();
+			
+			for(RecipeDTO rr:recentRecipe) {
+				int rno = rr.getRno();
+//				recipe.setRno(rr.getRno());
+				RecipeDTO recipeResult = recipeService.recentSelectRecipe(rno);
+				recentSelectRecipe.add(recipeResult);
+			}
+			
+			for(RecipeDTO r : recentSelectRecipe) {
+				System.out.println(r.toString());
+			}
+			
+			model.addAttribute("recentRecipe",recentSelectRecipe);
+		}
+
 		return "home";
 	}
 	

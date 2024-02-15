@@ -20,8 +20,7 @@ import kr.co.project.recipe.model.dto.RecipeDTO;
 
 public class FoodMateUploadFile {
 
-private static final String UPLOAD_PATH="C:\\Users\\kaw19\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
-	
+	private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";	
 	public static boolean deleteFile(String fileName, String boardName) {
 		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\        240103113409_cRvSeZPY.png
 		// 240103113409_cRvSeZPY.png
@@ -91,6 +90,7 @@ private static final String UPLOAD_PATH="C:\\Users\\kaw19\\git\\finalProject\\Fi
 				food.setUploadPath(UPLOAD_PATH + boardName);
 				food.setUploadName(fileName);
 				food.setUploadOrigin(originName);
+				
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {

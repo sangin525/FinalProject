@@ -23,28 +23,35 @@
 		<div class="myhome_main_img"></div>
 		<div class="myhome_main_info">
 			<div class="myhome_pic">
+				<c:choose>
+					<c:when test ="${result.uploadName eq null}">
 				<a class="myhome_profile"> 
 					<img src="/resources/uploads/non_profile.png">
 				</a> 
 				<a class="myhome_camera"> 
 					<img src="/resources/uploads/camera.png">
 				</a>
+					</c:when>
+					<c:otherwise>
+						<img src="/resources/uploads/member/${result.uploadName}" >
+					</c:otherwise>
+				</c:choose>
 			</div>
 			<p class="myhome_nickName">
-				<b>닉네임</b> 
+				<b>${result.nickname}</b> 
 				<a class="myhome_infoText"> 
-					<span>자기소개를 등록할 수 있습니다.</span>
+					<span>${result.introduce}</span>
 				</a>
 			</p>
 			<br>
 			<div class="totalView">
-				<span>내 레시피 총 조회수 : 0</span>
+				<span>내 레시피 총 조회수 : ${viewSum }</span>
 			</div>
 		</div>
 	</div>
 
 	<div class="modal-dialog">
-			<form>
+			<form action="/member/memberProfileUp" method="POST" enctype="multipart/form-data" novalidate>
 		<div class="modal-content">
 			<div class="modal-header">
 				<h4 class="modal-title">프로필 사진 / 자기소개 편집</h4>
@@ -62,12 +69,12 @@
 					<img id="vProfileImageModalSrc" src="/resources/uploads/non_profile.png">
 				</div>
 				<div style="margin-top: 10px; display: block;">
-					<input type="file" name="file" id="file_1" style="display: none;">
+					<input type="file" name="upload" id="file_1" style="display: none;">
 					<p class="self_info">
 						<a href="javascript:void(0)" onclick="$('#self_intro').val('')">
 							<img src="https://recipe1.ezmember.co.kr/img/mobile/2022/icon_close2.png" width="22" alt="삭제">
 						</a>
-						<input type="text" id="self_intro" name="self_intro" value="" class="input-sm" maxlength="100"
+						<input type="text" id="self_intro" name="introduce" value="" class="input-sm" maxlength="100"
 							placeholder="자기소개를 100자 이내로 작성해 주세요.">
 					</p>
 					<div class="myhome_modal_btn">
