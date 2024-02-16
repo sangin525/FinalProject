@@ -20,15 +20,12 @@ import kr.co.project.recipe.model.service.RecipeServiceImpl;
 @Controller
 public class IndexController {
 
-   @Autowired
-   private RecipeServiceImpl recipeService;
-   
-   @Autowired
-   private MemberServiceImpl memberService;
-   
-   
-   
-
+	@Autowired
+	private RecipeServiceImpl recipeService;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
+	
 	@RequestMapping("/")
 
 	public String indexPage(MemberDTO member, RecipeDTO recipe, Model model, HttpServletRequest request,
@@ -84,17 +81,6 @@ public class IndexController {
       return "home";
    }
    
-//   @RequestMapping("/member_login")
-//   public String loginPage() {
-//      return "member/login";
-//   }
-   
-//   @RequestMapping("/member_register")
-//   public String registerPage() {
-//      return "member/register";
-//   }
-
-
 
 	@RequestMapping("ranking_recipe")
 	public String recipePage() {
