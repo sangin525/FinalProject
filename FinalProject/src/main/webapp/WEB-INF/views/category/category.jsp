@@ -13,11 +13,12 @@
 </head>
 <body>
 <%@ include file="../../views/common/header.jsp"%>
+<%@ include file="../../views/common/nav.jsp" %>
+<div class="categoryContainer">
 <%@ include file="../../views/category/categoryNav.jsp"%>
-<div class="rankingContainer">
-	<div class="rankingContain">
+	<div class="category_main">
 
-	<ul class="recipeList">
+	<ul class="categoryRecipe">
 	<c:choose>
 		<c:when test="${empty list }">
 			<div>
@@ -26,7 +27,7 @@
 		</c:when>
 			<c:otherwise>
 				<c:forEach var="item" items="${list}">
-		<li class="recipeRanking">
+		<li class="category_li">
 		<input type="hidden" class="categoryListfood" value="${item.foodCategory}"> <!-- 종류별 -->
       <input type="hidden" class="categoryListsituation" value="${item.situationCategory }">   <!-- 상황별 -->
       <input type="hidden" class="categoryListhow" value="${item.howCategory}">   <!-- 방법별 -->
@@ -34,9 +35,10 @@
 			<!--  
 			<p class="rankingNum"></p>
 			-->
+			<div class="recipeSubInfo">
 			<div>
 				<a>
-					<img src="/resources/uploads/recipe/${item.uploadName}" class="rank-image" onclick="location.href='/recipe/detail.do?rno=${item.rno}'">
+					<img src="/resources/uploads/recipe/${item.uploadName}" class="category-img" onclick="location.href='/recipe/detail.do?rno=${item.rno}'">
 				</a>
 			</div>
 			<div class="recipeTitle">${item.title}</div>
@@ -47,6 +49,7 @@
 				<span>댓글수 : ${item.commentCount}</span>
 				<span>별점 : ${item.star}</span>				
 				<span>조회수 : ${item.views}</span>
+			</div>
 			</div>
 		</li>
 					<c:set var="row" value="${row-1 }"/>
@@ -103,6 +106,5 @@
 
 	</div>
 </div>
-
 </body>
 </html>

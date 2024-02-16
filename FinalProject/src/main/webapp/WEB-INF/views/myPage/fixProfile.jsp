@@ -19,7 +19,7 @@
 </head>
 <body class="Main_body">
 	<%@ include file="../../views/common/header.jsp"%>
-
+	<%@ include file="../../views/common/nav.jsp" %>
 	<div class="fixProfile">
 		<div class="container_profile">
 			<h2>회원정보 수정</h2>

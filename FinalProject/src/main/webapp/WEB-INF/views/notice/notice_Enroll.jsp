@@ -11,6 +11,7 @@
 <body>
 
 	<%@ include file="../../views/common/header.jsp" %>
+		<%@ include file="../../views/common/nav.jsp" %>
 	<div class="container">
 	<div class="notice_wrap">
         <div class="notice_title">

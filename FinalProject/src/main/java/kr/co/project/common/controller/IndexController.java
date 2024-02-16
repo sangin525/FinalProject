@@ -24,22 +24,25 @@ public class IndexController {
 	@Autowired
 	private MemberServiceImpl memberService;
 	
-	
-	
-
 	@RequestMapping("/")
-	public String indexPage(RecipeDTO recipe,
-			Model model,
-			HttpSession session) {
-		recipe.setMno((int) session.getAttribute("mno"));
-		
-		
-		List<RecipeDTO> list = recipeService.recentRecipeList(recipe);
-		System.out.println(list);
-		
-		
+	public String homePage() {
 		return "home";
 	}
+	
+
+//	@RequestMapping("/")
+//	public String indexPage(RecipeDTO recipe,
+//			Model model,
+//			HttpSession session) {
+//		recipe.setMno((int) session.getAttribute("mno"));
+//		
+//		
+//		List<RecipeDTO> list = recipeService.recentRecipeList(recipe);
+//		System.out.println(list);
+//		
+//		
+//		return "home";
+//	}
 	
 //	@RequestMapping("/member_login")
 //	public String loginPage() {

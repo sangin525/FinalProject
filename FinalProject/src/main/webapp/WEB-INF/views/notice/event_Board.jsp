@@ -10,7 +10,7 @@
 </head>
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
-
+	<%@ include file="../../views/common/nav.jsp" %>
 	<div class="navbar">
 		<a href="/admin/noticeList">공지사항</a>
 		<a href="freeboard.html">자유게시판</a>

@@ -11,7 +11,7 @@
 
 <body>
 <%@ include file="../../views/common/header.jsp"%>
-
+	<%@ include file="../../views/common/nav.jsp" %>
 <div class="registerContainer">
 	<div class="loginContain">
 		<div class="loginForm">

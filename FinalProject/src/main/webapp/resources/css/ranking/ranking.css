@@ -70,6 +70,7 @@ a.active {
 .rank-image{
 	width: 282px;
 	height: 282px;
+	margin-top: 50px;
 }
 
 .ChefPicture{
@@ -97,13 +98,14 @@ a.active {
 
 .rankingNum {
 	position: absolute;
-    top: 5px; /* 위치 조정 */
+    top: 45px; /* 위치 조정 */
     left: 10px; /* 위치 조정 */
     border: 1px solid;
     z-index: 100;
     width: 20px;
     height: 20px;
     text-align: center;
+    background-color: white;
 }
 /* 검색어 랭킹 */
 

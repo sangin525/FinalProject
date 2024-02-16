@@ -3,6 +3,16 @@
     vertical-align: top;
     border-right: 1px solid #e6e7e8;
     padding-top: 16px;
+    background-color: white;
+}
+
+
+.categoryContainer {
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
 }
 
 .categoryContain{
@@ -15,11 +25,21 @@
     border-top: none;
 }
 
+.category_li {
+	width: 282px; /* 이 값을 조절하여 한 줄에 보여지는 요소의 개수를 조절하세요 */
+	list-style: none;
+	margin: 0 25px 0 25px;
+}
+
 [class^="categoryList"] {
     font-size: 15px;
     padding: 8px 0;
     line-height: 1;
     height: 41px;
+}
+
+.category_main {
+    margin-left: 35px;
 }
 
 .categoryContain a {
@@ -85,4 +105,46 @@
 	color:white;;
 	border:1px solid rgb(224, 162, 86);
 	background-color:rgb(224, 162, 86);
+}
+
+.categoryRecipe {
+	width: 1400px;
+	display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px;
+    margin-left: 40px;
+}
+
+.category-img{
+	width: 282px;
+	height: 282px;
+}
+
+.toggle_div {
+	width: 1332px;
+	background-color: white;
+	line-height: 1.42857143;
+	text-align: center;
+	border-bottom: 1px solid #e6e7e8;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px; /* 높이는 필요에 따라 조절하세요 */
+}
+
+.categoryToggle {
+	display: block;
+	margin: 0 auto;
+	cursor: pointer;
+	padding-left: 500px;
+    padding-right: 500px;
+}
+
+.recipeSubInfo {
+	width: 100%; /* .category_li의 너비에 맞게 조절 */
+	background-color: white;
+	margin: 50px 0; /* 상하 마진만 적용 */
+	position: relative;
+	box-sizing: border-box;
 }

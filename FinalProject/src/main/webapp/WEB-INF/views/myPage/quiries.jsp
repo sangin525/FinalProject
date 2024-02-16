@@ -13,7 +13,7 @@
 </head>
 <body class="Main_body">
 	<%@ include file="../../views/common/header.jsp"%>
-
+	<%@ include file="../../views/common/nav.jsp" %>
 	<div class="myPage">
 		<h2>마이페이지</h2>
 		<div class="myPageContain">
