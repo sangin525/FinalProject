@@ -10,7 +10,7 @@
             <li><a href="/myPage/notification">밥친구알림</a></li>
             <li><a href="/member/quiries.do">문의</a></li>
             <li><a href="/myPage/orders">주문조회</a></li>
-            <li><a href="/myPage/cart">장바구니</a></li>
+            <li><a href="/cart/getCart.do">장바구니</a></li>
             <li><a href="/member/fixProfile.do">회원정보</a></li>
          
 			</ul>

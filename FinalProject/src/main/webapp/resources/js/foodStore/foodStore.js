@@ -41,6 +41,7 @@ $(document).ready(function(){
         var count = parseInt($(".product-count").val()); // 현재 수량을 가져옵니다.
         var price = parseInt($(".price").text().replace(/[^0-9]/g,"")); // 가격을 가져옵니다.
         var total = count * price; // 총액을 계산합니다.
+		$("#sc_price").val(total)//input에 값 넣어줍니다
         $(".price-total span").text(total.toLocaleString('ko-KR') + "원"); // 총액을 업데이트합니다.
     });
 });

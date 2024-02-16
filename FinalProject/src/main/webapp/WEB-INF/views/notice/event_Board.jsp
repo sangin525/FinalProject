@@ -16,7 +16,7 @@
 	<div class="container">
 		<div class="notice_wrap">
 			<div class="notice_title">
-				<strong>자유게시판</strong>
+				<strong>이벤트게시판</strong>
 				<br>
 			</div>
 			<div class="notice_list_wrap">

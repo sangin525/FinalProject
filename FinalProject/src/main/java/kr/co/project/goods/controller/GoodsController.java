@@ -42,11 +42,13 @@ public class GoodsController {
 	}
 
 	@GetMapping("/detail.do")
-	public String detailBoard(@RequestParam(value = "g_no") int g_no, Model model, HttpServletRequest request) {
-
+	public String detailBoard(@RequestParam(value = "g_no") int g_no, Model model, HttpServletRequest request,
+			HttpSession session) {
+		int mno = (int) session.getAttribute("mno");
 		GoodsDTO result = goodsService.detailGoods(g_no);
-
+		
 		if (!Objects.isNull(result)) {
+			model.addAttribute("m_no",mno);
 			model.addAttribute("goods", result);
 			return "foodStore/productDetail";
 		} else {
@@ -62,7 +64,6 @@ public class GoodsController {
 		if (!upload.isEmpty()) {
 			UploadFile.goodsUploadMethod(upload, goodsDTO, session);
 		}
-		
 
 		int result = goodsService.addGoods(goodsDTO);
 		if (result > 0) {
