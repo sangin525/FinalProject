@@ -47,7 +47,7 @@
 			</div>
 			<div class="RecipeScore">
 				<span>댓글수 : ${item.commentCount}</span>
-				<span>별점 : ${item.star}</span>				
+				<span><i class="rating__star far fa-star"></i> : ${item.star}</span>				
 				<span>조회수 : ${item.views}</span>
 			</div>
 			</div>
@@ -106,5 +106,6 @@
 
 	</div>
 </div>
+<%@ include file="../../views/common/footer.jsp"%>
 </body>
 </html>

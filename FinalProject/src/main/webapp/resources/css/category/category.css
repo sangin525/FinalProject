@@ -31,6 +31,10 @@
 	margin: 0 25px 0 25px;
 }
 
+[class^="categoryList"] a.active {
+	color: red;
+}
+
 [class^="categoryList"] {
     font-size: 15px;
     padding: 8px 0;
@@ -147,4 +151,9 @@
 	margin: 50px 0; /* 상하 마진만 적용 */
 	position: relative;
 	box-sizing: border-box;
+}
+
+.rating__star {
+	color: goldenrod;
+	background: background;
 }

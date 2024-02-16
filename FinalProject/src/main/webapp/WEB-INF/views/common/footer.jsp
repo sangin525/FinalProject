@@ -5,7 +5,7 @@
 <footer>
   <div class="footer-container">
     <div class="logo">
-      <img src="로고이미지주소" alt="로고">
+      <img src="/resources/uploads/로고사진.png" alt="로고">
     </div>
     <div class="company-info">
       <p>경기도 안양시 만안구 안양로 303 802호  |  TEL : 070.1234.5678  |  FAX : 031.123.4567  |  E-Mail : test@test.com</p>
