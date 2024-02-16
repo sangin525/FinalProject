@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="/resources/css/foodFriend/foodFriend.css">
 <script
 	src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<!-- <script type="text/javascript"
-	src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.5/sockjs.min.js"></script> -->
+
 </head>
 
 <body>
@@ -87,7 +86,6 @@
 		newMessage.innerHTML = data.cm_message + "<br>";
 		newMessage.innerHTML += data.cm_send_time;
 		newMessage.style.textAlign = 'right';
-
 		newMessage.style.marginRight = '20px';
 		newMessage.style.wordWrap = 'break-word';
 		newMessage.style.fontFamily = "'Noto Sans KR', sans-serif";
@@ -126,12 +124,10 @@
 			container.style.float = 'right';
 	   } else{
 		   container.style.float = 'left';
-
+		   container.style.display = 'flex';
+		   container.style.flexDirection = 'row-reverse';
+			
 	    }
-		// 컨테이너에 메시지와 이미지를 추가합니다.
-		
-		// container.appendChild(newImage);
-		// container.appendChild(userName);
 
 		container.style.alignItems = 'center';
 		container.style.alignItems = 'column';

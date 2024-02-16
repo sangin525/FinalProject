@@ -14,7 +14,7 @@
       <a href="https://www.facebook.com"><i class="fab fa-facebook"></i></a>
       <a href="https://www.instagram.com"><i class="fab fa-instagram"></i></a>
       <a href="https://www.twitter.com"><i class="fab fa-twitter"></i></a>
-      <!-- <a href="/sgjGoods">상품등록</a> -->
+      <a href="/sgjGoods">상품등록</a> 
       
     </div>
   </div>	
