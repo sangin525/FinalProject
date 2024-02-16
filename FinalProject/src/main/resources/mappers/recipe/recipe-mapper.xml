@@ -69,7 +69,31 @@
 	ORDER BY R_VIEWS DESC
 		
 	</select>
+	
+	<select id="rankingListMain" resultMap="recipeResultSet">
+	SELECT * FROM RECIPE
+	WHERE R_DELETEDATE IS NULL
+	ORDER BY R_VIEWS DESC
+	</select>
+	
+	<select id="newListMain" resultMap="recipeResultSet">
+	SELECT * FROM RECIPE r 
+	WHERE R_DELETEDATE IS NULL 
+	ORDER BY R_IN_DATE  DESC
+	</select>
+	
+	<select id="viewSum" resultType="_int">
+	SELECT SUM(R_VIEWS) AS R_VIEWS FROM RECIPE
+	WHERE M_NO=#{mno}
+	</select>
 
+	<select id="recentSelectRecipe" resultMap="recipeResultSet">
+	SELECT * FROM RECIPE
+	WHERE R_DELETEDATE IS NULL
+	AND R_NO=#{rno}
+	
+	</select>
+	
 	<insert id="addRecipe" useGeneratedKeys="true" keyColumn="R_NO" keyProperty="rno">
 	INSERT INTO RECIPE VALUES(recipe_seq.NEXTVAL,
 								#{memberNickName},

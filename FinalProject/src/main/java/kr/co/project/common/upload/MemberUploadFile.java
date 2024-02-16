@@ -18,10 +18,10 @@ import kr.co.project.foodMate.model.dto.FoodMateDTO;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.recipe.model.dto.RecipeDTO;
 
-public class FoodMateUploadFile {
+public class MemberUploadFile {
 
-private static final String UPLOAD_PATH="C:\\Users\\rlwjd\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
-
+	private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
+	
 	public static boolean deleteFile(String fileName, String boardName) {
 		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\        240103113409_cRvSeZPY.png
 		// 240103113409_cRvSeZPY.png
@@ -34,9 +34,8 @@ private static final String UPLOAD_PATH="C:\\Users\\rlwjd\\git\\finalProject\\Fi
 									RecipeDTO recipe,
 									MemberDTO member,
 									HttpSession session,
-									String boardName,
-									FoodMateDTO food,
-									AdminDTO adimin
+									String boardName
+									
 									) {
 		if(!upload.isEmpty()) {
 			// 원본 파일명 구하기
@@ -88,10 +87,17 @@ private static final String UPLOAD_PATH="C:\\Users\\rlwjd\\git\\finalProject\\Fi
 //				recipe.setFileName(fileName);
 //				recipe.setFileOrigin(originName);
 				
-				food.setUploadPath(UPLOAD_PATH + boardName);
-				food.setUploadName(fileName);
-				food.setUploadOrigin(originName);
+//				food.setUploadPath(UPLOAD_PATH + boardName);
+//				food.setUploadName(fileName);
+//				food.setUploadOrigin(originName);
 				
+//				admin.setFilePath(UPLOAD_PATH + boardName);
+//				admin.setFileName(fileName);
+//				admin.setFileOrigin(originName);
+				
+				member.setUploadPath(UPLOAD_PATH+boardName);
+				member.setUploadName(fileName);
+				member.setUploadOrigin(originName);
 			} catch (IllegalStateException e) {
 				e.printStackTrace();
 			} catch (IOException e) {
