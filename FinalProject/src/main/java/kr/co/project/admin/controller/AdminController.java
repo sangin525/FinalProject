@@ -229,7 +229,7 @@ public class AdminController {
 		return"admin/memberList";
 	}
 	
-	@GetMapping("noticeDelete.do")
+	@GetMapping("/noticeDelete.do")
 	public String noticeDelete(@RequestParam(value="acno")int acno,
 								AdminDTO admin,MemberDTO member){
 	
@@ -240,16 +240,22 @@ public class AdminController {
 	
 		
 }
-	@PostMapping("noticeUpdate.do")
+	@PostMapping("/noticeUpdate.do")
 	public String noticeEdit(
 			AdminDTO admin,MemberDTO member,Model model,HttpSession session
 			,MultipartFile upload) {
-		
 		int result = 0;
 		
 		if (!upload.isEmpty()) {
+			
+			System.out.println(admin.getTitle());
+			System.out.println(admin.getAcno());
+			System.out.println(admin.getContents());
 			String fileName = adminService.selectFileName(admin.getAcno());
+			System.out.println("a:  +" + fileName);
 			boolean deleteFile = AdminUploadFile.deleteFile(fileName, BOARD_NAME);
+			
+			System.out.println(deleteFile);
 			if(deleteFile) {
 				AdminUploadFile.uploadMethod(upload, null, member, session, BOARD_NAME, null, admin);
 				result = adminService.updateNotice(admin);	

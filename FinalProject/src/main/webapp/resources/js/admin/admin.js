@@ -299,10 +299,11 @@ $(document).ready(function() {
 			if (this.checked) {
 				var row = $(this).parent().parent(); // 체크박스의 상위 노드를 통해 현재 행을 가져옵니다.
 				var nextRow = row.next(); // 현재 행의 바로 다음 행을 가져옵니다.
-
+				console.log("a");
 				// 현재 행의 상위 div가 'noticeTable' 클래스를 가지고 있는지 확인합니다.
 				if (row.closest('div').hasClass('noticeTable')) {
 					// 'noticeTable' 클래스를 가지고 있다면, 모달창의 form에 action을 추가합니다.
+					console.log("b");
 					modal.find('form').attr('action', '/admin/noticeUpdate.do');
 				} else if (row.closest('div').hasClass('freeTable')) {
 					modal.find('form').attr('action', 'freeUpdate.do');

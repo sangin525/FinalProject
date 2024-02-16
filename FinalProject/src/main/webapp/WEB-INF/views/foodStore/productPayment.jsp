@@ -12,6 +12,7 @@
 </head>
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
+			<%@ include file="../../views/common/nav.jsp" %>
 	<div class="container">
 		<div class="content">
 			<h2>결제 내역</h2>
@@ -110,9 +111,8 @@
 										class="myInput">
 								</div>
 								<div class="memberInputbox">
-									<input type="text" id="detailAddress" name="detailAddress"
-										autocomplete="off" class="myInput"> <label
-										for="detailAddress" class="register_label">상세주소</label>
+									<input type="text" id="detailAddress" name="detailAddress" autocomplete="off" class="myInput"> 
+									<label for="detailAddress" class="register_label">상세주소</label>
 								</div>
 							</td>
 						</tr>

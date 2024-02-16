@@ -26,7 +26,7 @@
 	ORDER BY AC_IN_DATE DESC
 	</select>
 	
-	<select id="fileName" resultType="string">
+	<select id="selectFileName" resultType="string">
 	SELECT AC_FILE_NAME FROM ANNOUNCEMENT
 	WHERE AC_NO = #{acno}
 	</select>
@@ -53,6 +53,13 @@
 							AC_FILE_NAME=#{fileName},
 							AC_FILE_ORIGIN=#{fileOrigin},
 							AC_UPDATE_DATE = SYSDATE
+						WHERE AC_NO = #{acno}
 	</update>
-
+	
+	<update id="updateNoticeEmpty" parameterType="admin">
+	UPDATE ANNOUNCEMENT SET AC_TITLE =#{title},
+							AC_CONTENTS=#{contents},
+							AC_UPDATE_DATE = SYSDATE
+						WHERE AC_NO = #{acno}		
+	</update>
 </mapper>

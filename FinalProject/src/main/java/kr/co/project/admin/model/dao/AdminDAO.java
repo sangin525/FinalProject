@@ -47,12 +47,12 @@ public class AdminDAO {
 	}
 
 	public String selectFileName(SqlSessionTemplate sqlSession, int acno) {
-		
+		System.out.println("다오");
 		return sqlSession.selectOne("adminMapper.selectFileName",acno);
 	}
 
 	public int updateNotice(SqlSessionTemplate sqlSession, AdminDTO admin) {
-		
+		System.out.println("다오");
 		return sqlSession.update("adminMapper.updateNotice",admin);
 	}
 

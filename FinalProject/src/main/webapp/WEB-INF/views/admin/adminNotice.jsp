@@ -33,7 +33,7 @@
 	<div id="board_Modal" class="board_modal">
 		<form method="POST" enctype="multipart/form-data"><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
 			<div class="modal_container">
-			<input type="hidden" class="boardNum" id="boardNum" value=""> <!-- idx 값 들어감 -->
+			<input type="text" class="boardNum" id="boardNum" value=""> <!-- idx 값 들어감 -->
 				<table class="questionsTable">
 								<colgroup>
 									<col style="width:15%">
@@ -41,13 +41,6 @@
 								</colgroup>
 								<tbody>
 									<tr>
-										<c:choose>
-										<c:when test="${list !=null }">
-											<c:forEach var="item" items="${list}">
-											<input type="hidden" id="hiddenAcno" name="acno" value="${item.acno}">
-											</c:forEach>
-										</c:when>										
-										</c:choose>
 										<th>제목</th>
 										<td>
 											<input type="text" class="boardTitle" id="boardTitle" name="title" value="">
@@ -143,18 +136,6 @@
 			</tbody>
 		</table>
 	</div>
-	<script>
-		 var rows = document.querySelectorAll('tr';)
-		
-		rows.forEach(function(row){
-			
-			row.addEventListener('click',function(){
-				
-				console.log('row.id');
-			})
-		}) 
-		
-	</script>
 
 	<ul class="pagination">
 		<c:choose>

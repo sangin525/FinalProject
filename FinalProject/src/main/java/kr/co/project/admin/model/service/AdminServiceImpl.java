@@ -59,12 +59,12 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	public int updateNotice(AdminDTO admin) {
-		
+		System.out.println("서비스");
 		return adminDao.updateNotice(sqlSession,admin);
 	}
 
 	public int updateNoticeEmpty(AdminDTO admin) {
-		
+		System.out.println("서비스");
 		return adminDao.updateNoticeEmpty(sqlSession,admin);
 	}
 
