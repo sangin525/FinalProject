@@ -96,9 +96,9 @@
 		</tr>
 	</tbody>
 </table>
-<div style="text-align:center;">
-	<a>
-		<span class="categoryToggle" onclick="toggleCategory()">카테고리 열기</span>
+<div class="toggle_div">
+	<a class="categoryToggle" onclick="toggleCategory()">
+		<span>카테고리 닫기</span>
 	</a>
 </div>
 

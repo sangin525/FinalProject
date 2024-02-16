@@ -33,7 +33,9 @@
 				</a>
 					</c:when>
 					<c:otherwise>
-						<img src="/resources/uploads/member/${result.uploadName}" >
+						<a class="myhome_profile"> 
+						<img src="/resources/uploads/member/${result.uploadName}">
+						</a>
 					</c:otherwise>
 				</c:choose>
 			</div>

@@ -30,7 +30,7 @@ $(document).ready(function(){
         var categoryList3Value = $(".categoryList3 .active").text();
         var categoryList4Value = $(".categoryList4 .active").text();
 
-        $(".recipeRanking").each(function() {
+        $(".category_li").each(function() {
             var categoryListfoodValue = $(this).find(".categoryListfood").val();
             var categoryListsituationValue = $(this).find(".categoryListsituation").val();
             var categoryListhowValue = $(this).find(".categoryListhow").val();
