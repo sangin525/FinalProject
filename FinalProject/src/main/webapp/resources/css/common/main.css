@@ -1,23 +1,19 @@
 body {
-		background: #f0f0f0;
+	background: #f0f0f0;
 	margin: 0;
 	padding: 0;
 }
 
 .mainContainer {
 	margin: 20px auto;
-
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
-	
 	background: #fff;
-    width: 75%;
-    padding: 20px;
-    box-sizing: border-box;
+	width: 75%;
+	padding: 20px;
+	box-sizing: border-box;
 	display: flex;
 	justify-content: center;
-
-
 }
 
 .common_header {
@@ -42,8 +38,8 @@ body {
 .main-logo form {
 	display: flex;
 	align-items: center;
-	margin-top:30px;
-		margin-bottom: 0px;
+	margin-top: 30px;
+	margin-bottom: 0px;
 }
 
 #login_logout {
@@ -57,7 +53,6 @@ body {
 	color: #333;
 	text-decoration: none;
 	margin-top: 30px;
-	
 }
 
 .searchCategory {
@@ -80,51 +75,51 @@ body {
 
 /* Nav버튼 */
 .nav {
-    width: 100%;
-    background-color: green;
-    overflow: auto;
+	width: 100%;
+	background-color: green;
+	overflow: auto;
 }
 
 .nav-content {
-    display: flex;
-    justify-content: space-evenly;
-    padding: 10px;
+	display: flex;
+	justify-content: space-evenly;
+	padding: 10px;
 }
 
 .nav a {
-    text-decoration: none;
-    color: #fff;
-    font-size: 20px;
-    transition: 0.3s;
+	text-decoration: none;
+	color: #fff;
+	font-size: 20px;
+	transition: 0.3s;
 }
 
-.nav a:hover, .nav a:focus {
-    color: #ffff00;
+.nav-content a:hover, .nav-content a:focus {
+	color: #ffff00;
 }
 
 .dropdown {
-    position: relative;
-    display: inline-block;
+	display: inline-block;
 }
 
 .dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f9f9f9;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	justify-content:center;
+	z-index:1;
 }
 
 .dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+	display: block;
 }
 
 /* 로그인 로그아웃 */
@@ -137,13 +132,13 @@ body {
 
 /* 메인화면 슬라이드 */
 .slick_slide {
-
 	width: 100%;
 	position: relative;
 }
-.main-Title{
-	font-size:40px;
-	margin:0;
+
+.main-Title {
+	font-size: 40px;
+	margin: 0;
 }
 
 .icon_arrow3_pre1, .icon_arrow3_next1 {
@@ -265,7 +260,6 @@ body {
 .recommendedRecipe-li {
 	width: 282px;
 	list-style: none;
-
 	position: relative;
 	flex: 0 0 24%;
 	max-width: 24%;

@@ -12,6 +12,7 @@
 </head>
 <body class="Main_body">
 	<%@ include file="../../views/common/header.jsp"%>
+			<%@ include file="../../views/common/nav.jsp" %>
 
 	<div class="myPage">
 		<button id="q_modal_btn">문의하기</button>

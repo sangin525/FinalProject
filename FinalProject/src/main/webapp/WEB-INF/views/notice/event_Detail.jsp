@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="board_wrap">
 			<div class="notice_title">
-				<strong>공지사함</strong>
+				<strong>쟈유게시판</strong>
 
 			</div>
 			<div class="notice_view_wrap">
@@ -47,7 +47,7 @@
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<a href="/noticeBoard" class="on">목록</a> <a href="noticeEdit">수정</a>
+					<a href="/eventBoard" class="on">목록</a> <a href="eventEdit">수정</a>
 				</div>
 			</div>
 		</div>

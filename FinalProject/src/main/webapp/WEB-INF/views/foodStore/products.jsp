@@ -11,6 +11,7 @@
 <body>
 
 	<%@ include file="../../views/common/header.jsp" %>
+			<%@ include file="../../views/common/nav.jsp" %>
 	<div class="storeContainer">
 		<div class="storeTitle">
 			<h2 class="storeTitle_m"> 상품 </h2>
