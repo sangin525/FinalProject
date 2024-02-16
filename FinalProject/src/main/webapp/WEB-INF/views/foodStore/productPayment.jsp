@@ -110,9 +110,8 @@
 										class="myInput">
 								</div>
 								<div class="memberInputbox">
-									<input type="text" id="detailAddress" name="detailAddress"
-										autocomplete="off" class="myInput"> <label
-										for="detailAddress" class="register_label">상세주소</label>
+									<input type="text" id="detailAddress" name="detailAddress" autocomplete="off" class="myInput"> 
+									<label for="detailAddress" class="register_label">상세주소</label>
 								</div>
 							</td>
 						</tr>
