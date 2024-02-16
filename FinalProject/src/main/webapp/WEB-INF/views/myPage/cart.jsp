@@ -64,44 +64,30 @@
 </td>
 <td>
 <div class="quantity">
-<button class="minus-btn" id="" type="button" name="button">-</button>
+<!-- <button class="minus-btn" id="minus-btn" type="button" name="button">-</button> -->
 <input type="text" name="name" value="${item.sc_count}" readonly>
-<button class="plus-btn" id="" type="button" name="button">+</button>
+<!-- <button class="plus-btn" id="plus-btn" type="button" name="button">+</button> -->
 </div>
 </td>
 <td><span class="point">119원</span></td>
 <td><span class="price">${item.sc_price}원</span></td>
 <td>무료</td>
 </tr>
-
-<!-- ${item.sc_no}
-${item.sc_price}
-${item.sc_count}
-${item.m_no}
-${item.g_no}
-${item.g_name}
-${item.g_price}
-${item.g_regular_price}
-${item.g_file_name}
-
-item.sc_no
-item.sc_price
-item.sc_count
-item.m_no
-item.g_no
-item.g_name
-item.g_price
-item.g_regular_price
-item.g_file_name -->
-
 <form action="/cart/modifyCount.do" method="post" name="${item.g_name}modify">
-<input type="number" value="${item.sc_no}" name="sc_no" readonly>
-<input type="number" value="${item.sc_price}" name="sc_price" readonly>
-<input type="number" value="${item.sc_count}" name="sc_count" readonly>
-<input type="number" value="${item.m_no}" name="m_no" readonly>
-<input type="number" value="${item.g_no}" name="g_no" readonly>
-<button type="submit" id="changeCount">수량변경</button>
+<input type="number" value="${item.sc_no}" name="sc_no" readonly><br>
+<input type="number" id="PriceVal${item.sc_no}" value="${item.sc_price}" name="sc_price" readonly><br>
+<input type="number" id="CountVal${item.sc_no}" value="${item.sc_count}" name="sc_count" readonly><br>
+<input type="number" value="${item.m_no}" name="m_no" readonly><br>
+<input type="number" value="${item.g_no}" name="g_no" readonly><br>
+<input type="text" value="${item.g_name}" name="g_no" readonly><br>
+<input type="number" value="${item.g_price}" name="g_no" readonly><br>
+<input type="number" value="${item.g_regular_price}" name="g_no" readonly><br>
+<button type="submit" id="changeCount">장바구니수정</button><br>
 </form>
+
+<input type="number" id="scCountVal${item.sc_no}" value="${item.sc_count}"><br>
+<input type="number" id="scPriceVal${item.sc_no}" value="${item.sc_price}" readonly><br>
+<button onclick="changeQuantity(${item.sc_no},${item.g_price})">1+수량변경</button><br>
 
 <a href="/cart/deleteCart.do?sc_no=${item.sc_no}">삭제</a>
 
@@ -126,4 +112,24 @@ item.g_file_name -->
 </div>
 <%@ include file="../../views/common/footer.jsp"%>
 </body>
+<script>
+
+function changeQuantity(productId, price) {
+// 수량을 변경합니다.
+var quantityElement = document.getElementById('scCountVal' + productId);
+var currentQuantity = quantityElement.value;
+var newQuantity = (Number(currentQuantity) + 1);
+quantityElement.value = newQuantity;
+// 가격을 변경합니다.
+var totalPrice = newQuantity * price;
+var priceElement = document.getElementById('scPriceVal' + productId);
+priceElement.value = totalPrice;
+//form안으로 넣어주기
+var CountVal = document.getElementById('CountVal'+productId);
+CountVal.value=newQuantity;
+var PriceVal = document.getElementById('PriceVal'+productId);
+PriceVal.value=totalPrice;
+}
+
+</script>
 </html>
