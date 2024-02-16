@@ -19,6 +19,10 @@
 		<result column = "M_SUBSCRIBER" property="subscriber"></result>
 		<result column = "M_PURCHASE_AMOUNT" property="purchaseAmount"></result>
 		<result column = "M_GRADE" property="grade"></result>
+		<result column = "M_INTRODUCE" property="introduce"></result>
+		<result column = "M_UPLOAD_PATH" property="uploadPath"></result>
+		<result column = "M_UPLOAD_NAME" property="uploadName"></result>
+		<result column = "M_UPLOAD_ORIGIN" property="uploadOrigin"></result>
 	</resultMap>
 
 	
@@ -80,6 +84,11 @@ SELECT M_RECIPE_COUNT FROM member
 WHERE m_no = #{mno}
 </select>
 
+<select id="selectFileName" resultType="string">
+SELECT M_UPLOAD_NAME FROM MEMBER
+WHERE m_no = #{mno}
+</select>
+
 <select id="chefCount" resultType="_int">
 SELECT COUNT(*) FROM MEMBER
 WHERE M_REMOVE_DATE IS NULL
@@ -91,6 +100,10 @@ WHERE M_REMOVE_DATE IS NULL
 ORDER BY M_RECIPE_COUNT DESC
 </select>
 
+<select id="memberProfile" resultMap ="memberResultSet">
+SELECT * FROM MEMBER
+WHERE M_NO = #{mno}
+</select>
 
 <update id="plusRecipeCount" parameterType="member">
 UPDATE MEMBER SET M_RECIPE_COUNT = M_RECIPE_COUNT+1
@@ -138,7 +151,13 @@ WHERE M_NO= #{mno}
 
 </update>
 
-
+<update id="memberUpdate" parameterType="member">
+	UPDATE MEMBER SET M_UPLOAD_PATH = #{uploadPath},
+					  M_UPLOAD_NAME = #{uploadName},
+					  M_UPLOAD_ORIGIN = #{uploadOrigin},
+					  M_INTRODUCE = #{introduce}
+					  WHERE M_NO = #{mno}
+</update>
 
 
 
