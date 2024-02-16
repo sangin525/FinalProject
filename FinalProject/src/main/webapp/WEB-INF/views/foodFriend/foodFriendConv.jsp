@@ -122,7 +122,12 @@
 	    
 		// 메시지와 이미지를 담을 컨테이너를 만듭니다.
 		var container = document.createElement('div');
-		
+		if (data.m_name === "${user.name}") {
+			container.style.float = 'right';
+	   } else{
+		   container.style.float = 'left';
+
+	    }
 		// 컨테이너에 메시지와 이미지를 추가합니다.
 		
 		// container.appendChild(newImage);
@@ -135,7 +140,7 @@
 		container.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.1)';
 		container.style.padding = '10px';
 		container.style.marginBottom = '10px';
-		container.style.float = "right";
+
 		container.style.maxWidth = '80%';
 		container.appendChild(newMessage);
 		container.appendChild(profileBox);

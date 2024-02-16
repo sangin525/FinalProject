@@ -212,6 +212,41 @@ public class RecipeDAO {
 		return sqlSession.selectList("recipeRecentMapper.recentRecipeList",recipe);
 	}
 
+	public int viewSum(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.selectOne("recipeMapper.viewSum",mno);
+	}
+
+	public List<RecipeDTO> rankingListMain(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.selectList("recipeMapper.rankingListMain",recipe);
+	}
+
+	public List<RecipeDTO> newListMain(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.selectList("recipeMapper.newListMain",recipe);
+	}
+
+	public int mbcomCount(SqlSessionTemplate sqlSession, RecipeDTO br) {
+		
+		return sqlSession.selectOne("recipeCommentMapper.mbcomCount",br);
+	}
+
+	public int mncomCount(SqlSessionTemplate sqlSession, RecipeDTO nr) {
+		
+		return sqlSession.selectOne("recipeCommentMapper.mncomCount",nr);
+	}
+
+	public List<RecipeDTO> selectRecentRecipe(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.selectList("recipeRecentMapper.selectRecentRecipe",mno);
+	}
+
+	public RecipeDTO recentSelectRecipe(SqlSessionTemplate sqlSession, int rno) {
+		return sqlSession.selectOne("recipeMapper.recentSelectRecipe",rno);
+	}
+
+	
 	
 
 

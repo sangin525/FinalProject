@@ -13,14 +13,6 @@
 	<%@ include file="../../views/common/header.jsp"%>
 			<%@ include file="../../views/common/nav.jsp" %>
 
-	<div class="navbar">
-
-		<a href="/admin/noticeList">공지사항</a>
-		<a href="/notice/free_Board">자유게시판</a>
-		<a href="/admin/eventList">이벤트게시판</a>
-		<a href="/notice/customer_Service">고객센터</a>
-	</div>
-
 	<div class="container">
 		<div class="notice_wrap">
 			<div class="notice_title">

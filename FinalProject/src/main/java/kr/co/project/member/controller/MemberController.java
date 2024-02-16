@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
+import kr.co.project.common.upload.MemberUploadFile;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.member.model.service.MemberServiceImpl;
 import kr.co.project.recipe.model.dto.RecipeDTO;
@@ -28,6 +30,8 @@ import kr.co.project.recipe.model.service.RecipeServiceImpl;
 @RequestMapping("/member")
 public class MemberController {
 
+	private static final String BOARD_NAME = "member\\";
+	
 	@Autowired
 	private MemberServiceImpl memberService;
 	
@@ -47,7 +51,7 @@ public class MemberController {
 		MemberDTO loginUser = memberService.loginMember(member);
 		
 		if(!Objects.isNull(loginUser) && bcryptPasswordEncoder.matches(member.getPwd(),loginUser.getPwd())) {
-			
+		
 			session.setAttribute("mno", loginUser.getMno());
 			session.setAttribute("memberName", loginUser.getName());
 			session.setAttribute("memberNickName", loginUser.getNickname());
@@ -60,6 +64,9 @@ public class MemberController {
 			session.setAttribute("email", loginUser.getEmail());
 			session.setAttribute("recipeCount", loginUser.getRecipeCount());
 			session.setAttribute("type", loginUser.getType());
+			
+			
+			
 			return "home";
 		}else {
 			
@@ -130,7 +137,9 @@ public class MemberController {
 		model.addAttribute("pi",pi);
 	
 		
+
 		return "/myPage/myRecipes";
+
 	}
 	
 	@GetMapping("/newList.do")
@@ -328,6 +337,15 @@ public class MemberController {
 			item.setIndate(indate);
 			
 		}
+		member.setMno((int) session.getAttribute("mno"));
+		int mno = member.getMno();
+		MemberDTO result = memberService.memberProfile(mno);
+		
+		int viewSum = recipeService.viewSum(mno);
+		System.out.println(viewSum);
+		model.addAttribute("result",result);
+		model.addAttribute("viewSum",viewSum);
+		
 		model.addAttribute("selectMember",selectMember);
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
@@ -444,8 +462,48 @@ public class MemberController {
 		return "member/afterAddRecipe";
 	}
 	
+	@PostMapping("/memberProfileUp")
+	public String memberProfileUp(MemberDTO member,RecipeDTO recipe,HttpSession session,
+				MultipartFile upload,Model model) {
+		
+		int memberUpdate = 0;
+		member.setMno((int) session.getAttribute("mno"));
+		
+		if(!upload.isEmpty()) {
+//			String fileName = memberService.selectFileName(member);						
+				MemberUploadFile.uploadMethod(upload, recipe, member, session, BOARD_NAME);
+				memberUpdate = memberService.memberUpdate(member);
+					
+		}else if(upload.isEmpty()) {
+			memberUpdate = memberService.memberUpdate(member);
+		}
+		if(memberUpdate>0){
+//			System.out.println(memberUpdate);
+			System.out.println("업뎃성공");
+			return "redirect:/member/memberProfile";
+		}else {
+			System.out.println("업뎃실패");
+			return "home";
+		}
+		
+	}
 	
 	
+	@GetMapping("/memberProfile")
+	public String memberProfile(MemberDTO member,HttpSession session,
+								RecipeDTO recipe,Model model) {
+		
+		member.setMno((int) session.getAttribute("mno"));
+		int mno = member.getMno();
+		MemberDTO result = memberService.memberProfile(mno);
+		
+		int viewSum = recipeService.viewSum(mno);
+		System.out.println(viewSum);
+		model.addAttribute("result",result);
+		model.addAttribute("viewSum",viewSum);
+		
+		return "myPage/myRecipes";		
+	}
 	
 	
 	

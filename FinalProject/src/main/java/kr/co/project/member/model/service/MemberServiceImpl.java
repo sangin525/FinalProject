@@ -87,6 +87,21 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.selectMember2(sqlSession,member);
 	}
+
+	public int memberUpdate(MemberDTO member) {
+		
+		return memberDao.memberUpdate(sqlSession,member);
+	}
+
+	public String selectFileName(MemberDTO member) {
+		
+		return memberDao.selectFileName(sqlSession,member);
+	}
+
+	public MemberDTO memberProfile(int mno) {
+		
+		return memberDao.memberProfile(sqlSession,mno);
+	}
 	
 	
 }
