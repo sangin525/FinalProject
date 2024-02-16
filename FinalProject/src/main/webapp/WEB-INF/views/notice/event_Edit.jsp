@@ -47,8 +47,8 @@
                 <br>
             </div>
             <div class="bt_wrap">
-                <a href="noticeDetail" class="on">수정</a>
-                <a href="noticeDetail" onclick="history.back()">취소</a>
+                <a href="eventDetail" class="on">수정</a>
+                <a href="eventDetail" onclick="history.back()">취소</a>
             </div>
         </div>
     </div>

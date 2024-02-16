@@ -11,7 +11,8 @@
 <body class="recipeBody">
 
 	<%@ include file="../../views/common/header.jsp"%>
-	<%@ include file="../../views/common/nav.jsp" %>
+			<%@ include file="../../views/common/nav.jsp" %>
+
 	<div class="addRecipeContainer">
 		<div class="recipeContain">
 			<h2 class="addRecipe">레시피 등록</h2>

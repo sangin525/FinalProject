@@ -16,7 +16,7 @@
 	<div class="notice_wrap">
         <div class="notice_title">
             <strong>글 작성</strong>
-            <p>밥친구를 구하는 게시글을 써보세요</p>
+            <p>여러분들의 </p>
         </div>
         <div class="notice_write_wrap">
             <div class="notice_write">
@@ -41,8 +41,8 @@
                  <br>
             </div>
             <div class="bt_wrap">
-                <a href="noticeDetail" class="on">등록</a>
-                <a href="noticeBoard" onclick="history.back()">취소</a>
+                <a href="eventDetail" class="on">등록</a>
+                <a href="eventBoard" onclick="history.back()">취소</a>
             </div>
         </div>
     </div>

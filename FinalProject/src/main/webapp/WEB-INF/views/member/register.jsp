@@ -13,7 +13,7 @@
 </head>
 <body>
 <%@ include file="../../views/common/header.jsp"%>
-	<%@ include file="../../views/common/nav.jsp" %>
+		<%@ include file="../../views/common/nav.jsp" %>
 <div class="registerContainer">
 	<div class="registerContain">
 		<h2 class="register_h2">회원가입</h2>
