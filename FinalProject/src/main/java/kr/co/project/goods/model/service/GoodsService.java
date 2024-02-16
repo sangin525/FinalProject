@@ -9,7 +9,7 @@ public interface GoodsService {
 	// 전체 게시글 수 구하기
 	int selectListCount();
 	
-	//사품 리스트 불러오기
+	//상품 리스트 불러오기
 	List<GoodsDTO> selectListAll(PageInfo pi, GoodsDTO goods);
 	
 	//상세페이지 이동
