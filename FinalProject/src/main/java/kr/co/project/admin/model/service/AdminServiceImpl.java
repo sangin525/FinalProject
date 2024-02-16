@@ -53,4 +53,19 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.eventListAll(sqlSession,pi,admin);
 	}
 
+	public String selectFileName(int acno) {
+		
+		return adminDao.selectFileName(sqlSession,acno);
+	}
+
+	public int updateNotice(AdminDTO admin) {
+		
+		return adminDao.updateNotice(sqlSession,admin);
+	}
+
+	public int updateNoticeEmpty(AdminDTO admin) {
+		
+		return adminDao.updateNoticeEmpty(sqlSession,admin);
+	}
+
 }

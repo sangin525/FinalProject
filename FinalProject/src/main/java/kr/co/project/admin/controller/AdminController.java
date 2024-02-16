@@ -28,6 +28,7 @@ import kr.co.project.member.model.service.MemberServiceImpl;
 @RequestMapping("/admin")
 public class AdminController {
 	
+	private static final String BOARD_NAME = "admin\\";
 	
 	@Autowired
 	private AdminServiceImpl adminService;
@@ -232,13 +233,37 @@ public class AdminController {
 	public String noticeDelete(@RequestParam(value="acno")int acno,
 								AdminDTO admin,MemberDTO member){
 	
+		
+		
+		
 		return "home";
 	
 		
 }
-	@PostMapping("noticeEdit.do")
-	public String noticeEdit(@RequestParam(value="acno")int acno,
-			AdminDTO admin,MemberDTO member) {
+	@PostMapping("noticeUpdate.do")
+	public String noticeEdit(
+			AdminDTO admin,MemberDTO member,Model model,HttpSession session
+			,MultipartFile upload) {
+		
+		int result = 0;
+		
+		if (!upload.isEmpty()) {
+			String fileName = adminService.selectFileName(admin.getAcno());
+			boolean deleteFile = AdminUploadFile.deleteFile(fileName, BOARD_NAME);
+			if(deleteFile) {
+				AdminUploadFile.uploadMethod(upload, null, member, session, BOARD_NAME, null, admin);
+				result = adminService.updateNotice(admin);	
+			} else if(upload.isEmpty()) {
+				result = adminService.updateNoticeEmpty(admin);
+			}
+			if(result == 1) {
+				System.out.println("수정성공");
+				return "redirect:/admin/adminNotice";
+			}else {
+				System.out.println("수정실패");
+				return "home";
+			}
+		}
 		
 		return "home";
 	}

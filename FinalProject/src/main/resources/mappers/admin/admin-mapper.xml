@@ -25,6 +25,13 @@
 	WHERE AC_DELETE_DATE IS NULL
 	ORDER BY AC_IN_DATE DESC
 	</select>
+	
+	<select id="fileName" resultType="string">
+	SELECT AC_FILE_NAME FROM ANNOUNCEMENT
+	WHERE AC_NO = #{acno}
+	</select>
+	
+	
 	<insert id="enrollNotice">
 		INSERT INTO ANNOUNCEMENT VALUES(announcement_seq.NEXTVAL,
 								#{mno},
@@ -39,5 +46,13 @@
 								0)	
 	</insert>
 	
+	<update id = "updateNotice" parameterType="admin">
+	UPDATE ANNOUNCEMENT SET AC_TITLE =#{title},
+							AC_CONTENTS=#{contents},
+							AC_FILE_PATH=#{filePath},
+							AC_FILE_NAME=#{fileName},
+							AC_FILE_ORIGIN=#{fileOrigin},
+							AC_UPDATE_DATE = SYSDATE
+	</update>
 
 </mapper>

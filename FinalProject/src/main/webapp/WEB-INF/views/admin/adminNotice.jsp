@@ -28,10 +28,10 @@
 	
 	<div class="update-delete-btn">
 		<button class="board_update_btn">수정</button>					<!-- notice, free, event -->
-		<button class="board_delete_btn">삭제</button> <!-- 체크박스에 따라 이동 /notice/delete.do?boardIdx=" + boardNum; -->
+		<button onclick="" class="board_delete_btn">삭제</button> <!-- 체크박스에 따라 이동 /notice/delete.do?boardIdx=" + boardNum; -->
 	</div>
 	<div id="board_Modal" class="board_modal">
-		<form><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
+		<form method="POST" enctype="multipart/form-data"><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
 			<div class="modal_container">
 			<input type="hidden" class="boardNum" id="boardNum" value=""> <!-- idx 값 들어감 -->
 				<table class="questionsTable">
@@ -41,23 +41,37 @@
 								</colgroup>
 								<tbody>
 									<tr>
+										<c:choose>
+										<c:when test="${list !=null }">
+											<c:forEach var="item" items="${list}">
+											<input type="hidden" id="hiddenAcno" name="acno" value="${item.acno}">
+											</c:forEach>
+										</c:when>										
+										</c:choose>
 										<th>제목</th>
 										<td>
-											<input type="text" class="boardTitle" id="boardTitle" value="">
+											<input type="text" class="boardTitle" id="boardTitle" name="title" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>작성자</th>
 										<td>
-											<input type="text" class="boardWriter" id="boardWriter" value="">
+											<input name="writer" type="text" value="관리자" disabled>
 										</td>
 									</tr>
 									<tr>
 										<th>내용</th>
 										<td>
-			                                 <textarea class="boardContent" id="boardContent" value=""></textarea>
+			                                 <textarea class="boardContent"  id="boardContent" name="contents" value=""></textarea>
 										</td>
 									</tr>
+									<tr>
+										<th>파일</th>
+										<td>
+			                                 <input type="file" name="upload" value="">
+										</td>
+									</tr>
+									
 								</tbody>
 							</table>
 				<div class="modal_btn">
@@ -107,12 +121,17 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="item" items="${list}">
-						<tr>
+						<c:forEach var="item" items="${list}" varStatus="status">
+						<tr id="row_${status.index + 1 }">
 							<input type="hidden" id="hiddenAcno" value="${item.acno }">
+							<input type="hidden" id="hiddenTitle" value="${item.title}">
+							<input type="hidden" class="noticeContent_${status.index +1}" id="hiddenContents" value="${item.contents}">
+							<input type="hidden" id="hiddenFileName" value="${item.fileName}">
+							
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">${row}</td>
 							<td class="boardTit">${item.title}</td>
+							<td class="boardDate">관리자</td>							
 							<td class="boardDate">${item.indate}</td>
 							<td class="boardView">${item.views}</td>
 						</tr>
@@ -124,6 +143,18 @@
 			</tbody>
 		</table>
 	</div>
+	<script>
+		 var rows = document.querySelectorAll('tr';)
+		
+		rows.forEach(function(row){
+			
+			row.addEventListener('click',function(){
+				
+				console.log('row.id');
+			})
+		}) 
+		
+	</script>
 
 	<ul class="pagination">
 		<c:choose>

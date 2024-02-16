@@ -46,4 +46,19 @@ public class AdminDAO {
 		return sqlSession.selectList("eventMapper.eventListAll",admin,rb);
 	}
 
+	public String selectFileName(SqlSessionTemplate sqlSession, int acno) {
+		
+		return sqlSession.selectOne("adminMapper.selectFileName",acno);
+	}
+
+	public int updateNotice(SqlSessionTemplate sqlSession, AdminDTO admin) {
+		
+		return sqlSession.update("adminMapper.updateNotice",admin);
+	}
+
+	public int updateNoticeEmpty(SqlSessionTemplate sqlSession, AdminDTO admin) {
+		
+		return sqlSession.update("adminMapper.updateNoticeEmpty",admin);
+	}
+
 }
