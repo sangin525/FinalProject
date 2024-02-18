@@ -20,7 +20,7 @@
 					<a href="/recipe/addRecipeForm.do" class="Main_a">레시피 등록</a>
 					<a href="/member/MyPageForm.do" class="Main_a">마이페이지</a>
 					<a href="/member/logOut.do" class="Main_a">로그아웃</a>
-					<a href="/memberList">관리자페이지</a>
+					<a href="/admin/memberList">관리자페이지</a>
 				</c:when>
 				<c:otherwise>
 

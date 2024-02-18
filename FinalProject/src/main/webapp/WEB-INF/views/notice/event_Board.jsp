@@ -29,65 +29,32 @@
 						<div class="count">조회</div>
 					</div>
 					<div>
-						<div class="num">1</div>
+					<c:choose>
+					<c:when test="${empty list}">
+						<p>등록된 공지사항이 없습니다.</p>
+					</c:when>
+					<c:otherwise>
+					<c:forEach var="item" items="${list}">
+					<div class="num">${row }</div>
 						<div class="title">
-							<a href="/eventDetail">글 제목이 들어갑니다.</a>
+						<a onclick="location.href='/admin/eventDetail?eno=${item.eno}'">${item.e_title}</a>
 						</div>
-						<div class="writer">김이름</div>
-						<div class="date">2021.1.15</div>
-						<div class="count">33</div>
-					</div>
-				</div>
-				<div class="notice_page">
-					<a href="#" class="bt first"><<</a> <a href="#" class="bt prev"><</a>
-					<a href="#" class="num on">1</a> <a href="#" class="num">2</a> <a
-						href="#" class="num">3</a> <a href="#" class="num">4</a> <a
-						href="#" class="num">5</a> <a href="#" class="bt next">></a> <a
-						href="#" class="bt last">>></a>
+						<div class="writer">관리자</div>
+						<div class="date">${item.e_indate }</div>
+						<div class="count">${item.e_views }</div>
+						<c:set var="row" value="${row -1}"/>
+					</c:forEach>
+					</c:otherwise>
+					</c:choose>
 				</div>
 			</div>
-			<div class="bt_wrap">
-				<a href="eventEnroll" class="on">등록</a>
-			</div>
+			
 		</div>
 	</div>
-	</div>
+	
 	<section class="boardSection">
-		<div>
-			<p class="detailP">자유게시판</p>
-		</div>
-		<c:choose>
-			<c:when test="${empty list}">
-				<p>등록된 공지사항이 없습니다.</p>
-			</c:when>
-			<c:otherwise>
-				<c:forEach var="item" items="${list}">
-					<div name="boardTitle" id="boardTitle" class="detailtitleText">공지제목
-						: ${item.title}</div>
-					<div class="boardRightDiv">
-						<input type="hidden" id="boardNo" name="boardNo" value="1">
-						<input type="hidden" name="boardViews" value="게시판 제목"> <input
-							type="hidden" name="boardMemberNo" value="작성자 번호"> <span
-							class="boardSpan"> <img
-							src="/resources/boardIcon/file-earmark.svg" />
-							<p class="boardText">공지번호 : ${row}</p> <img
-							src="/resources/boardIcon/eye.svg" />
-							<p class="boardText" id="boardViews" name="boardViews">조회수 :
-								${item.views}</p>
-						</span> <span class="boardSpan2"> <span class="boardSpan">
-								<img src="/resources/boardIcon/person-fill.svg" />
-								<p class="boardText" id="boardName" name="boardName"></p>
-						</span> <span class="boardInDate"> <img
-								src="/resources/boardIcon/calendar-fill.svg" />
-								<p class="boardDateText" id="boardInDate" name="boardInDate">등록날짜
-									: ${item.indate}</p>
-						</span>
-						</span>
-					</div>
-					<c:set var="row" value="${row -1}" />
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
+		
+		
 	</section>
 	<%@ include file="../../views/common/footer.jsp"%>
 

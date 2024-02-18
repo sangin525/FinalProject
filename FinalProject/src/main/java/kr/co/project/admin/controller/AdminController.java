@@ -2,6 +2,7 @@ package kr.co.project.admin.controller;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import javax.servlet.http.HttpSession;
 
@@ -29,6 +30,8 @@ import kr.co.project.member.model.service.MemberServiceImpl;
 public class AdminController {
 	
 	private static final String BOARD_NAME = "admin\\";
+	
+
 	
 	@Autowired
 	private AdminServiceImpl adminService;
@@ -123,6 +126,72 @@ public class AdminController {
 		}
 			
 		
+		return "redirect:/admin/adminNotice";
+	}
+	
+	@GetMapping("/noticeDetail")
+	public String noticeDetail(@RequestParam(value="acno") int acno,
+								AdminDTO admin,MemberDTO member,
+								Model model,
+								HttpSession session) {
+		
+		AdminDTO result = adminService.detailNotice(acno);
+		
+		if(!Objects.isNull(result)) {
+			model.addAttribute("notice",result);
+			System.out.println(acno+"번 게시물 들어옴");
+		}else {
+			System.out.println("실패");
+		}
+		
+		return "/notice/notice_Detail";
+	}
+	
+	@GetMapping("/noticeDelete.do")
+	public String noticeDelete(@RequestParam(value="acno")int acno,
+								AdminDTO admin,MemberDTO member){
+	 
+		int result = adminService.deleteNotice(acno);
+		if(result == 1) {			
+			System.out.println("삭 제 완 료");
+		}
+		else {
+			System.out.println("삭 제 실 패");
+		}
+		
+		return "redirect:/admin/adminNotice";
+	
+		
+}
+	
+	@PostMapping("/noticeUpdate.do")
+	public String noticeEdit(
+			AdminDTO admin,MemberDTO member,Model model,HttpSession session
+			,MultipartFile upload) {
+		int result = 0;
+		
+		if (!upload.isEmpty()) {
+			String fileName = adminService.selectFileName(admin.getAcno());
+			boolean deleteFile = AdminUploadFile.deleteFile(fileName, BOARD_NAME);
+			
+			System.out.println(deleteFile);
+			if(deleteFile) {
+				AdminUploadFile.uploadMethod(upload, null, member, session, BOARD_NAME, null, admin);
+				result = adminService.updateNotice(admin);	
+			} 
+			if(result == 1) {
+				System.out.println("수정성공");
+				return "redirect:/admin/adminNotice";
+			}else {
+				System.out.println("수정실패");
+				return "home";
+			}
+		} else if(upload.isEmpty()) {  // 사용자가 파일수정을 안했을때
+			result = adminService.updateNoticeEmpty(admin);
+			System.out.println("파일수정안하고 성공");
+			return "redirect:/admin/adminNotice";
+		}
+		
 		return "home";
 	}
 	
@@ -141,7 +210,7 @@ public class AdminController {
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
 		List<AdminDTO> eventList = adminService.eventListAll(pi,admin);
-		System.out.println(eventList);
+		
 		for(AdminDTO item:eventList) {
 			String indate = item.getE_indate().substring(0,10);
 			item.setE_indate(indate);
@@ -152,6 +221,8 @@ public class AdminController {
 		
 		return "/admin/adminEvent";
 	}
+	
+	
 	
 	@GetMapping("/eventList")
 	public String eventList(AdminDTO admin,
@@ -168,7 +239,7 @@ public class AdminController {
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
 		List<AdminDTO> list = adminService.eventListAll(pi,admin);
-		System.out.println(list);
+		
 		for(AdminDTO item:list) {
 			String indate = item.getE_indate().substring(0,10);
 			item.setE_indate(indate);
@@ -209,6 +280,90 @@ public class AdminController {
 		return "home";
 	}
 	
+	@GetMapping("/eventDetail")
+	public String eventDetail(@RequestParam(value="eno") int eno,
+								AdminDTO admin,MemberDTO member,
+								Model model,
+								HttpSession session) {
+		
+		System.out.println(eno);
+		AdminDTO event = adminService.detailEvent(eno);
+		
+		if(!Objects.isNull(event)) {
+			System.out.println("e게시글 들어오기 완료");
+		}else {
+			System.out.println("e게시글 들어오기 실패");
+		}
+	
+		model.addAttribute("event",event);
+		return "/notice/event_Detail";
+	}
+	
+	@GetMapping("/eventDelete.do")
+	public String eventDelete(@RequestParam(value="eno")int eno,
+								AdminDTO admin,MemberDTO member){
+	 
+		int result = adminService.deleteEvent(eno);
+		if(result == 1) {			
+			System.out.println("삭 제 완 료");
+		}
+		else {
+			System.out.println("삭 제 실 패");
+		}
+		
+		return "redirect:/admin/adminEvent";
+		
+}
+
+	@PostMapping("/eventUpdate.do")
+	public String eventEdit(
+			AdminDTO admin,MemberDTO member,Model model,HttpSession session
+			,MultipartFile upload) {
+		
+		final String BOARD_NAME="event\\";
+		
+		int result = 0;
+		
+		if (!upload.isEmpty()) {	 			
+				EventUploadFile.uploadMethod(upload, null, member, session, BOARD_NAME, null, admin);
+				result = adminService.updateEvent(admin);				
+			if(result == 1) {
+				System.out.println("이미지수정성공");				
+				System.out.println(admin.getE_file_name());
+				return "redirect:/admin/adminEvent";
+			}else {
+				System.out.println("이미지수정실패");
+				return "home";
+			}
+		} else if(upload.isEmpty()) {  // 사용자가 파일수정을 안했을때
+			result = adminService.updateEventEmpty(admin);
+			if(result == 1) {
+				System.out.println("수정성공");
+				return "redirect:/admin/adminEvent";
+			}else {
+				System.out.println("수정실패");
+				return "home";
+			}
+			
+		}
+		
+		return "home";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/memberList")
 	public String memberList(@RequestParam(value="cpage",defaultValue="1")int cpage,
 			MemberDTO member,HttpSession session,
@@ -229,50 +384,7 @@ public class AdminController {
 		return"admin/memberList";
 	}
 	
-	@GetMapping("/noticeDelete.do")
-	public String noticeDelete(@RequestParam(value="acno")int acno,
-								AdminDTO admin,MemberDTO member){
 	
-		
-		
-		
-		return "home";
-	
-		
-}
-	@PostMapping("/noticeUpdate.do")
-	public String noticeEdit(
-			AdminDTO admin,MemberDTO member,Model model,HttpSession session
-			,MultipartFile upload) {
-		int result = 0;
-		
-		if (!upload.isEmpty()) {
-			
-			System.out.println(admin.getTitle());
-			System.out.println(admin.getAcno());
-			System.out.println(admin.getContents());
-			String fileName = adminService.selectFileName(admin.getAcno());
-			System.out.println("a:  +" + fileName);
-			boolean deleteFile = AdminUploadFile.deleteFile(fileName, BOARD_NAME);
-			
-			System.out.println(deleteFile);
-			if(deleteFile) {
-				AdminUploadFile.uploadMethod(upload, null, member, session, BOARD_NAME, null, admin);
-				result = adminService.updateNotice(admin);	
-			} else if(upload.isEmpty()) {
-				result = adminService.updateNoticeEmpty(admin);
-			}
-			if(result == 1) {
-				System.out.println("수정성공");
-				return "redirect:/admin/adminNotice";
-			}else {
-				System.out.println("수정실패");
-				return "home";
-			}
-		}
-		
-		return "home";
-	}
 	
 
 }

@@ -22,7 +22,7 @@
 	<h2>게시글 관리</h2>
 	<div class="postCategoryBtn">
 		<button onclick="location.href='/admin/adminNotice'">공지사항</button>
-		<button onclick="location.href='/adminFree'">자유게시판</button>
+		<button onclick="location.href='/free/adminFree'">자유게시판</button>
 		<button onclick="location.href='/admin/adminEvent'">이벤트게시판</button>
 	</div>
 	
@@ -30,10 +30,14 @@
 		<button class="board_update_btn">수정</button>					<!-- notice, free, event -->
 		<button onclick="" class="board_delete_btn">삭제</button> <!-- 체크박스에 따라 이동 /notice/delete.do?boardIdx=" + boardNum; -->
 	</div>
+	
+	
+	
 	<div id="board_Modal" class="board_modal">
-		<form method="POST" enctype="multipart/form-data"><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
+		<form id="modalForm" method="POST" enctype="multipart/form-data"><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
+			
 			<div class="modal_container">
-			<input type="text" class="boardNum" id="boardNum" value=""> <!-- idx 값 들어감 -->
+			
 				<table class="questionsTable">
 								<colgroup>
 									<col style="width:15%">
@@ -115,7 +119,7 @@
 					</c:when>
 					<c:otherwise>
 						<c:forEach var="item" items="${list}" varStatus="status">
-						<tr id="row_${status.index + 1 }">
+						<tr id="row">
 							<input type="hidden" id="hiddenAcno" value="${item.acno }">
 							<input type="hidden" id="hiddenTitle" value="${item.title}">
 							<input type="hidden" class="noticeContent_${status.index +1}" id="hiddenContents" value="${item.contents}">

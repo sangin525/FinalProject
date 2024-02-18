@@ -26,6 +26,38 @@
 	ORDER BY E_IN_DATE DESC
 	</select>
 	
+	<select id="detailEvent" resultMap="eventResultSet">
+	SELECT * FROM EVENTLIST
+	WHERE E_NO =#{eno}
+	</select>
+	
+	<update id="eventViews" parameterType="admin">
+	UPDATE EVENTLIST SET E_VIEWS= #{e_views}
+	WHERE E_NO =#{eno}
+	</update>
+	
+	<update id="deleteEvent" parameterType="admin">
+	UPDATE EVENTLIST SET E_DELETE_DATE = SYSDATE
+	WHERE E_NO =#{eno}
+	</update>
+	
+	<update id="updateEvent" parameterType="admin">
+	UPDATE EVENTLIST SET E_TITLE=#{e_title},
+						 E_CONTENTS=#{e_contents},
+						 E_FILE_PATH=#{e_file_path},
+						 E_FILE_NAME=#{e_file_name},
+						 E_FILE_ORIGIN=#{e_file_origin},
+						 E_UPDATE_DATE=SYSDATE
+						 WHERE E_NO =#{eno}
+	</update>
+	
+	<update id="updateEventEmpty" parameterType="admin">
+	UPDATE EVENTLIST SET E_TITLE=#{e_title},
+						 E_CONTENTS=#{e_contents},
+						 E_UPDATE_DATE=SYSDATE
+						 WHERE E_NO =#{eno}
+	</update>
+	
 	<insert id="enrollEvent">
 		INSERT INTO EVENTLIST VALUES(event_seq.NEXTVAL,
 							#{mno},

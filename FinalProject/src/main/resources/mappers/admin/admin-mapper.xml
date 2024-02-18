@@ -31,6 +31,15 @@
 	WHERE AC_NO = #{acno}
 	</select>
 	
+	<select id="detailNotice" resultMap="adminResultSet">
+	SELECT * FROM ANNOUNCEMENT
+	WHERE AC_NO = #{acno}
+	</select>
+	
+	<update id="noticeViews" parameterType="admin">
+	UPDATE ANNOUNCEMENT SET AC_VIEWS =#{views}
+	WHERE AC_NO=#{acno}
+	</update>
 	
 	<insert id="enrollNotice">
 		INSERT INTO ANNOUNCEMENT VALUES(announcement_seq.NEXTVAL,
@@ -61,5 +70,11 @@
 							AC_CONTENTS=#{contents},
 							AC_UPDATE_DATE = SYSDATE
 						WHERE AC_NO = #{acno}		
+	</update>
+	
+	<update id="deleteNotice" parameterType="admin" >
+	UPDATE ANNOUNCEMENT SET AC_DELETE_DATE = SYSDATE
+	WHERE AC_NO = #{acno}
+	
 	</update>
 </mapper>

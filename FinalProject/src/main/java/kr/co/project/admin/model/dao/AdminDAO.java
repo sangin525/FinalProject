@@ -61,4 +61,45 @@ public class AdminDAO {
 		return sqlSession.update("adminMapper.updateNoticeEmpty",admin);
 	}
 
+	public AdminDTO detailNotice(SqlSessionTemplate sqlSession, int acno) {
+		
+		return sqlSession.selectOne("adminMapper.detailNotice",acno);
+	}
+
+	public int noticeViews(SqlSessionTemplate sqlSession, AdminDTO admin) {
+		
+		return sqlSession.update("adminMapper.noticeViews",admin);
+	}
+
+	public int deleteNotice(SqlSessionTemplate sqlSession, int acno) {
+		
+		return sqlSession.update("adminMapper.deleteNotice",acno);
+	}
+
+	public AdminDTO detailEvent(SqlSessionTemplate sqlSession, int eno) {
+		
+		return sqlSession.selectOne("eventMapper.detailEvent",eno);
+	}
+
+	public int eventViews(SqlSessionTemplate sqlSession, AdminDTO event) {
+		
+		return sqlSession.update("eventMapper.eventViews",event);
+	}
+
+	public int deleteEvent(SqlSessionTemplate sqlSession, int eno) {
+		
+		return sqlSession.update("eventMapper.deleteEvent",eno);
+	}
+
+	public int updateEvent(SqlSessionTemplate sqlSession, AdminDTO admin) {
+		
+		return sqlSession.update("eventMapper.updateEvent",admin);
+	}
+
+	public int updateEventEmpty(SqlSessionTemplate sqlSession, AdminDTO admin) {
+	
+		return sqlSession.update("eventMapper.updateEventEmpty",admin);
+	}
+
+	
 }
