@@ -341,7 +341,7 @@ public class AdminController {
 				System.out.println("수정성공");
 				return "redirect:/admin/adminEvent";
 			}else {
-				System.out.println("수정실패 ㅜㅜ");
+				System.out.println("수정실패 ㅜㅜㅜ");
 				return "home";
 			}
 			
