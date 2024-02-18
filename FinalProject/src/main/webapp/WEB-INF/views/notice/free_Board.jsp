@@ -55,7 +55,6 @@
 			</div>
 		</div>
 	</div>
-	</div>
 	<section class="boardSection">
 		<div>
 			<p class="detailP">자유게시판</p>
