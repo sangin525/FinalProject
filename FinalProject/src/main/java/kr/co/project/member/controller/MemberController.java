@@ -136,7 +136,14 @@ public class MemberController {
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
 	
+		member.setMno((int) session.getAttribute("mno"));
+		int mno = member.getMno();
+		MemberDTO result = memberService.memberProfile(mno);
 		
+		int viewSum = recipeService.viewSum(mno);
+		System.out.println(viewSum);
+		model.addAttribute("result",result);
+		model.addAttribute("viewSum",viewSum);
 
 		return "/myPage/myRecipes";
 
@@ -163,6 +170,15 @@ public class MemberController {
 			item.setIndate(indate);
 			
 		}
+		
+		member.setMno((int) session.getAttribute("mno"));
+		int mno = member.getMno();
+		MemberDTO result = memberService.memberProfile(mno);
+		
+		int viewSum = recipeService.viewSum(mno);
+		System.out.println(viewSum);
+		model.addAttribute("result",result);
+		model.addAttribute("viewSum",viewSum);
 		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
@@ -195,6 +211,15 @@ public class MemberController {
 			item.setIndate(indate);
 			
 		}
+		
+		member.setMno((int) session.getAttribute("mno"));
+		int mno = member.getMno();
+		MemberDTO result = memberService.memberProfile(mno);
+		
+		int viewSum = recipeService.viewSum(mno);
+		System.out.println(viewSum);
+		model.addAttribute("result",result);
+		model.addAttribute("viewSum",viewSum);
 		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);

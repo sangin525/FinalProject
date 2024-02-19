@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="freeMapper">
+	<resultMap type="free" id="freeResultSet">
+		<result column="FL_NO" property="flno"></result>
+		<result column="M_NO" property="mno"></result>
+		<result column="FL_TITLE" property="title"></result>
+		<result column="FL_CONTENTS" property="contents"></result>
+		<result column="FL_FILE_PATH" property="filePath"></result>
+		<result column="FL_FILE_NAME" property="fileName"></result>
+		<result column="FL_FILE_ORIGIN" property="fileOrigin"></result>
+		<result column="FL_IN_DATE" property="indate"></result>
+		<result column="FL_DELETE_DATE" property="deleteDate"></result>
+		<result column="FL_UPDATE_DATE" property="updateDate"></result>
+		<result column="FL_WRITER" property="writer"></result>
+		<result column="FL_VIEWS" property="views"></result>
+	</resultMap>
+	
+	<select id="selectListCount" resultType="_int">
+	SELECT COUNT(*) FROM FREELIST
+	WHERE FL_DELETE_DATE IS NULL
+	</select>
+	
+	<select id="selectListAll" resultMap="freeResultSet">
+	SELECT * FROM FREELIST
+	WHERE FL_DELETE_DATE IS NULL
+	</select>
+	
+	<select id="freeDetail" resultMap="freeResultSet">
+	SELECT * FROM FREELIST
+	WHERE FL_NO=#{flno}
+	</select>
+	
+	<update id="freeViews" parameterType="free">
+	UPDATE FREELIST SET FL_VIEWS =#{views}
+	WHERE FL_NO =#{flno}
+	</update>
+	
+	<update id="freeDelete" parameterType="free">
+	UPDATE FREELIST SET FL_DELETE_DATE =SYSDATE
+	WHERE FL_NO=#{flno}
+	</update>
+	
+	<update id="updateFree" parameterType="free">
+	UPDATE FREELIST SET FL_TITLE =#{title},
+						FL_CONTENTS =#{contents},
+						FL_FILE_PATH =#{filePath},
+						FL_FILE_NAME =#{fileName},
+						FL_FILE_ORIGIN =#{fileOrigin},
+						FL_UPDATE_DATE = SYSDATE
+					WHERE FL_NO =#{flno}
+	</update>
+	
+	<update id="updateFreeEmpty" parameterType="free">
+	UPDATE FREELIST SET FL_TITLE =#{title},
+						FL_CONTENTS =#{contents},
+						FL_UPDATE_DATE = SYSDATE
+					WHERE FL_NO =#{flno}
+	</update>
+	
+	<insert id="enrollFree">
+		INSERT INTO FREELIST VALUES(free_seq.NEXTVAL,
+					#{mno},
+					#{title},
+					#{contents},
+					#{writer},
+					#{filePath},
+					#{fileName},
+					#{fileOrigin},
+					SYSDATE,
+					null,
+					null,
+					0)
+	</insert>
+	
+</mapper>

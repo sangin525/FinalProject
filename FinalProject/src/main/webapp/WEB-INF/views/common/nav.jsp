@@ -9,9 +9,9 @@
 		<div class="dropdown">
 			<a href="#">게시판</a>
 			<div class="dropdown-content">
-				<a href="/noticeBoard">공지사항</a>
-				<a href="/freeBoard">자유게시판</a>
-				<a href="/eventBoard">이벤트게시판</a>
+				<a href="/admin/noticeList">공지사항</a>
+				<a href="/free/freeList">자유게시판</a>
+				<a href="/admin/eventList">이벤트게시판</a>
 			</div>
 		</div>
 		<a href="/foodMate/foodMateList.do">밥친구</a>

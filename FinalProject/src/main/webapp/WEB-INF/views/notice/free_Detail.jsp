@@ -20,34 +20,39 @@
 			</div>
 			<div class="notice_view_wrap">
 				<div class="notice_view">
-					<div class="title">글 제목이 들어갑니다.</div>
+					<div class="title">${free.title }</div>
 					<div class="info">
 						<dl>
-							<dt>번호</dt>
+							<dt>번호: ${free.flno }</dt>
 							<dd>1</dd>
 						</dl>
 						<dl>
-							<dt>글쓴이</dt>
+							<dt>글쓴이: ${free.writer }</dt>
 							<dd>김이름</dd>
 						</dl>
 						<dl>
-							<dt>작성일</dt>
+							<dt>작성일: ${free.indate }</dt>
 							<dd>2021.1.16</dd>
 						</dl>
 						<dl>
-							<dt>조회</dt>
+							<dt>조회: ${free.views }</dt>
 							<dd>33</dd>
 						</dl>
 					</div>
 					<div class="cont">
-						<img src="/resources/uploads/고양이그림.png"> 글 내용이 들어갑니다<br>
-						글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글
-						내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이
-						들어갑니다
+						<c:if test ="${not empty free.fileName }">
+						<img src="/resources/uploads/free/${free.fileName}">
+						</c:if>
+						${free.contents}
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<a href="/freeBoard" class="on">목록</a> <a href="freeEdit">수정</a>
+					<c:if test="${sessionScope.memberNickName == free.writer}">
+						<a href="/free/freeDelete?flno=${free.flno}">삭제</a>
+						<a href="/free/freeEditForm?flno=${free.flno}">수정</a>
+						<a href="/free/freeList" class="on">목록</a> 
+					</c:if>
+					
 				</div>
 			</div>
 		</div>
