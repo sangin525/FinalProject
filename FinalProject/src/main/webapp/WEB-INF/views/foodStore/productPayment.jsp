@@ -41,7 +41,7 @@
 							<td>
 								<div class="quantity">
 									<button class="minus-btn" type="button" name="button">-</button>
-									<input name="name" value="1" readonly>
+									<input name="name" value="${g_count}" readonly>
 									<button class="plus-btn" type="button" name="button">+</button>
 								</div>
 							</td>

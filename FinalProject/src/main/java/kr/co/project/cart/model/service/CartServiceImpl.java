@@ -19,29 +19,28 @@ public class CartServiceImpl implements CartService {
 	private CartDAO cartDAO;
 
 	@Override
-	public int addCart(CartDTO cart) {
+	public int addCart(CartDTO cart) {//
 		return cartDAO.addCart(sqlSession, cart);
 	}
 
 	@Override
-	public int deleteCart(int sc_no) {
-
+	public int deleteCart(int sc_no) {//
 		return cartDAO.deleteCart(sqlSession, sc_no);
 	}
 
 	@Override
-	public int modifyCount(CartDTO cart) {
+	public int modifyCount(CartDTO cart) {//
 		return cartDAO.modifyCount(sqlSession, cart);
 	}
 
 	@Override
-	public List<CartDTO> getCart(int mno) {
+	public List<CartDTO> getCart(int mno) {//
 		return cartDAO.getCart(sqlSession, mno);
 	}
 
 	@Override
-	public CartDTO checkCart(CartDTO cart) {
+	public CartDTO checkCart(CartDTO cart) {//해야함
 		return cartDAO.checkCart(sqlSession, cart);
 	}
-
+	
 }

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="orderMapper">
+
+	<resultMap type="order" id="orderResultSet">
+		<result column="o_no" property="o_no" />
+		<result column="o_recipient_name" property="o_recipient_name" />
+		<result column="o_postal_address" property="o_postal_address" />
+		<result column="o_address" property="o_address" />
+		<result column="o_detailed_address" property="o_detailed_address" />
+		<result column="o_recipient_phone" property="o_recipient_phone" />
+		<result column="o_order_date" property="o_order_date" />
+		<result column="o_payment_amount" property="o_payment_amount" />
+		<result column="o_order_status" property="o_order_status" />
+		<result column="o_status_change_date" property="o_status_change_date" />
+		<result column="m_no" property="m_no" />
+	</resultMap>
+
+	<resultMap type="orderDetail" id="orderDetailResultSet">
+		<result column="od_no" property="od_no" />
+		<result column="od_price" property="od_price" />
+		<result column="od_count" property="od_count" />
+		<result column="o_no" property="o_no" />
+		<result column="g_no" property="g_no" />
+	</resultMap>
+
+
+	<insert id="insertOrder" parameterType="order">
+		INSERT INTO orders
+		VALUES
+		(order_seq.NEXTVAL,
+		#{o_recipient_name},
+		#{o_postal_address},
+		#{o_address},
+		#{o_detailed_address},
+		#{o_recipient_phone},
+		#{o_order_date},
+		#{o_payment_amount},
+		NULL,
+		NULL,
+		#{m_no}
+		)
+	</insert>
+
+	<insert id="insertOrderDetail" parameterType="orderDetail">
+		INSERT INTO
+		orderDetail
+		VALUES (orderDetail_seq.NEXTVAL,
+		#{od_price},
+		#{od_count},
+		#{o_no},
+		#{g_no}
+		)
+	</insert>
+
+
+
+</mapper>

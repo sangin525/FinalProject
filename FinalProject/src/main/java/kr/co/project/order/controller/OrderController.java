@@ -15,18 +15,14 @@ import kr.co.project.member.model.service.MemberServiceImpl;
 import kr.co.project.order.model.dto.ItemOnPageDTO;
 import kr.co.project.order.model.dto.OrderDTO;
 import kr.co.project.order.model.dto.OrderDetailDTO;
-import kr.co.project.order.model.service.OrderDetailServiceImpl;
 import kr.co.project.order.model.service.OrderServiceImpl;
 
 @Controller
-@RequestMapping("/orders")
+@RequestMapping("/order")
 public class OrderController {
 
 	@Autowired
 	private OrderServiceImpl orderService;
-
-	@Autowired
-	private OrderDetailServiceImpl orderDetailService;
 
 	@Autowired
 	private GoodsServiceImpl goodsService;
@@ -47,12 +43,12 @@ public class OrderController {
 		model.addAttribute("memberInfo", memberInfo);
 		model.addAttribute("g_count", g_count);
 
-		return "order/orderPage";
+		return "foodStore/productPayment";
 	}
 
 	@PostMapping("/insertOrderDetail.do")
 	public String insertOrderDetail(OrderDetailDTO orderDetail, Model model) {
-		int result = orderDetailService.insertOrderDetail(orderDetail);
+		int result = orderService.insertOrderDetail(orderDetail);
 		if (result > 0) {
 		}
 		return null;
@@ -61,7 +57,6 @@ public class OrderController {
 	@PostMapping("/insertOrder.do")
 	public String insertOrder(OrderDTO order) {
 		int result = orderService.insertOrder(order);
-
 		return null;
 	}
 

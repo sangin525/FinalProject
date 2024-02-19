@@ -65,6 +65,7 @@
                                                 <input type="hidden" name="sc_price" id="sc_price" value="${goods.g_price}" readonly>
                                                 <input type="hidden" name="g_no" value="${goods.g_no}" readonly>
                                                 <input type="hidden" name="m_no" value="${m_no}" readonly>
+                                                <input type="hidden" class="product-count" value="1" name="g_count" readonly>
 												</span>
                                                 </td>
 											</tr>
@@ -125,7 +126,7 @@ function goCart(){
     document.getElementById("gotoguy").click();
 }
 function goOrder(){
-    document.getElementById("goodsform").action="/order/order.do";
+    document.getElementById("goodsform").action="/order/goToOrder.do";
     document.getElementById("gotoguy").click();
 }
 

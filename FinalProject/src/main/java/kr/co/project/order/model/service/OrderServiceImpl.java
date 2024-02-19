@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import kr.co.project.order.model.dao.OrderDAO;
 import kr.co.project.order.model.dto.OrderDTO;
+import kr.co.project.order.model.dto.OrderDetailDTO;
 
 @Service
 public class OrderServiceImpl implements OrderService {
@@ -19,5 +20,11 @@ public class OrderServiceImpl implements OrderService {
 	public int insertOrder(OrderDTO order) {
 		return orderDAO.insertOrder(sqlSession, order);
 	}
+	
+	@Override
+	public int insertOrderDetail(OrderDetailDTO orderDetail) {
+		return orderDAO.insertOrderDetail(sqlSession, orderDetail);
+	}
+	
 
 }
