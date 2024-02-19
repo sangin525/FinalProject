@@ -41,14 +41,14 @@
 		   #{g_name},
 		   #{g_file_path},
 		   #{g_file_name},
-		   #{g_origin_name},
 		   #{g_introduce},
 		   #{g_regular_price},
 		   #{g_price},
-		   #{g_dcRate},
 		   SYSDATE,
 		   #{g_stock},
-		   null)
+		   null,
+		   #{g_dcRate},
+		   #{g_origin_name})
 	</insert>
 	
 
