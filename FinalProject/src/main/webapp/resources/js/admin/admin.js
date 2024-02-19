@@ -1,3 +1,5 @@
+let trNo = 0;
+let selectAcno=0;
 $(function() {
 	// 왼쪽메뉴 드롭다운
 	$(".sub_menu ul.small_menu").hide();
@@ -222,12 +224,20 @@ $(document).ready(function() {
 	});
 });
 
+
+
 // 게시글관리
 $(document).ready(function() {
 	$(".noticeContent, .freeContent, .eventContent, .answerContent").hide();
 	var toggleContent = function(trSelector, contentClass) {
-
+	const acno = document.getElementById('hiddenAcno').value; 
+	const acContents = document.getElementById('hiddenContents').value;
+	const asFile = document.getElementById('hiddenFileName').value;
+	
 		$(trSelector).click(function() {
+		
+		trNo= $(this).children('#hiddenAcno').val();
+		
 			// 이전에 추가된 내용을 삭제합니다.
 			$(trSelector + '.added').remove();
 
@@ -238,9 +248,8 @@ $(document).ready(function() {
 			var isChecked = $(this).find('input[type="checkbox"]').is(':checked');
 
 			// 만약 체크박스가 선택되어 있다면 내용을 보여줍니다.
-			if (isChecked) {
-				var content = $(contentClass).eq(index).html();
-				$(this).after('<tr class="added"><td colspan="6">' + content + '</td></tr>');
+			if (isChecked) {				
+				$(this).after('<tr class="added"><td colspan="6">' + $(this).children('#hiddenContents').val() +  '</td></tr>');							
 			}
 		});
 	};
@@ -262,7 +271,12 @@ $(document).ready(function() {
 $(document).ready(function() {
 	var modal = $("#board_Modal");
 	var span = $(".close")[0];
-
+	
+	const acno = document.getElementById('hiddenAcno').value; 
+	const title = document.getElementById('hiddenTitle').value;
+	const contents = document.getElementById('hiddenContents').value;
+	const fileName = document.getElementById('hiddenFileName').value;
+	
 	var answerContent = ""; // 답변 내용을 저장할 변수를 선언합니다.
 
 	// 체크박스 클릭 이벤트를 처리합니다.
@@ -277,18 +291,29 @@ $(document).ready(function() {
 
 	$(".board_update_btn").click(function() {
 		var checkboxes = $("input.Detail[type='checkbox']"); // 'Detail' 클래스를 가진 모든 체크박스를 선택합니다.
-
+		let modalForm = document.getElementById('modalForm');
+		const acno = document.getElementById('hiddenAcno').value;
+		let selectAcno = trNo;
+		
+		
 		// 모든 체크박스에 대해 반복합니다.
 		checkboxes.each(function() {
 			// 체크박스가 체크된 경우만 데이터를 가져옵니다.
 			if (this.checked) {
 				var row = $(this).parent().parent(); // 체크박스의 상위 노드를 통해 현재 행을 가져옵니다.
 				var nextRow = row.next(); // 현재 행의 바로 다음 행을 가져옵니다.
-
+				let hiddenTrAcno = document.createElement('input');
+				hiddenTrAcno.type = "hidden";
+				hiddenTrAcno.name = "acno";
+				hiddenTrAcno.value = trNo;
+				modalForm.appendChild(hiddenTrAcno);
+				
+				
 				// 현재 행의 상위 div가 'noticeTable' 클래스를 가지고 있는지 확인합니다.
 				if (row.closest('div').hasClass('noticeTable')) {
 					// 'noticeTable' 클래스를 가지고 있다면, 모달창의 form에 action을 추가합니다.
-					modal.find('form').attr('action', 'noticeUpdate.do');
+					console.log("b");
+					modal.find('form').attr('action', '/admin/noticeUpdate.do');
 				} else if (row.closest('div').hasClass('freeTable')) {
 					modal.find('form').attr('action', 'freeUpdate.do');
 				} else if (row.closest('div').hasClass('eventTable')) {
@@ -332,18 +357,19 @@ $(".board_answer_btn").click(function() {
 	});
 });
 
+	
 	// 삭제 버튼에 대한 이벤트 핸들러를 추가합니다.
 	$(".board_delete_btn").click(function() {
 		var checkboxes = $("input.Detail[type='checkbox']");
 		const acno = document.getElementById('hiddenAcno').value;
-
+		
 		checkboxes.each(function() {
 			if (this.checked) {
 				var row = $(this).parent().parent();
-
+				
 				if (row.closest('div').hasClass('noticeTable')) {
 					var boardNum = row.find(".boardNum").text();
-					window.location.href = "/admin/noticeDelete.do?acno="+acno;
+					window.location.href = "/admin/noticeDelete.do?acno="+ trNo;
 				} else if (row.closest('div').hasClass('freeTable')) {
 					var boardNum = row.find(".boardNum").text();
 					window.location.href = "/free/delete.do?boardIdx=" + boardNum;

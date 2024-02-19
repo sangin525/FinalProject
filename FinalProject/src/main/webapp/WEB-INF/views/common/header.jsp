@@ -19,7 +19,7 @@
 				<c:when test="${sessionScope.memberName != null}">
 					<c:choose>
 						<c:when test="${sessionScope.type == 0}">
-							<a href="/memberList" class="Main_a">관리자페이지</a>
+							<a href="/admub/memberList" class="Main_a">관리자페이지</a>
 							<a href="/member/logOut.do" class="Main_a">로그아웃</a>
 							<a href="/member/MyPageForm.do" class="Main_a">마이페이지</a>
 						</c:when>
@@ -29,6 +29,7 @@
 							<a href="/member/logOut.do" class="Main_a">로그아웃</a>
 						</c:otherwise>
 					</c:choose>
+
 				</c:when>
 				<c:otherwise>
 

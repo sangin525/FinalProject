@@ -71,8 +71,9 @@ public class IndexController {
 				recentSelectRecipe.add(recipeResult);
 			}
 
+
 			for (RecipeDTO r : recentSelectRecipe) {
-				System.out.println(r.toString());
+				
 			}
 
 			model.addAttribute("recentRecipe", recentSelectRecipe);

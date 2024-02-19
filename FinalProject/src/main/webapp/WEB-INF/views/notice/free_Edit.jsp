@@ -18,38 +18,28 @@
             <strong>게시글 수정</strong>
         </div>
         <div class="notice_write_wrap">
+        	<form action="/free/freeEdit" method="post" enctype="multipart/form-data" novalidate>
             <div class="notice_write">
+            <input type="hidden" name="flno" value="${free.flno }">
                 <div class="title">
                     <dl>
                         <dt>제목</dt>
-                        <dd><input type="text" placeholder="제목 입력" value="글 제목이 들어갑니다"></dd>
+                        <dd><input name="title" type="text" placeholder="제목 입력" ></dd>
                     </dl>
                 </div>
-                <div class="info">
-                    <dl>
-                        <dt>글쓴이</dt>
-                        <dd><input type="text" placeholder="글쓴이 입력" value="바비"></dd>
-                    </dl>
-                </div>
+               
                 <div class="cont">
-                    <textarea placeholder="내용 입력">
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.
-글 내용이 들어갑니다.</textarea>
+                    <textarea name="contents" placeholder="내용 입력"></textarea>
                 </div>
                 <br>
                 <input type="file" name="upload">
                 <br>
             </div>
-            <div class="bt_wrap">
-                <a href="freeDetail" class="on">수정</a>
-                <a href="freeDetail" onclick="history.back()">취소</a>
+           <div class="bt_wrap">                
+                <button type="submit">수정</button>
+               	<button type="button" onclick="history.back()">취소</button>                
             </div>
+        	</form>        
         </div>
     </div>
     </div>
