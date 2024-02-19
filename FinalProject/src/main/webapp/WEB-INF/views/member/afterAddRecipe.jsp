@@ -13,6 +13,7 @@
 <body class="afterRecipeBody">
 
 	<%@ include file="../../views/common/header.jsp"%>
+			<%@ include file="../../views/common/nav.jsp" %>
 
 
 	<div class="container">
@@ -261,7 +262,7 @@
 
 							<br><br>
 							<b class="info_name_f">${item.comment}</b> ${item.rcInDate}<b></b><span></span>
-							<a onclick="#">답글</a><span></span>	<a>신고</a>
+							<a onclick="#"></a><span></span>	<a>신고</a>
 						</h4>
 						 <br>
 					</div>

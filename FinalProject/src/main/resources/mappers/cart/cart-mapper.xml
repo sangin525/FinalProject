@@ -27,8 +27,7 @@
 
 	<update id="modifyCount" parameterType="cart">
 		UPDATE shoppingCart
-		SET
-		sc_count = #{sc_count}
+		SET sc_count = #{sc_count},sc_price=#{sc_price}
 		WHERE sc_no = #{sc_no}
 	</update>
 

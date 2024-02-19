@@ -11,18 +11,19 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/resources/js/admin/admin.js"></script>
+<script src="/resources/js/admin/admin2.js"></script>
 </head>
 
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
+		<%@ include file="../../views/common/nav.jsp" %>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
 	<div class="adminContainer">
 <div class="managingPostsContainer">
 	<h2>게시글 관리</h2>
 	<div class="postCategoryBtn">
 		<button onclick="location.href='/admin/adminNotice'">공지사항</button>
-		<button onclick="location.href='/adminFree'">자유게시판</button>
+		<button onclick="location.href='/free/adminFree'">자유게시판</button>
 		<button onclick="location.href='/admin/adminEvent'">이벤트게시판</button>
 	</div>
 	
@@ -31,7 +32,7 @@
 		<button class="board_delete_btn">삭제</button> <!-- 체크박스에 따라 이동 /notice/delete.do?boardIdx=" + boardNum; -->
 	</div>
 	<div id="board_Modal" class="board_modal">
-		<form><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
+		<form id="modalForm" method="POST" enctype="multipart/form-data"><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
 			<div class="modal_container">
 			<input type="hidden" class="boardNum" id="boardNum" value=""> <!-- idx 값 들어감 -->
 				<table class="questionsTable">
@@ -43,19 +44,25 @@
 									<tr>
 										<th>제목</th>
 										<td>
-											<input type="text" class="boardTitle" id="boardTitle" value="">
+											<input type="text" name="e_title" class="boardTitle" id="boardTitle" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>작성자</th>
 										<td>
-											<input type="text" class="boardWriter" id="boardWriter" value="">
+											<input type="text" name="e_writer" class="boardWriter" id="boardWriter" value="관리자">
 										</td>
 									</tr>
 									<tr>
 										<th>내용</th>
 										<td>
-			                                 <textarea class="boardContent" id="boardContent" value=""></textarea>
+			                                 <textarea class="boardContent" name="e_contents" id="boardContent" value=""></textarea>
+										</td>
+									</tr>
+									<tr>
+										<th>파일</th>
+										<td>
+			                                 <input type="file" name="upload" value="">
 										</td>
 									</tr>
 								</tbody>
@@ -107,8 +114,12 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-					<c:forEach var="item" items="${eventList}">
+					<c:forEach var="item" items="${eventList}" varStatus="status">
 						<tr>
+						<input type="hidden" id="hiddenEno" value="${item.eno}">
+						<input type="hidden" id="hiddenTitle" value="${item.e_title}">
+						<input type="hidden" class="eventContent_${status.index +1}" id="hiddenContents" value="${item.e_contents}">
+						<input type="hidden" id="hiddenFileName" value="${item.e_file_name}">
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">${erow}</td>
 							<td class="boardTit">${item.e_title}</td>

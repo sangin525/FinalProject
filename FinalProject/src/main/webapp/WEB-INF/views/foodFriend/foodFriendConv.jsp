@@ -14,7 +14,12 @@
 
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
+<<<<<<< HEAD
+	<%@ include file="../../views/common/nav.jsp" %>
+=======
+		<%@ include file="../../views/common/nav.jsp" %>
 
+>>>>>>> branch 'master' of https://github.com/sangin525/finalProject.git
 	<div class="container">
 
 		${firstMember.mno}<br><br> 
@@ -29,7 +34,7 @@
 			<div class="chat-header">
 				<h2>1대1 채팅방</h2>
 			</div>
-			<div id="chatBox" class="chat-box"></div>
+			<div id="chatBox" class="chat-box clearBox"></div>
 			<div class="chat-input">
 				<input id="messageInput" type="text" placeholder="메시지를 입력하세요." value="">
 				<button id="sendButton">전송</button>
@@ -54,6 +59,7 @@
 		sendMessage();
 		messageInput.value = null;
 	})
+	
 
 	function sendMessage() {
 		//사용자 이름을 가져옵니다.
@@ -78,26 +84,76 @@
 
 	function onMessage(msg) {
 		// 서버로부터 메시지 받아오고
-		var data = msg.data;
+		var data = JSON.parse(msg.data);
+
 		// 새로운 메시지 요소를 만듭니다.
 		var newMessage = document.createElement('p');
-		newMessage.textContent = data;
-		newMessage.style.textAlign = 'center';
-		newMessage.style.marginBottom = '30px';
+		newMessage.innerHTML = data.cm_message + "<br>";
+		newMessage.innerHTML += data.cm_send_time;
+		newMessage.style.textAlign = 'right';
+
 		newMessage.style.marginRight = '20px';
+		newMessage.style.wordWrap = 'break-word';
+		newMessage.style.fontFamily = "'Noto Sans KR', sans-serif";
+		newMessage.style.fontSize = '15px';
+		newMessage.style.fontWeight = '500';
+		newMessage.style.color = '#333';
+	    newMessage.style.maxWidth = '80%';
+		
+		var profileBox = document.createElement('div');
+		profileBox.style.display="flex";
+		profileBox.style.flexDirection = "column";
+		
+		var clearBox = document.createElement('div');
+		clearBox.style.clear = "both";
+		
+
+
 		// 새로운 이미지 요소를 만듭니다.
 		var newImage = document.createElement('img');
 		newImage.src = '/resources/uploads/레시피등록대표사진.gif';
 		newImage.style.width = '50px';
 		newImage.style.height = '50px';
 		newImage.style.borderRadius = '50%';
+		newImage.style.borderColor = '#ddd';
+		newImage.style.borderWidth = '2px';
+		newImage.style.borderStyle = 'solid';
+		
+	    // 사용자 이름을 나타내는 요소를 만듭니다.
+	    var userName = document.createElement('p');
+	    userName.innerHTML = data.m_name;
+	    userName.style.textAlign = 'center';
+	    
 		// 메시지와 이미지를 담을 컨테이너를 만듭니다.
 		var container = document.createElement('div');
+		if (data.m_name === "${user.name}") {
+			container.style.float = 'right';
+	   } else{
+		   container.style.float = 'left';
+
+	    }
 		// 컨테이너에 메시지와 이미지를 추가합니다.
+		
+		// container.appendChild(newImage);
+		// container.appendChild(userName);
+
+		container.style.alignItems = 'center';
+		container.style.alignItems = 'column';
+		container.style.border = '1px solid #ddd';
+		container.style.borderRadius = '5px';
+		container.style.boxShadow = '0px 0px 10px rgba(0, 0, 0, 0.1)';
+		container.style.padding = '10px';
+		container.style.marginBottom = '10px';
+
+		container.style.maxWidth = '80%';
 		container.appendChild(newMessage);
-		container.appendChild(newImage);
+		container.appendChild(profileBox);
+		profileBox.appendChild(newImage);
+		profileBox.appendChild(userName);
+
 		// 채팅 박스에 컨테이너를 추가합니다.
 		chatBox.appendChild(container);
+		chatBox.appendChild(clearBox);
 		// 채팅 박스의 스크롤 위치를 맨 아래로 설정합니다.
 		chatBox.scrollTop = chatBox.scrollHeight;
 	}

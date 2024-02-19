@@ -6,31 +6,62 @@
 <html>
 <head>
 <%@ include file="../../views/common/head.jsp"%>
+<link rel="stylesheet" href="/resources/css/notice/notice.css">
 
 </head>
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
+	<%@ include file="../../views/common/nav.jsp"%>
 
-	<div class="navbar">
-		<a href="notice.html">공지사항</a>
-		<a href="freeboard.html">자유게시판</a>
-		<a href="event.html">이벤트게시판</a>
-		<a href="contact.html">고객센터</a>
-	</div>
-
-	<div class="board">
-		<h1>공지사항</h1>
-		<div class="post">
-			<h2>게시글 제목 1</h2>
-			<p>게시글 내용 1</p>
+	<div class="container">
+		<div class="notice_wrap">
+			<div class="notice_title">
+				<strong>자유게시판</strong>
+				<br>
+			</div>
+			<div class="notice_list_wrap">
+				<div class="notice_list">
+					<div class="top">
+						<div class="num">번호</div>
+						<div class="title">제목</div>
+						<div class="writer">글쓴이</div>
+						<div class="date">작성일</div>
+						<div class="count">조회</div>
+					</div>
+					<div>
+						<c:choose>
+						<c:when test="${empty list}">
+							<p>등록된 글이 없습니다.</p>
+						</c:when>
+						<c:otherwise>
+						<c:forEach var="item" items="${list}">
+						<div class="num">${row}</div>
+						<div class="title">
+							<a onclick="location.href='/free/freeDetail?flno=${item.flno}'">${item.title }</a>
+						</div>
+						<div class="writer">${item.writer }</div>
+						<div class="date">${item.indate }</div>
+						<div class="count">${item.views }</div>
+						<c:set var="row" value="${row-1 }"/>
+						</c:forEach>
+						</c:otherwise>
+						</c:choose>
+					</div>
+				</div>
+				
+			</div>
+			<div class="bt_wrap">
+				<a href="/free/freeEnrollForm" class="on">등록</a>
+			</div>
 		</div>
-		<div class="post">
-			<h2>게시글 제목 2</h2>
-			<p>게시글 내용 2</p>
-		</div>
 	</div>
-
-
+	<section class="boardSection">
+		<div>
+			<p class="detailP">자유게시판</p>
+		</div>
+		
+	</section>
+	<%@ include file="../../views/common/footer.jsp"%>
 
 </body>
 </html>

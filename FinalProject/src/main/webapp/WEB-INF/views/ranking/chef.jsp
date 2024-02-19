@@ -11,7 +11,7 @@
 </head>
 <body>
 <%@ include file="../../views/common/header.jsp"%>
-
+	<%@ include file="../../views/common/nav.jsp" %>
 <div class="rankingContainer">
 	<div class="rankingContain">
 <%@ include file="../../views/ranking/rankingNav.jsp"%>

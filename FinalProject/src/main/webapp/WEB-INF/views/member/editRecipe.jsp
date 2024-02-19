@@ -11,6 +11,7 @@
 <body class="recipeBody">
 
 	<%@ include file="../../views/common/header.jsp"%>
+			<%@ include file="../../views/common/nav.jsp" %>
 
 	<div class="addRecipeContainer">
 		<div class="recipeContain">

@@ -8,8 +8,10 @@
 <link rel="stylesheet" href="/resources/css/recipeAdd/addRecipe.css">
 </head>
 <body>
+
    <%@ include file="../../views/common/header.jsp"%>
          <%@ include file="../../views/common/nav.jsp" %>
+
 
    <form action="/goods/addGoods.do" method="post" enctype="multipart/form-data" novalidate>
       

@@ -15,6 +15,7 @@
 
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
+		<%@ include file="../../views/common/nav.jsp" %>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
 <div class="adminContainer">
 	<div class="productTable">
