@@ -23,7 +23,7 @@
 	<h2>게시글 관리</h2>
 	<div class="postCategoryBtn">
 		<button onclick="location.href='/admin/adminNotice'">공지사항</button>
-		<button onclick="location.href='/adminFree'">자유게시판</button>
+		<button onclick="location.href='/free/adminFree'">자유게시판</button>
 		<button onclick="location.href='/admin/adminEvent'">이벤트게시판</button>
 	</div>
 	
@@ -83,7 +83,7 @@
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty freeList}">
+					<c:when test="${empty list}">
 						<tr>
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">1</td>
@@ -108,9 +108,22 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<tr>
-							<td colspan="7">글이 없습니다.</td>
+						<c:forEach var="item" items="${list}" varStatus="status">
+						<tr id="row">
+							<input type="hidden" id="hiddenFlno" value="${item.flno }">
+							<input type="hidden" id="hiddenTitle" value="${item.title}">
+							<input type="hidden" class="noticeContent_${status.index +1}" id="hiddenContents" value="${item.contents}">
+							<input type="hidden" id="hiddenFileName" value="${item.fileName}">
+							
+							<td><input type="checkbox" class="Detail"></td>
+							<td class="boardNum">${row}</td>
+							<td class="boardTit">${item.title}</td>
+							<td class="boardDate">${item.writer }</td>							
+							<td class="boardDate">${item.indate}</td>
+							<td class="boardView">${item.views}</td>
 						</tr>
+							<c:set var="row" value="${row -1}"/>
+						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 

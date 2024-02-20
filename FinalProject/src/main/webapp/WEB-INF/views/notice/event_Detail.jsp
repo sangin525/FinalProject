@@ -15,35 +15,35 @@
 	<div class="container">
 		<div class="board_wrap">
 			<div class="notice_title">
-				<strong>쟈유게시판</strong>
+				<strong>이벤트게시판</strong>
 
 			</div>
 			<div class="notice_view_wrap">
 				<div class="notice_view">
-					<div class="title">글 제목이 들어갑니다.</div>
+					<div class="title">${event.title }</div>
 					<div class="info">
 						<dl>
-							<dt>번호</dt>
-							<dd>1</dd>
+							<dt>번호: ${event.eno }</dt>
+							<dd></dd>
 						</dl>
 						<dl>
-							<dt>글쓴이</dt>
-							<dd>김이름</dd>
+							<dt>글쓴이: 관리자</dt>
+							<dd></dd>
 						</dl>
 						<dl>
-							<dt>작성일</dt>
+							<dt>작성일: ${event.e_indate }</dt>
 							<dd>2021.1.16</dd>
 						</dl>
 						<dl>
-							<dt>조회</dt>
+							<dt>조회: ${event.e_views }</dt>
 							<dd>33</dd>
 						</dl>
 					</div>
 					<div class="cont">
-						<img src="/resources/uploads/고양이그림.png"> 글 내용이 들어갑니다<br>
-						글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글
-						내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이
-						들어갑니다
+						<c:if test ="${not empty event.e_file_name }">
+						<img src="/resources/uploads/event/${event.e_file_name }"><br> 
+						</c:if>
+						${event.e_contents }
 					</div>
 				</div>
 				<div class="bt_wrap">
