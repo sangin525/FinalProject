@@ -26,7 +26,7 @@
 			</div>
 		</c:when>
 			<c:otherwise>
-				<c:forEach var="item" items="${list}">
+				<c:forEach var="item" items="${list}" varStatus="status">
 		<li class="category_li">
 			<input type="hidden" class="categoryListfood" value="${item.foodCategory}"> <!-- 종류별 -->
 	        <input type="hidden" class="categoryListsituation" value="${item.situationCategory }">   <!-- 상황별 -->
@@ -44,12 +44,10 @@
 			<div class="recipeTitle">${item.title}</div>
 			<div class="chefName">
 				<c:if test ="${not empty memberList}">
-				<c:forEach var="item2" items="${memberList}">
-				<a><img src="/resources/uploads/member/${item2.uploadName}" class="ChefPicture">
+				<a><img src="/resources/uploads/member/${memberList[status.index].uploadName }" class="ChefPicture">
 				</a>
-				</c:forEach>
-			</c:if>
 				${item.memberNickName }
+			</c:if>
 			</div>
 			<div class="RecipeScore">
 				<span>댓글수 : ${item.commentCount}</span>

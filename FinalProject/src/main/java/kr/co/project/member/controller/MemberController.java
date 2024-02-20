@@ -65,8 +65,8 @@ public class MemberController {
 			session.setAttribute("recipeCount", loginUser.getRecipeCount());
 			session.setAttribute("type", loginUser.getType());
 			session.setAttribute("uploadName", loginUser.getUploadName());
-			
-			
+			session.setAttribute("grade", loginUser.getGrade());
+			System.out.println(loginUser.getGrade());
 			return "/home";
 		}else {
 			
@@ -139,7 +139,6 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
 		int viewSum = recipeService.viewSum(mno);
 		System.out.println(viewSum);
 		model.addAttribute("result",result);
@@ -522,8 +521,8 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
 		int viewSum = recipeService.viewSum(mno);
+		
 		System.out.println(viewSum);
 		model.addAttribute("profile",result);
 		model.addAttribute("viewSum",viewSum);

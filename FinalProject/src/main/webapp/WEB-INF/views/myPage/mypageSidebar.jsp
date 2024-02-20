@@ -49,6 +49,8 @@
 			<div class="totalView">
 				<span>내 등급 :</span><br>
 				<span>내 레시피 총 조회수 : ${viewSum }</span>
+				<br>
+				<span>내 등급 : ${grade}</span>
 			</div>
 		</div>
 	</div>
