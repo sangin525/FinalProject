@@ -26,7 +26,7 @@
 		<li class="chefRanking">
 			<div class="chefRank">
 			<p class="chefNum"><b>${row}</b></p>
-				<a><img src="/resources/uploads/고양이그림.png" class="chef-image"
+				<a><img src="/resources/uploads/member/${item.uploadName }" class="chef-image"
 				onclick="location.href='/member/chefDetail?mno=${item.mno}'" ></a>
 			</div>
 			<div class="chefName">${item.nickname}</div>

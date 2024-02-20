@@ -23,7 +23,7 @@
 				<img id="main_pic" src="/resources/uploads/recipe/${recipe.uploadName}">
 			</div>
 			<div class="user_info2">
-				<a class="info_user"><img src="/resources/uploads/레시피등록대표사진.gif"></a>
+				<a class="info_user"><img src="/resources/uploads/member/${profile}"></a>
 			</div>
 			<span class="user_infoName">${recipe.memberNickName}</span>
 		</div>
@@ -278,7 +278,7 @@
 
 				<form id="comment-form" method="post" action="/recipe/comment.do?rno=${recipe.rno}">
 					<input type="hidden" id="star" name="star">
-					<div class="commentPic"><img src="/resources/uploads/레시피등록대표사진.gif"></div>
+					<div class="commentPic"><img src="/resources/uploads/member/${sessionScope.uploadName}"></div>
 
 					<div class="comment">
 						<div class="rating">

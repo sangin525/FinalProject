@@ -243,7 +243,13 @@ public class RecipeDAO {
 	}
 
 	public RecipeDTO recentSelectRecipe(SqlSessionTemplate sqlSession, int rno) {
+
 		return sqlSession.selectOne("recipeMapper.recentSelectRecipe",rno);
+	}
+
+	public int scrapRecipeDelete(SqlSessionTemplate sqlSession, int frno) {
+		
+		return sqlSession.update("recipeScrapMapper.scrapRecipeDelete",frno);
 	}
 
 	

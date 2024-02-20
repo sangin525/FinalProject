@@ -16,8 +16,14 @@
 	</select>
 	
 	<select id="selectRecentRecipe" resultMap="recipeRecentResultSet">
-		SELECT * FROM RECENTRECIPE
-		WHERE M_NO=#{mno}
+		SELECT r_no, RR_IN_DATE
+		FROM (
+		    SELECT r_no, RR_IN_DATE,
+		           ROW_NUMBER() OVER (PARTITION BY r_no ORDER BY RR_IN_DATE DESC) as row_num
+		    FROM RECENTRECIPE r
+		    WHERE m_no = #{mno}
+		) ranked
+		WHERE row_num = 1
 		ORDER BY RR_IN_DATE DESC
 	</select>
 	<insert id="recentRecipe">
