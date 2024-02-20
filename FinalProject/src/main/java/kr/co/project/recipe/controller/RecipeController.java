@@ -57,7 +57,7 @@ public class RecipeController {
 		int pageLimit = 12;
 		int boardLimit =12;
 		
-		int row = listCount-(cpage-1) * boardLimit;
+		int row = listCount - (cpage - 1) * boardLimit;
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
