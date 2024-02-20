@@ -11,3 +11,9 @@ smartEditor = function() {
 $(document).ready(function() {
 smartEditor()
 })
+
+
+function save() {
+   oEditors.getById["editorTxt"].exec("UPDATE_CONTENTS_FIELD", []);
+   return;
+}

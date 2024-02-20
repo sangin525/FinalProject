@@ -22,7 +22,7 @@
 			<h3 class = "text-center">등록된 글이 없습니다.</h3>
 		</c:when>
 		<c:otherwise>
-			<c:forEach var="item" items="${list}">
+			<c:forEach var="item" items="${list}" varStatus="status">
 		<li class="recipeRanking">
 			<p class="rankingNum"><b>${row}</b></p>
 			<div>
@@ -32,7 +32,10 @@
 			</div>
 			<div class="recipeTitle">${item.title}</div>
 			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">${item.memberNickName}</a>
+			<c:if test ="${not empty memberList}">
+				<a><img src="/resources/uploads/member/${memberList[status.index].uploadName }" class="ChefPicture">
+				${item.memberNickName}</a>
+			</c:if>
 			</div>
 			<div class="RecipeScore">
 				<span>댓글수 ${item.commentCount}</span>					
