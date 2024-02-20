@@ -14,12 +14,7 @@
 
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
-<<<<<<< HEAD
 	<%@ include file="../../views/common/nav.jsp" %>
-=======
-		<%@ include file="../../views/common/nav.jsp" %>
-
->>>>>>> branch 'master' of https://github.com/sangin525/finalProject.git
 	<div class="container">
 
 		${firstMember.mno}<br><br> 

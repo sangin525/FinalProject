@@ -12,5 +12,5 @@ private int od_count;//주문물품수량
 private int o_no;//주문번호
 private int g_no;//상품번호
 //--------------------------
-private int g_price;
+private int g_price;//물건 하나당 가격
 }

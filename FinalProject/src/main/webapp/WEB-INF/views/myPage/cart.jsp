@@ -63,18 +63,14 @@
 												<c:forEach var="item" items="${cartList}">
 													<tr class="cart__list__detail">
 														<td><input type="checkbox" class="itemCheck"></td>
-														<td><img
-															src="/resources/uploads/goods/${item.g_file_name}"></td>
-														<td>
-															<p>${item.g_name}</p> <span class="price">${item.g_price}원</span>
-															<span
-															style="text-decoration: line-through; color: lightgray;">${item.g_regular_price}</span>
+														<td><img src="/resources/uploads/goods/${item.g_file_name}"></td>
+														<td><p>${item.g_name}</p> <span class="price">${item.g_price}원</span>
+														<span style="text-decoration: line-through; color: lightgray;">${item.g_regular_price}</span>
 														</td>
 														<td>
 															<div class="quantity">
 																<!-- <button class="minus-btn" id="minus-btn" type="button" name="button">-</button> -->
-																<input type="text" name="name" value="${item.sc_count}"
-																	readonly>
+																<input type="text" name="name" value="${item.sc_count}" readonly>
 																<!-- <button class="plus-btn" id="plus-btn" type="button" name="button">+</button> -->
 															</div>
 														</td>
@@ -82,34 +78,19 @@
 														<td><span class="price">${item.sc_price}원</span></td>
 														<td>무료</td>
 													</tr>
-													<form action="/cart/modifyCount.do" method="post"
-														name="${item.g_name}modify">
-														<input type="number" value="${item.sc_no}" name="sc_no"
-															readonly><br> <input type="number"
-															id="PriceVal${item.sc_no}" value="${item.sc_price}"
-															name="sc_price" readonly><br> <input
-															type="number" id="CountVal${item.sc_no}"
-															value="${item.sc_count}" name="sc_count" readonly><br>
-														<input type="number" value="${item.m_no}" name="m_no"
-															readonly><br> <input type="number"
-															value="${item.g_no}" name="g_no" readonly><br>
-														<input type="text" value="${item.g_name}" name="g_no"
-															readonly><br> <input type="number"
-															value="${item.g_price}" name="g_no" readonly><br>
-														<input type="number" value="${item.g_regular_price}"
-															name="g_no" readonly><br>
+													<form action="/cart/modifyCount.do" method="post" name="${item.g_name}modify">
+														<input type="number" value="${item.sc_no}" name="sc_no" readonly>
+														<br> 
+														<input type="number" id="scPriceVal${item.sc_no}" value="${item.sc_price}" name="sc_price" readonly>
+														<br> 
+														<input type="number" id="scCountVal${item.sc_no}" value="${item.sc_count}" name="sc_count" readonly>
+														<br>
 														<button type="submit" id="changeCount">장바구니수정</button>
 														<br>
 													</form>
-
-													<input type="number" id="scCountVal${item.sc_no}"
-														value="${item.sc_count}">
+													<button onclick="minusQuantity(${item.sc_no},${item.g_price})">-1</button>
 													<br>
-													<input type="number" id="scPriceVal${item.sc_no}"
-														value="${item.sc_price}" readonly>
-													<br>
-													<button
-														onclick="changeQuantity(${item.sc_no},${item.g_price})">1+수량변경</button>
+													<button onclick="plusQuantity(${item.sc_no},${item.g_price})">+1</button>
 													<br>
 													<a href="/cart/deleteCart.do?sc_no=${item.sc_no}">삭제</a>
 												</c:forEach>
@@ -137,21 +118,28 @@
 </body>
 <script>
 
-function changeQuantity(productId, price) {
-// 수량을 변경합니다.
+function minusQuantity(productId, price) {
+	// 수량을 변경합니다. 하나 빼기
+	var quantityElement = document.getElementById('scCountVal' + productId);
+	var currentQuantity = quantityElement.value;
+	var newQuantity = (Number(currentQuantity) - 1);
+	quantityElement.value = newQuantity;
+	// 가격을 변경
+	var totalPrice = newQuantity * price;
+	var priceElement = document.getElementById('scPriceVal' + productId);
+	priceElement.value = totalPrice;
+}
+
+function plusQuantity(productId, price) {
+// 수량을 변경합니다. 하나 더하기
 var quantityElement = document.getElementById('scCountVal' + productId);
 var currentQuantity = quantityElement.value;
 var newQuantity = (Number(currentQuantity) + 1);
 quantityElement.value = newQuantity;
-// 가격을 변경합니다.
+// 가격을 변경
 var totalPrice = newQuantity * price;
 var priceElement = document.getElementById('scPriceVal' + productId);
 priceElement.value = totalPrice;
-//form안으로 넣어주기
-var CountVal = document.getElementById('CountVal'+productId);
-CountVal.value=newQuantity;
-var PriceVal = document.getElementById('PriceVal'+productId);
-PriceVal.value=totalPrice;
 }
 
 </script>
