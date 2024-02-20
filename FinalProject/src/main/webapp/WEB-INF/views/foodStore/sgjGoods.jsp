@@ -19,7 +19,7 @@
 		상품 판매가: <input type="number" id="sellingPrice" name="g_price"> <br>
 		재고: <input type="text" name="g_stock"><br>
 		<br><br><br>
-		할인율 :<input type="number" id="discountRate" name="g_dcRate" readonly ><br><br><br>
+		할인율 :<input type="number" id="discountRate" name="g_dcRate" ><br><br><br>
 		
 		<input type="file" name="upload">
 		<br><br><br>

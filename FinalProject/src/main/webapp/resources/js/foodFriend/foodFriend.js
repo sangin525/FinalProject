@@ -1,57 +1,107 @@
-document.getElementById('sendButton').addEventListener('click', function() {
-	var messageInput = document.getElementById('messageInput');
-	var chatBox = document.getElementById('chatBox');
-
-	// 사용자가 입력한 텍스트를 가져옵니다.
-	var text = messageInput.value;
+/* document.getElementById('sendButton').addEventListener('click', function() { */
+		let messageInput = document.getElementById('messageInput');
+	let chatBox = document.getElementById('chatBox');
+	let sender = document.getElementById('sender');
+	const getBody = document.getElementById('bodyId');
+	const crno = getBody.getAttribute('data-crno');
+	const mno = getBody.getAttribute('data-mno');
+	const name = getBody.getAttribute('data-name');
+	console.log(crno);
+	console.log(mno);
+	console.log(name);
 	
-	if (text.trim() === '') {
-		// 메시지 입력 필드가 비어있으면 함수를 종료하고 메시지를 보내지 않습니다.
-		return;
+	let websocket = new WebSocket("ws://localhost:80/echo/"+crno);
+	websocket.onmessage = onMessage;
+	websocket.onclose = onClose;
+
+	document.getElementById("sendButton").addEventListener("click", function() {
+		sendMessage();
+		messageInput.value = null;
+	})
+
+	function sendMessage() {
+		senderName = sender.value;
+		text = messageInput.value;
+		if (text.trim() === '') {
+			return;
+		} else {
+		}
+		const obj ={"cr_no": crno,
+					"m_no": mno,
+					"cm_message":text,
+					"m_name":name
+					}
+		str=JSON.stringify(obj)
+		websocket.send(str);
 	}
 
-	// 새로운 메시지 요소를 만듭니다.
-	var newMessage = document.createElement('p');
-	newMessage.textContent = text;
-	newMessage.style.textAlign = 'center'; 
-	newMessage.style.marginBottom = '30px';
-	newMessage.style.marginRight = '20px';
-	
-	// 새로운 이미지 요소를 만듭니다.
-	var newImage = document.createElement('img');
-	newImage.src = '/resources/uploads/레시피등록대표사진.gif';
-	newImage.style.width = '50px';
-	newImage.style.height = '50px';
-	newImage.style.borderRadius = '50%';
+	function onMessage(msg) {
+		var data = JSON.parse(msg.data);
 
-	// 메시지와 이미지를 담을 컨테이너를 만듭니다.
-	var container = document.createElement('div');
+		var date = new Date(data.cm_send_time);
+		var month = date.getMonth() + 1;
+		var day = date.getDate();
+		var hours = date.getHours();
+		var minutes = date.getMinutes();
 
-	// 컨테이너에 메시지와 이미지를 추가합니다.
-	container.appendChild(newMessage);
-	container.appendChild(newImage);
+		if (month < 10) month = '0' + month;
+		if (day < 10) day = '0' + day;
+		if (hours < 10) hours = '0' + hours;
+		if (minutes < 10) minutes = '0' + minutes;
 
-	// 채팅 박스에 컨테이너를 추가합니다.
-	chatBox.appendChild(container);
+		var formattedTime = month + '/' + day + ' ' + hours + ':' + minutes;
 
-	// 입력 필드를 비웁니다.
-	messageInput.value = '';
-	
-		// 채팅 박스의 스크롤 위치를 맨 아래로 설정합니다.
-	chatBox.scrollTop = chatBox.scrollHeight;
-});
+		var newMessage = document.createElement('p');
+		newMessage.innerHTML = data.cm_message + "<br>";
+		newMessage.innerHTML += formattedTime;
+		newMessage.classList.add('new-message');
+		
+		var profileBox = document.createElement('div');
+		profileBox.classList.add('profile-box');
+		
+		var clearBox = document.createElement('div');
+		clearBox.style.clear = "both";
 
+		var newImage = document.createElement('img');
+		newImage.src = '/resources/uploads/레시피등록대표사진.gif';
+		newImage.classList.add('new-image');
 
-document.getElementById('messageInput').addEventListener('keypress', function(event) {
-	// 엔터키가 눌렸는지 확인합니다 (엔터키의 keyCode는 13입니다).
-	if (event.keyCode == 13) {
-		// 기본 이벤트를 취소하여 엔터키를 눌렀을 때의 줄바꿈을 방지합니다.
-		event.preventDefault();
-		// '전송' 버튼의 클릭 이벤트를 실행합니다.
-		document.getElementById('sendButton').click();
+	    var userName = document.createElement('p');
+	    userName.innerHTML = data.m_name;
+	    userName.classList.add('user-name');
+	    
+		var container = document.createElement('div');
+		container.classList.add('container');
+		if (data.m_name === name) {
+			container.style.float = 'right';
+			newMessage.style.marginRight = '20px';
+	   } else{
+		   container.style.float = 'left';
+		   container.style.display = 'flex';
+		   container.style.flexDirection = 'row-reverse';
+		   newMessage.style.marginLeft = '20px';
+	    }
+
+		container.appendChild(newMessage);
+		container.appendChild(profileBox);
+		profileBox.appendChild(newImage);
+		profileBox.appendChild(userName);
+
+		chatBox.appendChild(container);
+		chatBox.appendChild(clearBox);
+		chatBox.scrollTop = chatBox.scrollHeight;
 	}
-});
 
+	function onClose(evt) {
+		chatBox.append("연결끊김")
+	}
+
+	document.getElementById('messageInput').addEventListener('keypress', function(event) {
+		if (event.keyCode == 13) {
+			event.preventDefault();
+			document.getElementById('sendButton').click();
+		}
+	});
 
 
 

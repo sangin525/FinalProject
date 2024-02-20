@@ -41,7 +41,7 @@
 							<table class="questionsTable">
 								<colgroup>
 									<col style="width:15%">
-									<col style="width:85%">
+									<col style="width:70%">
 								</colgroup>
 								<tbody>
 									<tr>

@@ -102,6 +102,18 @@ public class MemberServiceImpl implements MemberService{
 		
 		return memberDao.memberProfile(sqlSession,mno);
 	}
+
+	public List<MemberDTO> categoryMember(int mno) {
+		
+		return memberDao.categoryMember(sqlSession,mno);
+	}
+
+	public MemberDTO memberList(int mno) {
+		
+		return memberDao.memberList(sqlSession,mno);
+	}
+
+	
 	
 	
 }

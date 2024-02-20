@@ -7,8 +7,8 @@
 	<div id="common_header" class="common_header">
 		<div class="main-logo">
 		<a href="/"><img src="/resources/uploads/로고사진.png"></a>
-		<form action="${sessionScope.action}" method="GET" role="search" class="">
-			<input type="search" class="searchCategory" name="searchText">
+		<form action="${sessionScope.action}" method="get" role="search" class="">
+			<input type="search" class="searchCategory" name="searchText" value="">
 			<button type="submit" class="searchBtn">검색</button>
 		</form>
 		</div>

@@ -117,5 +117,15 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.memberProfile",mno);
 	}
 
+	public List<MemberDTO> categoryMember(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.selectList("memberMapper.categoryMember",mno);
+	}
+
+	public MemberDTO memberList(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.selectOne("memberMapper.memberList",mno);
+	}
+
 	
 }

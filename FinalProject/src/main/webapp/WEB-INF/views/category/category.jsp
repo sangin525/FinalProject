@@ -43,7 +43,13 @@
 			</div>
 			<div class="recipeTitle">${item.title}</div>
 			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">${item.memberNickName }</a>
+				<c:if test ="${not empty memberList}">
+				<c:forEach var="item2" items="${memberList}">
+				<a><img src="/resources/uploads/member/${item2.uploadName}" class="ChefPicture">
+				</a>
+				</c:forEach>
+			</c:if>
+				${item.memberNickName }
 			</div>
 			<div class="RecipeScore">
 				<span>댓글수 : ${item.commentCount}</span>
