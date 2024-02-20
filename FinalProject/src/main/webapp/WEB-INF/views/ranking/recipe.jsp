@@ -24,7 +24,7 @@
 		<c:otherwise>
 			<c:forEach var="item" items="${list}">
 		<li class="recipeRanking">
-			<p class="rankingNum"><b>1</b></p>
+			<p class="rankingNum"><b>${row}</b></p>
 			<div>
 				<a>
 					<img src="/resources/uploads/recipe/${item.uploadName}" class="rank-image" onclick="location.href='/recipe/detail.do?rno=${item.rno}'">
@@ -40,6 +40,7 @@
 				<span>조회수 ${item.views}</span>
 			</div>
 		</li>
+			<c:set var="row" value="${row-1 }"/>
 				</c:forEach>
 		</c:otherwise>
 	</c:choose>

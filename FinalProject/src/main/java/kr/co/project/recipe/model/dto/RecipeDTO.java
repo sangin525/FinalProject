@@ -46,17 +46,24 @@ public class RecipeDTO {
 	private String fileOrigin;
 	private String multiFile;
 	private String deleteDate;
+	
 	private int rcno;
 	private String comment;
 	private int commentCount;
 	private String comname;	
 	private String rcInDate;
 	private double star;
+	
+	private int sno;
 	private String searchText = "";
 	private String searchCategory = "";
+	private int searchCount;
+	
 	private int frno;
+	private String frDeleteDate;
 	private int saveCount;
 	private String scrapDate;
+	
 	private int rrno;
 	private String rrInDate;
 	

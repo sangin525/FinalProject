@@ -51,7 +51,7 @@
 									<span>요리제목 : ${item.title}</span>
 									<span>요리 조회수 : ${item.views}</span>
 									<span>스크랩 날짜 : ${item.scrapDate}</span>
-									
+									<button type="button" onclick="location.href='/recipe/scrapRecipeDelete?frno=${item.frno}'">스크랩 삭제</button>
 									</div>			
 								</li>
 									<c:set var="row" value="${row-1 }"/>

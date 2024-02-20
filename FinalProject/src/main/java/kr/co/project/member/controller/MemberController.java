@@ -64,10 +64,10 @@ public class MemberController {
 			session.setAttribute("email", loginUser.getEmail());
 			session.setAttribute("recipeCount", loginUser.getRecipeCount());
 			session.setAttribute("type", loginUser.getType());
+			session.setAttribute("uploadName", loginUser.getUploadName());
 			
 			
-			
-			return "home";
+			return "/home";
 		}else {
 			
 			model.addAttribute("msg","아이디 또는 비밀번호를 확인해주세요");
@@ -518,13 +518,14 @@ public class MemberController {
 	public String memberProfile(MemberDTO member,HttpSession session,
 								RecipeDTO recipe,Model model) {
 		
+		//멤버 사진불러오기	
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
 		
 		int viewSum = recipeService.viewSum(mno);
 		System.out.println(viewSum);
-		model.addAttribute("result",result);
+		model.addAttribute("profile",result);
 		model.addAttribute("viewSum",viewSum);
 		
 		return "myPage/myRecipes";		
