@@ -5,8 +5,7 @@
 <head>
 <%@ include file="../../views/common/head.jsp"%>
 <link rel="stylesheet" href="/resources/css/notice/notice.css">
-
-
+<%@ include file="../../views/common/smarteditor.jsp"%>
 </head>
 <body>
 
@@ -30,9 +29,11 @@
 					</div>
 
 					</div>
-					<div class="cont">
-						<textarea placeholder="내용 입력"></textarea>
+					<form action="/free/freeEnrollForm" method="post">
+					<div class="cont" id="smarteditor">
+						<textarea name="editorTxt" id="editorTxt" placeholder="내용 입력"></textarea>
 					</div>
+					</form>
 					<br> <input type="file" id="file" name="upload"
 						style="display: none;"> <label for="file"
 						class="file-upload">파일 업로드</label> <br>
@@ -52,4 +53,6 @@
 
 
 </body>
+
+
 </html>

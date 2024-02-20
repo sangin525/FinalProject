@@ -4,7 +4,6 @@
 <html>
 <head>
 	 <%@ include file="../../views/common/head.jsp" %>
-	 <link rel="stylesheet" href="/resources/css/foodFriend/foodFriend.css">
 <link rel="stylesheet" href="/resources/css/admin/admin.css">
 <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet"
 	type="text/css">
@@ -20,38 +19,38 @@
 		<%@ include file="../../views/common/nav.jsp" %>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
 <div class="adminContainer">	
-	<div class="container">
+	<div class="adminEnrollcontainer">
 	<form action="/admin/noticeEnroll" method="post" enctype="multipart/form-data" novalidate>
-	<div class="board_wrap">
-        <div class="board_title">
+	<div class="admin_board_wrap">
+        <div class="admin_board_title">
             <strong>공지사항 작성</strong>
         </div>
-        <div class="board_write_wrap">
-            <div class="board_write">
-                <div class="title">
+        <div class="admin_board_write_wrap">
+            <div class="admin_board_write">
+                <div class="admin_title">
                     <dl>
                         <dt>제목</dt>
                         <dd><input name="title" type="text" placeholder="제목 입력"></dd>
                     </dl>
                 </div>
-                <div class="info">
+                <div class="admin_info">
                     <dl>
                         <dt>글쓴이</dt>
                         <dd><input name="writer" type="text" value="관리자" disabled></dd>
                     </dl>
                    
                 </div>
-                <div class="cont">
+                <div class="admin_cont">
                     <textarea name="contents" placeholder="내용 입력"></textarea>
                 </div>
                 <br>
-                 <input type="file" name="upload">
+                 <input type="file" class="admin_file_upload" name="upload">
                  <br>
             </div>
-            <div class="bt_wrap">
-               	<button type="submit">등록</button>
-                <a href="foodFriendList" onclick="history.back()">취소</a>
-            </div>
+            <div class="postCategoryBtn">
+				<button type="submit">작성</button>
+				<button type="button">취소</button>
+			</div>
         </div>
     </div>
 	</form>    
