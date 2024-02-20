@@ -7,9 +7,12 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import kr.co.project.cart.model.dto.SCtoODTOList;
 import kr.co.project.delivery.model.dto.DeliveryDTO;
 import kr.co.project.delivery.model.service.DeliveryServiceImpl;
 import kr.co.project.goods.model.dto.GoodsDTO;
@@ -57,14 +60,14 @@ public class OrderController {
 				break;
 			}
 		}
-		
+
 		if (defaultDelivery != null) {
 			System.out.println("기본배송이 있음");
 			model.addAttribute("defaultDelivery", defaultDelivery);
 		} else {
 			System.out.println("기본배송지 없음꺄아악");
 		}
-		
+
 		if (deliveryList.isEmpty()) {
 			System.out.println("저장된 배송지가 없습니다");
 			System.out.println("배송지를 입력해주세용");
@@ -77,6 +80,25 @@ public class OrderController {
 		model.addAttribute("g_count", g_count);
 		model.addAttribute("section_Price", section_Price);
 		return "foodStore/productPayment";
+	}
+
+//	@RequestMapping("/cartToOrder.do")
+//	public String cartToOrder(@ModelAttribute(value="SCtoODTOList") SCtoODTOList list, Model model) {
+//		System.out.println(list);
+//		return "test";
+//	}
+	
+	@PostMapping("/cartToOrder.do")
+	public String cartToOrder(@RequestParam(value="sc_no") List<String> sc_no, 
+								@RequestParam(value="sc_count") List<String> sc_count, 
+								Model model) {
+		for(String sn : sc_no) {
+			System.out.println(sn);
+		}
+		for(String sc : sc_count) {
+			System.out.println(sc);
+		}
+		return "test";
 	}
 
 	@PostMapping("/insertOrderDetail.do")

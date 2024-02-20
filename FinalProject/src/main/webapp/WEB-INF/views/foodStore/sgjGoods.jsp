@@ -20,13 +20,13 @@
       <input type="file" name="upload">
       <br><br><br>
       
-      <button type="button"  onclick="calculateDiscountRate()">할인율</button>
-      <br><br><br>
+
       <button type="button" id="cancelBtn" onclick="history.back()">취소</button>
       <br><br><br>
       <button type="submit">작성</button>
    </form>
-
+      <button type="button" onclick="calculateDiscountRate()">할인율</button>
+      <br><br><br>
 
 </body>
 <script type="text/javascript">

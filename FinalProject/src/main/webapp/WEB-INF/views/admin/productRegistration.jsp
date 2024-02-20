@@ -7,9 +7,22 @@
 <%@ include file="../../views/common/head.jsp"%>
 <link rel="stylesheet" href="/resources/css/admin/admin.css">
 <link href="assets/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/admin/admin.js"></script>
+<script type="text/javascript">
+function calculateDiscountRate() {
+      let sellingPrice = document.getElementById("sellingPrice").value;
+      let regularPrice = document.getElementById("regularPrice").value;
+      if (sellingPrice >= regularPrice) {
+         return 0;
+      } else {
+         let discountRate = parseInt(((regularPrice - sellingPrice) / regularPrice) * 100);
+         console.log("할인율: " + discountRate + "%");
+         let g_dcRate = document.getElementById("discountRate")
+         g_dcRate.value = discountRate;
+      }
+   }
+</script>
 </head>
 
 <body>
@@ -22,17 +35,16 @@
 			<div class="registrationTit">
 				<h2>상품 등록</h2>
 			</div>
-			<form>
+			<form action="/goods/addGoods.do" method="post" enctype="multipart/form-data" novalidate>
 				<div class="productInfoText">
-					<input type="text" class="productTitle" placeholder="상품제목을 입력해주세요.">
-					<input type="text" class="productSubTitle" placeholder="상품부제목을 입력해주세요."> 
-					<input type="number" class="productDiscount" id="productDiscount" placeholder="상품 할인율을 입력해주세요."> 
-					<input type="number" class="costPrice" id="costPrice" placeholder="상품 원가를 입력해 주세요.">
-					<span class="sellingPrice" id="sellingPrice">판매가격 : </span>
+					<input type="text" class="productTitle" placeholder="상품이름을 입력해주세요."name="g_name">
+					<input type="text" class="productIntroduce" placeholder="상품설명을 입력해주세요." name="g_introduce"> 
+					<input type="number" class="regularPrice" id="regularPrice" placeholder="상품 정가를 입력해 주세요."name="g_regular_price">
+					<input type="number" class="sellingPrice" id="sellingPrice" placeholder="판매가를 입력해주세요"name="g_price"> 
+					<input type="number" name="g_stock" placeholder="재고를 입력하세요">
+					<input type="number" id="discountRate" name="g_dcRate" placeholder="할인율"readonly >
 				</div>
-				<br><br>
 				<span>상품 카테고리를 선택해주세요.</span>
-				<br>
 				<select class="productType" required>
 					<option value="">선택해주세요.</option>
 					<option value="채소">채소</option>
@@ -45,8 +57,6 @@
 					<option value="건어물">건어물</option>
 					<option value="견과류">견과류</option>
 				</select>
-				
-				<br><br>
 				<div class="productImg">
 					<div class="content-column">
 						<label for="photo" class="form-label"> 상품사진을 업로드해주세요.</label>
@@ -79,11 +89,8 @@
 									accept='image/*' class="product-input" />
 							</div>
 						</div>
-						<p class="img-p">• 최대 5개까지 첨부하실 수 있습니다.</p>
-						<p class="img-p">• 첨부가능 파일 : jpg, png, gif, jpeg (용량 5MB)</p>
 					</div>
 				</div>
-				<br><br>
 				<div class="productInfoImg">
 					<div class="content-column">
 						<label for="photo" class="form-label"> 상품 상세정보 사진을 업로드해주세요.</label>
@@ -121,9 +128,11 @@
 					</div>
 				</div>
 				<div class="productRegistrationBtn">
-					<button type="submit">등록하기</button>
+				  <button type="button"  onclick="calculateDiscountRate()">할인율</button>
+      			  <button type="button" id="cancelBtn" onclick="history.back()">취소</button>
+				  <button type="submit">등록하기</button>
 				</div>
-			</form>
+			   </form>
 		</div>
 	</div>
 </div>

@@ -230,7 +230,7 @@ public class IndexController {
 		return "notice/notice_Board";
 	}
 
-	@GetMapping("memberList")
+	@GetMapping("/memberList")
 	public String sidebarForm() {
 		return "admin/memberList";
 	}

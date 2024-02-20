@@ -119,10 +119,10 @@ $(".cart__bigorderbtn.right").on("click", function(e){
 			let sc_count = $(element).find("input[name='sc_count']").val();
 
 			// 주문 번호와 상품의 sc_no, sc_count를 form에 입력
-			let sc_no_input = "<input name='orders[" + orderNumber + "].sc_no' type='hidden' value='" + sc_no + "'>";
+			let sc_no_input = "<input name='orders[" + orderNumber + "].sc_no' type='number' value='" + sc_no + "'>";
 			form_contents += sc_no_input;
 			
-			let sc_count_input = "<input name='orders[" + orderNumber + "].sc_count' type='hidden' value='" + sc_count + "'>";
+			let sc_count_input = "<input name='orders[" + orderNumber + "].sc_count' type='number' value='" + sc_count + "'>";
 			form_contents += sc_count_input;
 			
 			orderNumber += 1;
@@ -130,7 +130,7 @@ $(".cart__bigorderbtn.right").on("click", function(e){
 	});	
 
 	// 주문 정보를 포함하는 폼을 생성합니다.
-	let order_form = $("<form action='/productPayment' method='post'></form>");
+	let order_form = $("<form action='/order/cartToOrder.do' method='post'></form>");
 	order_form.html(form_contents);
 	
 	// 폼을 문서에 추가하고 제출합니다.
