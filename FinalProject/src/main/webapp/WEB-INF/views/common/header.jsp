@@ -22,6 +22,7 @@
 							<a href="/admin/memberList" class="Main_a">관리자페이지</a>
 							<a href="/member/logOut.do" class="Main_a">로그아웃</a>
 							<a href="/member/MyPageForm.do" class="Main_a">마이페이지</a>
+							<a href="/recipe/addRecipeForm.do" class="Main_a">레시피 등록</a>
 						</c:when>
 						<c:otherwise>
 							<a href="/recipe/addRecipeForm.do" class="Main_a">레시피 등록</a>
