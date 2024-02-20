@@ -5,25 +5,34 @@
 	<resultMap type="recipe" id="recipeScrapResultSet">
 		<result column="FR_NO" property="frno"></result>
 		<result column="FR_SCRAP" property="scrapDate"></result>
+		<result column="FR_DELETEDATE" property="frDeleteDate"></result>
 		<result column="M_NO" property="mno"></result>
 		<result column="R_NO" property="rno"></result>	
+		
 	</resultMap>
 
 <insert id="scrapRecipe">
 	INSERT INTO FAVORITERECIPE VALUES(favoriteRecipe_seq.nextval,
 										SYSDATE,
 										#{mno},
-										#{rno})
+										#{rno},
+										null)
 					
 </insert>
 
 <select id="scrapListCount" resultType="_int">
 SELECT COUNT (*) FROM FAVORITERECIPE
+WHERE FR_DELETEDATE IS NULL
 </select>
 
 <select id="scrapRecipeList" resultMap="recipeScrapResultSet">
 SELECT * FROM FAVORITERECIPE
+WHERE FR_DELETEDATE IS NULL
 </select>
 
+<update id="scrapRecipeDelete" parameterType="_int">
+UPDATE FAVORITERECIPE SET FR_DELETEDATE =SYSDATE
+WHERE FR_NO=#{frno}
+</update>
 
 </mapper>

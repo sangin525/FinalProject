@@ -97,23 +97,36 @@ public class RecipeController {
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		// 목록 불러오는 서비스
+		List<MemberDTO> memberList = new ArrayList<>();
+
 		List<RecipeDTO> list = recipeService.selectListAll(pi,recipe);
+//		for(RecipeDTO r:list) {
+//			System.out.println("입력언어"+r.getSearchText());			
+//		}
+		
 		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
 			item.setIndate(indate);	
+			MemberDTO memberProfile = memberService.memberList(item.getMno());
+			memberList.add(memberProfile);
 			int recipeCommentCount  = recipeService.countComment(item);
 			item.setCommentCount(recipeCommentCount);
 			if(recipeCommentCount >= 1) {
-				double starAvg = recipeService.avgComment(item);
-				item.setStar(starAvg);				
+				double starAvg = recipeService.avgComment(item);			
+				item.setStar(starAvg);	
+				System.out.println("멤버번호들"+item.getMno());
+//				List<MemberDTO> member = memberService.categoryMember(item.getMno());				
+//				model.addAttribute("member",member);
+
+				
 			}else {
 				item.setStar(0);
 			}
 		}		
-		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
+		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
 		System.out.println("접근성공");
 			return "category/category";
@@ -171,7 +184,7 @@ public class RecipeController {
 				MemberDTO result = memberService.memberProfile(mno);
 				
 				int viewSum = recipeService.viewSum(mno);
-				System.out.println(viewSum);
+			
 				model.addAttribute("result",result);
 				model.addAttribute("viewSum",viewSum);
 			}
@@ -184,6 +197,23 @@ public class RecipeController {
 		
 		return "myPage/scrapRecipe";
 	}
+	
+	@GetMapping("/scrapRecipeDelete")
+	public String scrapRecipeDelete(@RequestParam(value="frno")int frno,
+				HttpSession session,RecipeDTO recipe,
+				MemberDTO member) {
+		
+		int scrapDelete =  recipeService.scrapRecipeDelete(frno);
+		
+		if(scrapDelete==1) {
+			System.out.println("스크랩 삭제성공");
+			return "redirect:/recipe/scrapRecipeList.do";
+		}else {
+			System.out.println("실패");
+			return"home";
+		}
+	}
+	
 	
 	
 	// 레시피 추가 폼
@@ -467,6 +497,6 @@ public class RecipeController {
 		return "common/recentlyRecipe";
 	}
 	
-
+	
 
 }

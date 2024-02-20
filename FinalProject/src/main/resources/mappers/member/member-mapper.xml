@@ -105,6 +105,16 @@ SELECT * FROM MEMBER
 WHERE M_NO = #{mno}
 </select>
 
+<select id="categoryMember" resultMap="memberResultSet">
+SELECT * FROM MEMBER
+WHERE M_NO =#{mno}
+</select>
+
+<select id="memberList" resultMap="memberResultSet">
+SELECT * FROM MEMBER
+WHERE M_NO=#{mno}
+</select>
+
 <update id="plusRecipeCount" parameterType="member">
 UPDATE MEMBER SET M_RECIPE_COUNT = M_RECIPE_COUNT+1
 WHERE M_NO = #{mno}
