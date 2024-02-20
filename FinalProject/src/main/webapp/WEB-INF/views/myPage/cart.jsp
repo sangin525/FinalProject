@@ -10,10 +10,8 @@
 <script src="/resources/js/myPage/fixProfile.js"></script>
 </head>
 <body class="Main_body">
-
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/common/nav.jsp"%>
-
 	<div class="myPage">
 		<h2>마이페이지</h2>
 		<div class="myPageContain">
@@ -62,26 +60,37 @@
 											<tbody>
 												<c:forEach var="item" items="${cartList}">
 													<tr class="cart__list__detail">
-														<td><input type="checkbox" class="itemCheck" value="${item.sc_no}"></td>
-														<td><img src="/resources/uploads/goods/${item.g_file_name}"></td>
-														<td><p>${item.g_name}</p> <span class="price">${item.g_price}원</span>
-														<span style="text-decoration: line-through; color: lightgray;">${item.g_regular_price}</span>
+														<td><input type="checkbox" class="itemCheck"
+															value="${item.sc_no}"></td>
+														<td><img
+															src="/resources/uploads/goods/${item.g_file_name}"></td>
+														<td>
+															<p>${item.g_name}</p> <span class="price">${item.g_price}원</span>
+															<span
+															style="text-decoration: line-through; color: lightgray;">${item.g_regular_price}</span>
 														</td>
 														<td>
 															<form action="/cart/modifyCount.do" method="post"
 																name="${item.g_name}modify">
 																<input type="hidden" value="${item.sc_no}" name="sc_no">
-																<input type="hidden" id="scPriceVal${item.sc_no}"value="${item.sc_price}" name="sc_price">
+																<input type="hidden" id="scPriceVal${item.sc_no}"
+																	value="${item.sc_price}" name="sc_price">
 																<div class="quantity">
-																	<button type="button" class="minus-btn"onclick="decreaseQuantity(${item.sc_no},${item.g_price})">-</button>
-																	<input type="text" id="scCountVal${item.sc_no}"value="${item.sc_count}" name="sc_count" readonly>
-																	<button type="button" class="plus-btn"onclick="increaseQuantity(${item.sc_no},${item.g_price})">+</button>
+																	<button type="button" class="minus-btn"
+																		onclick="decreaseQuantity(${item.sc_no},${item.g_price})">-</button>
+																	<input type="text" id="scCountVal${item.sc_no}"
+																		value="${item.sc_count}" name="sc_count" readonly>
+																	<button type="button" class="plus-btn"
+																		onclick="increaseQuantity(${item.sc_no},${item.g_price})">+</button>
 																</div>
 																<input type="hidden" value="${item.m_no}" name="m_no">
 																<input type="hidden" value="${item.g_no}" name="g_no">
+																<input type="hidden" value="${item.g_name}" name="g_no">
 																<input type="hidden" value="${item.g_price}" name="g_no">
-																<input type="hidden" value="${item.g_regular_price}"name="g_no">
-																<button type="submit" id="changeCount"class="correct-btn">수정</button>
+																<input type="hidden" value="${item.g_regular_price}"
+																	name="g_no">
+																<button type="submit" id="changeCount"
+																	class="correct-btn">수정</button>
 															</form>
 														</td>
 														<td><span class="point">119원</span></td>
@@ -111,28 +120,5 @@
 	</div>
 	<%@ include file="../../views/common/footer.jsp"%>
 </body>
-<script>
-function minusQuantity(productId, price) {
-	// 수량을 변경합니다. 하나 빼기
-	var quantityElement = document.getElementById('scCountVal' + productId);
-	var currentQuantity = quantityElement.value;
-	var newQuantity = (Number(currentQuantity) - 1);
-	quantityElement.value = newQuantity;
-	// 가격을 변경
-	var totalPrice = newQuantity * price;
-	var priceElement = document.getElementById('scPriceVal' + productId);
-	priceElement.value = totalPrice;
-}
-function plusQuantity(productId, price) {
-// 수량을 변경합니다. 하나 더하기
-var quantityElement = document.getElementById('scCountVal' + productId);
-var currentQuantity = quantityElement.value;
-var newQuantity = (Number(currentQuantity) + 1);
-quantityElement.value = newQuantity;
-// 가격을 변경
-var totalPrice = newQuantity * price;
-var priceElement = document.getElementById('scPriceVal' + productId);
-priceElement.value = totalPrice;
-}
-</script>
+
 </html>
