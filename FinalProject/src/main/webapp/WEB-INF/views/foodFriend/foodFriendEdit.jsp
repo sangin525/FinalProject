@@ -11,11 +11,8 @@
 <body>
 
 	<%@ include file="../../views/common/header.jsp"%>
-<<<<<<< HEAD
-	<%@ include file="../../views/common/nav.jsp" %>
-=======
+
 		<%@ include file="../../views/common/nav.jsp" %>
->>>>>>> branch 'master' of https://github.com/sangin525/finalProject.git
 	<div class="container">
 		<div class="board_wrap">
         <div class="board_title">
