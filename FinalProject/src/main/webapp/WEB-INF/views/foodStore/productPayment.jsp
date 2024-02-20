@@ -1,21 +1,21 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-		<html>
-		<head>
-			<%@ include file="../../views/common/head.jsp" %>
-				<link rel="stylesheet" href="/resources/css/member/myPage.css">
-				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-				<script src="/resources/js/myPage/fixProfile.js"></script>
-		</head>
-		<body>
-			<%@ include file="../../views/common/header.jsp" %>
-<%@ include file="../../views/common/nav.jsp" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<html>
+<head>
+<%@ include file="../../views/common/head.jsp"%>
+<link rel="stylesheet" href="/resources/css/member/myPage.css">
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script src="/resources/js/myPage/fixProfile.js"></script>
+</head>
+<body>
+	<%@ include file="../../views/common/header.jsp"%>
+	<%@ include file="../../views/common/nav.jsp"%>
 	<div class="container">
 		<div class="content">
 			<h2>결제 내역</h2>
 			<br> <br>
 			<table class="cart__list">
-				<form>
 					<thead>
 						<tr>
 							<td><input type="checkbox" id="checkAll"></td>
@@ -30,12 +30,11 @@
 					<tbody>
 						<tr class="cart__list__detail">
 							<td><input type="checkbox" class="itemCheck"></td>
-							<td><img src="/resources/uploads/goods/${goodsInfo.g_file_name}"></td>
+							<td><img
+								src="/resources/uploads/goods/${goodsInfo.g_file_name}"></td>
 							<td>
-								<p>${goodsInfo.g_name}</p> <span
-									class="price">${goodsInfo.g_price}원</span>
-								<span
-									style="text-decoration: line-through; color: lightgray;">${goodsInfo.g_regular_price}</span>
+								<p>${goodsInfo.g_name}</p> <span class="price">${goodsInfo.g_price}원</span>
+								<span style="text-decoration: line-through; color: lightgray;">${goodsInfo.g_regular_price}</span>
 							</td>
 							<td>
 								<div class="quantity">
@@ -47,7 +46,6 @@
 							<td>무료</td>
 						</tr>
 					</tbody>
-				</form>
 			</table>
 		</div>
 		<div class="delivery_info">
@@ -67,16 +65,14 @@
 								<td>
 									<div class="form_element">
 										<ul>
-											<li><input type="radio" name="shipping" id="shippingBasic" onchange="shippingBasicChange()">
-												<label for="shippingBasic" class="choice_s">기본배송지</label>
-											</li>
 											<li><input type="radio" name="shipping"
-													id="shippingRecently"> <label for="shippingRecently"
-													class="choice_s">최근 배송지</label></li>
+												id="shippingBasic" onchange="shippingBasicChange()">
+												<label for="shippingBasic" class="choice_s">기본배송지</label></li>
+											<li><input type="radio" name="shipping"
+												id="shippingRecently"> <label for="shippingRecently"
+												class="choice_s">최근 배송지</label></li>
 											<li><input type="radio" name="shipping" id="shippingNew">
-												<label for="shippingNew" class="choice_s on">직접
-													입력</label>
-											</li>
+												<label for="shippingNew" class="choice_s on">직접 입력</label></li>
 										</ul>
 									</div>
 								</td>
@@ -84,23 +80,24 @@
 							<tr>
 								<th scope="row"><span class="important">받으실분</span></th>
 								<td><input type="text" id="receiverName" name="d_name"
-										data-pattern="gdEngKor" maxlength="20" class="myInput"></td>
+									data-pattern="gdEngKor" maxlength="20" class="myInput"></td>
 							</tr>
 							<tr>
 								<th scope="row"><span class="important">받으실 곳</span></th>
 								<td class="member_address">
 									<div class="address_postcode">
 										<input type="text" name="d_postal_address" id="postcode"
-											readonly="readonly" class="myInput"> <input type="hidden"
-											name="receiverZipcode" id="zipcode"> <span
+											readonly="readonly" class="myInput"> <input
+											type="hidden" name="receiverZipcode" id="zipcode"> <span
 											id="receiverZipcodeText" class="old_post_code"></span>
 										<button type="button" class="btn_post_search"
 											onclick="execDaumPostcode()">우편번호검색</button>
 									</div>
 									<div class="address_input">
 										<input type="text" name="d_address" id="address"
-											readonly="readonly" class="myInput"> <input type="text"
-											name="receiverAddressSub" id="extraAddress" class="myInput">
+											readonly="readonly" class="myInput"> <input
+											type="text" name="receiverAddressSub" id="extraAddress"
+											class="myInput">
 									</div>
 									<div class="memberInputbox">
 										<input type="text" id="detailAddress" name=d_detailAdress
@@ -111,8 +108,8 @@
 							</tr>
 							<tr>
 								<th scope="row"><span class="important">휴대폰 번호</span></th>
-								<td><input type="text" id="receiverCellPhone" name="d_phone"
-										class="myInput"></td>
+								<td><input type="text" id="receiverCellPhone"
+									name="d_phone" class="myInput"></td>
 							</tr>
 							<tr>
 								<th scope="row">남기실 말씀</th>
@@ -144,19 +141,19 @@
 							<tr>
 								<th scope="row"><span class="important">주문하시는 분</span></th>
 								<td><input type="text" name="orderName" id="orderName"
-										value="${memberInfo.name }" data-pattern="gdEngKor"
-										maxlength="20" class="myInput"></td>
+									value="${memberInfo.name }" data-pattern="gdEngKor"
+									maxlength="20" class="myInput"></td>
 							</tr>
 							<tr>
 								<th scope="row"><span class="important">휴대폰 번호</span></th>
 								<td><input type="text" id="mobileNum" name="orderCellPhone"
-										value="${memberInfo.phone }" maxlength="20" class="myInput">
+									value="${memberInfo.phone }" maxlength="20" class="myInput">
 								</td>
 							</tr>
 							<tr>
 								<th scope="row"><span class="important">이메일</span></th>
-								<td class="member_email"><input type="text" name="orderEmail"
-										value="${memberInfo.email}" class="myInput"></td>
+								<td class="member_email"><input type="text"
+									name="orderEmail" value="${memberInfo.email}" class="myInput"></td>
 							</tr>
 						</tbody>
 					</table>
@@ -175,28 +172,26 @@
 							<tbody>
 								<tr>
 									<th scope="row">상품 합계 금액</th>
-									<td><strong id="totalGoodsPrice"
-											class="order_payment_sum">${section_Price}원</strong>
+									<td><strong id="totalGoodsPrice" class="order_payment_sum">${section_Price}원</strong>
 									</td>
 								</tr>
 								<tr>
 									<th scope="row">배송비</th>
 									<td><span id="totalDeliveryCharge">0</span>원 <span
-											class="multi_shipping_text"></span></td>
+										class="multi_shipping_text"></span></td>
 								</tr>
 								<tr>
 									<th scope="row">적립금 사용</th>
 									<td>
 										<div class="order_money_use">
 											<b><input type="text" name="useMileage"
-													onblur="gd_mileage_use_check('y', 'y', 'y', 'y');"
-													disabled="disabled"> 원</b>
+												onblur="gd_mileage_use_check('y', 'y', 'y', 'y');"
+												disabled="disabled"> 원</b>
 											<div class="form_element">
 												<input type="checkbox" id="useMileageAll"
 													onclick="gd_mileage_use_all();" disabled="disabled">
-												<label for="useMileageAll" class="check_s">전액
-													사용하기</label> <span class="money_use_sum">(보유 적립금 : 0
-													원)</span>
+												<label for="useMileageAll" class="check_s">전액 사용하기</label> <span
+													class="money_use_sum">(보유 적립금 : 0 원)</span>
 											</div>
 											<em class="money_use_txt js-mileageInfoArea"></em>
 										</div>
@@ -209,7 +204,7 @@
 								<tr>
 									<th scope="row">최종 결제 금액</th>
 									<td><strong id="totalSettlePrice"
-											class="order_payment_sum">${section_Price}</strong>원</td>
+										class="order_payment_sum">${section_Price}</strong>원</td>
 								</tr>
 							</tbody>
 						</table>
@@ -220,8 +215,8 @@
 					<div class="order_agree">
 						<div class="form_element">
 							<input type="checkbox" name="allAgreeLogin" id="allAgreeLogin"
-								class="require"> <label for="allAgreeLogin" class="check_s">결제 필수사항
-								동의</label>
+								class="require"> <label for="allAgreeLogin"
+								class="check_s">결제 필수사항 동의</label>
 						</div>
 						<div class="order_zone_tit">
 							<h5>상품 공급사 개인정보 제공 동의에 대한 내용을 확인 하였으며 이에 동의합니다.</h5>
@@ -249,10 +244,10 @@
 				</div>
 			</div>
 		</div>
-					</div>
-					<%@ include file="../../views/common/footer.jsp" %>
-		</body>
-		</html>
+	</div>
+	<%@ include file="../../views/common/footer.jsp"%>
+</body>
+</html>
 <script>
 	function triggerInputEvent(element) {
 		var event = new Event('input', {
