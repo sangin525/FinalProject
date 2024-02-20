@@ -28,14 +28,6 @@
 							</dd>
 						</dl>
 					</div>
-					<div class="info">
-						<dl>
-							<dt>글쓴이</dt>
-							<dd>
-								<input type="text" placeholder="글쓴이 입력">
-							</dd>
-						</dl>
-						<br>
 
 					</div>
 					<div class="cont">
