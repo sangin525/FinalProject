@@ -4,16 +4,7 @@
 	
     <div id="wrapper">
         <div class="topbar" style="position: absolute; top:0;">
-            <!-- 왼쪽 메뉴 -->
-            <div class="side-menu">
-                <div class="sidebar-inner">
-                    <div id="sidebar-menu">
-                        <ul>
-                            <li class="has_sub"></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            
             <!-- 왼쪽 서브 메뉴 -->
             <div class="left_sub_menu">
                 <div class="sub_menu">

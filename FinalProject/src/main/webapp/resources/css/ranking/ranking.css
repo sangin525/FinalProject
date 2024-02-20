@@ -86,7 +86,7 @@
 }
 
 .recipeRanking{
-	width: 282px;
+	width: 272px;
 	list-style: none;
 	position: relative; /* 오타 수정: realtive -> relative */
 	flex: 0 0 24%; /* 100%를 4로 나눈 값 */
@@ -95,7 +95,7 @@
 }
 
 .rank-image{
-	width: 282px;
+	width: 252px;
 	height: 282px;
 	margin-top: 50px;
 }

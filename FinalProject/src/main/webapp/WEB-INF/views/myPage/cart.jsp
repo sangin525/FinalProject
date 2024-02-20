@@ -84,20 +84,9 @@
 													</tr>
 													<form action="/cart/modifyCount.do" method="post"
 														name="${item.g_name}modify">
-														<input type="number" value="${item.sc_no}" name="sc_no"
-															readonly><br> <input type="number"
-															id="PriceVal${item.sc_no}" value="${item.sc_price}"
-															name="sc_price" readonly><br> <input
-															type="number" id="CountVal${item.sc_no}"
-															value="${item.sc_count}" name="sc_count" readonly><br>
-														<input type="number" value="${item.m_no}" name="m_no"
-															readonly><br> <input type="number"
-															value="${item.g_no}" name="g_no" readonly><br>
-														<input type="text" value="${item.g_name}" name="g_no"
-															readonly><br> <input type="number"
-															value="${item.g_price}" name="g_no" readonly><br>
-														<input type="number" value="${item.g_regular_price}"
-															name="g_no" readonly><br>
+														<input type="number" value="${item.sc_no}" name="sc_no" readonly><br> 
+														<input type="number" id="PriceVal${item.sc_no}" value="${item.sc_price}" name="sc_price" readonly><br> 
+														<input type="number" id="CountVal${item.sc_no}" value="${item.sc_count}" name="sc_count" readonly><br>
 														<button type="submit" id="changeCount">장바구니수정</button>
 														<br>
 													</form>
@@ -110,11 +99,10 @@
 													<br>
 													<button
 														onclick="changeQuantity(${item.sc_no},${item.g_price})">1+수량변경</button>
-													<br> >>>>>>> branch 'master' of
-																										https://github.com/sangin525/finalProject.git
+														
+													<br>
 
-																										<a
-														href="/cart/deleteCart.do?sc_no=${item.sc_no}">삭제</a>
+													<a href="/cart/deleteCart.do?sc_no=${item.sc_no}">삭제</a>
 
 												</c:forEach>
 											</tbody>
