@@ -41,15 +41,12 @@
 					</div>
 					<div class="cont">
 
-						<img src="/resources/uploads/고양이그림.png">
-						글 내용이 들어갑니다<br>
-						글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글
-						내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이
-						들어갑니다
+						
 
 						<c:if test ="${not empty free.fileName }">
 						<img src="/resources/uploads/free/${free.fileName}">
 						</c:if>
+						<br><br>
 						${free.contents}
 
 					</div>
