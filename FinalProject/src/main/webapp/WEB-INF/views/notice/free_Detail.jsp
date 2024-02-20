@@ -15,7 +15,7 @@
 	<div class="container">
 		<div class="board_wrap">
 			<div class="notice_title">
-				<strong>쟈유게시판</strong>
+				<strong>자유게시판</strong>
 
 			</div>
 			<div class="notice_view_wrap">
@@ -40,10 +40,18 @@
 						</dl>
 					</div>
 					<div class="cont">
+
+						<img src="/resources/uploads/고양이그림.png">
+						글 내용이 들어갑니다<br>
+						글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글
+						내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이
+						들어갑니다
+
 						<c:if test ="${not empty free.fileName }">
 						<img src="/resources/uploads/free/${free.fileName}">
 						</c:if>
 						${free.contents}
+
 					</div>
 				</div>
 				<div class="bt_wrap">
