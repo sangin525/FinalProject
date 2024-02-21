@@ -113,7 +113,7 @@
 			<p>최근본상품</p>
 		</div>
 		<br> <br>
-		<button class="topBtn" type="button" onclick="topScroll()">맨위로</button>
+		<button class="topBtn" type="button" onclick="topScroll()">>></button>
 	</div>
 
     <%@ include file="../../views/common/footer.jsp"%>

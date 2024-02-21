@@ -13,7 +13,20 @@ function toggleCategory() {
 };
   
 $(document).ready(function(){
-    $(".categoryList1 a").first().addClass("active");
+    var recipeTitle = new URLSearchParams(window.location.search).get('recipeTitle');
+    
+    if(recipeTitle){ // mainCategory.jsp에서 클릭해서 들어왔을 경우
+        $(".categoryList1 a").each(function() {
+            if ($(this).text() == recipeTitle) {
+                $(this).addClass('active');
+            } else {
+                $(this).removeClass('active');
+            }
+        });
+    } else { // mainCategory.jsp를 통하지 않고 들어왔을 경우
+        $(".categoryList1 a").first().addClass("active");
+    }
+    
     $(".categoryList2 a").first().addClass("active");
     $(".categoryList3 a").first().addClass("active");
     $(".categoryList4 a").first().addClass("active");
