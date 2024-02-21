@@ -24,19 +24,15 @@
 					<div class="info">
 						<dl>
 							<dt>번호: ${free.flno }</dt>
-							<dd>1</dd>
 						</dl>
 						<dl>
 							<dt>글쓴이: ${free.writer }</dt>
-							<dd>김이름</dd>
 						</dl>
 						<dl>
 							<dt>작성일: ${free.indate }</dt>
-							<dd>2021.1.16</dd>
 						</dl>
 						<dl>
 							<dt>조회: ${free.views }</dt>
-							<dd>33</dd>
 						</dl>
 					</div>
 					<div class="cont">

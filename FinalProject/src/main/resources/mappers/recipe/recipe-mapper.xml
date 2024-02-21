@@ -2,190 +2,190 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="recipeMapper">
-	<resultMap type="recipe" id="recipeResultSet">
-		<result column="R_NO" property="rno"></result>
-		<result column="R_WRITER" property="memberNickName"></result>
-		<result column="R_TITLE" property="title"></result>
-		<result column="R_INTRODUCTION" property="introduction"></result>
-		<result column="R_FOOD_CATEGORY" property="foodCategory"></result>
-		<result column="R_SITUATION_CATEGORY" property="situationCategory"></result>
-		<result column="R_HOW_CATEGORY" property="howCategory"></result>
-		<result column="R_INGREDIENT_CATEGORY" property="ingredientCategory"></result>
-		<result column="R_PERSON" property="person"></result>
-		<result column="R_TIME" property="time"></result>
-		<result column="R_DIFFICULTY" property="difficulty"></result>
-		<result column="R_TIP" property="tip"></result>
-		<result column="R_TAG" property="tag"></result>
-		<result column="R_VIEWS" property="views"></result>
-		<result column="R_IN_DATE" property="indate"></result>
-		<result column="R_UPDATE_DATE" property="updateDate"></result>
-		<result column="R_SAVE_COUNT" property="saveCount"></result>
-		<result column="R_UPLOAD_PATH" property="uploadPath"></result>
-		<result column="R_UPLOAD_NAME" property="uploadName"></result>
-		<result column="R_UPLOAD_ORIGIN" property="uploadOriginName"></result>
-		<result column="M_NO" property="mno"></result>			
-		<result column="R_DELETEDATE" property="deleteDate"></result>
-		<result column="FR_SCRAP" property="scrapDate"></result>
-	</resultMap>
-	
-	<select id="selectListCount" resultType="_int">
-	SELECT COUNT(*) FROM RECIPE
-	WHERE R_DELETEDATE IS NULL 	
-	AND R_TITLE LIKE '%' || #{searchText} || '%'
-	</select>
-	
-	<select id="selectListAll" resultMap="recipeResultSet">
-	SELECT * FROM RECIPE
-	WHERE R_DELETEDATE IS NULL	
-	AND R_TITLE LIKE '%' || #{searchText} || '%'
-		
-	
-	</select>
-			
-	<select id="rankingList" resultMap="recipeResultSet">
-	SELECT * FROM RECIPE
-	WHERE R_DELETEDATE IS NULL
-	AND R_TITLE LIKE '%' || #{searchText} || '%'
-		
-	ORDER BY R_VIEWS DESC
-		
-	</select>
-	
-	<select id="rankingListMain" resultMap="recipeResultSet">
-	SELECT * FROM RECIPE
-	WHERE R_DELETEDATE IS NULL
-	ORDER BY R_VIEWS DESC
-	</select>
-	
-	<select id="newListMain" resultMap="recipeResultSet">
-	SELECT * FROM RECIPE r 
-	WHERE R_DELETEDATE IS NULL 
-	ORDER BY R_IN_DATE  DESC
-	</select>
-	
-	<select id="viewSum" resultType="_int">
-	SELECT SUM(R_VIEWS) AS R_VIEWS FROM RECIPE
-	WHERE M_NO=#{mno}
-	</select>
+   <resultMap type="recipe" id="recipeResultSet">
+      <result column="R_NO" property="rno"></result>
+      <result column="R_WRITER" property="memberNickName"></result>
+      <result column="R_TITLE" property="title"></result>
+      <result column="R_INTRODUCTION" property="introduction"></result>
+      <result column="R_FOOD_CATEGORY" property="foodCategory"></result>
+      <result column="R_SITUATION_CATEGORY" property="situationCategory"></result>
+      <result column="R_HOW_CATEGORY" property="howCategory"></result>
+      <result column="R_INGREDIENT_CATEGORY" property="ingredientCategory"></result>
+      <result column="R_PERSON" property="person"></result>
+      <result column="R_TIME" property="time"></result>
+      <result column="R_DIFFICULTY" property="difficulty"></result>
+      <result column="R_TIP" property="tip"></result>
+      <result column="R_TAG" property="tag"></result>
+      <result column="R_VIEWS" property="views"></result>
+      <result column="R_IN_DATE" property="indate"></result>
+      <result column="R_UPDATE_DATE" property="updateDate"></result>
+      <result column="R_SAVE_COUNT" property="saveCount"></result>
+      <result column="R_UPLOAD_PATH" property="uploadPath"></result>
+      <result column="R_UPLOAD_NAME" property="uploadName"></result>
+      <result column="R_UPLOAD_ORIGIN" property="uploadOriginName"></result>
+      <result column="M_NO" property="mno"></result>         
+      <result column="R_DELETEDATE" property="deleteDate"></result>
+      <result column="FR_SCRAP" property="scrapDate"></result>
+   </resultMap>
+   
+   <select id="selectListCount" resultType="_int">
+   SELECT COUNT(*) FROM RECIPE
+   WHERE R_DELETEDATE IS NULL    
+   AND R_TITLE LIKE '%' || #{searchText} || '%'
+   </select>
+   
+   <select id="selectListAll" resultMap="recipeResultSet">
+   SELECT * FROM RECIPE
+   WHERE R_DELETEDATE IS NULL   
+   AND R_TITLE LIKE '%' || #{searchText} || '%'
+      
+   
+   </select>
+         
+   <select id="rankingList" resultMap="recipeResultSet">
+   SELECT * FROM RECIPE
+   WHERE R_DELETEDATE IS NULL
+   AND R_TITLE LIKE '%' || #{searchText} || '%'
+      
+   ORDER BY R_VIEWS DESC
+      
+   </select>
+   
+   <select id="rankingListMain" resultMap="recipeResultSet">
+   SELECT * FROM RECIPE
+   WHERE R_DELETEDATE IS NULL
+   ORDER BY R_VIEWS DESC
+   </select>
+   
+   <select id="newListMain" resultMap="recipeResultSet">
+   SELECT * FROM RECIPE r 
+   WHERE R_DELETEDATE IS NULL 
+   ORDER BY R_IN_DATE  DESC
+   </select>
+   
+   <select id="viewSum" resultType="_int">
+   SELECT SUM(R_VIEWS) AS R_VIEWS FROM RECIPE
+   WHERE M_NO=#{mno}
+   </select>
 
-	<select id="recentSelectRecipe" resultMap="recipeResultSet">
-	SELECT * FROM RECIPE
-	WHERE R_DELETEDATE IS NULL
-	AND R_NO=#{rno}
-	
-	</select>
-	
-	<insert id="addRecipe" useGeneratedKeys="true" keyColumn="R_NO" keyProperty="rno">
-	INSERT INTO RECIPE VALUES(recipe_seq.NEXTVAL,
-								#{memberNickName},
-								#{title},
-								#{introduction},
-								#{foodCategory},
-								#{situationCategory},
-								#{howCategory},
-								#{ingredientCategory},
-								#{person},
-								#{time},
-								#{difficulty},
-								#{tip},
-								#{tag},
-								0,
-								SYSDATE,
-								null,
-								0,
-								#{uploadPath},
-								#{uploadName},
-								#{uploadOriginName},								
-								#{mno},
-								null)
-	</insert>
-	
-	<update id="editRecipe" parameterType="recipe">
-		UPDATE RECIPE SET R_TITLE = #{title},
-						  R_INTRODUCTION = #{introduction},
-						  R_FOOD_CATEGORY = #{foodCategory},
-						  R_SITUATION_CATEGORY = #{situationCategory},
-						  R_HOW_CATEGORY =#{howCategory},
-						  R_INGREDIENT_CATEGORY =#{ingredientCategory},
-						  R_PERSON =#{person},
-						  R_TIME =#{time},
-						  R_DIFFICULTY =#{difficulty},
-						  R_TIP =#{tip},
-						  R_TAG =#{tag},
-						  R_UPLOAD_PATH =#{uploadPath},
-						  R_UPLOAD_NAME =#{uploadName},
-						  R_UPLOAD_ORIGIN =#{uploadOriginName}
-						  WHERE R_NO =#{rno}
-	</update>
+   <select id="recentSelectRecipe" resultMap="recipeResultSet">
+   SELECT * FROM RECIPE
+   WHERE R_DELETEDATE IS NULL
+   AND R_NO=#{rno}
+   
+   </select>
+   
+   <insert id="addRecipe" useGeneratedKeys="true" keyColumn="R_NO" keyProperty="rno">
+   INSERT INTO RECIPE VALUES(recipe_seq.NEXTVAL,
+                        #{memberNickName},
+                        #{title},
+                        #{introduction},
+                        #{foodCategory},
+                        #{situationCategory},
+                        #{howCategory},
+                        #{ingredientCategory},
+                        #{person},
+                        #{time},
+                        #{difficulty},
+                        #{tip},
+                        #{tag},
+                        0,
+                        SYSDATE,
+                        null,
+                        0,
+                        #{uploadPath},
+                        #{uploadName},
+                        #{uploadOriginName},                        
+                        #{mno},
+                        null)
+   </insert>
+   
+   <update id="editRecipe" parameterType="recipe">
+      UPDATE RECIPE SET R_TITLE = #{title},
+                    R_INTRODUCTION = #{introduction},
+                    R_FOOD_CATEGORY = #{foodCategory},
+                    R_SITUATION_CATEGORY = #{situationCategory},
+                    R_HOW_CATEGORY =#{howCategory},
+                    R_INGREDIENT_CATEGORY =#{ingredientCategory},
+                    R_PERSON =#{person},
+                    R_TIME =#{time},
+                    R_DIFFICULTY =#{difficulty},
+                    R_TIP =#{tip},
+                    R_TAG =#{tag},
+                    R_UPLOAD_PATH =#{uploadPath},
+                    R_UPLOAD_NAME =#{uploadName},
+                    R_UPLOAD_ORIGIN =#{uploadOriginName}
+                    WHERE R_NO =#{rno}
+   </update>
 
-	<select id="detailRecipe" resultMap="recipeResultSet">
-	SELECT *
-	FROM RECIPE
-	WHERE R_NO = #{rno}	
-	</select>
+   <select id="detailRecipe" resultMap="recipeResultSet">
+   SELECT *
+   FROM RECIPE
+   WHERE R_NO = #{rno}   
+   </select>
 
-	<update id="views" parameterType="recipe">
-	UPDATE RECIPE SET R_VIEWS =#{views}
-				  WHERE R_NO = #{rno}
-	</update>
-	
-	<update id="deleteRecipe" parameterType="_int">
-	UPDATE RECIPE SET R_DELETEDATE = SYSDATE
-	WHERE R_NO = #{rno}
-	</update>
-	
-	<select id="selectWriter" resultType="string">
-	SELECT R_WRITER FROM RECIPE
-	WHERE R_NO = #{rno}
-	</select>
-	
-	<select id="selectFileName" resultMap="recipeResultSet">
-	SELECT R_UPLOAD_NAME FROM RECIPE
-	WHERE R_NO = #{rno}
-	</select>
-	
-	<select id="myRecipeCount" resultType="_int">
-	SELECT COUNT(*) FROM RECIPE
-	WHERE R_DELETEDATE IS NULL
-	AND M_NO =#{mno}
-	</select>
-	
-	<select id="selectMyRecipe" resultMap="recipeResultSet">
-	SELECT * FROM RECIPE
-	WHERE R_DELETEDATE IS NULL
-	AND M_NO =#{mno} 
-	</select>
-	
-	<select id="newList" resultMap="recipeResultSet">
-	SELECT * FROM RECIPE
-	WHERE R_DELETEDATE IS NULL
-	AND M_NO =#{mno}
-	ORDER BY R_IN_DATE DESC
-	</select>
+   <update id="views" parameterType="recipe">
+   UPDATE RECIPE SET R_VIEWS =#{views}
+              WHERE R_NO = #{rno}
+   </update>
+   
+   <update id="deleteRecipe" parameterType="_int">
+   UPDATE RECIPE SET R_DELETEDATE = SYSDATE
+   WHERE R_NO = #{rno}
+   </update>
+   
+   <select id="selectWriter" resultType="string">
+   SELECT R_WRITER FROM RECIPE
+   WHERE R_NO = #{rno}
+   </select>
+   
+   <select id="selectFileName" resultMap="recipeResultSet">
+   SELECT R_UPLOAD_NAME FROM RECIPE
+   WHERE R_NO = #{rno}
+   </select>
+   
+   <select id="myRecipeCount" resultType="_int">
+   SELECT COUNT(*) FROM RECIPE
+   WHERE R_DELETEDATE IS NULL
+   AND M_NO =#{mno}
+   </select>
+   
+   <select id="selectMyRecipe" resultMap="recipeResultSet">
+   SELECT * FROM RECIPE
+   WHERE R_DELETEDATE IS NULL
+   AND M_NO =#{mno} 
+   </select>
+   
+   <select id="newList" resultMap="recipeResultSet">
+   SELECT * FROM RECIPE
+   WHERE R_DELETEDATE IS NULL
+   AND M_NO =#{mno}
+   ORDER BY R_IN_DATE DESC
+   </select>
 
-	<select id="viewList" resultMap="recipeResultSet">
-	SELECT * FROM RECIPE
-	WHERE R_DELETEDATE IS NULL
-	AND M_NO=#{mno}
-	ORDER BY R_VIEWS DESC
-	</select>
-	
-	<select id="selectScrapRecipe" resultMap="recipeResultSet">
-	SELECT r.r_no ,r.R_WRITER,r.R_TITLE,r.R_INTRODUCTION,r.R_FOOD_CATEGORY,
-			r.R_SITUATION_CATEGORY,r.R_HOW_CATEGORY,r.R_INGREDIENT_CATEGORY,
-			r.R_PERSON,r.R_TIME,r.R_DIFFICULTY,r.R_TIP,r.R_TAG,r.R_VIEWS,
-			r.R_IN_DATE,r.R_UPDATE_DATE,r.R_SAVECOUNT,r.R_UPLOAD_PATH,r.R_UPLOAD_NAME ,
-			r.R_UPLOAD_ORIGIN,r.R_DELETEDATE,r.M_NO 
-	FROM RECIPE r
-	join FAVORITERECIPE f
-	on r.R_NO = f.R_NO
-	WHERE F.M_NO=#{mno}
-	AND R_DELETEDATE IS NULL
-	AND FR_DELETEDATE IS NULL
-	GROUP BY r.r_no ,r.R_WRITER,r.R_TITLE,r.R_INTRODUCTION,r.R_FOOD_CATEGORY,
-			r.R_SITUATION_CATEGORY,r.R_HOW_CATEGORY,r.R_INGREDIENT_CATEGORY,
-			r.R_PERSON,r.R_TIME,r.R_DIFFICULTY,r.R_TIP,r.R_TAG,r.R_VIEWS,
-			r.R_IN_DATE,r.R_UPDATE_DATE,r.R_SAVECOUNT,r.R_UPLOAD_PATH,r.R_UPLOAD_NAME ,
-			r.R_UPLOAD_ORIGIN,r.R_DELETEDATE,r.M_NO	
-	</select>
+   <select id="viewList" resultMap="recipeResultSet">
+   SELECT * FROM RECIPE
+   WHERE R_DELETEDATE IS NULL
+   AND M_NO=#{mno}
+   ORDER BY R_VIEWS DESC
+   </select>
+   
+   <select id="selectScrapRecipe" resultMap="recipeResultSet">
+   SELECT r.r_no ,r.R_WRITER,r.R_TITLE,r.R_INTRODUCTION,r.R_FOOD_CATEGORY,
+         r.R_SITUATION_CATEGORY,r.R_HOW_CATEGORY,r.R_INGREDIENT_CATEGORY,
+         r.R_PERSON,r.R_TIME,r.R_DIFFICULTY,r.R_TIP,r.R_TAG,r.R_VIEWS,
+         r.R_IN_DATE,r.R_UPDATE_DATE,r.R_SAVECOUNT,r.R_UPLOAD_PATH,r.R_UPLOAD_NAME ,
+         r.R_UPLOAD_ORIGIN,r.R_DELETEDATE,r.M_NO 
+   FROM RECIPE r
+   join FAVORITERECIPE f
+   on r.R_NO = f.R_NO
+   WHERE F.M_NO=#{mno}
+   AND R_DELETEDATE IS NULL
+   AND FR_DELETEDATE IS NULL
+   GROUP BY r.r_no ,r.R_WRITER,r.R_TITLE,r.R_INTRODUCTION,r.R_FOOD_CATEGORY,
+         r.R_SITUATION_CATEGORY,r.R_HOW_CATEGORY,r.R_INGREDIENT_CATEGORY,
+         r.R_PERSON,r.R_TIME,r.R_DIFFICULTY,r.R_TIP,r.R_TAG,r.R_VIEWS,
+         r.R_IN_DATE,r.R_UPDATE_DATE,r.R_SAVECOUNT,r.R_UPLOAD_PATH,r.R_UPLOAD_NAME ,
+         r.R_UPLOAD_ORIGIN,r.R_DELETEDATE,r.M_NO   
+   </select>
 </mapper>
