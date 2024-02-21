@@ -101,7 +101,7 @@
 											<thead>
 												<tr>
 
-													<td colspan="1">이미지</td>
+													<td colspan="1">이지</td>
 													<td>상품정보</td>
 													<td>수량</td>
 													<td>적립</td>
