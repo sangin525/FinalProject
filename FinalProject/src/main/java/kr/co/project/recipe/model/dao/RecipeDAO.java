@@ -258,6 +258,16 @@ public class RecipeDAO {
 		return sqlSession.selectList("recipeSearchMapper.searchList",recipe);
 	}
 
+	public int searchUpdate(SqlSessionTemplate sqlSession, String searchResult) {
+		
+		return sqlSession.update("recipeSearchMapper.searchUpdate",searchResult);
+	}
+
+	public int searchInsert(SqlSessionTemplate sqlSession, String searchResult) {
+		
+		return sqlSession.insert("recipeSearchMapper.searchInsert",searchResult);
+	}
+
 	
 	
 

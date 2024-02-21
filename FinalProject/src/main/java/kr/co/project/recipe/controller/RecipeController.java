@@ -88,7 +88,43 @@ public class RecipeController {
 		model.addAttribute("list",list);
 		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
-		System.out.println("접근성공");
+		
+		// 검색추가
+				if(!recipe.getSearchText().equals("")){
+					
+					List<RecipeDTO> searchList = recipeService.searchList(recipe);
+					String searchResult = null;
+								
+					// 얘가 true면 같은게 있음, false면 같은게 없음
+					boolean checkTitle = false;
+					
+					// 사용자가 검색한 검색어가 search 테이블에 존재하는지 확인하는 로직
+					for(RecipeDTO search : searchList) {			
+						String searchKeyword = search.getSearchText();
+						searchResult = searchKeyword;
+						if(searchResult.equals(recipe.getSearchText())) {
+							// 같은게 하나라도 있으면 true로 변경 후 for문 종료
+							checkTitle = true;
+							break;
+						}
+					}		
+//					String r = recipe.getSearchText();
+//					System.out.println("입력언어"+r);
+					System.out.println("입력언어1"+recipe.getSearchText());
+					
+					if(checkTitle) { // 같은게 있으면
+						System.out.println("같은게 있음");
+						int searchUp = recipeService.searchUpdate(searchResult);
+					} else { // 같은게 없으면
+						System.out.println("같은게 없음");
+						int searchIn = recipeService.searchInsert(recipe.getSearchText());
+						// recipeService.insert...........
+					}
+					model.addAttribute("searchList",searchList);
+				
+				}
+		
+		
 			return "ranking/recipe";		
 	}
 	
@@ -134,29 +170,39 @@ public class RecipeController {
 		model.addAttribute("list",list);
 		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
-	
 		
 		// 검색추가
-		if(recipe.getSearchText()!=null){
+		if(!recipe.getSearchText().equals("")){
 			
-		List<RecipeDTO> searchList = recipeService.searchList(recipe);
-		String searchResult = null;
-		//		List<RecipeDTO> searchResult = new ArrayList<>();
-		
-		for(RecipeDTO search : searchList) {			
-			String searchKeyword = search.getSearchText();
-			searchResult = searchKeyword;
-//		System.out.println("사용자 입력값"+ recipe.getSearchText());
-//		System.out.println("리스트안 데이터"+searchResult);
-			if(searchResult == recipe.getSearchText()) {
-				System.out.println("같네~");
-				// recipeService.update............
-			}else {
+			List<RecipeDTO> searchList = recipeService.searchList(recipe);
+			String searchResult = null;
+						
+			// 얘가 true면 같은게 있음, false면 같은게 없음
+			boolean checkTitle = false;
+			
+			// 사용자가 검색한 검색어가 search 테이블에 존재하는지 확인하는 로직
+			for(RecipeDTO search : searchList) {			
+				String searchKeyword = search.getSearchText();
+				searchResult = searchKeyword;
+				if(searchResult.equals(recipe.getSearchText())) {
+					// 같은게 하나라도 있으면 true로 변경 후 for문 종료
+					checkTitle = true;
+					break;
+				}
+			}		
+//			String r = recipe.getSearchText();
+//			System.out.println("입력언어"+r);
+			System.out.println("입력언어1"+recipe.getSearchText());
+			
+			if(checkTitle) { // 같은게 있으면
+				System.out.println("같은게 있음");
+				int searchUp = recipeService.searchUpdate(searchResult);
+			} else { // 같은게 없으면
+				System.out.println("같은게 없음");
+				int searchIn = recipeService.searchInsert(recipe.getSearchText());
 				// recipeService.insert...........
-				System.out.println("다르네~");
 			}
-		}		
-	
+			model.addAttribute("searchList",searchList);
 		
 		}
 		
@@ -466,12 +512,12 @@ public class RecipeController {
 						int recentRecipe = recipeService.recentRecipe(recipe); 
 						MemberDTO recipeChefProfile = memberService.memberProfile(result.getMno());
 						for(RecipeDTO cp:comresult) {							
-							System.out.println("댓글단 사람 번호"+cp.getMno());
+//							System.out.println("댓글단 사람 번호"+cp.getMno());
 //							List<MemberDTO> resultProfile = memberService
 							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
 							memberResult.add(resultProfile);
 							model.addAttribute("memberResult",memberResult);
-							System.out.println("댓글사람 사진"+memberResult);
+//							System.out.println("댓글사람 사진"+memberResult);
 						}
 						model.addAttribute("recipeChefProfile",recipeChefProfile);
 						model.addAttribute("commentCount",commentCount);						
@@ -538,24 +584,14 @@ public class RecipeController {
 		return "common/recentlyRecipe";
 	}
 	
+	@GetMapping("/rankSearch")
 	public String searchList(RecipeDTO recipe,
 							Model model) {
 		
 		List<RecipeDTO> searchList = recipeService.searchList(recipe);
-		for(RecipeDTO search : searchList) {
-			
-			String searchKeyword = search.getSearchText();
-			
-			System.out.println(searchKeyword);
-			
-			if(searchKeyword == recipe.getSearchText()) {
-				System.out.println("같네~");
-			}else {
-				System.out.println("다르네~");
-			}
-		}
 		
-		return "";
+		model.addAttribute("searchList", searchList);
+		return "ranking/searchWord";
 	}
 	
 

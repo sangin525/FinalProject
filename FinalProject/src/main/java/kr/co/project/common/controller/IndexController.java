@@ -107,7 +107,7 @@ public class IndexController {
 		return "ranking/recipe";
 	}
 
-	@RequestMapping("searchWordRank")
+	@RequestMapping("/searchWordRank")
 	public String searchWordRankPage() {
 		return "ranking/searchWord";
 	}
@@ -122,6 +122,7 @@ public class IndexController {
 //		return "member/addRecipe";
 //	}
 
+	
 	@RequestMapping("/after_addRecipe")
 	public String afterAddRecipe() {
 		return "member/afterAddRecipe";

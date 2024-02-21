@@ -56,9 +56,6 @@
 		</div>
 	</div>
 	<section class="boardSection">
-		<div>
-			<p class="detailP">자유게시판</p>
-		</div>
 		
 	</section>
 	<%@ include file="../../views/common/footer.jsp"%>

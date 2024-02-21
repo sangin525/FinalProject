@@ -11,12 +11,18 @@
 
 <select id="searchList" resultMap="recipeSearchResultSet">
 SELECT * FROM SEARCH
+ORDER BY S_SEARCHCOUNT DESC
 </select>
 
-<insert id="addSearch">
+<insert id="searchInsert">
 INSERT INTO SEARCH VALUES(search_seq.NEXTVAL,
 							#{searchText},
 							1
 							)
 </insert>
+
+<update id="searchUpdate" parameterType="recipe">
+UPDATE SEARCH SET S_SEARCHCOUNT = S_SEARCHCOUNT+1
+WHERE S_SEARCHTITLE = #{searchText}
+</update>
 </mapper>
