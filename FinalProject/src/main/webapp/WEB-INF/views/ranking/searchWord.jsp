@@ -17,84 +17,23 @@
 <%@ include file="../../views/ranking/rankingNav.jsp"%>
 	
 	<ul class="recipeList">
+		<c:set var="row" value="1" />
+		<c:choose>
+			<c:when test="${empty searchList}">
+				<p>인기검색어가 없습니다.</p>
+			</c:when>		
+			<c:otherwise>
+			<c:forEach var="item" items="${searchList}">
 		<li class="searchWordRanking">
 			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
+			<p class="searchWordNum"><b>${row}</b></p>
+				<a>	${item.searchText}</a>
 			</div>
 		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
-		<li class="searchWordRanking">
-			<div class="searchWordRank">
-			<p class="searchWordNum"><b>1</b></p>
-				<a>	제육볶음</a>
-			</div>
-		</li>
+		<c:set var="row" value="${row+1}"/>
+			</c:forEach>
+			</c:otherwise>
+		</c:choose>
 		
 	</ul>
 	</div>

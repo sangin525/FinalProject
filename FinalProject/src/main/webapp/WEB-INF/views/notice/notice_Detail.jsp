@@ -48,7 +48,7 @@
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<a href="/noticeBoard" class="on">목록</a> 
+					<a href="/admin/noticeList" class="on">목록</a> 
 				</div>
 			</div>
 		</div>	
