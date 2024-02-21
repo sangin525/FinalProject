@@ -12,6 +12,7 @@
 
 	<%@ include file="../../views/common/header.jsp"%>
 		<%@ include file="../../views/common/nav.jsp" %>
+		<br>
 	<div class="container">
 		<div class="board_wrap">
 			<div class="board_title">
@@ -50,7 +51,7 @@
 						<a href="/foodMate/foodMateDelete.do?fno=${food.fno}">삭제</a>
 						<a href="/foodMate/foodMateEditForm.do?fno=${food.fno}">수정</a>
 					</c:if>
-
+					
 					<a href="/foodMate/foodMateList.do" class="on">목록</a>
 
 					<c:choose>
@@ -130,8 +131,8 @@
 			</form>
 		</div>
 	</div>
-
-	채팅방: ${cr_no } host: ${food.mno} guest: ${mno}
+<br>
+	
 	<%@ include file="../../views/common/footer.jsp"%>
 
 

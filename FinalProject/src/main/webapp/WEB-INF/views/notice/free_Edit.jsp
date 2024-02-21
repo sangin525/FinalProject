@@ -5,7 +5,8 @@
 <head>
 <%@ include file="../../views/common/head.jsp"%>
 <link rel="stylesheet" href="/resources/css/notice/notice.css">
-
+<%@ include file="../../views/common/smarteditor.jsp"%>
+<script src="/resources/js/myPage/fixProfile.js"></script>
 
 </head>
 <body>
@@ -28,15 +29,17 @@
                     </dl>
                 </div>
                
-                <div class="cont">
-                    <textarea name="contents" placeholder="내용 입력"></textarea>
-                </div>
+                <div class="cont" id="smarteditor">
+						<textarea name="contents" id="editorTxt" placeholder="내용 입력"></textarea>
+					</div>
                 <br>
-                <input type="file" name="upload">
+                <input type="file" id="file" name="upload"
+						style="display: none;"> <label for="file"
+						class="file-upload">파일 업로드</label> <span id="file-name"></span>
                 <br>
             </div>
            <div class="bt_wrap">                
-                <button type="submit">수정</button>
+                <button type="submit" onclick="save()">수정</button>
                	<button type="button" onclick="history.back()">취소</button>                
             </div>
         	</form>        
