@@ -118,6 +118,7 @@
 	</div>
 
     <%@ include file="../../views/common/footer.jsp"%>
+    <h3>${goods.g_stock}</h3>
 </body>
 
 <script>

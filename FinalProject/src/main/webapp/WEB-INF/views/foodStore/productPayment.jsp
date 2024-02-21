@@ -1,13 +1,21 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <html>
+
 <head>
 <%@ include file="../../views/common/head.jsp"%>
 <link rel="stylesheet" href="/resources/css/member/myPage.css">
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script src="/resources/js/myPage/fixProfile.js"></script>
+<script type="text/javascript"
+	src="https://cdn.iamport.kr/v1/iamport.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+	integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ="
+	crossorigin="anonymous"></script>
 </head>
+
 <body>
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/common/nav.jsp"%>
@@ -16,36 +24,71 @@
 			<h2>결제 내역</h2>
 			<br> <br>
 			<table class="cart__list">
-					<thead>
-						<tr>
-							<td><input type="checkbox" id="checkAll"></td>
-							<td colspan="1">이미지</td>
-							<td>상품정보</td>
-							<td>수량</td>
-							<td>적립</td>
-							<td>상품금액</td>
-							<td>배송비</td>
-						</tr>
-					</thead>
-					<tbody>
-						<tr class="cart__list__detail">
-							<td><input type="checkbox" class="itemCheck"></td>
-							<td><img
-								src="/resources/uploads/goods/${goodsInfo.g_file_name}"></td>
-							<td>
-								<p>${goodsInfo.g_name}</p> <span class="price">${goodsInfo.g_price}원</span>
-								<span style="text-decoration: line-through; color: lightgray;">${goodsInfo.g_regular_price}</span>
-							</td>
-							<td>
-								<div class="quantity">
-									<input name="name" value="${g_count}" readonly>
-								</div>
-							</td>
-							<td><span class="point">119원</span></td>
-							<td><span class="price">${section_Price}원</span></td>
-							<td>무료</td>
-						</tr>
-					</tbody>
+				<thead>
+					<tr>
+						<td colspan="1">이미지</td>
+						<td>상품정보</td>
+						<td>수량</td>
+						<td>적립</td>
+						<td>상품금액</td>
+						<td>배송비</td>
+					</tr>
+				</thead>
+				<tbody>
+					<c:choose>
+						<c:when test="${cartList != NULL}">
+							<c:forEach var="item" items="${cartList }">
+								<tr class="cart__list__detail">
+									<td><img
+										src="/resources/uploads/goods/${item.g_file_name}"></td>
+									<td>
+										<p>${item.g_name}</p> <span class="price">${item.g_price}원</span>
+										<span style="text-decoration: line-through; color: lightgray;">${item.g_regular_price}</span>
+									</td>
+									<td>
+										<div class="quantity">
+											<input name="name" value="${item.sc_count}" readonly>
+										</div>
+									</td>
+									<td><span class="point">119원</span></td>
+									<td><span class="price">${item.sc_price}원</span></td>
+									<td>무료</td>
+								</tr>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<c:choose>
+								<c:when test="${goodsInfo != NULL}">
+									<tr class="cart__list__detail">
+										<td><input type="checkbox" class="itemCheck"></td>
+										<td><img
+											src="/resources/uploads/goods/${goodsInfo.g_file_name}">
+										</td>
+										<td>
+											<p>${goodsInfo.g_name}</p> <span class="price">${goodsInfo.g_price}원</span>
+											<span
+											style="text-decoration: line-through; color: lightgray;">${goodsInfo.g_regular_price}</span>
+										</td>
+										<td>
+											<div class="quantity">
+												<input name="name" value="${g_count}" readonly>
+											</div>
+										</td>
+										<td><span class="point">119원</span></td>
+										<td><span class="price">${section_Price}원</span></td>
+										<td>무료</td>
+									</tr>
+								</c:when>
+								<c:otherwise>
+									<p>잘못된 접근입니다.</p>
+									<br>
+									<button type="button" onclick="location.href='/products'"
+										class="btn-lg btn-primary">쇼핑하러 가기</button>
+								</c:otherwise>
+							</c:choose>
+						</c:otherwise>
+					</c:choose>
+				</tbody>
 			</table>
 		</div>
 		<div class="delivery_info">
@@ -170,42 +213,94 @@
 								<col style="width: 85%;">
 							</colgroup>
 							<tbody>
-								<tr>
-									<th scope="row">상품 합계 금액</th>
-									<td><strong id="totalGoodsPrice" class="order_payment_sum">${section_Price}원</strong>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">배송비</th>
-									<td><span id="totalDeliveryCharge">0</span>원 <span
-										class="multi_shipping_text"></span></td>
-								</tr>
-								<tr>
-									<th scope="row">적립금 사용</th>
-									<td>
-										<div class="order_money_use">
-											<b><input type="text" name="useMileage"
-												onblur="gd_mileage_use_check('y', 'y', 'y', 'y');"
-												disabled="disabled"> 원</b>
-											<div class="form_element">
-												<input type="checkbox" id="useMileageAll"
-													onclick="gd_mileage_use_all();" disabled="disabled">
-												<label for="useMileageAll" class="check_s">전액 사용하기</label> <span
-													class="money_use_sum">(보유 적립금 : 0 원)</span>
-											</div>
-											<em class="money_use_txt js-mileageInfoArea"></em>
-										</div>
-									</td>
-								</tr>
-								<tr>
-									<th scope="row">예상 적립금</th>
-									<td><span id="">184원</span></td>
-								</tr>
-								<tr>
-									<th scope="row">최종 결제 금액</th>
-									<td><strong id="totalSettlePrice"
-										class="order_payment_sum">${section_Price}</strong>원</td>
-								</tr>
+								<c:choose>
+									<c:when test="${cartList != NULL}">
+										<tr>
+											<th scope="row">상품 합계 금액</th>
+											<td><strong id="allGoodsPrice" class="order_payment_sum">${totalGoodsPrice
+																	}원</strong>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">배송비</th>
+											<td><span id="totalDeliveryCharge">0</span>원 <span
+												class="multi_shipping_text"></span></td>
+										</tr>
+										<tr>
+											<th scope="row">적립금 사용</th>
+											<td>
+												<div class="order_money_use">
+													<b><input type="text" name="useMileage"
+														onblur="gd_mileage_use_check('y', 'y', 'y', 'y');"
+														disabled="disabled"> 원</b>
+													<div class="form_element">
+														<input type="checkbox" id="useMileageAll"
+															onclick="gd_mileage_use_all();" disabled="disabled">
+														<label for="useMileageAll" class="check_s">전액 사용하기</label>
+														<span class="money_use_sum">(보유 적립금 : 0 원)</span>
+													</div>
+													<em class="money_use_txt js-mileageInfoArea"></em>
+												</div>
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">예상 적립금</th>
+											<td><span id="">184원</span></td>
+										</tr>
+										<tr>
+											<th scope="row">최종 결제 금액</th>
+											<td><strong id="totalPayPrice" class="order_payment_sum">${totalGoodsPrice}</strong>원
+											</td>
+										</tr>
+									</c:when>
+									<c:otherwise>
+										<c:choose>
+											<c:when test="${goodsInfo != NULL}">
+												<tr>
+													<th scope="row">상품 합계 금액</th>
+													<td><strong id="totalGoodsPrice"
+														class="order_payment_sum">${section_Price}원</strong></td>
+												</tr>
+												<tr>
+													<th scope="row">배송비</th>
+													<td><span id="totalDeliveryCharge">0</span>원 <span
+														class="multi_shipping_text"></span></td>
+												</tr>
+												<tr>
+													<th scope="row">적립금 사용</th>
+													<td>
+														<div class="order_money_use">
+															<b><input type="text" name="useMileage"
+																onblur="gd_mileage_use_check('y', 'y', 'y', 'y');"
+																disabled="disabled"> 원</b>
+															<div class="form_element">
+																<input type="checkbox" id="useMileageAll"
+																	onclick="gd_mileage_use_all();" disabled="disabled">
+																<label for="useMileageAll" class="check_s">전액
+																	사용하기</label> <span class="money_use_sum">(보유 적립금 : 0 원)</span>
+															</div>
+															<em class="money_use_txt js-mileageInfoArea"></em>
+														</div>
+													</td>
+												</tr>
+												<tr>
+													<th scope="row">예상 적립금</th>
+													<td><span id="">184원</span></td>
+												</tr>
+												<tr>
+													<th scope="row">최종 결제 금액</th>
+													<td><strong id="totalSettlePrice"
+														class="order_payment_sum">${section_Price}</strong>원</td>
+												</tr>
+											</c:when>
+											<c:otherwise>
+												<tr>
+													<td>잘못된 접근입니다</td>
+												</tr>
+											</c:otherwise>
+										</c:choose>
+									</c:otherwise>
+								</c:choose>
 							</tbody>
 						</table>
 					</div>
@@ -239,14 +334,78 @@
 						</div>
 					</div>
 				</div>
-				<div class="paymentButton">
-					<button class="myButton">결제하기</button>
-				</div>
+				<c:choose>
+					<c:when test="${cartList != NULL}">
+						<div class="paymentButton">
+							<button class="myButton"
+								onclick="requestPay(${totalGoodsPrice},'${nameForPay}')">결제하기</button>
+						</div>
+					</c:when>
+					<c:otherwise>
+						<c:choose>
+							<c:when test="${goodsInfo != NULL}">
+								<div class="paymentButton">
+									<button class="myButton"
+										onclick="requestPay(${section_Price},'${goodsInfo.g_name}')">결제하기</button>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="paymentButton">
+									<button class="myButton" onclick="requestPay(1000,'성기정')">결제하기</button>
+								</div>
+							</c:otherwise>
+						</c:choose>
+					</c:otherwise>
+				</c:choose>
 			</div>
 		</div>
+
+		<c:choose>
+			<c:when test="${cartList != NULL}">
+<form action="/order/makeOrderFromCart.do" method="post">
+<input type="hidden" name="sc_noForOrder" value="${sc_noForOrder}">
+<input type="hidden" name="o_recipient_name" value="${defaultDelivery.d_name}">
+<input type="hidden" name="o_postal_address" value="${defaultDelivery.d_postal_address}">
+<input type="hidden" name="o_address" value="${defaultDelivery.d_address}"> 
+<input type="hidden" name="o_detailed_address" value="${defaultDelivery.d_detailAdress}">
+<input type="hidden" name="o_recipient_phone" value="${defaultDelivery.d_phone}">
+<input type="hidden" id="o_payment_amount" name="o_payment_amount" value="">
+<button type="submit" id="makeOrder" style="display: none;"></button>
+</form>
+			</c:when>
+			<c:otherwise>
+				<c:choose>
+					<c:when test="${goodsInfo != NULL}">
+<form action="/order/makeOrder.do" method="post">
+<input type="hidden" name="g_no" value="${goodsInfo.g_no}"> 
+<input type="hidden" name="g_count" value="${g_count}"> 
+<input type="hidden" name="o_recipient_name" value="${defaultDelivery.d_name}">
+<input type="hidden" name="o_postal_address" value="${defaultDelivery.d_postal_address}">
+<input type="hidden" name="o_address" value="${defaultDelivery.d_address}"> 
+<input type="hidden" name="o_detailed_address" value="${defaultDelivery.d_detailAdress}">
+<input type="hidden" name="o_recipient_phone" value="${defaultDelivery.d_phone}">
+<input type="hidden" id="o_payment_amount" name="o_payment_amount" value="">
+<button type="submit" id="makeOrder" style="display: none;"></button>
+</form>
+					</c:when>
+					<c:otherwise>
+<form action="/order/makeOrder.do" method="post">
+<input type="hidden" name="o_recipient_name" value="${defaultDelivery.d_name}">
+<input type="hidden" name="o_postal_address" value="${defaultDelivery.d_postal_address}">
+<input type="hidden" name="o_address" value="${defaultDelivery.d_address}"> 
+<input type="hidden" name="o_detailed_address" value="${defaultDelivery.d_detailAdress}">
+<input type="hidden" name="o_recipient_phone" value="${defaultDelivery.d_phone}">
+<input type="hidden" id="o_payment_amount" name="o_payment_amount" value="">
+<button type="submit" id="makeOrder" style="display: none;"></button>
+</form>
+					</c:otherwise>
+				</c:choose>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<%@ include file="../../views/common/footer.jsp"%>
 </body>
+
 </html>
 <script>
 	function triggerInputEvent(element) {
@@ -258,33 +417,70 @@
 	}
 </script>
 <script>
-function shippingBasicChange() {
-var checkbox = document.getElementById("shippingBasic");
-var deliverySave = document.getElementById("deliverySave");
-var receiverName = document.getElementById("receiverName");
-var postcode = document.getElementById("postcode");
-var address = document.getElementById("address");
-var detailAddress = document.getElementById("detailAddress");
-var receiverCellPhone = document.getElementById("receiverCellPhone");
-var orderMemo = document.getElementById("orderMemo");
-if (checkbox.checked) {
-console.log("체크박스가 선택되었습니다!");
-deliverySave.disabled = true;
-receiverName.value = "${ defaultDelivery.d_name }";
-postcode.value = "${ defaultDelivery.d_postal_address}";
-address.value = "${ defaultDelivery.d_address }";
-detailAddress.value = "${ defaultDelivery.d_detailAdress }";
-receiverCellPhone.value = "${ defaultDelivery.d_phone }";
-orderMemo.value = "${ defaultDelivery.d_request }";
-} else {
-	console.log("체크박스가 선택 해제되었습니다!");
-	deliverySave.disabled = false;
-	receiverName.value = "";
-	postcode.value = "";
-	address.value = "";
-	detailAddress.value = "";
-	receiverCellPhone.value = "";
-	orderMemo.value = "";	
-}
+	function shippingBasicChange() {
+		var checkbox = document.getElementById("shippingBasic");
+		var deliverySave = document.getElementById("deliverySave");
+		var receiverName = document.getElementById("receiverName");
+		var postcode = document.getElementById("postcode");
+		var address = document.getElementById("address");
+		var detailAddress = document.getElementById("detailAddress");
+		var receiverCellPhone = document.getElementById("receiverCellPhone");
+		var orderMemo = document.getElementById("orderMemo");
+		if (checkbox.checked) {
+			console.log("체크박스가 선택되었습니다!");
+			deliverySave.disabled = true;
+			receiverName.value = "${ defaultDelivery.d_name }";
+			postcode.value = "${ defaultDelivery.d_postal_address}";
+			address.value = "${ defaultDelivery.d_address }";
+			detailAddress.value = "${ defaultDelivery.d_detailAdress }";
+			receiverCellPhone.value = "${ defaultDelivery.d_phone }";
+			orderMemo.value = "${ defaultDelivery.d_request }";
+		} else {
+			console.log("체크박스가 선택 해제되었습니다!");
+			deliverySave.disabled = false;
+			receiverName.value = "";
+			postcode.value = "";
+			address.value = "";
+			detailAddress.value = "";
+			receiverCellPhone.value = "";
+			orderMemo.value = "";
+		}
 	}
+</script>
+<script type="text/javascript">
+var IMP = window.IMP;
+IMP.init('imp88413461');
+var today = new Date();
+var hours = today.getHours();
+var minutes = today.getMinutes();
+var seconds = today.getSeconds();
+var milliseconds = today.getMilliseconds();
+var makeMerchantUid = hours + minutes + seconds + milliseconds;
+
+function requestPay(amount, name) {
+	IMP.request_pay({
+		pg: 'kakaopay.TC0ONETIME',//pg사
+		pay_method: 'kakaopay',//결제수단
+		merchant_uid: "IMP" + makeMerchantUid,//가맹점 주문번호
+		name: name,//결제대상 제품명
+		amount: amount, //결제금액
+		//custom_data /object//사용자 정의 데이타
+		buyer_email: "${memberInfo.email}",//주문자이메일
+		buyer_name: "${memberInfo.name}",//주문자명
+		buyer_tel: "${memberInfo.phone}",//주문자 연락처
+		buyer_addr: '서울특별시 강남구 삼성동',//주문자 주소
+		buyer_postcode: '123-456',//주문자 우편
+	}, function (rsp) {
+		if (rsp.success) {
+			console.log(rsp);
+			console.log("성공");
+			document.getElementById("o_payment_amount").value=amount;
+			document.getElementById("makeOrder").click();
+		} else {
+			console.log(rsp);
+			console.log("실패");
+			alert("결제에 실패했습니다. 에러 내용 : " + rsp.error_msg);
+		}
+	});
+}
 </script>

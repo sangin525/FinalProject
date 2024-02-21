@@ -34,7 +34,7 @@
 		#{o_address},
 		#{o_detailed_address},
 		#{o_recipient_phone},
-		#{o_order_date},
+		SYSDATE,
 		#{o_payment_amount},
 		NULL,
 		NULL,
@@ -52,7 +52,20 @@
 		#{g_no}
 		)
 	</insert>
+	
+	<select id="getO_no" parameterType="order"
+	resultMap="orderResultSet">
+	SELECT * FROM
+		(SELECT * FROM orders
+		WHERE M_NO = #{m_no}
+		AND o_recipient_name = #{o_recipient_name}
+		AND o_postal_address = #{o_postal_address}
+		AND o_payment_amount =#{o_payment_amount}
+		ORDER BY O_NO DESC)
+		WHERE ROWNUM =1
 
+	</select>
+	
 
 
 </mapper>

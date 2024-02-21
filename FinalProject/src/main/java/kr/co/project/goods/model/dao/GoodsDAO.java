@@ -28,4 +28,8 @@ public class GoodsDAO {
 	public int addGoods(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
 		return sqlSession.insert("goodsMapper.addGoods", goodsDTO);
 	}
+
+	public int changeStock(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
+		return sqlSession.update("goodsMapper.changeStock", goodsDTO);
+	}
 }

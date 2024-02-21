@@ -26,5 +26,10 @@ public class OrderServiceImpl implements OrderService {
 		return orderDAO.insertOrderDetail(sqlSession, orderDetail);
 	}
 	
+	@Override
+	public OrderDTO getO_no(OrderDTO order) {
+		return orderDAO.getO_no(sqlSession, order);
+
+	}
 
 }

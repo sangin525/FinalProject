@@ -43,4 +43,9 @@ public class CartServiceImpl implements CartService {
 		return cartDAO.checkCart(sqlSession, cart);
 	}
 	
+	@Override
+	public CartDTO getCartInfo(int sc_no) {
+		return cartDAO.getCartInfo(sqlSession, sc_no);
+	}
+	
 }

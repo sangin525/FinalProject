@@ -9,48 +9,55 @@
 		<result column="g_name" property="g_name"></result>
 		<result column="g_file_path" property="g_file_path"></result>
 		<result column="g_file_name" property="g_file_name"></result>
-		<result column="g_origin_name" property="g_origin_name"></result>		
+		<result column="g_origin_name" property="g_origin_name"></result>
 		<result column="g_introduce" property="g_introduce"></result>
 		<result column="g_regular_price" property="g_regular_price"></result>
 		<result column="g_price" property="g_price"></result>
-		<result column="g_dcRate" property="g_dcRate"></result>		
+		<result column="g_dcRate" property="g_dcRate"></result>
 		<result column="g_in_date" property="g_in_date"></result>
 		<result column="g_stock" property="g_stock"></result>
 		<result column="g_delete_check" property="g_delete_check"></result>
 	</resultMap>
 
 	<select id="selectListCount" resultType="_int">
-		SELECT COUNT(*) FROM goods
+		SELECT COUNT(*) FROM
+		goods
 	</select>
 
 	<select id="selectListAll" parameterType="goods"
 		resultMap="goodsResultSet">
 		SELECT * FROM goods
-		ORDER BY
-		g_no DESC
+		WHERE G_STOCK >=1
+		ORDER BY g_no DESC
 	</select>
-	
+
 	<select id="detailGoods" resultMap="goodsResultSet">
 		SELECT * FROM goods
-		WHERE g_no = #{g_no}
+		WHERE g_no
+		= #{g_no}
 	</select>
-	
+
 	<insert id="addGoods" parameterType="goods">
-INSERT INTO GOODS 
-   VALUES(goods_seq.NEXTVAL,
-         #{g_name},
-         #{g_file_path},
-         #{g_file_name},
-         #{g_origin_name},
-         #{g_introduce},
-         #{g_regular_price},
-         #{g_price},
-         #{g_dcRate},
-         SYSDATE,
-         #{g_stock},
-         null
-         )
+		INSERT INTO GOODS
+		VALUES(goods_seq.NEXTVAL,
+		#{g_name},
+		#{g_file_path},
+		#{g_file_name},
+		#{g_origin_name},
+		#{g_introduce},
+		#{g_regular_price},
+		#{g_price},
+		#{g_dcRate},
+		SYSDATE,
+		#{g_stock},
+		null
+		)
 	</insert>
-	
+
+	<update id="changeStock" parameterType="goods">
+		UPDATE GOODS
+		SET G_STOCK = #{g_stock}
+		WHERE g_no= #{g_no}
+	</update>
 
 </mapper>

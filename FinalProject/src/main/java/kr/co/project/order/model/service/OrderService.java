@@ -9,4 +9,6 @@ public interface OrderService {
 	
 	int insertOrderDetail(OrderDetailDTO orderDetail);
 
+	OrderDTO getO_no(OrderDTO order);
+
 }
