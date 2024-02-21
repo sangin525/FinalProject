@@ -57,7 +57,7 @@ public class RecipeController {
 		int pageLimit = 12;
 		int boardLimit =12;
 		
-		int row = listCount-(cpage-1) * boardLimit;
+//		int row = listCount-(cpage-1) * boardLimit;
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		
@@ -80,7 +80,7 @@ public class RecipeController {
 			}
 		}		
 		
-		model.addAttribute("row",row);
+//		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
@@ -105,10 +105,10 @@ public class RecipeController {
 		List<MemberDTO> memberList = new ArrayList<>();
 
 		List<RecipeDTO> list = recipeService.selectListAll(pi,recipe);
-		for(RecipeDTO r:list) {
-			System.out.println("입력언어"+r.getSearchText());			
-			System.out.println("입력언어"+r.getSearchCategory());			
-		}
+
+		
+		
+//		System.out.println(recipe.getSearchText());
 		
 		
 		for(RecipeDTO item : list) {
@@ -121,7 +121,7 @@ public class RecipeController {
 			if(recipeCommentCount >= 1) {
 				double starAvg = recipeService.avgComment(item);			
 				item.setStar(starAvg);	
-				System.out.println("멤버번호들"+item.getMno());				
+								
 			}else {
 				item.setStar(0);
 			}
@@ -130,7 +130,32 @@ public class RecipeController {
 		model.addAttribute("list",list);
 		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
-		System.out.println("접근성공");
+	
+		
+		// 검색추가
+		if(recipe.getSearchText()!=null){
+			
+		List<RecipeDTO> searchList = recipeService.searchList(recipe);
+		String searchResult = null;
+		//		List<RecipeDTO> searchResult = new ArrayList<>();
+		
+		for(RecipeDTO search : searchList) {			
+			String searchKeyword = search.getSearchText();
+			searchResult = searchKeyword;
+//		System.out.println("사용자 입력값"+ recipe.getSearchText());
+//		System.out.println("리스트안 데이터"+searchResult);
+			if(searchResult == recipe.getSearchText()) {
+				System.out.println("같네~");
+				// recipeService.update............
+			}else {
+				// recipeService.insert...........
+				System.out.println("다르네~");
+			}
+		}		
+	
+		
+		}
+		
 			return "category/category";
 	}
 	
@@ -509,6 +534,25 @@ public class RecipeController {
 		return "common/recentlyRecipe";
 	}
 	
+	public String searchList(RecipeDTO recipe,
+							Model model) {
+		
+		List<RecipeDTO> searchList = recipeService.searchList(recipe);
+		for(RecipeDTO search : searchList) {
+			
+			String searchKeyword = search.getSearchText();
+			
+			System.out.println(searchKeyword);
+			
+			if(searchKeyword == recipe.getSearchText()) {
+				System.out.println("같네~");
+			}else {
+				System.out.println("다르네~");
+			}
+		}
+		
+		return "";
+	}
 	
 
 }

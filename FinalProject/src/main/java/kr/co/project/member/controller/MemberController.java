@@ -67,7 +67,7 @@ public class MemberController {
 			session.setAttribute("uploadName", loginUser.getUploadName());
 			session.setAttribute("grade", loginUser.getGrade());
 			System.out.println(loginUser.getGrade());
-			return "/home";
+			return "redirect:/";
 		}else {
 			
 			model.addAttribute("msg","아이디 또는 비밀번호를 확인해주세요");
@@ -240,13 +240,13 @@ public class MemberController {
 		int pageLimit = 12;
 		int boardLimit =12;
 		
-		int row = listCount - (cpage-1) * boardLimit;
+//		int row = listCount - (cpage-1) * boardLimit;
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		// 목록 불러오는 서비스
 		List<MemberDTO> list = memberService.chefRank(pi,member);
 		
-		model.addAttribute("row",row);
+//		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
 		

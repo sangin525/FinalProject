@@ -9,10 +9,14 @@
 		
 </resultMap>
 
+<select id="searchList" resultMap="recipeSearchResultSet">
+SELECT * FROM SEARCH
+</select>
+
 <insert id="addSearch">
 INSERT INTO SEARCH VALUES(search_seq.NEXTVAL,
 							#{searchText},
-							#{searchCount}
+							1
 							)
 </insert>
 </mapper>

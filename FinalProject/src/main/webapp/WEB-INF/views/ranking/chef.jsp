@@ -17,6 +17,7 @@
 <%@ include file="../../views/ranking/rankingNav.jsp"%>
 	
 	<ul class="recipeList">
+	<c:set var="row" value="1" />
 		<c:choose>
 			<c:when test="${empty list}">
 				<h3 class = "text-center">등록된 쉐프가 없습니다.</h3>
@@ -31,7 +32,7 @@
 			</div>
 			<div class="chefName">${item.nickname}</div>
 		</li>		
-		<c:set var="row" value="${row -1}"/>
+		<c:set var="row" value="${row+1}"/>
 				</c:forEach>
 			</c:otherwise>
 		</c:choose>

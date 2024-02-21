@@ -10,7 +10,7 @@
 		<ul class="randomRecipe">
 		<c:choose>
 			<c:when test="${newRecipe != null }">
-			<c:forEach var="item" items="${newRecipe}">
+			<c:forEach var="item" items="${newRecipe}" varStatus="status">
 		<li class="recommendedRecipe-li">
 			<!-- <p class="rankingNum"><b></b></p> -->
 			<div>
@@ -20,7 +20,7 @@
 			</div>
 			<div class="recipeTitle">${item.title }</div>
 			<div class="chefName">
-				<a><img src="/resources/uploads/고양이그림.png" class="ChefPicture">${item.memberNickName }</a>
+				<a><img src="/resources/uploads/member/${memberList[status.index].uploadName }" class="ChefPicture">${item.memberNickName }</a>
 			</div>
 			<div class="RecipeScore">
 				<span>별점 :${item.star}</span>
