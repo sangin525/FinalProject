@@ -1,6 +1,6 @@
 .rankingContainer{
-	width: 90%;
-	margin-left: 5%;
+	width: 80%;
+	margin-left: 10%;
 	border: 1px solid #e6e7e8;
     padding: 0 0 20px 0;
     background: #fff;
@@ -179,4 +179,8 @@
 	position: absolute;
     top: -20px; /* 위치 조정 */
     /* 원하는 스타일링 속성 추가 */
+}
+
+.rating__star {
+	color: goldenrod;
 }

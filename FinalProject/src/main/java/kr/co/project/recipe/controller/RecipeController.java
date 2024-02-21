@@ -57,15 +57,19 @@ public class RecipeController {
 		int pageLimit = 12;
 		int boardLimit =12;
 		
-		int row = listCount-(cpage-1) * boardLimit;
+		int row = listCount - (cpage - 1) * boardLimit;
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		
+		List<MemberDTO> memberList = new ArrayList<>();
 		
 		List<RecipeDTO> list = recipeService.rankingList(pi, recipe);
 		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
 			item.setIndate(indate);	
+			MemberDTO memberProfile = memberService.memberList(item.getMno());
+			memberList.add(memberProfile);
 			int recipeCommentCount  = recipeService.countComment(item);
 			item.setCommentCount(recipeCommentCount);
 			if(recipeCommentCount >= 1) {
@@ -78,6 +82,7 @@ public class RecipeController {
 		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
+		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
 		System.out.println("접근성공");
 			return "ranking/recipe";		
@@ -100,9 +105,10 @@ public class RecipeController {
 		List<MemberDTO> memberList = new ArrayList<>();
 
 		List<RecipeDTO> list = recipeService.selectListAll(pi,recipe);
-//		for(RecipeDTO r:list) {
-//			System.out.println("입력언어"+r.getSearchText());			
-//		}
+		for(RecipeDTO r:list) {
+			System.out.println("입력언어"+r.getSearchText());			
+			System.out.println("입력언어"+r.getSearchCategory());			
+		}
 		
 		
 		for(RecipeDTO item : list) {
@@ -115,11 +121,7 @@ public class RecipeController {
 			if(recipeCommentCount >= 1) {
 				double starAvg = recipeService.avgComment(item);			
 				item.setStar(starAvg);	
-				System.out.println("멤버번호들"+item.getMno());
-//				List<MemberDTO> member = memberService.categoryMember(item.getMno());				
-//				model.addAttribute("member",member);
-
-				
+				System.out.println("멤버번호들"+item.getMno());				
 			}else {
 				item.setStar(0);
 			}
@@ -423,6 +425,7 @@ public class RecipeController {
 		
 		List<RecipeDTO> seqPhoresult = new ArrayList<>();
 		
+		List<MemberDTO> memberResult = new ArrayList<>();
 		
 		if(!Objects.isNull(result)) {
 			if(!Objects.isNull(ingreresult)) {
@@ -432,7 +435,16 @@ public class RecipeController {
 					if(!Objects.isNull(comresult)) {
 						int commentCount = recipeService.commentCount(rno);
 						int recentRecipe = recipeService.recentRecipe(recipe); 
-						
+						MemberDTO recipeChefProfile = memberService.memberProfile(result.getMno());
+						for(RecipeDTO cp:comresult) {							
+							System.out.println("댓글단 사람 번호"+cp.getMno());
+//							List<MemberDTO> resultProfile = memberService
+							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
+							memberResult.add(resultProfile);
+							model.addAttribute("memberResult",memberResult);
+							System.out.println("댓글사람 사진"+memberResult);
+						}
+						model.addAttribute("recipeChefProfile",recipeChefProfile);
 						model.addAttribute("commentCount",commentCount);						
 						model.addAttribute("comment",comresult);
 						System.out.println(recentRecipe);

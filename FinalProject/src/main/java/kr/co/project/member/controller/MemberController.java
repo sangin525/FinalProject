@@ -51,7 +51,6 @@ public class MemberController {
 		MemberDTO loginUser = memberService.loginMember(member);
 		
 		if(!Objects.isNull(loginUser) && bcryptPasswordEncoder.matches(member.getPwd(),loginUser.getPwd())) {
-		
 			session.setAttribute("mno", loginUser.getMno());
 			session.setAttribute("memberName", loginUser.getName());
 			session.setAttribute("memberNickName", loginUser.getNickname());
@@ -65,9 +64,9 @@ public class MemberController {
 			session.setAttribute("recipeCount", loginUser.getRecipeCount());
 			session.setAttribute("type", loginUser.getType());
 			session.setAttribute("uploadName", loginUser.getUploadName());
-			
-			
-			return "/home";
+			session.setAttribute("grade", loginUser.getGrade());
+			System.out.println(loginUser.getGrade());
+			return "forward:/";
 		}else {
 			
 			model.addAttribute("msg","아이디 또는 비밀번호를 확인해주세요");
@@ -93,7 +92,7 @@ public class MemberController {
 		HttpSession session =request.getSession();
 		
 		session.invalidate();
-		return "home";
+		return "forward:/";
 	}
 	
 	@PostMapping("/checkEmail.do")
@@ -139,7 +138,6 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
 		int viewSum = recipeService.viewSum(mno);
 		System.out.println(viewSum);
 		model.addAttribute("result",result);
@@ -522,8 +520,8 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
 		int viewSum = recipeService.viewSum(mno);
+		
 		System.out.println(viewSum);
 		model.addAttribute("profile",result);
 		model.addAttribute("viewSum",viewSum);

@@ -20,7 +20,9 @@ import kr.co.project.recipe.model.dto.RecipeDTO;
 public class MultiUploadFile {
 
 
+
 	private static final String UPLOAD_PATH="C:\\Users\\suinr\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";	
+
 
 
 	public static boolean deleteFile(List<RecipeDTO> fileName,List<RecipeDTO> sequenceFileName) {

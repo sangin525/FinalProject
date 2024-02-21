@@ -13,13 +13,14 @@
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/common/nav.jsp"%>
 	<div class="container">
-		<form action="/free/freeEnroll" method="POST" enctype="multipart/form-data" novalidate>
+
+		<form action="/free/freeEnroll" method="POST"
+			enctype="multipart/form-data" novalidate>
 			<div class="notice_wrap">
 				<div class="notice_title">
 					<strong>글 작성</strong>
 					<p>여러분들의 재미난 글을 자유롭게 작성하세요</p>
 				</div>
-
 				<div class="notice_write_wrap">
 					<div class="notice_write">
 						<div class="title">
@@ -30,8 +31,8 @@
 								</dd>
 							</dl>
 						</div>
-
-					</div><br>
+					</div>
+					<br>
 					<div class="cont" id="smarteditor">
 						<textarea name="contents" id="editorTxt" placeholder="내용을 입력해주세요."></textarea>
 					</div>
@@ -40,13 +41,14 @@
 						class="file-upload">파일 업로드</label> <span id="file-name"></span> <br>
 				</div>
 				<div class="bt_wrap">
+
 					<button onclick="save()" type="submit">등록</button>
 					<button type="button" onclick="history.back()">취소</button>
 				</div>
-
 			</div>
 		</form>
 	</div>
+
 
 
 

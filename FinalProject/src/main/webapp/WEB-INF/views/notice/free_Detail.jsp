@@ -42,6 +42,7 @@
 						<c:if test ="${not empty free.fileName }">
 						<img src="/resources/uploads/free/${free.fileName}">
 						</c:if>
+						<br><br>
 						${free.contents}
 
 					</div>
