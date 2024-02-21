@@ -16,6 +16,7 @@
     <div class="board_wrap">
         <div class="board_title">
             <strong>밥친구 게시판</strong>
+            <a href="/foodMate/addFoodMateForm.do" class="register">등록</a>
             <p>같이 밥 먹을 친구를 구해보세요.</p>
         </div>
         <div class="board_list_wrap">
@@ -102,10 +103,7 @@
                 <a href="#" class="bt next">></a>
                 <a href="#" class="bt last">>></a>
             </div> -->
-            <div class="bt_wrap">
-                <a href="/foodMate/addFoodMateForm.do" class="on">등록</a>
-               
-            </div>
+            
         </div>
     </div>	
     </div>

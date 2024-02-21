@@ -17,6 +17,9 @@
 		<div class="notice_wrap">
 			<div class="notice_title">
 				<strong>자유게시판</strong>
+				
+				<a href="/free/freeEnrollForm" class="register">등록</a>
+			
 				<br>
 			</div>
 			<div class="notice_list_wrap">
@@ -50,17 +53,10 @@
 				</div>
 				
 			</div>
-			<div class="bt_wrap">
-				<a href="/free/freeEnrollForm" class="on">등록</a>
-			</div>
+		
 		</div>
 	</div>
-	<section class="boardSection">
-		<div>
-			<p class="detailP">자유게시판</p>
-		</div>
-		
-	</section>
+	
 	<%@ include file="../../views/common/footer.jsp"%>
 
 </body>

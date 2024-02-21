@@ -104,14 +104,7 @@
 																onclick="deleteCartItem(${item.sc_no})">삭제</button>
 														<td>
 													</tr>
-													<form action="/cart/modifyCount.do" method="post"
-														name="${item.g_name}modify">
-														<input type="number" value="${item.sc_no}" name="sc_no" readonly><br> 
-														<input type="number" id="PriceVal${item.sc_no}" value="${item.sc_price}" name="sc_price" readonly><br> 
-														<input type="number" id="CountVal${item.sc_no}" value="${item.sc_count}" name="sc_count" readonly><br>
-														<button type="submit" id="changeCount">장바구니수정</button>
-														<br>
-													</form>
+												
 												</c:forEach>
 											</tbody>
 										</table>

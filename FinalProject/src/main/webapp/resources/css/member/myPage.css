@@ -125,6 +125,7 @@
 	text-decoration: none;
 	display: flex;
 	align-items: center;
+	margin-bottom:10px;
 }
 
 .recipe-image {

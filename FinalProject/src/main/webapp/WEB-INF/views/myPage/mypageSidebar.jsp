@@ -47,7 +47,7 @@
 			</p>
 			<br>
 			<div class="totalView">
-				<span>내 레시피 총 조회수 : ${viewSum }</span>
+				<span>내 레시피 총 조회수 : ${viewSum}</span>
 			</div>
 		</div>
 	</div>

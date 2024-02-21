@@ -24,28 +24,20 @@
 					<div class="info">
 						<dl>
 							<dt>번호: ${free.flno }</dt>
-							<dd>1</dd>
 						</dl>
 						<dl>
 							<dt>글쓴이: ${free.writer }</dt>
-							<dd>김이름</dd>
 						</dl>
 						<dl>
 							<dt>작성일: ${free.indate }</dt>
-							<dd>2021.1.16</dd>
 						</dl>
 						<dl>
 							<dt>조회: ${free.views }</dt>
-							<dd>33</dd>
 						</dl>
 					</div>
 					<div class="cont">
 
-						<img src="/resources/uploads/고양이그림.png">
-						글 내용이 들어갑니다<br>
-						글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글
-						내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이 들어갑니다<br> 글 내용이
-						들어갑니다
+						
 
 						<c:if test ="${not empty free.fileName }">
 						<img src="/resources/uploads/free/${free.fileName}">

@@ -51,11 +51,7 @@
 			
 		</div>
 	</div>
-	
-	<section class="boardSection">
-		
-		
-	</section>
+	</div>
 	<%@ include file="../../views/common/footer.jsp"%>
 
 </body>
