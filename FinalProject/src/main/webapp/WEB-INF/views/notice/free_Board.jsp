@@ -34,7 +34,7 @@
 					<div>
 						<c:choose>
 						<c:when test="${empty list}">
-							<p>등록된 글이 없습니다.</p>
+							<p>등록된 글이 없습니다</p>
 						</c:when>
 						<c:otherwise>
 						<c:forEach var="item" items="${list}">
