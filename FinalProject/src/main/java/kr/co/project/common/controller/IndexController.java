@@ -58,11 +58,12 @@ public class IndexController {
 		// 최신 레시피
 		List<RecipeDTO> newRecipe = recipeService.newListMain(recipe);
 		
+		List<MemberDTO> memberList2 = new ArrayList<>();
 		for (RecipeDTO nr : newRecipe) {
 			int nrno = nr.getMno();
 			
 			MemberDTO memberProfile = memberService.memberList(nrno);
-			memberList.add(memberProfile);
+			memberList2.add(memberProfile);
 			
 			int mainNewRecipeComcount = recipeService.mncomCount(nr);
 			nr.setCommentCount(mainNewRecipeComcount);
@@ -70,7 +71,7 @@ public class IndexController {
 				double starAvg = recipeService.avgComment(nr);
 				nr.setStar(starAvg);
 			}
-			model.addAttribute("memberList",memberList);
+			model.addAttribute("memberList2",memberList2);
 			model.addAttribute("newRecipe", newRecipe);
 			model.addAttribute("mainNewRecipeComcount", mainNewRecipeComcount);
 		}
