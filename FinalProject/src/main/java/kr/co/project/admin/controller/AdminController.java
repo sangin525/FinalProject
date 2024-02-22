@@ -351,10 +351,10 @@ public class AdminController {
 	 
 		int result = adminService.deleteEvent(eno);
 		if(result == 1) {			
-			System.out.println("삭 제 완 료");
+			System.out.println("삭 제 완료");
 		}
 		else {
-			System.out.println("삭 제 실 패");
+			System.out.println("삭 제 실패");
 		}
 		
 		return "redirect:/admin/adminEvent";
