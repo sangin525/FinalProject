@@ -127,5 +127,10 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.memberList",mno);
 	}
 
+	public MemberDTO logMember(SqlSessionTemplate sqlSession, int mno) {
+		
+		return sqlSession.selectOne("memberMapper.logMember",mno);
+	}
+
 	
 }

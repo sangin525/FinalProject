@@ -303,13 +303,16 @@ public class RecipeController {
 	@PostMapping("/addRecipe.do")
 	public String addRecipe(RecipeDTO recipe,MemberDTO member, MultipartFile upload, List<MultipartFile> multiFileList,
 					HttpSession session,Model model)throws IllegalStateException, IOException {
-					
-		recipe.setMemberNickName((String)session.getAttribute("memberNickName"));
+		
+		int mno = (int) session.getAttribute("mno");
+		MemberDTO memberlog = memberService.logMember(mno);
+		System.out.println("현재로그인 된계정의 닉네임은? : " + memberlog.getNickname());
+		recipe.setMemberNickName(memberlog.getNickname());
+//		recipe.setMemberNickName((String)session.getAttribute("memberNickName"));
 		recipe.setMno((int) session.getAttribute("mno"));
 		member.setMno((int) session.getAttribute("mno"));
 		
-		System.out.println(member.getRecipeCount());
-		System.out.println(recipe.getMemberNickName());
+	
 		// 제목 길이 검사
 		boolean titleLengthCheck = DataValidation.CheckLength(recipe.getTitle(), 150);
 		
@@ -493,7 +496,8 @@ public class RecipeController {
 		RecipeDTO result =  recipeService.detailRecipe(rno);
 
 		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
-		
+		System.out.println(ingreresult);
+
 		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
 		
 		List<RecipeDTO> comresult = recipeService.selectComment(rno);
@@ -515,9 +519,10 @@ public class RecipeController {
 //							
 							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
 							memberResult.add(resultProfile);
-							model.addAttribute("memberResult",memberResult);
-//							
+//						
+							System.out.println(memberResult.toString());							
 						}
+						model.addAttribute("memberResult",memberResult);
 						model.addAttribute("recipeChefProfile",recipeChefProfile);
 						model.addAttribute("commentCount",commentCount);						
 						model.addAttribute("comment",comresult);
