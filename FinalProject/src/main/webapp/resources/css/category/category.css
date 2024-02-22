@@ -13,6 +13,7 @@
     justify-content: space-between;
     flex-direction: column;
     align-items: center;
+    margin-top: 20px;
 }
 
 .categoryContain{
@@ -40,10 +41,6 @@
     padding: 8px 0;
     line-height: 1;
     height: 41px;
-}
-
-.category_main {
-    margin-left: 35px;
 }
 
 .categoryContain a {
@@ -81,6 +78,7 @@
 .pageNav {
 	display: flex;
 	justify-content: center;
+	height: 100px;
 }
 
 .page-item-active a{
@@ -111,17 +109,22 @@
 	background-color:rgb(224, 162, 86);
 }
 
+.category_main {
+	background-color: white;
+	width: 1332px;
+	height: 100%;
+}
+
 .categoryRecipe {
-	width: 1400px;
+	width: 1332px;
 	display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     padding: 20px;
-    margin-left: 40px;
 }
 
 .category-img{
-	width: 282px;
+	width: 262px;
 	height: 282px;
 }
 
@@ -155,5 +158,4 @@
 
 .rating__star {
 	color: goldenrod;
-	background: background;
 }

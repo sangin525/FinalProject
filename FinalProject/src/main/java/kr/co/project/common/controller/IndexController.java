@@ -31,28 +31,46 @@ public class IndexController {
 	public String indexPage(MemberDTO member, RecipeDTO recipe, Model model, HttpServletRequest request,
 			HttpSession session) {
 
+		
+		// 베스트 레시피
 		List<RecipeDTO> bestRecipe = recipeService.rankingListMain(recipe);
+		
+		List<MemberDTO> memberList = new ArrayList<>();
+
 		for (RecipeDTO br : bestRecipe) {
-//			int brno = br.getMno();
+			int brno = br.getMno();
+			
+			MemberDTO memberProfile = memberService.memberList(brno);
+			memberList.add(memberProfile);
 			int mainBestRecipeComcount = recipeService.mbcomCount(br);
 			br.setCommentCount(mainBestRecipeComcount);
 			if (mainBestRecipeComcount >= 1) {
 				double starAvg = recipeService.avgComment(br);
 				br.setStar(starAvg);
 			}
+			model.addAttribute("memberList",memberList);
 			model.addAttribute("bestRecipe", bestRecipe);
 			model.addAttribute("mainBestRecipeComcount", mainBestRecipeComcount);
 		}
 
+		
+		
+		// 최신 레시피
 		List<RecipeDTO> newRecipe = recipeService.newListMain(recipe);
+		
 		for (RecipeDTO nr : newRecipe) {
-//			int nrno = nr.getMno();
+			int nrno = nr.getMno();
+			
+			MemberDTO memberProfile = memberService.memberList(nrno);
+			memberList.add(memberProfile);
+			
 			int mainNewRecipeComcount = recipeService.mncomCount(nr);
 			nr.setCommentCount(mainNewRecipeComcount);
 			if (mainNewRecipeComcount >= 1) {
 				double starAvg = recipeService.avgComment(nr);
 				nr.setStar(starAvg);
 			}
+			model.addAttribute("memberList",memberList);
 			model.addAttribute("newRecipe", newRecipe);
 			model.addAttribute("mainNewRecipeComcount", mainNewRecipeComcount);
 		}
@@ -60,18 +78,19 @@ public class IndexController {
 		if (session.getAttribute("mno") != null) {
 			int mno = (int) session.getAttribute("mno");
 			member.setMno(mno);
+			
+			// 최근본 레시피 
 			List<RecipeDTO> recentRecipe = recipeService.selectRecentRecipe(mno);
 
 			List<RecipeDTO> recentSelectRecipe = new ArrayList<>();
 
+			
 			for (RecipeDTO rr : recentRecipe) {
 				int rno = rr.getRno();
 //				recipe.setRno(rr.getRno());
 				RecipeDTO recipeResult = recipeService.recentSelectRecipe(rno);
 				recentSelectRecipe.add(recipeResult);
 			}
-
-
 			for (RecipeDTO r : recentSelectRecipe) {
 				
 			}
@@ -88,7 +107,7 @@ public class IndexController {
 		return "ranking/recipe";
 	}
 
-	@RequestMapping("searchWordRank")
+	@RequestMapping("/searchWordRank")
 	public String searchWordRankPage() {
 		return "ranking/searchWord";
 	}
@@ -103,6 +122,7 @@ public class IndexController {
 //		return "member/addRecipe";
 //	}
 
+	
 	@RequestMapping("/after_addRecipe")
 	public String afterAddRecipe() {
 		return "member/afterAddRecipe";
@@ -230,11 +250,6 @@ public class IndexController {
 		return "notice/notice_Board";
 	}
 
-	@GetMapping("/memberList")
-	public String sidebarForm() {
-		return "admin/memberList";
-	}
-	
 	@GetMapping("freeEnroll")
 	public String freeEnrollForm() {
 		return "notice/free_Enroll";
@@ -322,5 +337,70 @@ public class IndexController {
 	public String productAnswerForm() {
 		return "admin/productAnswer";
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@GetMapping("/main")
+	
+	public String indexHome(MemberDTO member, RecipeDTO recipe, Model model, HttpServletRequest request,
+			HttpSession session) {
+
+		List<RecipeDTO> bestRecipe = recipeService.rankingListMain(recipe);
+		for (RecipeDTO br : bestRecipe) {
+//			int brno = br.getMno();
+			int mainBestRecipeComcount = recipeService.mbcomCount(br);
+			br.setCommentCount(mainBestRecipeComcount);
+			if (mainBestRecipeComcount >= 1) {
+				double starAvg = recipeService.avgComment(br);
+				br.setStar(starAvg);
+			}
+			model.addAttribute("bestRecipe", bestRecipe);
+			model.addAttribute("mainBestRecipeComcount", mainBestRecipeComcount);
+		}
+
+		List<RecipeDTO> newRecipe = recipeService.newListMain(recipe);
+		for (RecipeDTO nr : newRecipe) {
+//			int nrno = nr.getMno();
+			int mainNewRecipeComcount = recipeService.mncomCount(nr);
+			nr.setCommentCount(mainNewRecipeComcount);
+			if (mainNewRecipeComcount >= 1) {
+				double starAvg = recipeService.avgComment(nr);
+				nr.setStar(starAvg);
+			}
+			model.addAttribute("newRecipe", newRecipe);
+			model.addAttribute("mainNewRecipeComcount", mainNewRecipeComcount);
+		}
+
+		if (session.getAttribute("mno") != null) {
+			int mno = (int) session.getAttribute("mno");
+			member.setMno(mno);
+			List<RecipeDTO> recentRecipe = recipeService.selectRecentRecipe(mno);
+
+			List<RecipeDTO> recentSelectRecipe = new ArrayList<>();
+
+			for (RecipeDTO rr : recentRecipe) {
+				int rno = rr.getRno();
+//				recipe.setRno(rr.getRno());
+				RecipeDTO recipeResult = recipeService.recentSelectRecipe(rno);
+				recentSelectRecipe.add(recipeResult);
+			}
+
+
+			for (RecipeDTO r : recentSelectRecipe) {
+				
+			}
+
+			model.addAttribute("recentRecipe", recentSelectRecipe);
+		}
+
+      return "home";
+   }
 }
 

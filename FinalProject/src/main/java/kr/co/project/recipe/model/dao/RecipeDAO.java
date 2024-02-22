@@ -3,6 +3,7 @@ package kr.co.project.recipe.model.dao;
 import java.util.List;
 
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -243,7 +244,28 @@ public class RecipeDAO {
 	}
 
 	public RecipeDTO recentSelectRecipe(SqlSessionTemplate sqlSession, int rno) {
+
 		return sqlSession.selectOne("recipeMapper.recentSelectRecipe",rno);
+	}
+
+	public int scrapRecipeDelete(SqlSessionTemplate sqlSession, int frno) {
+		
+		return sqlSession.update("recipeScrapMapper.scrapRecipeDelete",frno);
+	}
+
+	public List<RecipeDTO> searchList(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		
+		return sqlSession.selectList("recipeSearchMapper.searchList",recipe);
+	}
+
+	public int searchUpdate(SqlSessionTemplate sqlSession, String searchResult) {
+		
+		return sqlSession.update("recipeSearchMapper.searchUpdate",searchResult);
+	}
+
+	public int searchInsert(SqlSessionTemplate sqlSession, String searchResult) {
+		
+		return sqlSession.insert("recipeSearchMapper.searchInsert",searchResult);
 	}
 
 	

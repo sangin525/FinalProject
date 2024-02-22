@@ -333,6 +333,26 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.recentSelectRecipe(sqlSession,rno);
 	}
 
+	public int scrapRecipeDelete(int frno) {
+		
+		return recipeDao.scrapRecipeDelete(sqlSession,frno);
+	}
+
+	public List<RecipeDTO> searchList(RecipeDTO recipe) {
+		
+		return recipeDao.searchList(sqlSession,recipe);
+	}
+
+	public int searchUpdate(String searchResult) {
+		
+		return recipeDao.searchUpdate(sqlSession,searchResult);
+	}
+
+	public int searchInsert(String searchResult) {
+		
+		return recipeDao.searchInsert(sqlSession,searchResult);
+	}
+
 	
 
 	

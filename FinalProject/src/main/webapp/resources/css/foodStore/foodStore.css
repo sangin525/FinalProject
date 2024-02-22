@@ -1,6 +1,6 @@
 .storeContainer {
 	width: 1200px;
-	margin: 0 auto;
+	margin: 20 auto;
 	position: relative;
 	padding: 0;
 	background-color: white;
@@ -28,7 +28,7 @@
 
 .storeCategory ul li {
 	position: relative;
-	width: 11.1%;
+	width: 10%;
 	list-style: none;
 }
 
@@ -44,12 +44,14 @@
 .products-ul {
 	display: flex;
 	flex-wrap: wrap;
-	width: 100%;
-	padding: 0;
+	width: 1332px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    padding: 20px;
 	list-style: none;
 	margin: 0 auto;
 	vertical-align: top;
-	justify-content: space-around;
 }
 
 .products-ul li {
@@ -65,12 +67,8 @@
 }
 
 .products-ul li a {
-	position: absolute;
-	left: 0;
-	top: 0;
-	bottom: 0;
-	right: 0;
-	z-index: 1;
+	text-decoration: none;
+	color: black;
 }
 
 .storeCategory ul li a.active {
@@ -82,7 +80,8 @@
 	position: relative;
 	overflow: hidden;
 	line-height: 0;
-	width: 100%
+	width: 200px;
+	height: 250px;
 }
 
 .product-caption {
@@ -109,11 +108,12 @@
 	justify-content: center;
 	flex-direction: column;
 	margin-top: 100px;
+	background: white;
 }
 
 .product-main-img img {
 	width: 600px;
-	height: auto;
+	height: 600px;
 }
 
 .product-sub-img img {
@@ -788,6 +788,13 @@ textarea::-webkit-scrollbar-thumb:hover {
 }
 
 /* 문의하기 모달 */
+#q_modal_btn {
+	float: right;
+	width: 100px;
+	height: 40px;
+	background-color: white;
+}
+
 .questionsModal {
   display: none; /* 초기에는 모달을 숨김 */
   	display: none; /* Hidden by default */
@@ -801,7 +808,6 @@ textarea::-webkit-scrollbar-thumb:hover {
 	overflow: auto; /* Enable scroll if needed */
 	background-color: rgb(0, 0, 0); /* Fallback color */
 	background-color: rgba(0, 0, 0, 0.4); /*Black w/ opacity */
-  /* 모달 스타일링 */
 }
 
 .questionsModal.active {
@@ -981,4 +987,6 @@ textarea::-webkit-scrollbar-thumb:hover {
 	width: 50px;
 	height: 50px;
 	border-radius: 50px;
+	transform: rotate(270deg);
+	font-size: 30px;
 }

@@ -48,12 +48,55 @@
 					</div>
 				</div>
 				<div class="bt_wrap">
-					<a href="/noticeBoard" class="on">목록</a> 
+					<a href="/admin/noticeList" class="on">목록</a> 
 				</div>
+				
+				
+				
 			</div>
 		</div>	
-	</div>
+	
 
+	<div class="comment_title">
+			댓글 <span>${commentCount}</span>
+
+		</div>
+		<div class="commentList">
+			<c:forEach var="item" items="${noticeComment }" varStatus="status">
+			<div class="reply_list">
+				<div class="media-left">
+					<c:if test="${not empty memberResult }">
+						<a href="#"> <img class="profile_picture" src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
+					</c:if>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						<b class="info_name_f">${item.ncWriter }</b> <span>${item.ncIndate }</span> <a
+							onclick="#"></a>
+					</h4>
+					${item.comment} <br>
+				</div>
+
+			</div>
+			</c:forEach>
+		</div>
+
+		<div class="comment-section">
+			<h2>댓글 남기기</h2>
+			<form id="comment-form" action="/admin/addNoticeComment?acno=${notice.acno}" method="post">
+				<div class="commentPic">
+					<img src="/resources/uploads/member/${sessionScope.uploadName}">
+				</div>
+				<div class="comment">
+
+
+					<textarea class="commentTextbox" name="ncComment"
+						placeholder="댓글을 작성하세요."></textarea>
+					<button class="comment_submit" type="submit">댓글작성</button>
+				</div>
+			</form>
+		</div>
+	</div>
 
 	<%@ include file="../../views/common/footer.jsp"%>
 

@@ -54,7 +54,8 @@
 								null,
 								null,
 								null,
-								'왕초보')
+								'왕초보',
+								null)
 </insert>
 
 <select id="checkEmail" resultType="_int">
@@ -103,6 +104,16 @@ ORDER BY M_RECIPE_COUNT DESC
 <select id="memberProfile" resultMap ="memberResultSet">
 SELECT * FROM MEMBER
 WHERE M_NO = #{mno}
+</select>
+
+<select id="categoryMember" resultMap="memberResultSet">
+SELECT * FROM MEMBER
+WHERE M_NO =#{mno}
+</select>
+
+<select id="memberList" resultMap="memberResultSet">
+SELECT * FROM MEMBER
+WHERE M_NO=#{mno}
 </select>
 
 <update id="plusRecipeCount" parameterType="member">

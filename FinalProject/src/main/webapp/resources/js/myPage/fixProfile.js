@@ -142,3 +142,4 @@ $(".cart__bigorderbtn.right").on("click", function(e){
 
 
 
+

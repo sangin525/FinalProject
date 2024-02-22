@@ -8,7 +8,6 @@ a {
 }
 
 .board_wrap {
-	width: 1200px;
 	margin: auto;
 }
 
@@ -37,15 +36,37 @@ a {
 	margin-left: 10px;
 	padding: 10px;
 	border: 1px solid #000;
-	border-radius: 2px;
+	border-radius: 8px;
 	font-size: 1.4rem;
+		background: #000;
+	color: #fff;
 }
 
 .bt_wrap a:first-child {
 	margin-left: 0;
 }
 
-.bt_wrap a.on {
+.register {
+	margin-top: 15px;
+	text-align: center;
+	float: right;
+}
+
+.register {
+	display: inline-block;
+	min-width: 80px;
+	margin-left: 10px;
+	padding: 10px;
+	border: 1px solid #000;
+	border-radius: 8px;
+	font-size: 1.4rem;
+}
+
+.register:first-child {
+	margin-left: 0;
+}
+
+.register {
 	background: #000;
 	color: #fff;
 }
@@ -148,7 +169,7 @@ a {
 }
 
 .board_view .title {
-	padding: 20px 15px;
+	padding: 15px;
 	border-bottom: 1px dashed #ddd;
 	font-size: 2rem;
 }
@@ -178,6 +199,12 @@ a {
 	width: 1px;
 	height: 13px;
 	background: #ddd;
+}
+
+.board_view .cont img {
+	max-width: 80%; /* 이미지의 최대 너비를 게시판 컨텐츠의 너비로 제한합니다. */
+	height: auto; /* 너비에 따라서 높이를 자동으로 조절합니다. */
+	justify-content:center;
 }
 
 .board_view .info dl:first-child::before {
@@ -212,28 +239,26 @@ a {
 .board_write .info {
 	border-top: 1px dashed #ddd;
 	border-bottom: 1px solid #000;
-	font-size: 0;
-}
-
-.board_write .title dl {
-	font-size: 0;
 }
 
 .board_write .info dl {
-	display: inline-block;
-	width: 50%;
-	vertical-align: middle;
+	display: flex;
+	width: 100%;
+
 }
+
 
 .board_write .title dt, .board_write .title dd, .board_write .info dt,
 	.board_write .info dd {
 	display: inline-block;
 	vertical-align: middle;
+	flex: 1;
 	font-size: 1.4rem;
 }
 
 .board_write .title dt, .board_write .info dt {
-	width: 100px;
+
+	flex: none;
 }
 
 .board_write .title dd {
@@ -241,9 +266,10 @@ a {
 }
 
 .board_write .title input[type="text"], .board_write .info input[type="text"],
-	.board_write .info input[type="password"] {
+	.board_write .info input[type="number"] {
 	padding: 10px;
 	box-sizing: border-box;
+	margin-left: 30px;
 }
 
 .board_write .title input[type="text"] {
@@ -257,21 +283,44 @@ a {
 .board_write .cont textarea {
 	display: block;
 	width: 100%;
-	height: 300px;
+	height: 500px;
 	padding: 15px;
 	box-sizing: border-box;
 	border: 0;
 	resize: vertical;
 }
+.board_write .title dl, .board_write .info dl {
+    display: flex;
+    align-items: center;
+}
+
+.board_write .title dt, .board_write .info dt {
+    flex: none;
+    text-align:center;
+    width: 100px;  /* 이 값을 조정하여 dt의 너비를 변경할 수 있습니다. */
+}
+
+.board_write .title dd, .board_write .info dd {
+    flex: 1;
+}
+
+.board_write .title dd input, .board_write .info dd input {
+    width: 50%;  /* input 필드가 dd의 전체 너비를 차지하도록 설정합니다. */
+}
+
+
 
 /* 디테일 페이지 */
 .container {
-	max-width: 1200px;
 	margin: 20px auto;
 	padding: 20px;
 	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 	border-radius: 8px;
 	background: #fff;
+	border: 1px solid #ddd;
+	max-width: 1200px;
+	align-items: center;
+
 }
 
 .comment_title {
@@ -384,128 +433,134 @@ a {
 }
 
 /* 1대1 채팅 */
-
-
 .chat-container {
-    width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #fafafa;
-    color: #333;
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 20px;
+	background-color: #fafafa;
+	color: #333;
 }
 
 .chat-header {
-    text-align: center;
-    margin-bottom: 20px;
+	text-align: center;
+	margin-bottom: 20px;
 }
 
 .chat-box {
-    border: 1px solid #ddd;
-    padding: 20px;
-    height: 1000px;
-    overflow-y: scroll;
-    margin-bottom: 20px;
-    background-color: #fff;
+	border: 1px solid #ddd;
+	padding: 20px;
+	height: 1000px;
+	overflow-y: scroll;
+	margin-bottom: 20px;
+	background-color: #fff;
 }
 
 .chat-input {
-    display: flex;
-    justify-content: space-between;
+	display: flex;
+	justify-content: space-between;
 }
 
 .chat-input input {
-    width: 85%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    border: none;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+	width: 85%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	border: none;
+	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
 }
 
 .chat-input button {
-    width: 10%;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-
+	width: 10%;
+	padding: 10px;
+	background-color: #4CAF50;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
 }
 
 .chat-input button:hover {
-    background-color: #45a049;
-
+	background-color: #45a049;
 }
 
-
-.chat-box > div {
-    display: flex;
-    justify-content: flex-end;
+.chat-box>div {
+	display: flex;
+	justify-content: flex-end;
 }
 
 /* 채팅방 css */
-
 .new-message {
-    text-align: right;
-
-    word-wrap: break-word;
-    font-family: 'Noto Sans KR', sans-serif;
-    font-size: 15px;
-    font-weight: 500;
-    color: #333;
-    max-width: 80%;
+	word-wrap: break-word;
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 15px;
+	font-weight: 500;
+	color: #333;
+	max-width: 80%;
 }
 
 .profile-box {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 .new-image {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border-color: #ddd;
-    border-width: 2px;
-    border-style: solid;
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	border-color: #ddd;
+	border-width: 2px;
+	border-style: solid;
 }
 
 .user-name {
-    text-align: center;
+	text-align: center;
 }
 
-.container {
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    padding: 10px;
-    margin-bottom: 10px;
-    max-width: 80%;
-    align-items:center;
-    align-items:column;
-}
-
-
- h3 {
-    font-size: 20px;
+h3 {
+	font-size: 20px;
 }
 
 .chat-description {
-    background-color: #f8f9fa;
-    padding: 10px;
-    margin-bottom: 10px;
-    border-radius: 4px;
-    font-size: 14px;
-    color: #6c757d;
+	background-color: #f8f9fa;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 4px;
+	font-size: 14px;
+	color: #6c757d;
 }
 
+.file-upload {
+	padding: 10px;
+	background-color: #4CAF50;
+	color: white;
+	cursor: pointer;
+	border-radius: 5px;
+}
 
+.bt_wrap {
+	margin-top: 30px;
+	text-align: center;
+	font-size: 0;
+}
 
+.bt_wrap button {
+	display: inline-block;
+	min-width: 80px;
+	margin-left: 10px;
+	padding: 10px;
+	border: 1px solid #000;
+	border-radius: 8px;
+	font-size: 1.4rem;
+	background: #000;
+	color: #fff;
+}
 
+.bt_wrap button:first-child {
+	margin-left: 0;
+}
 
-
-
-
-
+.bt_wrap button[onclick="save()"] {
+	background: #000;
+	color: #fff;
+}

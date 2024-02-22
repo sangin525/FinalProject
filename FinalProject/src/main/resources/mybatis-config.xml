@@ -37,7 +37,9 @@
 
 	<mappers>
 		<mapper resource="/mappers/member/member-mapper.xml"/>
+		
 		<mapper resource="/mappers/chef/chef-mapper.xml"/>	
+		
 		<mapper resource="/mappers/recipe/recipe-mapper.xml"/>	
 		<mapper resource="/mappers/recipe/recipeIngredient-mapper.xml"/>
 		<mapper resource="/mappers/recipe/recipeSequence-mapper.xml"/>
@@ -45,11 +47,18 @@
 		<mapper resource="/mappers/recipe/recipeComment-mapper.xml"/>
 		<mapper resource="/mappers/recipe/recipeScrap-mapper.xml"/>
 		<mapper resource="/mappers/recipe/recipeRecent-mapper.xml"/>
+		<mapper resource="/mappers/recipe/recipeSearch-mapper.xml"/>
+		
 		<mapper resource="/mappers/foodMate/foodMate-mapper.xml"/>
 		<mapper resource="/mappers/foodMate/foodMateComment-mapper.xml"/>
+		
 		<mapper resource="/mappers/admin/admin-mapper.xml"/>
 		<mapper resource="/mappers/admin/event-mapper.xml"/>
+		<mapper resource="/mappers/admin/adminComment-mapper.xml"/>
+		<mapper resource="/mappers/admin/eventComment-mapper.xml"/>
+		
 		<mapper resource="/mappers/free/freeList-mapper.xml"/>
+		<mapper resource="/mappers/free/freeComment-mapper.xml"/>
 
 
 

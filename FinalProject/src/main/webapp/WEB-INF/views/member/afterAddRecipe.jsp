@@ -23,7 +23,7 @@
 				<img id="main_pic" src="/resources/uploads/recipe/${recipe.uploadName}">
 			</div>
 			<div class="user_info2">
-				<a class="info_user"><img src="/resources/uploads/레시피등록대표사진.gif"></a>
+				<a class="info_user"><img src="/resources/uploads/member/${recipeChefProfile.uploadName}"></a>
 			</div>
 			<span class="user_infoName">${recipe.memberNickName}</span>
 		</div>
@@ -184,7 +184,7 @@
 		</div>
 
 		<div class="profile_pic">
-			<a href="#"><img src="/resources/uploads/레시피등록대표사진.gif"></a>
+			<a href="#"><img src="/resources/uploads/member/${recipeChefProfile.uploadName}"></a>
 
 			<div class="profile_cont">
 				<p class="cont_name">
@@ -210,10 +210,12 @@
 
 		<div class="commentList">
 
-			 <c:forEach var="item" items="${comment}">
+			 <c:forEach var="item" items="${comment}" varStatus="status">
 				<div class="reply_list">
 					<div class="media-left">
-						<a href="#"> <img class="profile_picture" src="/resources/uploads/레시피등록대표사진.gif"></a>
+					<c:if test="${not empty memberResult }">
+						<a href="#"> <img class="profile_picture" src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
+					</c:if>
 					</div>
 							 ${item.comname}
 					<div class="media-body">
@@ -278,7 +280,7 @@
 
 				<form id="comment-form" method="post" action="/recipe/comment.do?rno=${recipe.rno}">
 					<input type="hidden" id="star" name="star">
-					<div class="commentPic"><img src="/resources/uploads/레시피등록대표사진.gif"></div>
+					<div class="commentPic"><img src="/resources/uploads/member/${sessionScope.uploadName}"></div>
 
 					<div class="comment">
 						<div class="rating">

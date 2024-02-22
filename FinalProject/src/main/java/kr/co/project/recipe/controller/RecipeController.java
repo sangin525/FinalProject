@@ -57,15 +57,23 @@ public class RecipeController {
 		int pageLimit = 12;
 		int boardLimit =12;
 		
-		int row = listCount-(cpage-1) * boardLimit;
+
+//		int row = listCount-(cpage-1) * boardLimit;
+
+//		int row = listCount - (cpage - 1) * boardLimit;
+
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+		
+		List<MemberDTO> memberList = new ArrayList<>();
 		
 		List<RecipeDTO> list = recipeService.rankingList(pi, recipe);
 		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
 			item.setIndate(indate);	
+			MemberDTO memberProfile = memberService.memberList(item.getMno());
+			memberList.add(memberProfile);
 			int recipeCommentCount  = recipeService.countComment(item);
 			item.setCommentCount(recipeCommentCount);
 			if(recipeCommentCount >= 1) {
@@ -76,10 +84,47 @@ public class RecipeController {
 			}
 		}		
 		
-		model.addAttribute("row",row);
+//		model.addAttribute("row",row);
 		model.addAttribute("list",list);
+		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
 		System.out.println("접근성공");
+		
+		// 검색추가
+				if(!recipe.getSearchText().equals("")){
+					
+					List<RecipeDTO> searchList = recipeService.searchList(recipe);
+					String searchResult = null;
+								
+					// 얘가 true면 같은게 있음, false면 같은게 없음
+					boolean checkTitle = false;
+					
+					// 사용자가 검색한 검색어가 search 테이블에 존재하는지 확인하는 로직
+					for(RecipeDTO search : searchList) {			
+						String searchKeyword = search.getSearchText();
+						searchResult = searchKeyword;
+						if(searchResult.equals(recipe.getSearchText())) {
+							// 같은게 하나라도 있으면 true로 변경 후 for문 종료
+							checkTitle = true;
+							break;
+						}
+					}		
+//					String r = recipe.getSearchText();
+//					System.out.println("입력언어"+r);
+					System.out.println("입력언어1"+recipe.getSearchText());
+					
+					if(checkTitle) { // 같은게 있으면
+						System.out.println("같은게 있음");
+						int searchUp = recipeService.searchUpdate(searchResult);
+					} else { // 같은게 없으면
+						System.out.println("같은게 없음");
+						int searchIn = recipeService.searchInsert(recipe.getSearchText());
+						// recipeService.insert...........
+					}
+					model.addAttribute("searchList",searchList);
+				
+				}
+		
 			return "ranking/recipe";		
 	}
 	
@@ -97,25 +142,70 @@ public class RecipeController {
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		// 목록 불러오는 서비스
+		List<MemberDTO> memberList = new ArrayList<>();
+
 		List<RecipeDTO> list = recipeService.selectListAll(pi,recipe);
+
+		
+		
+//		System.out.println(recipe.getSearchText());
+		
 		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
 			item.setIndate(indate);	
+			MemberDTO memberProfile = memberService.memberList(item.getMno());
+			memberList.add(memberProfile);
 			int recipeCommentCount  = recipeService.countComment(item);
 			item.setCommentCount(recipeCommentCount);
 			if(recipeCommentCount >= 1) {
-				double starAvg = recipeService.avgComment(item);
-				item.setStar(starAvg);				
+				double starAvg = recipeService.avgComment(item);			
+				item.setStar(starAvg);	
+								
 			}else {
 				item.setStar(0);
 			}
 		}		
-		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
+		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
-		System.out.println("접근성공");
+		
+		// 검색추가
+		if(!recipe.getSearchText().equals("")){
+			
+			List<RecipeDTO> searchList = recipeService.searchList(recipe);
+			String searchResult = null;
+						
+			// 얘가 true면 같은게 있음, false면 같은게 없음
+			boolean checkTitle = false;
+			
+			// 사용자가 검색한 검색어가 search 테이블에 존재하는지 확인하는 로직
+			for(RecipeDTO search : searchList) {			
+				String searchKeyword = search.getSearchText();
+				searchResult = searchKeyword;
+				if(searchResult.equals(recipe.getSearchText())) {
+					// 같은게 하나라도 있으면 true로 변경 후 for문 종료
+					checkTitle = true;
+					break;
+				}
+			}		
+//			String r = recipe.getSearchText();
+//			System.out.println("입력언어"+r);
+			System.out.println("입력언어1"+recipe.getSearchText());
+			
+			if(checkTitle) { // 같은게 있으면
+				System.out.println("같은게 있음");
+				int searchUp = recipeService.searchUpdate(searchResult);
+			} else { // 같은게 없으면
+				System.out.println("같은게 없음");
+				int searchIn = recipeService.searchInsert(recipe.getSearchText());
+				// recipeService.insert...........
+			}
+			model.addAttribute("searchList",searchList);
+		
+		}
+		
 			return "category/category";
 	}
 	
@@ -171,7 +261,7 @@ public class RecipeController {
 				MemberDTO result = memberService.memberProfile(mno);
 				
 				int viewSum = recipeService.viewSum(mno);
-				System.out.println(viewSum);
+			
 				model.addAttribute("result",result);
 				model.addAttribute("viewSum",viewSum);
 			}
@@ -184,6 +274,23 @@ public class RecipeController {
 		
 		return "myPage/scrapRecipe";
 	}
+	
+	@GetMapping("/scrapRecipeDelete")
+	public String scrapRecipeDelete(@RequestParam(value="frno")int frno,
+				HttpSession session,RecipeDTO recipe,
+				MemberDTO member) {
+		
+		int scrapDelete =  recipeService.scrapRecipeDelete(frno);
+		
+		if(scrapDelete==1) {
+			System.out.println("스크랩 삭제성공");
+			return "redirect:/recipe/scrapRecipeList.do";
+		}else {
+			System.out.println("실패");
+			return"home";
+		}
+	}
+	
 	
 	
 	// 레시피 추가 폼
@@ -393,6 +500,7 @@ public class RecipeController {
 		
 		List<RecipeDTO> seqPhoresult = new ArrayList<>();
 		
+		List<MemberDTO> memberResult = new ArrayList<>();
 		
 		if(!Objects.isNull(result)) {
 			if(!Objects.isNull(ingreresult)) {
@@ -402,7 +510,15 @@ public class RecipeController {
 					if(!Objects.isNull(comresult)) {
 						int commentCount = recipeService.commentCount(rno);
 						int recentRecipe = recipeService.recentRecipe(recipe); 
-						
+						MemberDTO recipeChefProfile = memberService.memberProfile(result.getMno());
+						for(RecipeDTO cp:comresult) {							
+//							
+							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
+							memberResult.add(resultProfile);
+							model.addAttribute("memberResult",memberResult);
+//							
+						}
+						model.addAttribute("recipeChefProfile",recipeChefProfile);
 						model.addAttribute("commentCount",commentCount);						
 						model.addAttribute("comment",comresult);
 						System.out.println(recentRecipe);
@@ -467,6 +583,15 @@ public class RecipeController {
 		return "common/recentlyRecipe";
 	}
 	
-
+	@GetMapping("/rankSearch")
+	public String searchList(RecipeDTO recipe,
+							Model model) {
+		
+		List<RecipeDTO> searchList = recipeService.searchList(recipe);
+		
+		model.addAttribute("searchList", searchList);
+		return "ranking/searchWord";
+	}
+	
 
 }

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="recipeSearchMapper">
+<resultMap type="recipe" id="recipeSearchResultSet">
+	<result column="S_NO" property="sno"></result>
+	<result column="S_SEARCHTITLE" property="searchText"></result>
+	<result column="S_SEARCHCOUNT" property="searchCount"></result>
+		
+</resultMap>
+
+<select id="searchList" resultMap="recipeSearchResultSet">
+SELECT * FROM SEARCH
+ORDER BY S_SEARCHCOUNT DESC
+</select>
+
+<insert id="searchInsert">
+INSERT INTO SEARCH VALUES(search_seq.NEXTVAL,
+							#{searchText},
+							1
+							)
+</insert>
+
+<update id="searchUpdate" parameterType="recipe">
+UPDATE SEARCH SET S_SEARCHCOUNT = S_SEARCHCOUNT+1
+WHERE S_SEARCHTITLE = #{searchText}
+</update>
+</mapper>

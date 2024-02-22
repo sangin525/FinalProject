@@ -51,7 +51,6 @@ public class MemberController {
 		MemberDTO loginUser = memberService.loginMember(member);
 		
 		if(!Objects.isNull(loginUser) && bcryptPasswordEncoder.matches(member.getPwd(),loginUser.getPwd())) {
-		
 			session.setAttribute("mno", loginUser.getMno());
 			session.setAttribute("memberName", loginUser.getName());
 			session.setAttribute("memberNickName", loginUser.getNickname());
@@ -64,10 +63,12 @@ public class MemberController {
 			session.setAttribute("email", loginUser.getEmail());
 			session.setAttribute("recipeCount", loginUser.getRecipeCount());
 			session.setAttribute("type", loginUser.getType());
-			
-			
-			
-			return "home";
+			session.setAttribute("uploadName", loginUser.getUploadName());
+			session.setAttribute("grade", loginUser.getGrade());
+			System.out.println(loginUser.getGrade());
+
+			return "forward:/";
+
 		}else {
 			
 			model.addAttribute("msg","아이디 또는 비밀번호를 확인해주세요");
@@ -93,7 +94,7 @@ public class MemberController {
 		HttpSession session =request.getSession();
 		
 		session.invalidate();
-		return "home";
+		return "forward:/";
 	}
 	
 	@PostMapping("/checkEmail.do")
@@ -139,7 +140,6 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
 		int viewSum = recipeService.viewSum(mno);
 		System.out.println(viewSum);
 		model.addAttribute("result",result);
@@ -241,13 +241,13 @@ public class MemberController {
 		int pageLimit = 12;
 		int boardLimit =12;
 		
-		int row = listCount - (cpage-1) * boardLimit;
+//		int row = listCount - (cpage-1) * boardLimit;
 		
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 		// 목록 불러오는 서비스
 		List<MemberDTO> list = memberService.chefRank(pi,member);
 		
-		model.addAttribute("row",row);
+//		model.addAttribute("row",row);
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
 		
@@ -518,13 +518,14 @@ public class MemberController {
 	public String memberProfile(MemberDTO member,HttpSession session,
 								RecipeDTO recipe,Model model) {
 		
+		//멤버 사진불러오기	
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
 		int viewSum = recipeService.viewSum(mno);
+		
 		System.out.println(viewSum);
-		model.addAttribute("result",result);
+		model.addAttribute("profile",result);
 		model.addAttribute("viewSum",viewSum);
 		
 		return "myPage/myRecipes";		

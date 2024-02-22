@@ -9,7 +9,7 @@
 		<ul class="categoryList">
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=국/탕">
 					<img src="/resources/uploads/category/cate1_03.png" class="category-image">
 				</a>
 			</div>
@@ -18,7 +18,7 @@
 		
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=메인반찬">
 					<img src="/resources/uploads/category/cate1_07.png" class="category-image">
 				</a>
 			</div>
@@ -26,7 +26,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=면/만두">
 					<img src="/resources/uploads/category/cate1_08.png" class="category-image">
 				</a>
 			</div>
@@ -34,7 +34,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=밑반찬">
 					<img src="/resources/uploads/category/cate1_09.png" class="category-image">
 				</a>
 			</div>
@@ -42,7 +42,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=밥/죽/떡">
 					<img src="/resources/uploads/category/cate1_10.png" class="category-image">
 				</a>
 			</div>
@@ -50,7 +50,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=퓨전">
 					<img src="/resources/uploads/category/cate1_18.png" class="category-image">
 				</a>
 			</div>
@@ -59,7 +59,7 @@
 		
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=스프">
 					<img src="/resources/uploads/category/cate1_13.png" class="category-image">
 				</a>
 			</div>
@@ -68,7 +68,7 @@
 		
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=양식">
 					<img src="/resources/uploads/category/cate1_15.png" class="category-image">
 				</a>
 			</div>
@@ -76,7 +76,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=찌개">
 					<img src="/resources/uploads/category/cate1_16.png" class="category-image">
 				</a>
 			</div>
@@ -84,7 +84,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=건어물류">
 					<img src="/resources/uploads/category/cate1_05.png" class="category-image">
 				</a>
 			</div>
@@ -92,7 +92,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=디저트">
 					<img src="/resources/uploads/category/cate1_06.png" class="category-image">
 				</a>
 			</div>
@@ -100,7 +100,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=양념/소스/잼">
 					<img src="/resources/uploads/category/cate1_14.png" class="category-image">
 				</a>
 			</div>
@@ -108,7 +108,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=빵">
 					<img src="/resources/uploads/category/cate1_11.png" class="category-image">
 				</a>
 			</div>
@@ -116,7 +116,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=샐러드">
 					<img src="/resources/uploads/category/cate1_12.png" class="category-image">
 				</a>
 			</div>
@@ -124,7 +124,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=차/음료/술">
 					<img src="/resources/uploads/category/cate1_17.png" class="category-image">
 				</a>
 			</div>
@@ -133,7 +133,7 @@
 		
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=과자">
 					<img src="/resources/uploads/category/cate1_02.png" class="category-image">
 				</a>
 			</div>
@@ -141,7 +141,7 @@
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a>
+				<a href="/recipe/categoryList.do?recipeTitle=기타">
 					<img src="/resources/uploads/category/cate1_04.png" class="category-image">
 				</a>
 			</div>

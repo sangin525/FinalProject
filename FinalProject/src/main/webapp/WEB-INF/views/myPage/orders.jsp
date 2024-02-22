@@ -18,15 +18,13 @@
 		<div class="myPageContain">
 			<div class="container">
 				<%@ include file="../../views/myPage/myPageMenu.jsp"%>
-
 				<div class="content">
 					<div class="chef_cont">
 						<ul class="myPageNav">
 							<li><a>주문조회</a></li>
-
 						</ul>
-						<hr />
-						<br>
+						
+						
 						<c:choose>
 							<c:when test="${orderDetailList != NULL}">
 								<c:forEach var="item" items="${orderDetailList}">
@@ -52,6 +50,7 @@
 										결제금액:${item.o_payment_amount}<br>
 										받는사람이름:${item.o_recipient_name}<br>
 								</c:forEach>
+
 							</c:when>
 							<c:otherwise>
 								<div class="result_none">
@@ -63,19 +62,11 @@
 								</div>
 							</c:otherwise>
 						</c:choose>
+						<div class="rightBar">
+							<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
+						</div>
 					</div>
 				</div>
-			</div>
-
-
-			<div class="rightBar">
-				<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
-			</div>
-		</div>
-	</div>
-
-
-
-	<%@ include file="../../views/common/footer.jsp"%>
+				<%@ include file="../../views/common/footer.jsp"%>
 </body>
 </html>

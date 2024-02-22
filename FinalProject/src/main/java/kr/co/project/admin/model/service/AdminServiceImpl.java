@@ -166,6 +166,11 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.updateEventEmpty(sqlSession,admin);
 	}
 
+	public int addNoticeComment(AdminDTO admin) {
+		
+		return adminDao.addNoticeComment(sqlSession,admin);
+	}
+
 	
 	
 

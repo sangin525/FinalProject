@@ -26,4 +26,9 @@ public class FreeDTO {
 	private String writer;
 	private int views;
 	
+	private int fcno;
+	private String comment;
+	private String fcwriter;
+	private String fcIndate;
+
 }
