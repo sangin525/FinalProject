@@ -19,14 +19,11 @@ import kr.co.project.recipe.model.dto.RecipeDTO;
 
 public class MultiUploadFile {
 
+	private static final String UPLOAD_PATH = "C:\\Users\\rlwjd\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
 
-
-	private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";	
-
-
-
-	public static boolean deleteFile(List<RecipeDTO> fileName,List<RecipeDTO> sequenceFileName) {
-		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\        240103113409_cRvSeZPY.png
+	public static boolean deleteFile(List<RecipeDTO> fileName, List<RecipeDTO> sequenceFileName) {
+		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\
+		// 240103113409_cRvSeZPY.png
 
 		// 240103113409_cRvSeZPY.png
 		// 240103113409_cRvSeZPY.png

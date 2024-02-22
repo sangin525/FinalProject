@@ -15,4 +15,6 @@ public interface CartService {
 	List<CartDTO> getCart(int mno);
 
 	CartDTO checkCart(CartDTO cart);
+
+	CartDTO getCartInfo(int sc_no);
 }
