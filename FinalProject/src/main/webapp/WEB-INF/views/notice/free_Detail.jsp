@@ -59,40 +59,41 @@
 		</div>
 
 		<div class="comment_title">
-			댓글 <span>21</span>
+			댓글 <span>${commentCount}</span>
 
 		</div>
 		<div class="commentList">
-
+			<c:forEach var="item" items="${freeComment }" varStatus="status">
 			<div class="reply_list">
 				<div class="media-left">
-					<a href="#"> <img class="profile_picture"
-						src="/resources/uploads/레시피등록대표사진.gif"></a>
+					<c:if test="${not empty memberResult }">
+						<a href="#"> <img class="profile_picture" src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
+					</c:if>
 				</div>
 				<div class="media-body">
 					<h4 class="media-heading">
-						<b class="info_name_f">바비</b> <span>2024-1-29 07:32</span> <a
-							onclick="#">답글</a>
+						<b class="info_name_f">${item.fcwriter }</b> <span>${item.fcIndate }</span> <a
+							onclick="#"></a>
 					</h4>
-					바비 <br>
+					${item.comment} <br>
 				</div>
 
-
 			</div>
+			</c:forEach>
 		</div>
 
 		<div class="comment-section">
 			<h2>댓글 남기기</h2>
-			<form id="comment-form">
+			<form id="comment-form" action="/free/comment.do?flno=${free.flno}" method="post">
 				<div class="commentPic">
-					<img src="/resources/uploads/레시피등록대표사진.gif">
+					<img src="/resources/uploads/member/${sessionScope.uploadName}">
 				</div>
 				<div class="comment">
 
 
 					<textarea class="commentTextbox" name="comment"
 						placeholder="댓글을 작성하세요."></textarea>
-					<button class="comment_submit">댓글작성</button>
+					<button class="comment_submit" type="submit">댓글작성</button>
 				</div>
 			</form>
 		</div>

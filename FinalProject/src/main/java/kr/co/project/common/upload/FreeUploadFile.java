@@ -20,7 +20,7 @@ import kr.co.project.recipe.model.dto.RecipeDTO;
 
 public class FreeUploadFile {
 
-private static final String UPLOAD_PATH="C:\\Users\\suinr\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
+private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
 
 	
 	public static boolean deleteFile(String fileName, String boardName) {
