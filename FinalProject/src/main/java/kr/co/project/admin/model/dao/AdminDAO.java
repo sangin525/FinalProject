@@ -102,8 +102,33 @@ public class AdminDAO {
 	}
 
 	public int addNoticeComment(SqlSessionTemplate sqlSession, AdminDTO admin) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return sqlSession.insert("adminCommentMapper.addNoticeComment",admin);
+	}
+
+	public List<AdminDTO> selectNoticeComment(SqlSessionTemplate sqlSession, int acno) {
+		
+		return sqlSession.selectList("adminCommentMapper.selectNoticeComment",acno);
+	}
+
+	public int ncommentCount(SqlSessionTemplate sqlSession, int acno) {
+		
+		return sqlSession.selectOne("adminCommentMapper.ncommentCount", acno);
+	}
+
+	public int addEventComment(SqlSessionTemplate sqlSession, AdminDTO admin) {
+		
+		return sqlSession.insert("eventCommentMapper.addEventComment",admin);
+	}
+
+	public List<AdminDTO> selectEventComment(SqlSessionTemplate sqlSession, int eno) {
+		
+		return sqlSession.selectList("eventCommentMapper.selectEventComment",eno);
+	}
+
+	public int ecommentCount(SqlSessionTemplate sqlSession, int eno) {
+		
+		return sqlSession.selectOne("eventCommentMapper.ecommentCount",eno);
 	}
 
 	

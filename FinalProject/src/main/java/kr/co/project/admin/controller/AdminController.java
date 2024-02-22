@@ -1,6 +1,7 @@
 package kr.co.project.admin.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -137,13 +138,24 @@ public class AdminController {
 		
 		AdminDTO result = adminService.detailNotice(acno);
 		
+		List<AdminDTO> adminComment = adminService.selectNoticeComment(acno);
+		
+		List<MemberDTO> commentProfile = new ArrayList<>();
 		if(!Objects.isNull(result)) {
-			model.addAttribute("notice",result);
-			System.out.println(acno+"번 게시물 들어옴");
+			if(!Objects.isNull(adminComment)) {
+				int ncommentCount = adminService.ncommentCount(acno);
+				model.addAttribute("ncommentCount",ncommentCount);
+				for(AdminDTO ad:adminComment) {
+					MemberDTO resultProfile = memberService.memberList(ad.getMno());
+					commentProfile.add(resultProfile);
+					model.addAttribute("memberResult",commentProfile);
+				}
+			}
 		}else {
 			System.out.println("실패");
 		}
-		
+		model.addAttribute("noticeComment",adminComment);
+		model.addAttribute("notice",result);				
 		return "/notice/notice_Detail";
 	}
 	
@@ -199,7 +211,7 @@ public class AdminController {
 	public String noticeComment(@RequestParam(value="acno")int acno,
 				HttpSession session,AdminDTO admin,Model model) {
 		
-		admin.setEcWriter((String) session.getAttribute("memberNickName"));
+		admin.setNcWriter((String) session.getAttribute("memberNickName"));
 		admin.setMno((int) session.getAttribute("mno"));
 		
 		int result = adminService.addNoticeComment(admin);
@@ -210,7 +222,7 @@ public class AdminController {
 			System.out.println("댓글 작성실패");
 		}
 		
-		return "home";
+		return "redirect:/admin/noticeList";
 	}
 	
 	
@@ -308,16 +320,28 @@ public class AdminController {
 								Model model,
 								HttpSession session) {
 		
-		System.out.println(eno);
 		AdminDTO event = adminService.detailEvent(eno);
 		
+		List<AdminDTO> eventComment = adminService.selectEventComment(eno);
+		
+		List<MemberDTO> commentProfile = new ArrayList<>();
 		if(!Objects.isNull(event)) {
+			if(!Objects.isNull(eventComment)) {
+				int ecommentCount = adminService.ecommentCount(eno);
+				model.addAttribute("ecommentCount",ecommentCount);
+				for(AdminDTO ep:eventComment) {
+					MemberDTO resultProfile = memberService.memberList(ep.getMno());
+					commentProfile.add(resultProfile);
+					model.addAttribute("memberResult",commentProfile);
+				}
+			}
 			System.out.println("e게시글 들어오기 완료");
 		}else {
 			System.out.println("e게시글 들어오기 실패");
 		}
 	
 		model.addAttribute("event",event);
+		model.addAttribute("eventComment",eventComment);
 		return "/notice/event_Detail";
 	}
 	
@@ -372,8 +396,23 @@ public class AdminController {
 		return "home";
 	}
 	
-	
-	
+	@PostMapping("/addEventComment")
+	public String addEventComment(@RequestParam(value="eno")int eno,
+				HttpSession session, AdminDTO admin,Model model) {
+		
+		admin.setEcWriter((String) session.getAttribute("memberNickName"));
+		admin.setMno((int) session.getAttribute("mno"));
+		
+		int result = adminService.addEventComment(admin);
+		
+		if(result>0) {
+			System.out.println("이벤트 댓글성공");
+		}else {
+			System.out.println("실패");
+		}
+		
+		return"redirect:/admin/eventList";
+	}
 	
 	
 	

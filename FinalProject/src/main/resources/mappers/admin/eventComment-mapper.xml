@@ -11,4 +11,23 @@
 
 </resultMap>
 
+<select id="selectEventComment" resultMap="eventCommentResultSet">
+SELECT * FROM EVENTLISTCOMMENT
+WHERE E_NO =#{eno}
+ORDER BY EC_IN_DATE DESC
+</select>
+
+<select id="ecommentCount" resultType="_int">
+SELECT COUNT(*) FROM EVENTLISTCOMMENT
+WHERE E_NO=#{eno}
+</select>
+<insert id="addEventComment">
+INSERT INTO EVENTLISTCOMMENT VALUES(eventListComment_seq.NEXTVAL,
+							#{ecComment},
+							#{ecWriter},
+							SYSDATE,
+							#{eno},
+							#{mno}
+							)
+</insert>
 </mapper>
