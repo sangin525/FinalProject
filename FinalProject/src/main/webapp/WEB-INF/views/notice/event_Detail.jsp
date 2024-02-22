@@ -52,7 +52,45 @@
 			</div>
 		</div>
 
-		
+		<div class="comment_title">
+			댓글 <span>${ecommentCount}</span>
+
+		</div>
+		<div class="commentList">
+			<c:forEach var="item" items="${eventComment }" varStatus="status">
+			<div class="reply_list">
+				<div class="media-left">
+					<c:if test="${not empty memberResult }">
+						<a href="#"> <img class="profile_picture" src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
+					</c:if>
+				</div>
+				<div class="media-body">
+					<h4 class="media-heading">
+						<b class="info_name_f">${item.ecWriter }</b> <span>${item.ecIndate }</span> <a
+							onclick="#"></a>
+					</h4>
+					${item.ecComment} <br>
+				</div>
+
+			</div>
+			</c:forEach>
+		</div>
+
+		<div class="comment-section">
+			<h2>댓글 남기기</h2>
+			<form id="comment-form" action="/admin/addEventComment?eno=${event.eno}" method="post">
+				<div class="commentPic">
+					<img src="/resources/uploads/member/${sessionScope.uploadName}">
+				</div>
+				<div class="comment">
+
+
+					<textarea class="commentTextbox" name="ecComment"
+						placeholder="댓글을 작성하세요."></textarea>
+					<button class="comment_submit" type="submit">댓글작성</button>
+				</div>
+			</form>
+		</div>
 		
 
 		
