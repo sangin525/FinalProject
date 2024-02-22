@@ -527,7 +527,7 @@ public class RecipeController {
 						model.addAttribute("commentCount",commentCount);						
 						model.addAttribute("comment",comresult);
 						System.out.println(recentRecipe);
-						System.out.println("게시판 들어오기 완료");
+						System.out.println("게시판 들어오기 완료~");
 					
 					}
 				}
