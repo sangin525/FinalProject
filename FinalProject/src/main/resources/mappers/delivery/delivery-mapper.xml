@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="DeliveryMapper">
+	<resultMap type="delivery" id="deliveryResultSet">
+		<result column="d_no" property="d_no"></result>
+		<result column="m_no" property="m_no"></result>
+		<result column="d_name" property="d_name"></result>
+		<result column="d_postal_address" property="d_postal_address"></result>
+		<result column="d_address" property="d_address"></result>
+		<result column="d_detailAdress" property="d_detailAdress"></result>
+		<result column="d_phone" property="d_phone"></result>
+		<result column="d_request" property="d_request"></result>
+		<result column="d_defaultDelivery" property="d_defaultDelivery"></result>
+	</resultMap>
+
+	<insert id="saveDelivery">
+		INSERT INTO DELIVERY VALUES(
+		delivery_seq.NEXTVAL,
+		#{m_no},
+		#{d_name},
+		#{d_postal_address},
+		#{d_address},
+		#{d_detailAdress},
+		#{d_phone},
+		#{d_request},
+		#{d_defaultDelivery})
+	</insert>
+
+	<select id="deliveryList" resultMap="deliveryResultSet"
+		parameterType="_int">
+		SELECT * FROM DELIVERY
+		WHERE M_NO = #{mno}
+	</select>
+
+
+
+</mapper>

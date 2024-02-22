@@ -12,7 +12,8 @@
 
 </head>
 
-<body id="bodyId" data-crno="${chatRoom.cr_no}" data-mno="${user.mno}" data-name="${user.name}">
+<body id="bodyId" data-crno="${chatRoom.cr_no}" data-mno="${user.mno}"
+	data-name="${user.name}">
 	<%@ include file="../../views/common/header.jsp"%>
 
 	<%@ include file="../../views/common/nav.jsp"%>

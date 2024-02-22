@@ -22,15 +22,15 @@ public class MemberDTO {
 	private Date removeDate;
 	private Date indate;
 	private int type = 0;
-	private int recipeCount =0;
-	private int subscriber =0;
+	private int recipeCount = 0;
+	private int subscriber = 0;
 	private int purchaseAmount = 0;
 	private String uploadPath;
 	private String uploadName;
 	private String uploadOrigin;
 	private String grade;
 	private String introduce;
-	
+
 	public MemberDTO() {
 		super();
 	}

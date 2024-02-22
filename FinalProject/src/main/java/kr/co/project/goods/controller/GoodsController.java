@@ -67,8 +67,7 @@ public class GoodsController {
 
 		int result = goodsService.addGoods(goodsDTO);
 		if (result > 0) {
-			model.addAttribute("goods", result);
-
+//			model.addAttribute("goods", result);
 			return "redirect:/goods/list.do";
 		} else {
 			System.out.println("상품 등록 실패");
