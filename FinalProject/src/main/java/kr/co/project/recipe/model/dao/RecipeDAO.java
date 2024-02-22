@@ -268,6 +268,10 @@ public class RecipeDAO {
 		return sqlSession.insert("recipeSearchMapper.searchInsert",searchResult);
 	}
 
+	public int memberNickNameUpdate(SqlSessionTemplate sqlSession, RecipeDTO recipe) {
+		return sqlSession.update("recipeMapper.memberNickNameUpdate",recipe);
+	}
+
 	
 	
 

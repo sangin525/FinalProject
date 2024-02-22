@@ -127,6 +127,7 @@ public class MemberController {
 		// 목록 불러오는 서비스
 		List<RecipeDTO> list = recipeService.selectMyRecipe(pi,recipe);
 		
+		
 		for(RecipeDTO item : list) {
 			String indate = item.getIndate().substring(0,10);
 			item.setIndate(indate);
@@ -140,12 +141,16 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		int viewSum = recipeService.viewSum(mno);
-		System.out.println(viewSum);
+		
+		if(!list.isEmpty()) {
+			int viewSum = recipeService.viewSum(mno);			
+			System.out.println(viewSum);
+			model.addAttribute("viewSum",viewSum);
+		}
 		model.addAttribute("result",result);
-		model.addAttribute("viewSum",viewSum);
 
 		return "/myPage/myRecipes";
+	
 
 	}
 	
@@ -175,10 +180,13 @@ public class MemberController {
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
 		
-		int viewSum = recipeService.viewSum(mno);
-		System.out.println(viewSum);
+		if(!list.isEmpty()) {
+			
+			int viewSum = recipeService.viewSum(mno);
+			System.out.println(viewSum);
+			model.addAttribute("viewSum",viewSum);
+		}
 		model.addAttribute("result",result);
-		model.addAttribute("viewSum",viewSum);
 		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
@@ -216,10 +224,13 @@ public class MemberController {
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
 		
-		int viewSum = recipeService.viewSum(mno);
-		System.out.println(viewSum);
+		if(!list.isEmpty()) {
+			int viewSum = recipeService.viewSum(mno);
+			System.out.println(viewSum);
+			model.addAttribute("viewSum",viewSum);
+			
+		}
 		model.addAttribute("result",result);
-		model.addAttribute("viewSum",viewSum);
 		
 		model.addAttribute("row",row);
 		model.addAttribute("list",list);
@@ -304,12 +315,15 @@ public class MemberController {
 	}
 	
 	@PostMapping("/nickNameUpdate.do")
-	public String nickNameUpdate(MemberDTO member,HttpSession session,Model model) {
+	public String nickNameUpdate(MemberDTO member,RecipeDTO recipe,HttpSession session,Model model) {
+								
 		int mno = (int) session.getAttribute("mno");
 		
 		member.setMno(mno);
-		
-		int memberNickNameUpdate = memberService.memberNickNameUpdate(member);
+		recipe.setMno(mno);
+		System.out.println(member.getNickname());
+		recipe.setMemberNickName(member.getNickname());
+		int memberNickNameUpdate = memberService.memberNickNameUpdate(member,recipe);
 		if(memberNickNameUpdate>0) {
 			System.out.println("변경성공");
 		}else {
@@ -365,11 +379,13 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
-		int viewSum = recipeService.viewSum(mno);
-		System.out.println(viewSum);
+		if(!list.isEmpty()) {
+			
+			int viewSum = recipeService.viewSum(mno);
+			System.out.println(viewSum);
+			model.addAttribute("viewSum",viewSum);
+		}
 		model.addAttribute("result",result);
-		model.addAttribute("viewSum",viewSum);
 		
 		model.addAttribute("selectMember",selectMember);
 		model.addAttribute("row",row);
@@ -428,7 +444,9 @@ public class MemberController {
 //		RecipeDTO comresult = recipeService.selectComment(rno);
 		
 		List<RecipeDTO> seqPhoresult = new ArrayList<>();
-//		List<RecipeDTO> list
+
+		List<MemberDTO> memberResult = new ArrayList<>();
+		
 		if(!Objects.isNull(result)) {
 			if(!Objects.isNull(ingreresult)) {
 				if(!Objects.isNull(seqresult)) {	
@@ -436,11 +454,15 @@ public class MemberController {
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
 					if(!Objects.isNull(comresult)) {
 						int commentCount = recipeService.commentCount(rno);
-						
-						model.addAttribute("commentCount",commentCount);
-						
+						model.addAttribute("commentCount",commentCount);						
 						model.addAttribute("comment",comresult);
-						
+						MemberDTO recipeChefProfile = memberService.memberProfile(result.getMno());
+						for(RecipeDTO cp:comresult) {
+							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
+							memberResult.add(resultProfile);
+							model.addAttribute("memberResult",memberResult);
+						}
+						model.addAttribute("recipeChefProfile",recipeChefProfile);
 					}
 				}
 			}
@@ -491,6 +513,7 @@ public class MemberController {
 	public String memberProfileUp(MemberDTO member,RecipeDTO recipe,HttpSession session,
 				MultipartFile upload,Model model) {
 		
+		int mno = (int) session.getAttribute("mno");
 		int memberUpdate = 0;
 		member.setMno((int) session.getAttribute("mno"));
 		
@@ -504,7 +527,10 @@ public class MemberController {
 		}
 		if(memberUpdate>0){
 //			System.out.println(memberUpdate);
+			MemberDTO member2 = memberService.memberList(mno);
 			System.out.println("업뎃성공");
+			System.out.println(member2.getUploadOrigin());
+			session.setAttribute("uploadName", member2.getUploadName());
 			return "redirect:/member/memberProfile";
 		}else {
 			System.out.println("업뎃실패");
@@ -522,11 +548,16 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		int viewSum = recipeService.viewSum(mno);
+	
+		List<RecipeDTO> list = recipeService.selectMyRecipe(null,recipe);
+		if(!list.isEmpty()) {
+			
+			int viewSum = recipeService.viewSum(mno);
+			System.out.println(viewSum);
+			model.addAttribute("viewSum",viewSum);
+		}
 		
-		System.out.println(viewSum);
 		model.addAttribute("profile",result);
-		model.addAttribute("viewSum",viewSum);
 		
 		return "myPage/myRecipes";		
 	}
