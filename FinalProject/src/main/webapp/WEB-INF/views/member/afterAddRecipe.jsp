@@ -154,10 +154,10 @@
 			<c:forEach var="item" items="${comment}" varStatus="status">
 				<div class="reply_list">
 					<div class="media-left">
-					aaaaa ${memberResult }
-						<c:if test="${ empty memberResult }">
+					
+						<c:if test="${not empty memberResult }">
 							<a href="#"> <img class="profile_picture"
-								src="/resources/uploads/고양이그림.png"></a>
+								src="/resources/uploads/member/${sessionScope.uploadName}"></a>
 						</c:if>
 					</div>
 					
@@ -223,7 +223,7 @@
     <h2>댓글 남기기</h2>
     <form id="comment-form" action="/free/comment.do?flno=${free.flno}" method="post">
         <div class="commentPic">
-            <img src="/resources/uploads/고양이그림.png">
+            <img src="/resources/uploads/member/${sessionScope.uploadName}">
         </div>
         <div class="comment">
             <div class="rating">

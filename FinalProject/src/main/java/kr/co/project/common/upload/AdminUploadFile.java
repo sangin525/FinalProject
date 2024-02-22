@@ -21,7 +21,7 @@ import kr.co.project.recipe.model.dto.RecipeDTO;
 public class AdminUploadFile {
 
 
-private static final String UPLOAD_PATH="C:\\Users\\rlwjd\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
+private static final String UPLOAD_PATH="C:\\Users\\suinr\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
 
 
 	
