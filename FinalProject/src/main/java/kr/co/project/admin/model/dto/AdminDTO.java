@@ -13,10 +13,11 @@ import lombok.ToString;
 @AllArgsConstructor
 public class AdminDTO {
 
-	
-	private int acno;
 	private int type;
 	private int mno;
+
+	// 공지사항
+	private int acno;
 	private String title;
 	private String contents;
 	private String filePath;
@@ -26,7 +27,13 @@ public class AdminDTO {
 	private String updateDate;
 	private String deleteDate;
 	private int views;
-	private int writer;
+	
+	private int ncno;
+	private String ncComment;
+	private String ncWriter;
+	private String ncIndate;
+	
+	// 이벤트
 	private int eno;
 	private String e_title;
 	private String e_contents;
@@ -36,5 +43,10 @@ public class AdminDTO {
 	private String e_indate;
 	private String e_updateDate;	
 	private String e_deleteDate;
-	private int e_views;	
+	private int e_views;
+	
+	private int ecno;
+	private String ecComment;
+	private String ecWriter;
+	private String ecIndate;
 }

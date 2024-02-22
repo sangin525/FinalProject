@@ -50,8 +50,11 @@
 		
 		<mapper resource="/mappers/admin/admin-mapper.xml"/>
 		<mapper resource="/mappers/admin/event-mapper.xml"/>
+		<mapper resource="/mappers/admin/adminComment-mapper.xml"/>
+		<mapper resource="/mappers/admin/eventComment-mapper.xml"/>
 		
 		<mapper resource="/mappers/free/freeList-mapper.xml"/>
+		<mapper resource="/mappers/free/freeComment-mapper.xml"/>
 
 
 

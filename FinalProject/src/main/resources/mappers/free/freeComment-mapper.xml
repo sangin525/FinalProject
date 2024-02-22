@@ -2,9 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="freeCommentMapper">
 <resultMap type="free" id="freeCommentResultSet">
-
 <result column="FC_NO" property="fcno"></result>
+<result column="FC_COMMENT" property="comment"></result>
+<result column="FC_WRITER" property="fcwriter"></result>
+<result column="FC_IN_DATE" property="fcIndate"></result> 
+<result column="FL_NO" property="flno"></result>
+<result column="M_NO" property="mno"></result>
 </resultMap>
 
+<select id="commentCount" resultType="_int">
+SELECT COUNT(*) FROM FREELISTCOMMENT
+WHERE FL_NO=#{flno}
+</select>
+
+<select id="selectComment" resultMap="freeCommentResultSet">
+SELECT * FROM FREELISTCOMMENT
+WHERE FL_NO=#{flno}
+ORDER BY FC_IN_DATE DESC
+</select>
+
+<insert id="addComment">
+INSERT INTO FREELISTCOMMENT VALUES(freeListComment_seq.NEXTVAL,
+							#{comment},
+							#{fcwriter},
+							SYSDATE,
+							#{flno},
+							#{mno}
+							)
+</insert>
 
 </mapper>

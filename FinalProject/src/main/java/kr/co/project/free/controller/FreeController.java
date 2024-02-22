@@ -1,6 +1,7 @@
 package kr.co.project.free.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import kr.co.project.admin.model.dto.AdminDTO;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
 import kr.co.project.common.upload.FreeUploadFile;
@@ -119,13 +119,23 @@ public class FreeController {
 		
 		FreeDTO result = freeService.freeDetail(flno);
 		
+		List<FreeDTO> freeComment = freeService.selectComment(flno);
+		
+		List<MemberDTO> commentProfile = new ArrayList<>();
 		if(!Objects.isNull(result)) {
-			System.out.println("성공");
-		}else {
-			System.out.println("실패");
+			if(!Objects.isNull(freeComment)) {
+				int commentCount = freeService.commentCount(flno);
+				model.addAttribute("commentCount",commentCount);
+				for(FreeDTO fp:freeComment) {
+					MemberDTO resultProfile = memberService.memberList(fp.getMno());
+					commentProfile.add(resultProfile);
+					model.addAttribute("memberResult",commentProfile);
+				}
+			}
 		}
 		
 		model.addAttribute("free",result);
+		model.addAttribute("freeComment",freeComment);
 		return "/notice/free_Detail";
 	}
 	
@@ -146,10 +156,13 @@ public class FreeController {
 	
 	@GetMapping("/freeEditForm")
 	public String freeEditForm(@RequestParam(value="flno")int flno,Model model) {
+			
 			FreeDTO free = freeService.freeEditForm(flno);
+			
 			
 			if(!Objects.isNull(free)) {
 				model.addAttribute("free",free);
+			
 				return "/notice/free_Edit";
 			}else {
 				return "home";
@@ -182,7 +195,22 @@ public class FreeController {
 		return  "home";
 	}
 	
-	
+	@PostMapping("/comment.do")
+	public String comment(@RequestParam(value="flno")int flno,
+			HttpSession session,FreeDTO free,Model model) {
+		
+		free.setFcwriter((String) session.getAttribute("memberNickName"));
+		free.setMno((int) session.getAttribute("mno"));
+		
+		int result = freeService.addComment(free);
+		
+		if(result>0) {
+			System.out.println("성공");
+		}else {
+			System.out.println("실패");
+		}
+		return "redirect:/free/freeList";
+	}
 	
 	
 	

@@ -101,5 +101,10 @@ public class AdminDAO {
 		return sqlSession.update("eventMapper.updateEventEmpty",admin);
 	}
 
+	public int addNoticeComment(SqlSessionTemplate sqlSession, AdminDTO admin) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 	
 }

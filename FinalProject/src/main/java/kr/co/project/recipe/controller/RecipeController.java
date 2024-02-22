@@ -88,6 +88,7 @@ public class RecipeController {
 		model.addAttribute("list",list);
 		model.addAttribute("memberList",memberList);
 		model.addAttribute("pi",pi);
+		System.out.println("접근성공");
 		
 		// 검색추가
 				if(!recipe.getSearchText().equals("")){
@@ -123,7 +124,6 @@ public class RecipeController {
 					model.addAttribute("searchList",searchList);
 				
 				}
-		
 		
 			return "ranking/recipe";		
 	}
@@ -512,12 +512,11 @@ public class RecipeController {
 						int recentRecipe = recipeService.recentRecipe(recipe); 
 						MemberDTO recipeChefProfile = memberService.memberProfile(result.getMno());
 						for(RecipeDTO cp:comresult) {							
-//							System.out.println("댓글단 사람 번호"+cp.getMno());
-//							List<MemberDTO> resultProfile = memberService
+//							
 							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
 							memberResult.add(resultProfile);
 							model.addAttribute("memberResult",memberResult);
-//							System.out.println("댓글사람 사진"+memberResult);
+//							
 						}
 						model.addAttribute("recipeChefProfile",recipeChefProfile);
 						model.addAttribute("commentCount",commentCount);						
