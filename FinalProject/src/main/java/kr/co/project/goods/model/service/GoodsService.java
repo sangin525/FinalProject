@@ -16,4 +16,6 @@ public interface GoodsService {
 	GoodsDTO detailGoods(int gno);
 
 	int addGoods(GoodsDTO goodsDTO);
+
+	int changeStock(GoodsDTO goodsDTO);
 }

@@ -21,6 +21,10 @@
 		<typeAlias type="kr.co.project.chat.model.dto.ChatRoomDTO" alias="chatRoom"/>
 		<typeAlias type="kr.co.project.chat.model.dto.ChatMsgDTO" alias="chatMsg"/> 
 		<typeAlias type="kr.co.project.cart.model.dto.CartDTO" alias="cart"/>
+		<typeAlias type="kr.co.project.order.model.dto.OrderDTO" alias="order"/>
+		<typeAlias type="kr.co.project.order.model.dto.OrderDetailDTO" alias="orderDetail"/>
+		<typeAlias type="kr.co.project.delivery.model.dto.DeliveryDTO" alias="delivery"/>
+		
 		
 		
 		<!-- 		 
@@ -50,14 +54,20 @@
 		
 		<mapper resource="/mappers/admin/admin-mapper.xml"/>
 		<mapper resource="/mappers/admin/event-mapper.xml"/>
+		<mapper resource="/mappers/admin/adminComment-mapper.xml"/>
+		<mapper resource="/mappers/admin/eventComment-mapper.xml"/>
 		
 		<mapper resource="/mappers/free/freeList-mapper.xml"/>
+		<mapper resource="/mappers/free/freeComment-mapper.xml"/>
 
 
 
 		<mapper resource="/mappers/goods/goods-mapper.xml" />
 		<mapper resource="/mappers/chat/chat-mapper.xml" />
 		<mapper resource="/mappers/cart/cart-mapper.xml" />
+		<mapper resource="/mappers/order/order-mapper.xml" />
+		<mapper resource="/mappers/delivery/delivery-mapper.xml" />
+		
 	</mappers>
 </configuration>
 

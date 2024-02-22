@@ -59,4 +59,19 @@ public class FreeDAO {
 		return sqlSession.update("freeMapper.updateFreeEmpty",free);
 	}
 
+	public int addComment(SqlSessionTemplate sqlSession, FreeDTO free) {
+		
+		return sqlSession.insert("freeCommentMapper.addComment",free);
+	}
+
+	public List<FreeDTO> selectComment(SqlSessionTemplate sqlSession, int flno) {
+		
+		return sqlSession.selectList("freeCommentMapper.selectComment",flno);
+	}
+
+	public int commentCount(SqlSessionTemplate sqlSession, int flno) {
+		
+		return sqlSession.selectOne("freeCommentMapper.commentCount",flno);
+	}
+
 }

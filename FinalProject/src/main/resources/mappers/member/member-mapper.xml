@@ -54,7 +54,8 @@
 								null,
 								null,
 								null,
-								'왕초보')
+								'왕초보',
+								null)
 </insert>
 
 <select id="checkEmail" resultType="_int">
