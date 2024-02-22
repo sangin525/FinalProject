@@ -94,6 +94,21 @@ public class FreeServiceImpl {
 		return freeDao.updateFreeEmpty(sqlSession,free);
 	}
 
+	public int addComment(FreeDTO free) {
+		
+		return freeDao.addComment(sqlSession,free);
+	}
+
+	public List<FreeDTO> selectComment(int flno) {
+		
+		return freeDao.selectComment(sqlSession,flno);
+	}
+
+	public int commentCount(int flno) {
+		
+		return freeDao.commentCount(sqlSession,flno);
+	}
+
 	
 	
 	

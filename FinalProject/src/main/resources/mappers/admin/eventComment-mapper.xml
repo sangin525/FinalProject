@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="eventCommentMapper">
+<resultMap type="admin" id="eventCommentResultSet">
+<result column="EC_NO" property="ecno"></result>
+<result column="EC_COMMENT" property="ecComment"></result>
+<result column="EC_WRITER" property="ecWriter"></result>
+<result column="EC_IN_DATE" property="ecIndate"></result>
+<result column="E_NO" property="eno"></result>
+<result column="M_NO" property="mno"></result>
+
+</resultMap>
+
+</mapper>

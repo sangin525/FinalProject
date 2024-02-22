@@ -195,6 +195,28 @@ public class AdminController {
 		return "home";
 	}
 	
+	@PostMapping("/addNoticeComment")
+	public String noticeComment(@RequestParam(value="acno")int acno,
+				HttpSession session,AdminDTO admin,Model model) {
+		
+		admin.setEcWriter((String) session.getAttribute("memberNickName"));
+		admin.setMno((int) session.getAttribute("mno"));
+		
+		int result = adminService.addNoticeComment(admin);
+		
+		if(result>0) {
+			System.out.println("댓글 작성성공");
+		}else {
+			System.out.println("댓글 작성실패");
+		}
+		
+		return "home";
+	}
+	
+	
+	////////////////////////////여기부터 이벤트입니다////////////////////////////////////////////
+	
+	
 	@GetMapping("/adminEvent")
 	public String adminEvent(AdminDTO admin,
 			@RequestParam(value="cpage",defaultValue="1") int cpage,

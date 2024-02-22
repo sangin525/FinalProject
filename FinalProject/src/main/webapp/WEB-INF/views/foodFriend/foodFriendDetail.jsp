@@ -106,7 +106,7 @@
 					<div class="media-body">
 						<h4 class="media-heading">
 							<b class="info_name_f">${item.commentWriter}</b> <span>${item.commentIndate}</span>
-							<a onclick="#">답글</a>
+							<a onclick="#"></a>
 						</h4>
 						${item.comment} <br>
 					</div>
@@ -121,7 +121,7 @@
 			<form id="comment-form" action="/foodMate/comment.do?fno=${food.fno}"
 				method="post">
 				<div class="commentPic">
-					<img src="/resources/uploads/레시피등록대표사진.gif">
+					<img src="/resources/uploads/member/${sessionScope.uploadName}">
 				</div>
 				<div class="comment">
 					<textarea class="commentTextbox" name="comment"
