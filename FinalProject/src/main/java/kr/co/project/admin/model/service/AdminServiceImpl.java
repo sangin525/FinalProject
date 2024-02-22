@@ -171,6 +171,31 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.addNoticeComment(sqlSession,admin);
 	}
 
+	public List<AdminDTO> selectNoticeComment(int acno) {
+		
+		return adminDao.selectNoticeComment(sqlSession,acno);
+	}
+
+	public int ncommentCount(int acno) {
+
+		return adminDao.ncommentCount(sqlSession,acno);
+	}
+
+	public int addEventComment(AdminDTO admin) {
+		
+		return adminDao.addEventComment(sqlSession,admin);
+	}
+
+	public List<AdminDTO> selectEventComment(int eno) {
+		
+		return adminDao.selectEventComment(sqlSession,eno);
+	}
+
+	public int ecommentCount(int eno) {
+		
+		return adminDao.ecommentCount(sqlSession,eno);
+	}
+
 	
 	
 

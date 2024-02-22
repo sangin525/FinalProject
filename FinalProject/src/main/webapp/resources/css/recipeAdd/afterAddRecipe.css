@@ -127,21 +127,23 @@
 	text-align: center; 
 }
 
-.btn_list a {
+.btn_list button {
 	display: inline-block; 
 	margin-right: 60px; 
 	text-decoration: none; 
 	color: #333; 
 	font-size: 20px;
 	text-align: center; 
-	margin-bottom: 10px; 
+	margin-bottom: 10px;
+	background: transparent;
+	border: none;
 }
 
-.btn_list a:last-child {
+.btn_list button:last-child {
 	margin-right: 0; 
 }
 
-.btn_list a img {
+.btn_list button img {
 	margin-right: 5px; 
 	width: 100px;
 	height: 100px;
@@ -160,9 +162,18 @@
 }
 
 /* 재료 css */
-.best_tit b{
+
+.best_tit {
 	font-size: 30px;
+	font-weight: bold;
+	color: #333;
 }
+
+.best_tit span {
+	font-size: 14px;
+	color: #999;
+}
+
 
 .ready_ingre {
 	padding: 0 20px 18px;
@@ -178,12 +189,15 @@
 	font-size: 16px;
 	padding-left: 20px;
 	display: block;
+	margin-top:20px;
 }
 
 .ready_ingre ul {
 	padding: 0 0 25px 0;
-	width: 50%;
+	width: 100%;
 	vertical-align: top;
+	column-count: 2;
+	margin-bottom:0px;
 }
 
 .ready_ingre ul.case1 {
@@ -203,6 +217,8 @@
 	margin: 0 18px;
 	font-size: 16px;
 	font-weight: 300;
+
+	
 }
 
 .ready_ingre li a {
@@ -218,40 +234,52 @@
 }
 
 /* 조리과정 */
+
+
 .view_step {
-	padding: 35px 0 10px;
-	color: #555;
-	display: flex;
-	justify-content: space-between;
-	align-items: start;
-	
+    padding: 35px 0 10px;
+    color: #555;
 }
 
 .view_title {
-	font-size: 24px;
-	font-weight: bold;
-	color: #333;
+    font-size: 30px;
+    font-weight: bold;
+    color: #333;
 }
 
 .view_title span {
-	font-size: 14px;
-	color: #999;
+    font-size: 14px;
+    color: #999;
+}
+
+.view_step ol {
+    counter-reset: step;
+    font-size: 30px;
 }
 
 .stepSubtitle {
-	flex: 1;
-	font-size: 30px;
-	line-height: 1.6;
+    display: flex;
+    justify-content: space-between; 
+    align-items: start;
+    margin-bottom: 20px;
+    padding: 10px;
+    font-size: 30px;
+    line-height: 2;
+}
+.stepSubtitle:before {
+    font-size: 30px;
+    line-height: 2;
 }
 
 .stepImage {
-	margin-left: 20px;
+    margin-left: 20px;
 }
 
 .stepImage img {
-	max-width: 300px; /* 이미지 크기 조절이 필요하면 이 값을 변경하세요. */
-	height: auto;
+    width: 250px; 
+    height: 250px;
 }
+
 
 
 /* 프로필 소개 */
@@ -260,6 +288,10 @@
     font-size: 20px;
     color: #333;
     margin-bottom: 10px;
+}
+.profile_title span{
+	    font-size: 14px;
+    color: #999;
 }
 
 .profile_pic {
@@ -299,12 +331,14 @@
 /* 댓글 기능 css */
 
 .comment_title {
-    font-size: 26px;
-    margin-bottom: 25px;
+   font-size: 20px;
+    color: #333;
+    margin-bottom: 10px;
 }
 
 .comment_title span {
-    color: #649243;
+	    font-size: 14px;
+    color: #999;
 }
 
 .reply_list {
@@ -348,9 +382,6 @@
     color: #cdc;
 }
 
-.comment-section {
-    margin-top: 35px;
-}
 
 #comment-form {
     display: flex;
@@ -371,7 +402,7 @@
 }
 
 .commentPic img {
-    max-width: 100%;
+    max-width: 100px;
     max-height: 100%;
     border-radius: 50%;
 }
@@ -413,18 +444,45 @@
 }
 
 .comment_submit {
-    background-color: #649243;
-    color: white;
+    background-color: #5cb85c;
+    color:#fff;
     border: none;
     padding: 15px;
     cursor: pointer;
     border-radius: 7px;
     font-size: 22px;
     font-weight: bold;
-    margin-top: 15px;
+    margin-top: 25px;
     width: 145px;
 }
+.comment_submit:hover {
+		background-color: #449d44;
+}
 
+/* 디테일 버튼 */
+.recipe_btn {
+    display: flex;
+    width: 100%;
+
+    justify-content:center;
+}
+
+.recipe_btn button {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 22px;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    background-color: #5cb85c;
+    text-decoration: none;
+    transition: background-color 0.3s ease; 
+	margin-right: 50px;
+}
+
+.recipe_btn button:hover {
+    background-color:  #449d44; 
+}
 
 
 

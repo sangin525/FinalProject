@@ -8,7 +8,26 @@
 <result column="NC_IN_DATE" property="ncIndate"></result>
 <result column="AC_NO" property="acno"></result>
 <result column="M_NO" property="mno"></result>
-
 </resultMap>
 
+<select id="ncommentCount" resultType="_int">
+SELECT COUNT(*) FROM NOTICECOMMENT
+WHERE AC_NO=#{acno}
+</select>
+
+<select id="selectNoticeComment" resultMap="adminCommentResultSet">
+SELECT * FROM NOTICECOMMENT
+WHERE AC_NO=#{acno}
+ORDER BY NC_IN_DATE DESC
+</select>
+
+<insert id="addNoticeComment">
+	INSERT INTO NOTICECOMMENT VALUES(noticeComment_seq.NEXTVAL,
+					#{ncComment},
+					#{ncWriter},
+					SYSDATE,
+					#{acno},
+					#{mno}
+					)
+</insert>
 </mapper>

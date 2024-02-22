@@ -25,10 +25,12 @@ public class CartDAO {
 		return sqlSession.selectList("cartMapper.getCart", mno);
 	}
 
-	public CartDTO checkCart(SqlSessionTemplate sqlSession,CartDTO cart) {
-	
+	public CartDTO checkCart(SqlSessionTemplate sqlSession, CartDTO cart) {
 		return sqlSession.selectOne("cartMapper.checkCart", cart);
 	}
-	
+
+	public CartDTO getCartInfo(SqlSessionTemplate sqlSession, int sc_no) {
+		return sqlSession.selectOne("cartMapper.getCartInfo", sc_no);
+	}
 
 }

@@ -1,5 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
@@ -7,23 +7,26 @@
 <html>
 <head>
 <%@ include file="../../views/common/head.jsp"%>
-<link rel="stylesheet" href="/resources/css/recipeAdd/afterAddRecipe.css">
+<link rel="stylesheet"
+	href="/resources/css/recipeAdd/afterAddRecipe.css">
 <script src="/resources/js/member/afterAddRecipe.js"></script>
 </head>
 <body class="afterRecipeBody">
 
 	<%@ include file="../../views/common/header.jsp"%>
-			<%@ include file="../../views/common/nav.jsp" %>
+	<%@ include file="../../views/common/nav.jsp"%>
 
 
 	<div class="container">
-	
+
 		<div class="view_pic">
 			<div class="centeredcrop">
-				<img id="main_pic" src="/resources/uploads/recipe/${recipe.uploadName}">
+				<img id="main_pic"
+					src="/resources/uploads/recipe/${recipe.uploadName}">
 			</div>
 			<div class="user_info2">
-				<a class="info_user"><img src="/resources/uploads/member/${recipeChefProfile.uploadName}"></a>
+				<a class="info_user"><img
+					src="/resources/uploads/member/${recipeChefProfile.uploadName}"></a>
 			</div>
 			<span class="user_infoName">${recipe.memberNickName}</span>
 		</div>
@@ -34,16 +37,26 @@
 			<div class="view_summary_info">
 				<span class="view_summary_info1">${recipe.person}</span> <span
 					class="view_summary_info2">${recipe.time}</span> <span
-					class="view_summary_info3">${recipe.difficulty}</span> <br> <br> <br>
+					class="view_summary_info3">${recipe.difficulty}</span> <br> <br>
+				<br>
 			</div>
 			<div class="btn_list">
-				<form action="/recipe/scrapRecipe.do?rno=${recipe.rno}" method="POST">
-				<a><img src="/resources/uploads/스크랩사진누끼.png"><span>스크랩<b class="st2"></b>	<button type="submit"></button>	</span></a> 			
-				</form><a onclick=""> <img
-					src="/resources/uploads/공유사진누끼.png"><span>공유</span></a> <a
-					href="#"> <img src="/resources/uploads/댓글사진누끼.png"> <span>댓글
-						<b class="st3">${commentCount}</b>
-				</span></a>
+				<form action="/recipe/scrapRecipe.do?rno=${recipe.rno}"
+					method="POST">
+					<button type="submit">
+						<img src="/resources/uploads/스크랩사진누끼.png"><span>스크랩<b
+							class="st2"></b>
+						</span>
+					</button>
+					<button onclick="#">
+						<img src="/resources/uploads/공유사진누끼.png"><span>공유</span>
+					</button>
+					<button onclick="#">
+						<img src="/resources/uploads/댓글사진누끼.png"> <span>댓글 <b
+							class="st3">${commentCount}</b>
+						</span>
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -52,139 +65,77 @@
 	<div class="container">
 		<div class="cont_ingre2">
 			<div class="best_tit">
-				<b>재료</b><span> Ingredients</span>
+				<b>재료</b>&nbsp;<span>Ingredients</span>
 
 			</div>
 			<div class="ready_ingre" id="divConfirmedMaterialArea">
+				<b class="readyIngre">[재료]</b>
 				<ul>
-					<b class="readyIngre">[재료]</b>
-					<c:forEach begin="0" end="${ fn:length(ingredient)-1}" varStatus="status">
+					<c:forEach begin="0" end="${ fn:length(ingredient)-1}"
+						varStatus="status">
 						<li>${ingredient[status.index]}<span class="ingre_unit">${ingredientWeight[status.index]}</span></li>
-					</c:forEach>					
-				</ul>			
-			</div>		
+					</c:forEach>
+				</ul>
+			</div>
 		</div>
 	</div>
 
 	<div class="container">
 		<div class="cont_ingre2">
 			<div class="best_tit">
-				<b>카테고리</b><span> Category</span>
+				<b>카테고리</b>&nbsp;<span>Category</span>
 			</div>
 			<div class="ready_ingre" id="divConfirmedMaterialArea">
+				<b class="readyIngre">[카테고리]</b>
 				<ul>
-					<b class="readyIngre">[카테고리]</b>
-					<p>음식 종류 : ${recipe.foodCategory }</p>				
-					<p>상황별 : ${recipe.situationCategory }</p>				
-					<p>조리 방법 : ${recipe.howCategory }</p>				
-					<p>주재료 : ${recipe.ingredientCategory }</p>				
-				</ul>			
-			</div>		
+					<li>음식 종류 <span class="ingre_unit">${recipe.foodCategory }</span></li>
+					<li>상황별<span class="ingre_unit">${recipe.situationCategory }</span></li>
+					<li>조리 방법<span class="ingre_unit">${recipe.howCategory }</span></li>
+					<li>주재료<span class="ingre_unit">${recipe.ingredientCategory}</span></li>
+				</ul>
+			</div>
 		</div>
 	</div>
-	
-	
+
+
 
 	<div class="container">
 		<div class="view_step">
 			<div class="view_title">
-				<b>조리순서</b><span>Steps</span>
+				<b>조리순서</b>&nbsp;<span>Steps</span>
 			</div>
+			<ol>
+				<c:forEach begin="0" end="${ fn:length(sequence)-1}"
+					varStatus="status">
+					<li>
+						<div class="stepSubtitle">
+							${sequence[status.index]}
+							<c:if test="${not empty photoList[status.index]}">
+								<div class="stepImage">
+									<img
+										src="/resources/uploads/recipe/${photoList[status.index].fileName}">
+								</div>
+							</c:if>
+						</div>
+					</li>
+				</c:forEach>
+			</ol>
 		</div>
-		<div id="stepDiv1" class="view_step">		
-			<c:forEach begin="0" end="${ fn:length(sequence)-1}" varStatus="status">
-				<ul>
-				<li>${sequence[status.index]}</li>
-				</ul>
-			</c:forEach>
-			
-			</div>
-			
-			 <c:forEach var="item" items="${photoList}">
-			 <div class="stepImage">
-				<img src="/resources/uploads/recipe/${item.fileName}">
-			</div> 
-			 </c:forEach>
-		</div>
-		<!-- 
-		<div id="stepDiv2" class="view_step">
-			<div class="stepSubtitle">2. 김치도 먹기 좋은 크기로 쫑쫑 썹니다.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
 
-
-		</div>
-		<div id="stepDiv3" class="view_step">
-			<div class="stepSubtitle">3. 냄비에 들기름 2수저와 된장 1수저 넣고 수저로 섞어주세요.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
-
-		</div>
-		<div id="stepDiv4" class="view_step">
-			<div class="stepSubtitle">4. 섞은 양념은 약불에서 짙은 갈색이 될때까지 볶아줍니다.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
-
-		</div>
-		<div id="stepDiv5" class="view_step">
-			<div class="stepSubtitle">5. 썰어놓은 고기와 설탕 1/2수저 넣고 중불로 올려 볶아주세요.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
-
-		</div>
-		<div id="stepDiv6" class="view_step">
-			<div class="stepSubtitle">6. 고기 겉면이 익을 때까지 잘 볶아주세요.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
-
-		</div>
-		<div id="stepDiv7" class="view_step">
-			<div class="stepSubtitle">7. 썰어놓은 김치를 넣고 열심히 볶아주세요.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
-
-		</div>
-		<div id="stepDiv8" class="view_step">
-			<div class="stepSubtitle">8. 양념과 수분이 다 졸아들 때까지만 볶으시면 됩니다.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
-
-		</div>
-		<div id="stepDiv9" class="view_step">
-			<div class="stepSubtitle">9. 물 800ml를 넣고 강불로 끓여주세요.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
-
-		</div>
-		<div id="stepDiv10" class="view_step">
-			<div class="stepSubtitle">10. 강불에서 팔팔 끓으면 뚜껑 덮고 약불로 줄여 20분간
-				끓여주세요.</div>
-			<div class="stepImage">
-				<img src="/resources/uploads/고양이그림.png">
-			</div>
-
-		</div>
-		 -->
 	</div>
+
 
 
 	<div class="container">
 		<div class="profile">
 			<div class="profile_title">
-				<b>레시피 작성자</b><span>About the writer</span>
+				<b>레시피 작성자</b>&nbsp;<span>About the writer</span>
 			</div>
 		</div>
 
 		<div class="profile_pic">
-			<a href="#"><img src="/resources/uploads/member/${recipeChefProfile.uploadName}"></a>
+			<a href="#"><img
+				src="/resources/uploads/member/${recipeChefProfile.uploadName}"></a>
 
 			<div class="profile_cont">
 				<p class="cont_name">
@@ -196,132 +147,129 @@
 	</div>
 
 	<div class="container">
-	<c:if test="${sessionScope.memberNickName == recipe.memberNickName}">
-		<div class="comment_title">
-			<button type="submit" onclick="location.href='/recipe/editForm.do?rno=${recipe.rno}'">게시글 수정</button>
-			<button type="submit" onclick="location.href='/recipe/delete.do?rno=${recipe.rno}'">게시글 삭제</button>			
-		</div>
-	</c:if>
-		<br>
-		<div class="comment_title">
-			댓글 <span></span>
-		</div>
-		
-
 		<div class="commentList">
-
-			 <c:forEach var="item" items="${comment}" varStatus="status">
+		<div class="comment_title">
+				<b>댓글</b>&nbsp;<span>Comment</span>
+			</div>
+			<c:forEach var="item" items="${comment}" varStatus="status">
 				<div class="reply_list">
 					<div class="media-left">
-					<c:if test="${not empty memberResult }">
-						<a href="#"> <img class="profile_picture" src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
-					</c:if>
+						<c:if test="${not empty memberResult }">
+							<a href="#"> <img class="profile_picture"
+								src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
+						</c:if>
 					</div>
-							 ${item.comname}
+					${item.comname}
 					<div class="media-body">
 						<h4 class="media-heading">
 							<c:choose>
-							<c:when test="${item.star eq 5}">
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							</c:when>
-							
-							<c:when test="${item.star eq 4}">
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: lightgray;">★</span>
-							</c:when>
-							
-							<c:when test="${item.star eq 3}">
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: lightgray;">★</span>
-							<span  style="color: lightgray;">★</span>
-							</c:when>
-							
-							<c:when test="${item.star eq 2}">
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: lightgray;">★</span>
-							<span  style="color: lightgray;">★</span>
-							<span  style="color: lightgray;">★</span>
-							</c:when>
-							
-							<c:when test="${item.star eq 1}">
-							<span  style="color: goldenrod;">★</span>
-							<span  style="color: lightgray;">★</span>
-							<span  style="color: lightgray;">★</span>
-							<span  style="color: lightgray;">★</span>
-							<span  style="color: lightgray;">★</span>
-							</c:when>
+								<c:when test="${item.star eq 5}">
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+								</c:when>
+
+								<c:when test="${item.star eq 4}">
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: lightgray;">★</span>
+								</c:when>
+
+								<c:when test="${item.star eq 3}">
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: lightgray;">★</span>
+									<span style="color: lightgray;">★</span>
+								</c:when>
+
+								<c:when test="${item.star eq 2}">
+									<span style="color: goldenrod;">★</span>
+									<span style="color: goldenrod;">★</span>
+									<span style="color: lightgray;">★</span>
+									<span style="color: lightgray;">★</span>
+									<span style="color: lightgray;">★</span>
+								</c:when>
+
+								<c:when test="${item.star eq 1}">
+									<span style="color: goldenrod;">★</span>
+									<span style="color: lightgray;">★</span>
+									<span style="color: lightgray;">★</span>
+									<span style="color: lightgray;">★</span>
+									<span style="color: lightgray;">★</span>
+								</c:when>
 							</c:choose>
 
-							<br><br>
-							<b class="info_name_f">${item.comment}</b> ${item.rcInDate}<b></b><span></span>
-							<a onclick="#"></a><span></span>	<a>신고</a>
+							<br> <br> <b class="info_name_f">${item.comment}</b>
+							${item.rcInDate}<b></b><span></span> <a onclick="#"></a><span></span>
+							<a>신고</a>
 						</h4>
-						 <br>
+						<br>
 					</div>
-					</div>
+				</div>
 
 
-			</c:forEach> 
+			</c:forEach>
+		</div>
+
+
+		<div class="comment-section">
+		<div class="comment_title">
+				<b>댓글</b>&nbsp;<span>Comment</span>
 			</div>
+			<form id="comment-form" method="post"
+				action="/recipe/comment.do?rno=${recipe.rno}">
+				<input type="hidden" id="star" name="star">
+				<div class="commentPic">
+					<img src="/resources/uploads/member/${sessionScope.uploadName}">
+				</div>
 
-
-			<div class="comment-section">
-				<h2>댓글 남기기</h2>
-
-				<form id="comment-form" method="post" action="/recipe/comment.do?rno=${recipe.rno}">
-					<input type="hidden" id="star" name="star">
-					<div class="commentPic"><img src="/resources/uploads/member/${sessionScope.uploadName}"></div>
-
-					<div class="comment">
-						<div class="rating">
-							<span id="star" onclick="ratingTest(5);">★</span><span onclick="ratingTest(4);">★</span><span onclick="ratingTest(3);">★</span><span onclick="ratingTest(2);">★</span><span onclick="ratingTest(1);">★</span>
-						</div>
-
+				<div class="comment">
+					<div class="rating">
+						<span id="star" onclick="ratingTest(5);">★</span><span
+							onclick="ratingTest(4);">★</span><span onclick="ratingTest(3);">★</span><span
+							onclick="ratingTest(2);">★</span><span onclick="ratingTest(1);">★</span>
 					</div>
-						<textarea class="commentTextbox" name="comment"
-							placeholder="코멘트 및 후기를 써주세요!"></textarea>
-						<button type="submit" class="comment_submit">댓글작성</button>
 
-				</form>
-					</div>
+				</div>
+				<textarea class="commentTextbox" name="comment"
+					placeholder="코멘트 및 후기를 써주세요!"></textarea>
+				<button type="submit" class="comment_submit">댓글작성</button>
+
+			</form>
+		</div>
+	</div>
+	<div class="container">
+		<c:if test="${sessionScope.memberNickName == recipe.memberNickName}">
+			<div class="recipe_btn">
+				<button type="submit"
+					onclick="location.href='/recipe/editForm.do?rno=${recipe.rno}'">게시글
+					수정</button>
+				<button type="submit"
+					onclick="location.href='/recipe/delete.do?rno=${recipe.rno}'">게시글
+					삭제</button>
 			</div>
-
-		
-
-
+		</c:if>
+	</div>
 
 
 
 
 
+
+
+
 	<br>
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
+
+
+	<%@ include file="../../views/common/footer.jsp"%>
 </body>
 </html>
 <script>
