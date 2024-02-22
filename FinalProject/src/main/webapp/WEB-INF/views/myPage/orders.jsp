@@ -13,6 +13,9 @@
 <body class="Main_body">
 	<%@ include file="../../views/common/header.jsp"%>
 	<%@ include file="../../views/common/nav.jsp"%>
+	<%@ page import="java.util.ArrayList"%>
+	<%@ page import="kr.co.project.order.model.dto.OrderDetailDTO"%>
+	<%@ page import="kr.co.project.order.model.dto.OrderDTO"%>
 	<div class="myPage">
 		<h2>마이페이지</h2>
 		<div class="myPageContain">
@@ -23,50 +26,50 @@
 						<ul class="myPageNav">
 							<li><a>주문조회</a></li>
 						</ul>
-						
-						
-						<c:choose>
-							<c:when test="${orderDetailList != NULL}">
-								<c:forEach var="item" items="${orderDetailList}">
-										주문상세번호:${item.od_no}<br>
-										금액:${item.od_price}<br>
-										주문물품수량:${item.od_count}<br>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<div class="result_none">
-									<img src="/resources/uploads/카트.png">
-									<p>주문한 상품이 없습니다.</p>
-									신선한 재료와 원하시는 상품을 주문해보세요.<br> <br>
-									<button type="button" onclick="location.href='/products'"
-										class="btn-lg btn-primary">쇼핑하러 가기</button>
-								</div>
-							</c:otherwise>
-						</c:choose>
-						<c:choose>
-							<c:when test="${orderList != NULL}">
-								<c:forEach var="item" items="${orderList}">
-										주문상세번호:${item.o_no}<br>
-										결제금액:${item.o_payment_amount}<br>
-										받는사람이름:${item.o_recipient_name}<br>
-								</c:forEach>
+					</div>
 
-							</c:when>
-							<c:otherwise>
-								<div class="result_none">
-									<img src="/resources/uploads/카트.png">
-									<p>주문한 상품이 없습니다.</p>
-									신선한 재료와 원하시는 상품을 주문해보세요.<br> <br>
-									<button type="button" onclick="location.href='/products'"
-										class="btn-lg btn-primary">쇼핑하러 가기</button>
-								</div>
-							</c:otherwise>
-						</c:choose>
-						<div class="rightBar">
-							<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
-						</div>
+					<%
+					ArrayList<OrderDTO> orderList = (ArrayList<OrderDTO>) request.getAttribute("orderList");
+					ArrayList<OrderDetailDTO> orderDetailList = (ArrayList<OrderDetailDTO>) pageContext.findAttribute("orderDetailList");
+					for (OrderDTO order : orderList) {
+							int o_no = order.getO_no();
+					%>
+
+					<p>주문 번호:<%=order.getO_no()%></p>
+					<p>주문 날짜:<%=order.getO_order_date()%></p>
+					<br>
+
+					<%
+							for (OrderDetailDTO orderDetail : orderDetailList) {
+								if (orderDetail.getO_no() == o_no) {
+					%>
+
+					<p>주문상세번호:<%=orderDetail.getOd_no()%></p>
+					<p>가격:<%=orderDetail.getOd_price()%></p>
+					<p>주문물품수량:<%=orderDetail.getOd_count()%></p>
+					<p>주문번호:<%=orderDetail.getO_no()%></p>
+					<p>상품번호:<%=orderDetail.getG_no()%></p>
+					<br>
+
+					<%
+							}
+						}
+					%>
+
+					<p>결제 금액:<%=order.getO_payment_amount()%></p>
+					<br> <br> <br>
+
+					<%
+					}
+					%>
+
+					<div class="rightBar">
+						<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
 					</div>
 				</div>
-				<%@ include file="../../views/common/footer.jsp"%>
+			</div>
+		</div>
+	</div>
+	<%@ include file="../../views/common/footer.jsp"%>
 </body>
 </html>
