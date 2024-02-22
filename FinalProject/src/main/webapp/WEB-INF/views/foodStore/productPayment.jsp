@@ -60,9 +60,7 @@
 							<c:choose>
 								<c:when test="${goodsInfo != NULL}">
 									<tr class="cart__list__detail">
-										<td><input type="checkbox" class="itemCheck"></td>
-										<td><img
-											src="/resources/uploads/goods/${goodsInfo.g_file_name}">
+										<td><img src="/resources/uploads/goods/${goodsInfo.g_file_name}">
 										</td>
 										<td>
 											<p>${goodsInfo.g_name}</p> <span class="price">${goodsInfo.g_price}원</span>
@@ -362,42 +360,48 @@
 
 		<c:choose>
 			<c:when test="${cartList != NULL}">
-<form action="/order/makeOrderFromCart.do" method="post">
-<input type="hidden" name="sc_noForOrder" value="${sc_noForOrder}">
-<input type="hidden" name="o_recipient_name" value="${defaultDelivery.d_name}">
-<input type="hidden" name="o_postal_address" value="${defaultDelivery.d_postal_address}">
-<input type="hidden" name="o_address" value="${defaultDelivery.d_address}"> 
-<input type="hidden" name="o_detailed_address" value="${defaultDelivery.d_detailAdress}">
-<input type="hidden" name="o_recipient_phone" value="${defaultDelivery.d_phone}">
-<input type="hidden" id="o_payment_amount" name="o_payment_amount" value="">
-<button type="submit" id="makeOrder" style="display: none;"></button>
-</form>
+				<form action="/order/makeOrderFromCart.do" method="post">
+					<input type="hidden" name="sc_noForOrder" value="${sc_noForOrder}">
+					<input type="hidden" name="o_recipient_name" value="${defaultDelivery.d_name}"> 
+					<input type="hidden" name="o_postal_address" value="${defaultDelivery.d_postal_address}"> 
+					<input type="hidden" name="o_address" value="${defaultDelivery.d_address}"> 
+					<input type="hidden" name="o_detailed_address" value="${defaultDelivery.d_detailAdress}"> 
+					<input type="hidden" name="o_recipient_phone" value="${defaultDelivery.d_phone}"> 
+					<input type="hidden" id="o_payment_amount" name="o_payment_amount" value="">
+					<button type="submit" id="makeOrder" style="display: none;"></button>
+				</form>
 			</c:when>
 			<c:otherwise>
 				<c:choose>
 					<c:when test="${goodsInfo != NULL}">
-<form action="/order/makeOrder.do" method="post">
-<input type="hidden" name="g_no" value="${goodsInfo.g_no}"> 
-<input type="hidden" name="g_count" value="${g_count}"> 
-<input type="hidden" name="o_recipient_name" value="${defaultDelivery.d_name}">
-<input type="hidden" name="o_postal_address" value="${defaultDelivery.d_postal_address}">
-<input type="hidden" name="o_address" value="${defaultDelivery.d_address}"> 
-<input type="hidden" name="o_detailed_address" value="${defaultDelivery.d_detailAdress}">
-<input type="hidden" name="o_recipient_phone" value="${defaultDelivery.d_phone}">
-<input type="hidden" id="o_payment_amount" name="o_payment_amount" value="">
-<button type="submit" id="makeOrder" style="display: none;"></button>
-</form>
+						<form action="/order/makeOrderFromGoods.do" method="post">
+							<input type="hidden" name="g_no" value="${goodsInfo.g_no}">
+							<input type="hidden" name="g_count" value="${g_count}"> <input
+								type="hidden" name="section_Price" value="${section_Price}">
+							<input type="hidden" name="o_recipient_name" value="${defaultDelivery.d_name}">
+							<input type="hidden" name="o_postal_address" value="${defaultDelivery.d_postal_address}">
+							<input type="hidden" name="o_address" value="${defaultDelivery.d_address}">
+							<input type="hidden" name="o_detailed_address" value="${defaultDelivery.d_detailAdress}"> 
+							<input type="hidden" name="o_recipient_phone" value="${defaultDelivery.d_phone}"> 
+							<input type="hidden" id="o_payment_amount" name="o_payment_amount" value="">
+							<button type="submit" id="makeOrder" style="display: none;"></button>
+						</form>
 					</c:when>
 					<c:otherwise>
-<form action="/order/makeOrder.do" method="post">
-<input type="hidden" name="o_recipient_name" value="${defaultDelivery.d_name}">
-<input type="hidden" name="o_postal_address" value="${defaultDelivery.d_postal_address}">
-<input type="hidden" name="o_address" value="${defaultDelivery.d_address}"> 
-<input type="hidden" name="o_detailed_address" value="${defaultDelivery.d_detailAdress}">
-<input type="hidden" name="o_recipient_phone" value="${defaultDelivery.d_phone}">
-<input type="hidden" id="o_payment_amount" name="o_payment_amount" value="">
-<button type="submit" id="makeOrder" style="display: none;"></button>
-</form>
+						<form action="/order/makeOrder.do" method="post">
+							<input type="hidden" name="o_recipient_name"
+								value="${defaultDelivery.d_name}"> <input type="hidden"
+								name="o_postal_address"
+								value="${defaultDelivery.d_postal_address}"> <input
+								type="hidden" name="o_address"
+								value="${defaultDelivery.d_address}"> <input
+								type="hidden" name="o_detailed_address"
+								value="${defaultDelivery.d_detailAdress}"> <input
+								type="hidden" name="o_recipient_phone"
+								value="${defaultDelivery.d_phone}"> <input type="hidden"
+								id="o_payment_amount" name="o_payment_amount" value="">
+							<button type="submit" id="makeOrder" style="display: none;"></button>
+						</form>
 					</c:otherwise>
 				</c:choose>
 			</c:otherwise>

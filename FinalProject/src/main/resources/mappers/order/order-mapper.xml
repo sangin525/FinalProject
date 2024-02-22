@@ -7,12 +7,14 @@
 		<result column="o_recipient_name" property="o_recipient_name" />
 		<result column="o_postal_address" property="o_postal_address" />
 		<result column="o_address" property="o_address" />
-		<result column="o_detailed_address" property="o_detailed_address" />
+		<result column="o_detailed_address"
+			property="o_detailed_address" />
 		<result column="o_recipient_phone" property="o_recipient_phone" />
 		<result column="o_order_date" property="o_order_date" />
 		<result column="o_payment_amount" property="o_payment_amount" />
 		<result column="o_order_status" property="o_order_status" />
-		<result column="o_status_change_date" property="o_status_change_date" />
+		<result column="o_status_change_date"
+			property="o_status_change_date" />
 		<result column="m_no" property="m_no" />
 	</resultMap>
 
@@ -52,20 +54,39 @@
 		#{g_no}
 		)
 	</insert>
-	
+
 	<select id="getO_no" parameterType="order"
-	resultMap="orderResultSet">
-	SELECT * FROM
+		resultMap="orderResultSet">
+		SELECT * FROM
 		(SELECT * FROM orders
 		WHERE M_NO = #{m_no}
-		AND o_recipient_name = #{o_recipient_name}
-		AND o_postal_address = #{o_postal_address}
-		AND o_payment_amount =#{o_payment_amount}
-		ORDER BY O_NO DESC)
-		WHERE ROWNUM =1
-
+		AND
+		o_recipient_name =
+		#{o_recipient_name}
+		AND o_postal_address =
+		#{o_postal_address}
+		AND
+		o_payment_amount =#{o_payment_amount}
+		ORDER BY
+		O_NO DESC)
+		WHERE ROWNUM
+		=1
 	</select>
-	
+
+
+	<select id="getOrderList" parameterType="_int"
+		resultMap="orderResultSet">
+		SELECT * FROM ORDERS
+		WHERE M_NO =#{m_no}
+		ORDER BY O_NO DESC
+	</select>
+
+	<select id="getOrderDetailList" parameterType="_int"
+		resultMap="orderDetailResultSet">
+		SELECT * FROM ORDERDETAIL
+		WHERE O_NO=#{o_no}
+	</select>
+
 
 
 </mapper>
