@@ -58,7 +58,7 @@
 	
 
 	<div class="comment_title">
-			댓글 <span>${commentCount}</span>
+			댓글 <span>${ncommentCount}</span>
 
 		</div>
 		<div class="commentList">
@@ -74,7 +74,7 @@
 						<b class="info_name_f">${item.ncWriter }</b> <span>${item.ncIndate }</span> <a
 							onclick="#"></a>
 					</h4>
-					${item.comment} <br>
+					${item.ncComment} <br>
 				</div>
 
 			</div>
