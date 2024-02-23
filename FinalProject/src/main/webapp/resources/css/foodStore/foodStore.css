@@ -364,6 +364,10 @@
 	padding-bottom: 30px;
 }
 
+.detail-img img{
+	width: 85%;
+}
+
 .detail-img-pull {
 	margin-top: 50px;
 	background: #fff;

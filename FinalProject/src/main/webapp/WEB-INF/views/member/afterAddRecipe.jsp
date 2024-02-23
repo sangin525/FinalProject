@@ -219,7 +219,6 @@
 
 		<div class="comment-section">
 		<div class="comment_title">
-				<b>댓글</b>&nbsp;<span>Comment</span>
 			</div>
 			<form id="comment-form" method="post"
 				action="/recipe/comment.do?rno=${recipe.rno}">

@@ -92,6 +92,8 @@
 	flex: 0 0 24%; /* 100%를 4로 나눈 값 */
     max-width: 24%; /* 100%를 4로 나눈 값 */
     box-sizing: border-box;
+    display: flex;
+    justify-content: center;
 }
 
 .rank-image{
@@ -107,6 +109,7 @@
 }
 
 .recipeTitle{
+	width: 252px;
 	font-size: 15px;
 }
 
@@ -125,15 +128,22 @@
 
 .rankingNum {
 	position: absolute;
-    top: 45px; /* 위치 조정 */
-    left: 10px; /* 위치 조정 */
+    top: 30px; /* 위치 조정 */
+    left: 30px; /* 위치 조정 */
     border: 1px solid;
     z-index: 100;
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     text-align: center;
     background-color: white;
+    border-radius: 5px;
 }
+
+.rankingNum b {
+    font-size: 20px;
+	
+}
+
 /* 검색어 랭킹 */
 
 .searchWordRanking{

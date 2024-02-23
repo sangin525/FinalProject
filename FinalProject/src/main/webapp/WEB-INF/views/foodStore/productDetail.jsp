@@ -94,11 +94,11 @@
 					</ul>
 				</div>
 				<div class="detail-img" id=detail-img>
-					<img src="/resources/uploads/가습기.jpg"> 
-                    <img src="/resources/uploads/가습기2.jpg"> 
-                    <img src="/resources/uploads/가습기3.jpg"> 
-                    <img src="/resources/uploads/가습기4.jpg"> 
-                    <img src="/resources/uploads/가습기5.jpg">
+					<img src="/resources/uploads/a.png"> 
+                    <img src="/resources/uploads/b.png"> 
+                    <img src="/resources/uploads/c.png"> 
+                    <img src="/resources/uploads/d.png"> 
+                    <img src="/resources/uploads/e.jpg"> 
 				</div>
 				<div class="detail-img-pull">
 					<a>상세정보 더보기</a>

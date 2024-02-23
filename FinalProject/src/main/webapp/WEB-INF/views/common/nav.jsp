@@ -4,8 +4,9 @@
 
 <div class="nav">
 	<div class="nav-content">
-		<a href="/recipe/rankingRecipe.do">레시피 랭킹</a> <a
-			href="/recipe/categoryList.do">분류</a> <a href="/products">상품 구매하기</a>
+		<a href="/recipe/rankingRecipe.do">레시피 랭킹</a> 
+		<a href="/recipe/categoryList.do" onclick="resetCategory()">분류</a> 
+		<a href="/products">상품 구매하기</a>
 		<div class="dropdown">
 			<a href="#">게시판</a>
 			<div class="dropdown-content">
@@ -18,3 +19,12 @@
 
 	</div>
 </div>
+
+<script>
+function resetCategory() {
+    sessionStorage.removeItem('activeCategoryNav1');
+    sessionStorage.removeItem('activeCategoryNav2');
+    sessionStorage.removeItem('activeCategoryNav3');
+    sessionStorage.removeItem('activeCategoryNav4');
+}
+</script>

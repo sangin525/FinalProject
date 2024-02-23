@@ -109,6 +109,13 @@
 	background-color:rgb(224, 162, 86);
 }
 
+.page-item.active .page-link {
+    border-radius: 5px;
+	color:white;;
+	border:1px solid rgb(224, 162, 86);
+	background-color:rgb(224, 162, 86);
+}
+
 .category_main {
 	background-color: white;
 	width: 1332px;
