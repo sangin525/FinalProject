@@ -26,10 +26,14 @@
 						</div>
 						<div class="product-sub-img">
 							<img src="/resources/uploads/goods/${goods.g_file_name}"> 
-                            <img src="/resources/uploads/category/cate1_02.png"> 
+						<c:forEach var="item" items="${thumbnailList}">    
+						 	<img src="/resources/uploads/goods/${item.gp_file_name}"> 
+						</c:forEach>
+
+                         <!--    <img src="/resources/uploads/category/cate1_02.png"> 
                             <img src="/resources/uploads/category/cate1_03.png"> 
                             <img src="/resources/uploads/category/cate1_04.png"> 
-                            <img src="/resources/uploads/category/cate1_05.png">
+                            <img src="/resources/uploads/category/cate1_05.png"> -->
 						</div>
 					</div>
 					<form method="post" id="goodsform" action="">
@@ -94,11 +98,14 @@
 					</ul>
 				</div>
 				<div class="detail-img" id=detail-img>
-					<img src="/resources/uploads/가습기.jpg"> 
+						<c:forEach var="item" items="${detailedImagelList}">    
+						 	<img src="/resources/uploads/goods/${item.gp_file_name}"> 
+						</c:forEach>
+				<!-- 	<img src="/resources/uploads/가습기.jpg"> 
                     <img src="/resources/uploads/가습기2.jpg"> 
                     <img src="/resources/uploads/가습기3.jpg"> 
                     <img src="/resources/uploads/가습기4.jpg"> 
-                    <img src="/resources/uploads/가습기5.jpg">
+                    <img src="/resources/uploads/가습기5.jpg"> -->
 				</div>
 				<div class="detail-img-pull">
 					<a>상세정보 더보기</a>
