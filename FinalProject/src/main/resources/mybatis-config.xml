@@ -18,6 +18,7 @@
 		
 		
 		<typeAlias type="kr.co.project.goods.model.dto.GoodsDTO" alias="goods"/>
+		<typeAlias type="kr.co.project.goods.model.dto.GoodsPhotosDTO" alias="goodsPhotos"/>
 		<typeAlias type="kr.co.project.chat.model.dto.ChatRoomDTO" alias="chatRoom"/>
 		<typeAlias type="kr.co.project.chat.model.dto.ChatMsgDTO" alias="chatMsg"/> 
 		<typeAlias type="kr.co.project.cart.model.dto.CartDTO" alias="cart"/>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.goods.model.dto.GoodsDTO;
+import kr.co.project.goods.model.dto.GoodsPhotosDTO;
 
 @Repository
 public class GoodsDAO {
@@ -31,5 +32,32 @@ public class GoodsDAO {
 
 	public int changeStock(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
 		return sqlSession.update("goodsMapper.changeStock", goodsDTO);
+	}
+
+	public int addGoodsPhotos(SqlSessionTemplate sqlSession, List<GoodsPhotosDTO> goodsPhotoList) {
+
+		int check = goodsPhotoList.size();
+
+		int result = 0;
+
+		for (int i = 0; i < goodsPhotoList.size(); i++) {
+			int plus = sqlSession.insert("goodsMapper.addGoodsPhotos", goodsPhotoList.get(i));
+			result += plus;
+		}
+
+		if (check == result) {
+			return 1;
+		} else {
+			return 0;
+		}
+
+	}
+
+	public int getG_no(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
+		return sqlSession.selectOne("goodsMapper.getG_no", goodsDTO);
+	}
+
+	public List<GoodsPhotosDTO> goodsPhotosList(SqlSessionTemplate sqlSession, int g_no) {
+		return sqlSession.selectList("goodsMapper.goodsPhotosList", g_no);
 	}
 }

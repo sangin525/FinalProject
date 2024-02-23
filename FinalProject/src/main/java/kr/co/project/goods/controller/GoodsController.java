@@ -1,5 +1,6 @@
 package kr.co.project.goods.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -17,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
+import kr.co.project.common.upload.MultiUploadFile;
 import kr.co.project.common.upload.UploadFile;
 import kr.co.project.goods.model.dto.GoodsDTO;
+import kr.co.project.goods.model.dto.GoodsPhotosDTO;
 import kr.co.project.goods.model.service.GoodsServiceImpl;
 
 @Controller
@@ -46,10 +49,12 @@ public class GoodsController {
 			HttpSession session) {
 		int mno = (int) session.getAttribute("mno");
 		GoodsDTO result = goodsService.detailGoods(g_no);
-		
+		List<GoodsPhotosDTO> goodsPhotosList = goodsService.goodsPhotosList(g_no);
+
 		if (!Objects.isNull(result)) {
-			model.addAttribute("m_no",mno);
+			model.addAttribute("m_no", mno);
 			model.addAttribute("goods", result);
+			model.addAttribute("goodsPhotosList", goodsPhotosList);
 			return "foodStore/productDetail";
 		} else {
 
@@ -73,6 +78,34 @@ public class GoodsController {
 			System.out.println("상품 등록 실패");
 			return "common/error";
 		}
+	}
+
+	@PostMapping("/manyPhotosGoods.do")
+	public String manyPhotosGoods(GoodsDTO goodsDTO, List<MultipartFile> multiFileList, HttpSession session,
+			Model model) {
+
+		List<GoodsPhotosDTO> goodsPhotoList = new ArrayList<>();
+		if (goodsPhotoList == null) {
+			goodsPhotoList = new ArrayList<>();
+			System.out.println("빌공");
+		}
+
+		if (multiFileList != null && !multiFileList.isEmpty()) {
+		    MultiUploadFile.goodsUploadMethod(multiFileList, session, goodsDTO, goodsPhotoList);
+		}else {
+			System.out.println("사진이 없음 수고하세요");
+		}
+
+		int result = goodsService.manyPhotosGoods(goodsDTO, goodsPhotoList);
+
+		if (result > 0) {
+
+			return "redirect:/goods/list.do";
+		} else {
+			System.out.println("상품 등록 실패");
+			return "common/error";
+		}
+
 	}
 
 }
