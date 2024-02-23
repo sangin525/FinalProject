@@ -250,10 +250,13 @@ public class OrderController {
 		for (OrderDTO order : orderList) {
 			List<OrderDetailDTO> inOneOrder = orderService.getOrderDetailList(order.getO_no());
 			for (OrderDetailDTO orderDetail : inOneOrder) {
+				GoodsDTO goodsInfo = goodsService.detailGoods(orderDetail.getG_no());
+				orderDetail.setG_name(goodsInfo.getG_name());
+				orderDetail.setG_file_name(goodsInfo.getG_file_name());
+				orderDetail.setG_price(goodsInfo.getG_price());
 				orderDetailList.add(orderDetail);
 			}
 		}
-
 		model.addAttribute("orderList", orderList);
 		model.addAttribute("orderDetailList", orderDetailList);
 

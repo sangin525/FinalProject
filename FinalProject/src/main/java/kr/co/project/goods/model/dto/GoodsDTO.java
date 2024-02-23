@@ -25,6 +25,7 @@ public class GoodsDTO {
 	private int g_stock;
 	private String g_delete_check;
 	
+
 	private int i_no;
 	private String i_writer;
 	private String i_email;
@@ -34,4 +35,8 @@ public class GoodsDTO {
 	private String i_secret;
 	private String i_answerCheck;
 	private int m_no;
+
+	
+	private int gp_type ;
+
 }

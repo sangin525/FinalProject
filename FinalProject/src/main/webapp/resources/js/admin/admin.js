@@ -9,21 +9,6 @@ $(function() {
 });
 
 
-//판매가격 구하기
-document.addEventListener('DOMContentLoaded', function() {
-	document.getElementById('productDiscount').addEventListener('input', calculatePrice);
-	document.getElementById('costPrice').addEventListener('input', calculatePrice);
-});
-
-function calculatePrice() {
-	var discount = document.getElementById('productDiscount').value;
-	var cost = document.getElementById('costPrice').value;
-
-	if (discount && cost) {
-		var sellingPrice = cost * (1 - discount / 100);
-		document.getElementById('sellingPrice').textContent = '판매가격 : ' + sellingPrice;
-	}
-}
 
 //이미지 업로드 js
 window.addEventListener('DOMContentLoaded', () => {

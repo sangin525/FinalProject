@@ -11,14 +11,17 @@
 
 </head>
 <body class="Main_body">
-   <%@ include file="../../views/common/header.jsp"%>
-   <%@ include file="../../views/common/nav.jsp"%>
 
-   <div class="myPage">
-      <h2>마이페이지</h2>
-      <div class="myPageContain">
-         <div class="container">
-            <%@ include file="../../views/myPage/myPageMenu.jsp"%>
+	<%@ include file="../../views/common/header.jsp"%>
+	<%@ include file="../../views/common/nav.jsp"%>
+
+
+	<div class="myPage">
+		<h2>마이페이지</h2>
+		<div class="myPageContain">
+			<div class="container">
+				<%@ include file="../../views/myPage/myPageMenu.jsp"%>
+
 
             <div class="content">
                <div class="chef_cont">
@@ -71,59 +74,60 @@
                      </c:choose>
                   </div>
 
-               </div>
 
-            </div>
-            <div class="pageBtn">
-               <ul class="pagination justify-content-center">
-                  <c:choose>
-                     <c:when test="${pi.cpage eq 1}">
-                        <li class="page-item"><a class="page-link" href="#"
-                           aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-                        </a></li>
-                     </c:when>
-                     <c:otherwise>
-                        <li class="page-item"><a class="page-link"
-                           href="/recipe/scrapRecipeList.do?cpage=${pi.cpage-1}"
-                           aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
-                        </a></li>
-                     </c:otherwise>
-                  </c:choose>
+					</div>
 
-                  <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-                     <li class="page-item"><a class="page-link"
-                        href="/recipe/scrapRecipeList.do?cpage=${page}">${page}</a></li>
-                  </c:forEach>
+				</div>
+				<div class="pageBtn">
+					<ul class="pagination justify-content-center">
+						<c:choose>
+							<c:when test="${pi.cpage eq 1}">
+								<li class="page-item"><a class="page-link" href="#"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link"
+									href="/recipe/scrapRecipeList.do?cpage=${pi.cpage-1}"
+									aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+								</a></li>
+							</c:otherwise>
+						</c:choose>
 
-                  <c:choose>
-                     <c:when test="${pi.cpage eq pi.maxPage}">
-                        <li class="page-item"><a class="page-link" href="#"
-                           aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-                        </a></li>
-                     </c:when>
-                     <c:otherwise>
-                        <li class="page-item"><a class="page-link"
-                           href="/recipe/scrapRecipeList.do?cpage=${pi.cpage+1}"
-                           aria-label="Next"> <span aria-hidden="true">&raquo;</span>
-                        </a></li>
-                     </c:otherwise>
-                  </c:choose>
-               </ul>
-            </div>
-         </div>
-         <div class="rightBar">
-            <%@ include file="../../views/myPage/mypageSidebar.jsp"%>
-         </div>
-      </div>
-   </div>
-   <!-- <div class="result_none">
-                           <img src="/resources/uploads/스크랩사진누끼.png">
-                           <p>사람들의 레시피를 스크랩해보세요!</p>
-                           레시피를 스크립하고 두고두고 맛있는 레시피로 요리해보세요.<br><br>
-                           <button type="button"
-                              onclick="location.href='/ranking_recipe'"
-                              class="btn-lg btn-primary">레시피 구경하러가기</button>
-                        </div>  -->
+						<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+							<li class="page-item"><a class="page-link"
+								href="/recipe/scrapRecipeList.do?cpage=${page}">${page}</a></li>
+						</c:forEach>
+
+						<c:choose>
+							<c:when test="${pi.cpage eq pi.maxPage}">
+								<li class="page-item"><a class="page-link" href="#"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</c:when>
+							<c:otherwise>
+								<li class="page-item"><a class="page-link"
+									href="/recipe/scrapRecipeList.do?cpage=${pi.cpage+1}"
+									aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+								</a></li>
+							</c:otherwise>
+						</c:choose>
+					</ul>
+				</div>
+			</div>
+			<div class="rightBar">
+				<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
+			</div>
+		</div>
+	</div>
+	<!-- <div class="result_none">
+									<img src="/resources/uploads/스크랩사진누끼.png">
+									<p>사람들의 레시피를 스크랩해보세요!</p>
+									레시피를 스크립하고 두고두고 맛있는 레시피로 요리해보세요.<br><br>
+									<button type="button"
+										onclick="location.href='/ranking_recipe'"
+										class="btn-lg btn-primary">레시피 구경하러가기</button>
+								</div>  -->
 
 
    <%@ include file="../../views/common/footer.jsp"%>

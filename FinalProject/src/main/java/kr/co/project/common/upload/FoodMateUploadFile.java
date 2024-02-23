@@ -24,7 +24,9 @@ public class FoodMateUploadFile {
 
 
 
+
 private static final String UPLOAD_PATH="C:\\Users\\pje97\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
+
 
 
 

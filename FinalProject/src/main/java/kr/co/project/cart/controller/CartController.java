@@ -11,7 +11,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -24,7 +23,7 @@ import kr.co.project.goods.model.service.GoodsServiceImpl;
 @RequestMapping("/cart")
 public class CartController {
 
-	@Autowired 
+	@Autowired
 	private CartServiceImpl cartService;
 
 	@Autowired
@@ -58,14 +57,19 @@ public class CartController {
 		int mno = (int) session.getAttribute("mno");
 		List<CartDTO> cartList = cartService.getCart(mno);
 
-		for (CartDTO cartDTO : cartList) {
-			GoodsDTO goodsInfo = goodsService.detailGoods(cartDTO.getG_no());
-			cartDTO.setG_name(goodsInfo.getG_name());
-			cartDTO.setG_price(goodsInfo.getG_price());
-			cartDTO.setG_regular_price(goodsInfo.getG_regular_price());
-			cartDTO.setG_file_name(goodsInfo.getG_file_name());
+		if (!Objects.isNull(cartList)) {
+
+			for (CartDTO cartDTO : cartList) {
+				GoodsDTO goodsInfo = goodsService.detailGoods(cartDTO.getG_no());
+				cartDTO.setG_name(goodsInfo.getG_name());
+				cartDTO.setG_price(goodsInfo.getG_price());
+				cartDTO.setG_regular_price(goodsInfo.getG_regular_price());
+				cartDTO.setG_file_name(goodsInfo.getG_file_name());
+			}
+			System.out.println();
+		} else {
+
 		}
-		System.out.println();
 
 		model.addAttribute("cartList", cartList);
 		return "myPage/cart";

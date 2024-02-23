@@ -13,27 +13,49 @@ function toggleCategory() {
 };
   
 $(document).ready(function(){
-    var recipeTitle = new URLSearchParams(window.location.search).get('recipeTitle');
-    
-    if(recipeTitle){ // mainCategory.jsp에서 클릭해서 들어왔을 경우
-        $(".categoryList1 a").each(function() {
-            if ($(this).text() == recipeTitle) {
-                $(this).addClass('active');
-            } else {
-                $(this).removeClass('active');
-            }
-        });
-    } else { // mainCategory.jsp를 통하지 않고 들어왔을 경우
-        $(".categoryList1 a").first().addClass("active");
+    var activeCategoryNav1 = sessionStorage.getItem('activeCategoryNav1');
+    var activeCategoryNav2 = sessionStorage.getItem('activeCategoryNav2');
+    var activeCategoryNav3 = sessionStorage.getItem('activeCategoryNav3');
+    var activeCategoryNav4 = sessionStorage.getItem('activeCategoryNav4');
+
+    applyActiveClass('.categoryList1', activeCategoryNav1);
+    applyActiveClass('.categoryList2', activeCategoryNav2);
+    applyActiveClass('.categoryList3', activeCategoryNav3);
+    applyActiveClass('.categoryList4', activeCategoryNav4);
+
+	var urlParams = new URLSearchParams(window.location.search);
+	var recipeTitle_main = urlParams.get('recipeTitle_main');
+	    
+	    if (recipeTitle_main) {
+	        $(".categoryList1 a").each(function() {
+	            if ($(this).text() === recipeTitle_main) {
+	                $(this).addClass("active");
+	            } else {
+	                $(this).removeClass("active");
+	            }
+	        });
+	    }
+
+    function applyActiveClass(categoryListClass, activeCategoryNav){
+        if(activeCategoryNav){
+            $(categoryListClass + " a").removeClass("active");
+            $(categoryListClass + " a:contains('" + activeCategoryNav + "')").addClass("active");
+        } else {
+            $(categoryListClass + " a:first").addClass("active");
+        }
     }
-    
-    $(".categoryList2 a").first().addClass("active");
-    $(".categoryList3 a").first().addClass("active");
-    $(".categoryList4 a").first().addClass("active");
 
     $(".categoryContain a").click(function(){
-        $(this).siblings().removeClass("active");
-        $(this).addClass("active");
+        var clickedLink = $(this);
+        var categoryList = clickedLink.parent();
+        var categoryListClass = "." + categoryList.attr('class');
+
+        categoryList.find("a").removeClass("active");
+        clickedLink.addClass("active");
+
+        var activeNavText = clickedLink.text();
+        sessionStorage.setItem('activeCategoryNav'+ categoryListClass.charAt(categoryListClass.length-1), activeNavText);
+
         filterList();
     });
 

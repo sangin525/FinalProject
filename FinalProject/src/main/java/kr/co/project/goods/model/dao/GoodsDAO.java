@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.goods.model.dto.GoodsDTO;
+import kr.co.project.goods.model.dto.GoodsPhotosDTO;
 
 @Repository
 public class GoodsDAO {
@@ -32,6 +33,7 @@ public class GoodsDAO {
 	public int changeStock(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
 		return sqlSession.update("goodsMapper.changeStock", goodsDTO);
 	}
+
 
 	public int addInquiry(SqlSessionTemplate sqlSession, GoodsDTO goods) {
 		
@@ -59,4 +61,51 @@ public class GoodsDAO {
 		
 		return sqlSession.update("inquiryMapper.updateAnswerCheck",goods);
 	}
+
+	public int addGoodsPhotos(SqlSessionTemplate sqlSession, List<GoodsPhotosDTO> goodsPhotoList) {
+
+		int check = goodsPhotoList.size();
+
+		int result = 0;
+
+		for (int i = 0; i < goodsPhotoList.size(); i++) {
+			int plus = sqlSession.insert("goodsMapper.addGoodsPhotos", goodsPhotoList.get(i));
+			result += plus;
+		}
+
+		if (check == result) {
+			return 1;
+		} else {
+			return 0;
+		}
+
+	}
+
+	public int addDetailPhotos(SqlSessionTemplate sqlSession, List<GoodsPhotosDTO> detailPhotoList) {
+		int check = detailPhotoList.size();
+
+		int result = 0;
+
+		for (int i = 0; i < detailPhotoList.size(); i++) {
+			int plus = sqlSession.insert("goodsMapper.addDetailPhotos", detailPhotoList.get(i));
+			result += plus;
+		}
+
+		if (check == result) {
+			return 1;
+		} else {
+			return 0;
+		}
+
+	}
+
+	public int getG_no(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
+		return sqlSession.selectOne("goodsMapper.getG_no", goodsDTO);
+	}
+
+	public List<GoodsPhotosDTO> goodsPhotosList(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
+		return sqlSession.selectList("goodsMapper.goodsPhotosList", goodsDTO);
+	}
+
+
 }

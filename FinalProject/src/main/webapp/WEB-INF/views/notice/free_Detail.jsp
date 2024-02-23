@@ -72,10 +72,11 @@
 				</div>
 				<div class="media-body">
 					<h4 class="media-heading">
-						<b class="info_name_f">${item.fcwriter }</b> <span>${item.fcIndate }</span> <a
-							onclick="#"></a>
+						<b class="info_name_f">${item.fcwriter }</b> <span id="date">${item.fcIndate }</span>
 					</h4>
+					<div class="comment-size">
 					${item.comment} <br>
+					</div>
 				</div>
 
 			</div>

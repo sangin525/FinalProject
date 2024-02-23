@@ -20,8 +20,10 @@ import kr.co.project.admin.model.dto.AdminDTO;
 import kr.co.project.admin.model.service.AdminServiceImpl;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
+import kr.co.project.common.upload.MultiUploadFile;
 import kr.co.project.common.upload.UploadFile;
 import kr.co.project.goods.model.dto.GoodsDTO;
+import kr.co.project.goods.model.dto.GoodsPhotosDTO;
 import kr.co.project.goods.model.service.GoodsServiceImpl;
 import kr.co.project.member.model.dto.MemberDTO;
 
@@ -52,15 +54,31 @@ public class GoodsController {
 	public String detailBoard(@RequestParam(value = "g_no") int g_no, Model model, HttpServletRequest request,
 			HttpSession session,GoodsDTO goods,AdminDTO admin) {
 		int mno = (int) session.getAttribute("mno");
+
 		
-		GoodsDTO result = goodsService.detailGoods(g_no);
+		
 				
+
+		GoodsDTO result = goodsService.detailGoods(g_no);
+
+		GoodsDTO thumbnail = goodsService.detailGoods(g_no);
+		thumbnail.setGp_type(1);
+		GoodsDTO detailedImage = goodsService.detailGoods(g_no);
+		detailedImage.setGp_type(2);
+		List<GoodsPhotosDTO> thumbnailList = goodsService.goodsPhotosList(thumbnail);
+		List<GoodsPhotosDTO> detailedImagelList = goodsService.goodsPhotosList(detailedImage);
+		
 		List<GoodsDTO> inquiryList = goodsService.selectInquiryList(g_no);
 		List<AdminDTO> adminAnswer = new ArrayList<>();
 //		List<AdminDTO> adminInquiryList = adminService.s
+		
 		model.addAttribute("m_no",mno);
-		if (!Objects.isNull(result)) {			
+		if (!Objects.isNull(result)) {
+			model.addAttribute("m_no", mno);
 			model.addAttribute("goods", result);
+			model.addAttribute("thumbnailList", thumbnailList);
+			model.addAttribute("detailedImagelList", detailedImagelList);
+
 			if(!Objects.isNull(inquiryList)) {
 //				System.out.println(inquiryList);
 				model.addAttribute("inquiryList",inquiryList);
@@ -75,6 +93,9 @@ public class GoodsController {
 				}
 			}
 			
+
+			
+
 			return "foodStore/productDetail";
 		} else {
 
@@ -145,4 +166,29 @@ public class GoodsController {
 	
 	
 	
+	@PostMapping("/manyPhotosGoods.do")
+	public String manyPhotosGoods(
+			GoodsDTO goodsDTO, 
+			List<MultipartFile> multiFileList, 
+			HttpSession session,
+			Model model) {
+		List<GoodsPhotosDTO> goodsPhotoList = new ArrayList<>();
+		List<GoodsPhotosDTO> detailPhotoList = new ArrayList<>();
+		if (goodsPhotoList == null) {
+			goodsPhotoList = new ArrayList<>();
+			System.out.println("빌공");
+		}
+		if (multiFileList != null && !multiFileList.isEmpty()) {
+			MultiUploadFile.goodsUploadMethod(multiFileList, session, goodsDTO, goodsPhotoList, detailPhotoList);
+		} else {
+			System.out.println("사진이 없음 수고하세요");
+		}
+		int result = goodsService.manyPhotosGoods(goodsDTO, goodsPhotoList, detailPhotoList);
+		if (result > 0) {
+			return "redirect:/goods/list.do";
+		} else {
+			System.out.println("상품 등록 실패");
+			return "common/error";
+		}
+	}
 }

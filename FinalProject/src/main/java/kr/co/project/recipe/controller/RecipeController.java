@@ -249,18 +249,13 @@ public class RecipeController {
 				recipe.setMno((int) session.getAttribute("mno"));
 				recipe.setRno(item.getRno());
 			
-				
-//				String scrapDate = item.getScrapDate().substring(0,10);
-//				item.setScrapDate(scrapDate);
-
 				List<RecipeDTO> scraplist = recipeService.selectScrapRecipe(item,pi);
-				
+
 				for(RecipeDTO item2:scraplist) {
 				String scrapDate2 = item2.getScrapDate().substring(0,10);
 				item2.setScrapDate(scrapDate2);
 				}
-				model.addAttribute("scraplist",scraplist);
-				
+				model.addAttribute("scraplist",scraplist);				
 				member.setMno((int) session.getAttribute("mno"));
 				int mno = member.getMno();
 				MemberDTO result = memberService.memberProfile(mno);

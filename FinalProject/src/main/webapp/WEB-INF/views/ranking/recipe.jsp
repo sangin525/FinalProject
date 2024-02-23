@@ -25,6 +25,7 @@
 		<c:otherwise>
 			<c:forEach var="item" items="${list}" varStatus="status">
 		<li class="recipeRanking">
+			<div class="subRanking-div">
 			<p class="rankingNum"><b>${row}</b></p>
 			<div>
 				<a>
@@ -42,6 +43,7 @@
 				<span>댓글수 ${item.commentCount}</span>					
 				<span><i class="rating__star fas fa-star"></i> : ${item.star}</span>	
 				<span>조회수 ${item.views}</span>
+			</div>
 			</div>
 		</li>
 			<c:set var="row" value="${row+1 }"/>
