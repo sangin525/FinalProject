@@ -65,11 +65,14 @@
 
 					<div class="rightBar">
 						<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
+
 					</div>
 				</div>
+
 			</div>
 		</div>
 	</div>
 	<%@ include file="../../views/common/footer.jsp"%>
+
 </body>
 </html>

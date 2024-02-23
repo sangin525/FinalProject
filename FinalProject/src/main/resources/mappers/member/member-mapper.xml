@@ -26,6 +26,10 @@
 	</resultMap>
 
 	
+<select id="logMember" resultMap="memberResultSet">
+SELECT * FROM MEMBER
+WHERE M_NO=#{mno}
+</select>
 
 
 <select id="loginMember" resultMap="memberResultSet">
