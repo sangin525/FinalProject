@@ -154,13 +154,15 @@
 			<c:forEach var="item" items="${comment}" varStatus="status">
 				<div class="reply_list">
 					<div class="media-left">
+					
 						<c:if test="${not empty memberResult }">
 							<a href="#"> <img class="profile_picture"
-								src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
+								src="/resources/uploads/member/${sessionScope.uploadName}"></a>
 						</c:if>
 					</div>
-					${item.comname}
+					
 					<div class="media-body">
+
 						<h4 class="media-heading">
 							<c:choose>
 								<c:when test="${item.star eq 5}">
@@ -205,7 +207,7 @@
 							</c:choose>
 
 							<br> <br> <b class="info_name_f">${item.comment}</b>
-							${item.rcInDate}<b></b><span></span> <a onclick="#"></a><span></span>
+							${item.rcInDate} <a onclick="#"></a><span></span>
 							<a>신고</a>
 						</h4>
 						<br>
@@ -218,31 +220,28 @@
 
 
 		<div class="comment-section">
-		<div class="comment_title">
-				<b>댓글</b>&nbsp;<span>Comment</span>
-			</div>
-			<form id="comment-form" method="post"
-				action="/recipe/comment.do?rno=${recipe.rno}">
-				<input type="hidden" id="star" name="star">
-				<div class="commentPic">
-					<img src="/resources/uploads/member/${sessionScope.uploadName}">
-				</div>
+    <h2>댓글 남기기</h2>
+    <form id="comment-form" method="post"
+            action="/recipe/comment.do?rno=${recipe.rno}">
 
-				<div class="comment">
-					<div class="rating">
-						<span id="star" onclick="ratingTest(5);">★</span><span
-							onclick="ratingTest(4);">★</span><span onclick="ratingTest(3);">★</span><span
-							onclick="ratingTest(2);">★</span><span onclick="ratingTest(1);">★</span>
-					</div>
-
-				</div>
-				<textarea class="commentTextbox" name="comment"
-					placeholder="코멘트 및 후기를 써주세요!"></textarea>
-				<button type="submit" class="comment_submit">댓글작성</button>
-
-			</form>
-		</div>
-	</div>
+        <div class="commentPic">
+            <img src="/resources/uploads/member/${sessionScope.uploadName}">
+        </div>
+        <div class="comment">
+            <div class="rating">
+                <span onclick="ratingTest(5);">★</span><span
+                    onclick="ratingTest(4);">★</span><span onclick="ratingTest(3);">★</span><span
+                    onclick="ratingTest(2);">★</span><span onclick="ratingTest(1);">★</span>
+            </div>
+            <input type="hidden" name="star" id="star">
+            <textarea class="commentTextbox" name="comment"
+                placeholder="코멘트 및 후기를 써주세요!"></textarea>
+            <button class="comment_submit" type="submit">댓글작성</button>
+        </div>
+    </form>
+</div>
+</div>
+	
 	<div class="container">
 		<c:if test="${sessionScope.memberNickName == recipe.memberNickName}">
 			<div class="recipe_btn">
@@ -274,12 +273,8 @@
 </html>
 <script>
 function ratingTest(rating) {
-	
-	// 1. hidden 요소 가져오기
-	var starValue = document.getElementById("star");
-	starValue.value = rating;
-	
-	// 2. 가져온 요소의 value 바꾸기
-	
+    var starValue = document.getElementById("star");
+    starValue.value = rating;
 }
+
 </script>
