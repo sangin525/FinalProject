@@ -30,6 +30,7 @@ function calculateDiscountRate() {
 </head>
 
 <body>
+
    <%@ include file="../../views/common/header.jsp"%>
    <%@ include file="../../views/common/nav.jsp"%>
    <%@ include file="../../views/admin/adminSidebar.jsp"%>
@@ -133,5 +134,6 @@ function calculateDiscountRate() {
       </div>
    </div>
    <%@ include file="../../views/common/footer.jsp"%>
+
 </body>
 </html>

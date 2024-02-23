@@ -106,6 +106,7 @@
                     <img src="/resources/uploads/가습기3.jpg"> 
                     <img src="/resources/uploads/가습기4.jpg"> 
                     <img src="/resources/uploads/가습기5.jpg"> -->
+
 				</div>
 				<div class="detail-img-pull">
 					<a>상세정보 더보기</a>
