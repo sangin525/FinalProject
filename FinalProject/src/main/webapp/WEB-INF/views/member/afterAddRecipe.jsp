@@ -207,7 +207,7 @@
 							</c:choose>
 
 							<br> <br> <b class="info_name_f">${item.comment}</b>
-							${item.rcInDate}<b></b><span></span> <a onclick="#"></a><span></span>
+							${item.rcInDate} <a onclick="#"></a><span></span>
 							<a>신고</a>
 						</h4>
 						<br>
@@ -221,16 +221,19 @@
 
 		<div class="comment-section">
     <h2>댓글 남기기</h2>
-    <form id="comment-form" action="/free/comment.do?flno=${free.flno}" method="post">
+    <form id="comment-form" method="post"
+            action="/recipe/comment.do?rno=${recipe.rno}">
+
         <div class="commentPic">
             <img src="/resources/uploads/member/${sessionScope.uploadName}">
         </div>
         <div class="comment">
             <div class="rating">
-                <span id="star" onclick="ratingTest(5);">★</span><span
+                <span onclick="ratingTest(5);">★</span><span
                     onclick="ratingTest(4);">★</span><span onclick="ratingTest(3);">★</span><span
                     onclick="ratingTest(2);">★</span><span onclick="ratingTest(1);">★</span>
             </div>
+            <input type="hidden" name="star" id="star">
             <textarea class="commentTextbox" name="comment"
                 placeholder="코멘트 및 후기를 써주세요!"></textarea>
             <button class="comment_submit" type="submit">댓글작성</button>
@@ -270,15 +273,8 @@
 </html>
 <script>
 function ratingTest(rating) {
-	
-	// 1. hidden 요소 가져오기
-	var starValue = document.getElementById("star");
-	starValue.value = rating;
-	
-	// 2. 가져온 요소의 value 바꾸기
-	
+    var starValue = document.getElementById("star");
+    starValue.value = rating;
 }
-var date = new Date('${item.rcInDate}');
-var formattedDate = date.toLocaleDateString('ko-KR', { day: '2-digit', month: '2-digit' }) + ' ' + date.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' });
 
 </script>

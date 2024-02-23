@@ -18,3 +18,13 @@ window.onload = function() {
     }
   }
 }
+
+function ratingTest(rating) {
+	
+	// 1. hidden 요소 가져오기
+	var starValue = document.getElementById("star");
+	starValue.value = rating;
+	
+	// 2. 가져온 요소의 value 바꾸기
+	
+}

@@ -26,18 +26,18 @@
 						<input type="hidden" name="rsno" id="del_recipe_photo" value="${seq.rsno}">
 
 						<div id="recipePhoto">
-							<img class="recipeImg" id="mainFile"
+							<img class="recipeImg" id="mainFile" value="${recipe.uploadName }"
 								src="/resources/uploads/레시피등록대표사진.gif">
 						</div>
 					</div>
 					<div class="recipe_name">
 						<p class="write_recipe">레시피 제목</p>
-						<input type="text" id="cook_title" name="title" value="" class="form-control"
+						<input type="text" id="cook_title" name="title" value="${recipe.title }" class="form-control"
 							placeholder="예) 소고기 미역국 끓이기">
 					</div>
 					<div class="recipe_intro">
 						<p class="write_recipe">요리소개</p>
-						<textarea id="cook_intro" name="introduction" class="intro_recipe"
+						<textarea id="cook_intro" name="introduction" class="intro_recipe" value="${recipe.introduction }"
 							placeholder="이 레시피의 탄생배경을 적어주세요. 예) 남편의 생일을 맞아 소고기 미역국을 끓여봤어요. 어머니로부터 배운 미역국 레시피를 남편의 입맛에 맞게 고안했습니다."></textarea>
 					</div>
 
