@@ -96,6 +96,10 @@
     justify-content: center;
 }
 
+.rankingContainer a img{
+	cursor: pointer;
+}
+
 .rank-image{
 	width: 252px;
 	height: 282px;

@@ -66,55 +66,56 @@
     padding-top: 12px;
 }
 
-
-.pagination{
-    list-style: none;
-    margin: 0px;
-    padding: 0px;
-    display: flex;
-    gap: 2px;
-}
-
 .pageNav {
-	display: flex;
-	justify-content: center;
-	height: 100px;
+	text-align: center;
+	width: 100%;
 }
 
-.page-item-active a{
-	padding: 4px;
-	margin-right:3px;
-	border-radius: 5px;
-	color: white;
+.pagination {
+	list-style: none;
+	display: inline-block;
+	padding: 0;
+	margin-top: 20px;
+}
+
+.page-item {
+	display: inline;
+	text-align: center;
+	
+}
+
+.page-link {
+	float: left;
+	display: block;
+	font-size: 20px;
 	text-decoration: none;
-	border:1px solid rgb(224, 162, 86);
-	background-color:rgb(224, 162, 86);
+	padding: 5px 12px;
+	color: #96a0ad;
+	line-height: 1.5;
+	margin-left: 3px;
+	height: 30px;
+	width: 17px;
+	line-height: 30px;
+	-moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
 }
 
-.page-item a{
-	padding: 4px;
-	margin-right:3px;
-	width: 15px;
-	border:1px solid #eee;
-	text-decoration: none;
-	text-align:center;
-	color:  rgb(224, 162, 86);
+.page-link:hover {
+	background-color: green;
+	color: #ffffff;
 }
 
 
-.page-link:hover, .page-link:focus {
-	border-radius: 5px;
-	color:white;;
-	border:1px solid rgb(224, 162, 86);
-	background-color:rgb(224, 162, 86);
+
+.pagination li.active a{
+	cursor: default;
+	color: #ffffff;
+	outline: none;
+	background-color: green;
 }
 
-.page-item.active .page-link {
-    border-radius: 5px;
-	color:white;;
-	border:1px solid rgb(224, 162, 86);
-	background-color:rgb(224, 162, 86);
-}
+
 
 .category_main {
 	background-color: white;
@@ -161,6 +162,10 @@
 	margin: 50px 0; /* 상하 마진만 적용 */
 	position: relative;
 	box-sizing: border-box;
+}
+
+.recipeSubInfo a img{
+	cursor: pointer;
 }
 
 .rating__star {
