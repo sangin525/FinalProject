@@ -49,12 +49,19 @@ public class GoodsController {
 			HttpSession session) {
 		int mno = (int) session.getAttribute("mno");
 		GoodsDTO result = goodsService.detailGoods(g_no);
-		List<GoodsPhotosDTO> goodsPhotosList = goodsService.goodsPhotosList(g_no);
+
+		GoodsDTO thumbnail = goodsService.detailGoods(g_no);
+		thumbnail.setGp_type(1);
+		GoodsDTO detailedImage = goodsService.detailGoods(g_no);
+		detailedImage.setGp_type(2);
+		List<GoodsPhotosDTO> thumbnailList = goodsService.goodsPhotosList(thumbnail);
+		List<GoodsPhotosDTO> detailedImagelList = goodsService.goodsPhotosList(detailedImage);
 
 		if (!Objects.isNull(result)) {
 			model.addAttribute("m_no", mno);
 			model.addAttribute("goods", result);
-			model.addAttribute("goodsPhotosList", goodsPhotosList);
+			model.addAttribute("thumbnailList", thumbnailList);
+			model.addAttribute("detailedImagelList", detailedImagelList);
 			return "foodStore/productDetail";
 		} else {
 
@@ -81,31 +88,28 @@ public class GoodsController {
 	}
 
 	@PostMapping("/manyPhotosGoods.do")
-	public String manyPhotosGoods(GoodsDTO goodsDTO, List<MultipartFile> multiFileList, HttpSession session,
+	public String manyPhotosGoods(
+			GoodsDTO goodsDTO, 
+			List<MultipartFile> multiFileList, 
+			HttpSession session,
 			Model model) {
-
 		List<GoodsPhotosDTO> goodsPhotoList = new ArrayList<>();
+		List<GoodsPhotosDTO> detailPhotoList = new ArrayList<>();
 		if (goodsPhotoList == null) {
 			goodsPhotoList = new ArrayList<>();
 			System.out.println("빌공");
 		}
-
 		if (multiFileList != null && !multiFileList.isEmpty()) {
-		    MultiUploadFile.goodsUploadMethod(multiFileList, session, goodsDTO, goodsPhotoList);
-		}else {
+			MultiUploadFile.goodsUploadMethod(multiFileList, session, goodsDTO, goodsPhotoList, detailPhotoList);
+		} else {
 			System.out.println("사진이 없음 수고하세요");
 		}
-
-		int result = goodsService.manyPhotosGoods(goodsDTO, goodsPhotoList);
-
+		int result = goodsService.manyPhotosGoods(goodsDTO, goodsPhotoList, detailPhotoList);
 		if (result > 0) {
-
 			return "redirect:/goods/list.do";
 		} else {
 			System.out.println("상품 등록 실패");
 			return "common/error";
 		}
-
 	}
-
 }

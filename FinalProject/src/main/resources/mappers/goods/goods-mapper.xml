@@ -59,9 +59,10 @@
 		AND g_dcRate=#{g_dcRate}
 	</select>
 	
-	<select id="goodsPhotosList" parameterType="_int" resultMap="goodsPhotosResultSet">
+	<select id="goodsPhotosList" parameterType="goods" resultMap="goodsPhotosResultSet">
 		SELECT * FROM GOODSPHOTOS 
-		WHERE G_NO = #{G_NO}
+		WHERE g_no = #{g_no}
+		AND gp_type =#{gp_type}
 	</select>
 
 	<insert id="addGoods" parameterType="goods">
@@ -88,6 +89,17 @@
 		#{gp_file_name},
 		#{gp_origin_name},
 		1,
+		#{g_no}
+		)
+	</insert>
+	
+		<insert id="addDetailPhotos" parameterType="goodsPhotos">
+		INSERT INTO GOODSPHOTOS
+		VALUES (goodsPhotos_seq.nextVAL,
+		#{gp_file_path},
+		#{gp_file_name},
+		#{gp_origin_name},
+		2,
 		#{g_no}
 		)
 	</insert>

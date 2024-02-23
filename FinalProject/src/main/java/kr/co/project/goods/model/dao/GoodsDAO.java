@@ -53,11 +53,30 @@ public class GoodsDAO {
 
 	}
 
+	public int addDetailPhotos(SqlSessionTemplate sqlSession, List<GoodsPhotosDTO> detailPhotoList) {
+		int check = detailPhotoList.size();
+
+		int result = 0;
+
+		for (int i = 0; i < detailPhotoList.size(); i++) {
+			int plus = sqlSession.insert("goodsMapper.addDetailPhotos", detailPhotoList.get(i));
+			result += plus;
+		}
+
+		if (check == result) {
+			return 1;
+		} else {
+			return 0;
+		}
+
+	}
+
 	public int getG_no(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
 		return sqlSession.selectOne("goodsMapper.getG_no", goodsDTO);
 	}
 
-	public List<GoodsPhotosDTO> goodsPhotosList(SqlSessionTemplate sqlSession, int g_no) {
-		return sqlSession.selectList("goodsMapper.goodsPhotosList", g_no);
+	public List<GoodsPhotosDTO> goodsPhotosList(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
+		return sqlSession.selectList("goodsMapper.goodsPhotosList", goodsDTO);
 	}
+
 }
