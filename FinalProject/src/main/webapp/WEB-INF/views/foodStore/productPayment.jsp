@@ -109,10 +109,9 @@
 											<li><input type="radio" name="shipping"
 												id="shippingBasic" onchange="shippingBasicChange()">
 												<label for="shippingBasic" class="choice_s">기본배송지</label></li>
-											<li><input type="radio" name="shipping"
-												id="shippingRecently"> <label for="shippingRecently"
-												class="choice_s">최근 배송지</label></li>
-											<li><input type="radio" name="shipping" id="shippingNew">
+											<li><input type="radio" name="shipping" id="shippingRecently" onchange="shippingBasicChange()"> 
+											<label for="shippingRecently" class="choice_s">최근 배송지</label></li>
+											<li><input type="radio" name="shipping" id="shippingNew" onchange="shippingBasicChange()">
 												<label for="shippingNew" class="choice_s on">직접 입력</label></li>
 										</ul>
 									</div>

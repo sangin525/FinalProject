@@ -30,10 +30,9 @@
 	</beans:bean>
 	
 	<!-- 파일업로드 관련 빈 생성 -->
-	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver">
-		
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+    <beans:property name="maxUploadSize" value="20971520"/> <!-- approx. 20MB -->
 	</beans:bean>
-	
 	<!-- 인터셉터 설정 -->
 	<beans:bean id="loginCheckInterceptor" 
 				class="kr.co.project.common.interceptor.LoginCheckInterceptor"> </beans:bean>

@@ -11,21 +11,21 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="/resources/js/admin/admin.js"></script>
-<script type="text/javascript">
-	function calculateDiscountRate() {
-
-		let sellingPrice = document.getElementById("sellingPrice").value;
-		let regularPrice = document.getElementById("regularPrice").value;
-
-		if (sellingPrice >= regularPrice) {
-			return 0;
-		} else {
-			let discountRate = parseInt(((regularPrice - sellingPrice) / regularPrice) * 100);
-			console.log("할인율: " + discountRate + "%");
-			let g_dcRate = document.getElementById("discountRate")
-			g_dcRate.value = discountRate;
-		}
-	}
+<script>
+function calculateDiscountRate() {
+    let sellingPrice = parseInt(document.getElementById("sellingPrice").value);
+    let regularPrice = parseInt(document.getElementById("regularPrice").value);
+    console.log(sellingPrice >= regularPrice)
+    if (sellingPrice >= regularPrice) {
+        let g_dcRate = document.getElementById("discountRate")
+        g_dcRate.value = 0;
+    } else if(sellingPrice < regularPrice) {
+        let discountRate = parseInt(((regularPrice - sellingPrice) / regularPrice) * 100);
+        console.log("할인율: " + discountRate + "%");
+        let g_dcRate = document.getElementById("discountRate")
+        g_dcRate.value = discountRate;
+    }
+}
 </script>
 </head>
 
@@ -128,6 +128,7 @@
 						<button type="submit">등록하기</button>
 					</div>
 				</form>
+	
 			</div>
 		</div>
 	</div>

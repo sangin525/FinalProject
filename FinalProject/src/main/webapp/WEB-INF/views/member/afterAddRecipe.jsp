@@ -220,9 +220,18 @@
 
 
 		<div class="comment-section">
+
+		<div class="comment_title">
     <h2>댓글 남기기</h2>
-    <form id="comment-form" method="post"
-            action="/recipe/comment.do?rno=${recipe.rno}">
+			</div>
+			<form id="comment-form" method="post"
+				action="/recipe/comment.do?rno=${recipe.rno}">
+				<input type="hidden" id="star" name="star">
+				<div class="commentPic">
+					<img src="/resources/uploads/member/${sessionScope.uploadName}">
+				</div>
+
+
 
         <div class="commentPic">
             <img src="/resources/uploads/member/${sessionScope.uploadName}">

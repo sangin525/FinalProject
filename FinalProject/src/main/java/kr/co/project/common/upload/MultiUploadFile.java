@@ -22,12 +22,13 @@ import kr.co.project.recipe.model.dto.RecipeDTO;
 public class MultiUploadFile {
 
 
-	private static final String UPLOAD_PATH = "C:\\Users\\suinr\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
+
+	private static final String UPLOAD_PATH="C:\\Users\\kaw19\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";	
 
 
-	public static boolean deleteFile(List<RecipeDTO> fileName, List<RecipeDTO> sequenceFileName) {
-		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\
-		// 240103113409_cRvSeZPY.png
+
+	public static boolean deleteFile(List<RecipeDTO> fileName,List<RecipeDTO> sequenceFileName) {
+		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\        240103113409_cRvSeZPY.png
 
 		// 240103113409_cRvSeZPY.png
 		// 240103113409_cRvSeZPY.png
@@ -106,7 +107,7 @@ public class MultiUploadFile {
 			List<GoodsPhotosDTO> goodsPhotoList) {
 
 		List<Map<String, String>> fileList = new ArrayList<>();
-
+		System.out.println("multifileList.size:"+multiFileList.size());
 		for (int i = 0; i < multiFileList.size(); i++) {
 			String originFile = multiFileList.get(i).getOriginalFilename();//사진 원래 이름
 			System.out.println(originFile);
