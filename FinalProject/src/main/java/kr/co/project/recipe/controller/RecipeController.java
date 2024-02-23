@@ -248,13 +248,18 @@ public class RecipeController {
 				
 				recipe.setMno((int) session.getAttribute("mno"));
 				recipe.setRno(item.getRno());
+			
 				
-				String scrapDate = item.getScrapDate().substring(0,10);
-				item.setScrapDate(scrapDate);
+//				String scrapDate = item.getScrapDate().substring(0,10);
+//				item.setScrapDate(scrapDate);
 
-				List<RecipeDTO> list = recipeService.selectScrapRecipe(recipe,pi);
+				List<RecipeDTO> scraplist = recipeService.selectScrapRecipe(item,pi);
 				
-				model.addAttribute("list",list);
+				for(RecipeDTO item2:scraplist) {
+				String scrapDate2 = item2.getScrapDate().substring(0,10);
+				item2.setScrapDate(scrapDate2);
+				}
+				model.addAttribute("scraplist",scraplist);
 				
 				member.setMno((int) session.getAttribute("mno"));
 				int mno = member.getMno();
@@ -282,7 +287,7 @@ public class RecipeController {
 		
 		int scrapDelete =  recipeService.scrapRecipeDelete(frno);
 		
-		if(scrapDelete==1) {
+		if(scrapDelete>0) {
 			System.out.println("스크랩 삭제성공");
 			return "redirect:/recipe/scrapRecipeList.do";
 		}else {
@@ -353,7 +358,7 @@ public class RecipeController {
 			System.out.println("게시글 작성됨");
 			System.out.println(recipe.getFileName());
 			
-			return "home";
+			return "redirect:/recipe/categoryList.do";
 		}else {
 			System.out.println("게시글 작성 실패");
 			return "common/error";

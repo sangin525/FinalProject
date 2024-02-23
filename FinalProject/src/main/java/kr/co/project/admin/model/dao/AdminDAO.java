@@ -131,5 +131,14 @@ public class AdminDAO {
 		return sqlSession.selectOne("eventCommentMapper.ecommentCount",eno);
 	}
 
+	public int addAnswer(SqlSessionTemplate sqlSession, AdminDTO admin) {
+		
+		return sqlSession.insert("inquiryAnswerMapper.addAnswer",admin);
+	}
+
+	public AdminDTO adminAnswerList(SqlSessionTemplate sqlSession, int i_no) {
+		return sqlSession.selectOne("inquiryAnswerMapper.adminAnswerList",i_no);
+	}
+
 	
 }

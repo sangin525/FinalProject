@@ -1,5 +1,6 @@
 package kr.co.project.goods.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -15,11 +16,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import kr.co.project.admin.model.dto.AdminDTO;
+import kr.co.project.admin.model.service.AdminServiceImpl;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
 import kr.co.project.common.upload.UploadFile;
 import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.goods.model.service.GoodsServiceImpl;
+import kr.co.project.member.model.dto.MemberDTO;
 
 @Controller
 @RequestMapping("/goods")
@@ -27,6 +31,9 @@ public class GoodsController {
 
 	@Autowired
 	private GoodsServiceImpl goodsService;
+	
+	@Autowired
+	private AdminServiceImpl adminService;
 
 	@GetMapping("/list.do")
 	public String goodsList(Model model, @RequestParam(value = "cpage", defaultValue = "1") int cpage, GoodsDTO goods) {
@@ -43,13 +50,31 @@ public class GoodsController {
 
 	@GetMapping("/detail.do")
 	public String detailBoard(@RequestParam(value = "g_no") int g_no, Model model, HttpServletRequest request,
-			HttpSession session) {
+			HttpSession session,GoodsDTO goods,AdminDTO admin) {
 		int mno = (int) session.getAttribute("mno");
-		GoodsDTO result = goodsService.detailGoods(g_no);
 		
-		if (!Objects.isNull(result)) {
-			model.addAttribute("m_no",mno);
+		GoodsDTO result = goodsService.detailGoods(g_no);
+				
+		List<GoodsDTO> inquiryList = goodsService.selectInquiryList(g_no);
+		List<AdminDTO> adminAnswer = new ArrayList<>();
+//		List<AdminDTO> adminInquiryList = adminService.s
+		model.addAttribute("m_no",mno);
+		if (!Objects.isNull(result)) {			
 			model.addAttribute("goods", result);
+			if(!Objects.isNull(inquiryList)) {
+//				System.out.println(inquiryList);
+				model.addAttribute("inquiryList",inquiryList);
+				for(GoodsDTO item:inquiryList) {
+					try {
+						AdminDTO adminAnswerDTO = adminService.adminAnswerList(item.getI_no());
+						adminAnswer.add(adminAnswerDTO);
+					}catch(NullPointerException e) {
+						adminAnswer.add(new AdminDTO());
+					}
+					model.addAttribute("adminAnswer", adminAnswer);
+				}
+			}
+			
 			return "foodStore/productDetail";
 		} else {
 
@@ -75,4 +100,49 @@ public class GoodsController {
 		}
 	}
 
+	
+	@PostMapping("/addInquiry")
+	public String addInquiry(@RequestParam(value = "g_no")int g_no,Model model,
+			HttpSession session,MemberDTO member,GoodsDTO goods) {
+		
+		goods.setM_no((int) session.getAttribute("mno"));
+		goods.setG_no(g_no);
+		int addInquiry = goodsService.addInquiry(goods);
+		
+		if(addInquiry>0) {
+			System.out.println("문의작성완료");
+		}else {
+			System.out.println("문의작성실패");
+		}
+		return "redirect:/goods/list.do";
+	}
+	
+	
+	@GetMapping("/adminInquiry")
+	public String adminInquiry(@RequestParam(value="cpage",defaultValue="1")int cpage,
+			GoodsDTO goods,
+			HttpSession session,Model model) {
+		int adminInquiryCount = goodsService.adminInquiryCount(goods);
+		
+		int pageLimit = 10;
+		int boardLimit =15;
+		
+		int row = adminInquiryCount-(cpage-1) * boardLimit;
+		PageInfo pi = Pagination.getPageInfo(adminInquiryCount, cpage, pageLimit, boardLimit);
+		List<GoodsDTO> adminInquiryList = goodsService.adminInquiryList(pi,goods);
+		
+		for(GoodsDTO item:adminInquiryList) {
+			String indate = item.getI_in_date().substring(0,10);
+			item.setI_in_date(indate);
+		}
+		model.addAttribute("row",row);
+		model.addAttribute("adminInquiryList",adminInquiryList);
+		model.addAttribute("pi",pi);
+		
+		return"/admin/productAnswer";
+	}
+	
+	
+	
+	
 }

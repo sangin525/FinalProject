@@ -49,4 +49,12 @@ public class AdminDTO {
 	private String ecComment;
 	private String ecWriter;
 	private String ecIndate;
+	
+	private int i_no;
+	private int aa_no;
+	private String aa_title;
+	private String aa_writer;
+	private String aa_contents;
+	private String aa_answer;
+	private String aa_indate;
 }
