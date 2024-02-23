@@ -106,7 +106,7 @@ public class MultiUploadFile {
 			List<GoodsPhotosDTO> goodsPhotoList) {
 
 		List<Map<String, String>> fileList = new ArrayList<>();
-
+		System.out.println("multifileList.size:"+multiFileList.size());
 		for (int i = 0; i < multiFileList.size(); i++) {
 			String originFile = multiFileList.get(i).getOriginalFilename();//사진 원래 이름
 			System.out.println(originFile);
