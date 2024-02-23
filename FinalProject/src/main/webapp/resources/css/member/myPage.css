@@ -54,7 +54,7 @@
 
 .content {
 	width: 100%;
-	padding: 20px;
+	padding: 10px;
 	box-sizing: border-box;
 }
 
@@ -125,7 +125,11 @@
 	text-decoration: none;
 	display: flex;
 	align-items: center;
-	margin-bottom:10px;
+	margin-bottom: 10px;
+}
+.resultList{
+	display: flex;
+	align-items: center;
 }
 
 .recipe-image {
@@ -135,10 +139,20 @@
 	cursor: pointer;
 }
 
+
 .recipe-info {
 	display: flex;
 	flex-direction: column;
 	margin-left: 30px;
+	flex-grow: 1;
+	background-color: #fff;
+	padding: 10px;
+	border-radius: 5px;
+}
+
+.recipe-info p {
+	color: #333;
+	font-size: 20px;
 }
 
 .recipe-title {
@@ -325,8 +339,9 @@
 /* 페이지네이션 */
 .pageBtn {
 	display: flex;
-    justify-content: center;
+	justify-content: center;
 }
+
 .page-item {
 	display: inline-block;
 }
@@ -558,7 +573,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 }
 
 .quantity {
-
 	justify-content: space-evenly;
 }
 
@@ -571,7 +585,7 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 }
 
 .minus-btn {
-	margin-right:10px;
+	margin-right: 10px;
 	width: 25px;
 	height: 25px;
 	border: none;
@@ -581,8 +595,9 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 	line-height: 25px;
 	cursor: pointer;
 }
-.plus-btn{
-	margin-left:10px;
+
+.plus-btn {
+	margin-left: 10px;
 	width: 25px;
 	height: 25px;
 	border: none;
@@ -592,7 +607,8 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 	line-height: 25px;
 	cursor: pointer;
 }
-.correct-btn{
+
+.correct-btn {
 	height: 25px;
 	border: none;
 	background-color: #f2f2f2;
@@ -601,10 +617,9 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 	line-height: 25px;
 	cursor: pointer;
 	margin-top: 10px;
-	
 }
 
-.delete-btn{
+.delete-btn {
 	border: none;
 	background-color: #f2f2f2;
 	color: #333;
@@ -613,7 +628,6 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 	cursor: pointer;
 }
 
-
 /* 마이페이지 사이드바 */
 .myhome_main {
 	margin: 20px auto;
@@ -621,51 +635,51 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 
 .rightBar {
 	border-top: 1px solid #e6e7e8;
-    width: 335px;
-    margin-left: 10px;
-    padding: 0 0 30px 0;
-    height: auto;
+	width: 335px;
+	margin-left: 10px;
+	padding: 0 0 30px 0;
+	height: auto;
 }
 
 .myhome_main_img {
 	background: url(/resources/uploads/myhome_img.png) left top no-repeat;
-    background-size: cover;
-    height: 150px;
-    margin: 0 auto;
-    padding-top: 22px;
-    position: relative;
-    border-bottom: 1px solid #ddd;
+	background-size: cover;
+	height: 150px;
+	margin: 0 auto;
+	padding-top: 22px;
+	position: relative;
+	border-bottom: 1px solid #ddd;
 }
 
 .myInput {
-    width: 250px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    resize: vertical;
+	width: 250px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	resize: vertical;
 }
-.member_address {
 
-    flex-direction: column;
+.member_address {
+	flex-direction: column;
 }
 
 .address_postcode, .address_input {
-    display: flex;
+	display: flex;
 }
 
-#extraAddress{
-	margin-left:30px;
+#extraAddress {
+	margin-left: 30px;
 }
 
 .myhome_pic {
 	display: inline-block;
-    vertical-align: top;
-    position: relative;
-    padding: 4px;
-    margin: 0 auto;
-    border-radius: 50%;
+	vertical-align: top;
+	position: relative;
+	padding: 4px;
+	margin: 0 auto;
+	border-radius: 50%;
 }
 
 .myhome_profile img {
@@ -682,29 +696,29 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 }
 
 .myhome_main_info a {
-	cursor: pointer;	
+	cursor: pointer;
 }
 
 .myhome_camera img {
 	width: 35px;
 	height: 35px;
-    position: absolute;
-    right: 5px;
-    top: 5px;
+	position: absolute;
+	right: 5px;
+	top: 5px;
 }
 
 .myhome_nickName {
 	margin: 0;
-    color: #777;
-    font-size: 12px;
-    line-height: 1.5;
-    margin-top: 5px;
+	color: #777;
+	font-size: 12px;
+	line-height: 1.5;
+	margin-top: 5px;
 }
 
 .myhome_nickName b {
-    font-size: 18px;
-    display: block;
-    color: #000;
+	font-size: 18px;
+	display: block;
+	color: #000;
 }
 
 .myhome_nickName span {
@@ -712,251 +726,247 @@ input[type="number"]::-webkit-inner-spin-button, input[type="number"]::-webkit-o
 }
 
 /* 추가적인 스타일링 */
-.form_element{
-	display:flex;
+.form_element {
+	display: flex;
 }
+
 .form_element ul {
-    list-style-type: none;
+	list-style-type: none;
 }
 
 .form_element ul li {
-    display: inline-block;
-    margin-right: 10px;
-    vertical-align: middle; 
+	display: inline-block;
+	margin-right: 10px;
+	vertical-align: middle;
 }
+
 .form_element li label {
-    font-size: 16px;
+	font-size: 16px;
 }
 
 .btn_post_search {
-    background-color: #4CAF50; 
-    border: none;
-    border-radius:8px;
-    color: white;
-    padding: 15px 32px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 5px 2px;
-    margin-left:30px;
-    cursor: pointer;
+	background-color: #4CAF50;
+	border: none;
+	border-radius: 8px;
+	color: white;
+	padding: 15px 32px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 5px 2px;
+	margin-left: 30px;
+	cursor: pointer;
 }
 
-.s_btn{
-	    background-color: #4CAF50; 
-    border: none;
-    border-radius:8px;
-    color: white;
-    padding: 5px 10px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-
-    margin-left:30px;
-    cursor: pointer;
+.s_btn {
+	background-color: #4CAF50;
+	border: none;
+	border-radius: 8px;
+	color: white;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin-left: 30px;
+	cursor: pointer;
 }
 
-.content h2{
-	margin-top:0px;
+.content h2 {
+	margin-top: 0px;
 }
-
 
 /* 결제 동의 */
-
 .order_agree {
-    width: 100%;
-    margin-top: 20px;
-    padding: 20px;
-    border: 1px solid #e5e5e5;
-    box-sizing: border-box;
+	width: 100%;
+	margin-top: 20px;
+	padding: 20px;
+	border: 1px solid #e5e5e5;
+	box-sizing: border-box;
 }
 
 .order_zone_tit h5 {
-    font-size: 16px;
-    color: #333;
-    margin: 10px 0;
+	font-size: 16px;
+	color: #333;
+	margin: 10px 0;
 }
 
 .order_zone_tit h4 {
-
-    color: #333;
-    margin: 50px 0 5px 0;
-    font-size: 22px;
+	color: #333;
+	margin: 50px 0 5px 0;
+	font-size: 22px;
 }
 
 .order_table_type {
-    width: 100%;
-    border-collapse: collapse;
+	width: 100%;
+	border-collapse: collapse;
 }
 
 .order_table_type th {
-    background-color: #f5f5f5;
-	font-size:15px;
-    text-align: left;
-    padding: 15px 10px 14px 30px;
+	background-color: #f5f5f5;
+	font-size: 15px;
+	text-align: left;
+	padding: 15px 10px 14px 30px;
 }
 
 .order_table_type td {
-    padding: 10px;
-    border-bottom: 1px solid #e5e5e5;
-    padding-left: 30px;
-
+	padding: 10px;
+	border-bottom: 1px solid #e5e5e5;
+	padding-left: 30px;
 }
 
-
 .order_agree_cont {
-    margin-bottom: 10px;
+	margin-bottom: 10px;
 }
 
 .join_agreement_box {
-    padding: 10px;
-    background-color: #f5f5f5;
-    border-radius: 4px;
+	padding: 10px;
+	background-color: #f5f5f5;
+	border-radius: 4px;
 }
 
 .agreement_box {
-    font-size: 14px;
-    color: #666;
-    line-height: 1.5;
+	font-size: 14px;
+	color: #666;
+	line-height: 1.5;
 }
 
 /* 결제하기 버튼 */
-.myButton{
-	
-    display: inline-block;
-    width: 400px;
-    height: 58px;
-    line-height: 1;
-    color: #fff;
-    font-size: 20px;
-    border: none;
-    background: #77b347;
-    text-align: center;
-    border-radius: 6px;
-    margin-top: 20px;
+.myButton {
+	display: inline-block;
+	width: 400px;
+	height: 58px;
+	line-height: 1;
+	color: #fff;
+	font-size: 20px;
+	border: none;
+	background: #77b347;
+	text-align: center;
+	border-radius: 6px;
+	margin-top: 20px;
 }
+
 .paymentButton {
-    display: flex;
-    justify-content: center;
-    margin: 20px 0;
+	display: flex;
+	justify-content: center;
+	margin: 20px 0;
 }
 
 .myButton:hover {
-    background-color: #45a049;
+	background-color: #45a049;
 }
-
-
 
 /* 프로필 사진등록 */
 .modal-dialog {
-    display: none;
-    width: 600px;
-    position: fixed; /* 모달 창을 화면 가운데에 고정 */
-    z-index: 1; /* 다른 요소 위에 모달 창이 오도록 */
-    left: 50%; /* 화면 가운데로 이동 */
-    top: 50%; /* 화면 가운데로 이동 */
-    transform: translate(-50%, -50%); /* 모달 창의 중앙이 화면 중앙에 오도록 조정 */
+	display: none;
+	width: 600px;
+	position: fixed; /* 모달 창을 화면 가운데에 고정 */
+	z-index: 1; /* 다른 요소 위에 모달 창이 오도록 */
+	left: 50%; /* 화면 가운데로 이동 */
+	top: 50%; /* 화면 가운데로 이동 */
+	transform: translate(-50%, -50%); /* 모달 창의 중앙이 화면 중앙에 오도록 조정 */
 }
 
 .modal-content {
-    position: relative;
-    background-color: #fff;
-    border: 1px solid rgba(0, 0, 0, .2);
-    border-radius: 10px;
-    outline: 0;
-    margin: 15% auto;
+	position: relative;
+	background-color: #fff;
+	border: 1px solid rgba(0, 0, 0, .2);
+	border-radius: 10px;
+	outline: 0;
+	margin: 15% auto;
 }
 
 .modal-dialog.show {
-    display: block;
+	display: block;
 }
 
 .modal-header {
-    min-height: 16.43px;
-    padding: 15px 17px 14px;
-    border-bottom: 1px solid #b4b4b4;
-    background: #efefef;
-    border-radius: 10px 10px 0 0;
+	min-height: 16.43px;
+	padding: 15px 17px 14px;
+	border-bottom: 1px solid #b4b4b4;
+	background: #efefef;
+	border-radius: 10px 10px 0 0;
 }
 
 .modal-title {
-    font-size: 16px;
-    font-weight: bold;
-    margin: 0;
-    line-height: 1.42857143;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0;
+	line-height: 1.42857143;
 }
 
 .modal-body {
 	position: relative;
 	padding: 30px 0;
-    text-align: center;
+	text-align: center;
 }
 
 .addpicture {
 	position: absolute;
-    width: 200px;
-    left: 50%;
-    margin-left: -100px;
-    bottom: 150px;
+	width: 200px;
+	left: 50%;
+	margin-left: -100px;
+	bottom: 150px;
 }
 
 #vProfileImageModalSrc {
 	width: 200px;
-    height: 200px;
-    border-radius: 50%;
+	height: 200px;
+	border-radius: 50%;
 }
 
 .self_info {
 	position: relative;
-    padding: 15px 40px 5px;
+	padding: 15px 40px 5px;
 }
 
 .self_info a {
 	position: absolute;
-    top: 21px;
-    right: 45px;
+	top: 21px;
+	right: 45px;
 }
 
 #self_intro {
 	border: 1px solid #ddd;
-    width: 100%;
-    padding-right: 24px;
-    height: 30px;
-    padding: 5px 10px;
-    font-size: 12px;
-    line-height: 1.5;
-    border-radius: 3px;
+	width: 100%;
+	padding-right: 24px;
+	height: 30px;
+	padding: 5px 10px;
+	font-size: 12px;
+	line-height: 1.5;
+	border-radius: 3px;
 }
 
 .myhome_modal_btn {
 	display: flex;
-    column-gap: 10px;
-    justify-content: center;
-    padding: 10px 0 0;
+	column-gap: 10px;
+	justify-content: center;
+	padding: 10px 0 0;
 }
 
 .btn_bottom_st2 {
-    display: block;
-    padding: 12px 40px 13px;
-    font-size: 14px;
-    text-align: center;
-    background: #EA4329;
-    border: 1px solid #EA4329;
-    color: #fff;
-    font-weight: 500;
-    box-sizing: border-box;
-    border-radius: 24px;
-    line-height: 1;
+	display: block;
+	padding: 12px 40px 13px;
+	font-size: 14px;
+	text-align: center;
+	background: #EA4329;
+	border: 1px solid #EA4329;
+	color: #fff;
+	font-weight: 500;
+	box-sizing: border-box;
+	border-radius: 24px;
+	line-height: 1;
 }
 
 .btn_bottom_st2.st2 {
-    background: #fff;
-    border: 1px solid #e1e1e1;
-    color: #191919;
+	background: #fff;
+	border: 1px solid #e1e1e1;
+	color: #191919;
 }
 
 /* .formDiv{
 	display:none;
 } */
+
+/* 주문조회 css */

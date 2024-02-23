@@ -11,6 +11,7 @@
 
 </head>
 <body class="Main_body">
+
    <%@ include file="../../views/common/header.jsp"%>
    <%@ include file="../../views/common/nav.jsp"%>
    <%@ page import="java.util.ArrayList"%>
@@ -80,6 +81,8 @@
                </div>
             </div>
 
+
+
          </div>
          <div class="rightBar">
             <%@ include file="../../views/myPage/mypageSidebar.jsp"%>
@@ -88,5 +91,6 @@
       </div>
    </div>
    <%@ include file="../../views/common/footer.jsp"%>
+
 </body>
 </html>
