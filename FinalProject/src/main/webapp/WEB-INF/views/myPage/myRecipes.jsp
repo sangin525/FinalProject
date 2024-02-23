@@ -34,16 +34,16 @@
 						<c:choose>
 					<c:when test="${not empty list}">
 								<c:forEach var="item" items="${list}">
-									<div class="result">
+									<div class="resultList">
 									<a onclick="location.href='/member/detail.do?rno=${item.rno}'">
 									<img src="/resources/uploads/recipe/${item.uploadName}"  class="recipe-image">
-									<div class="recipe-info">
-										<p class="">레시피 제목: ${item.title }</p>
-										<p class="">레시피 올린 날짜: ${item.indate }</p>
-										<p class="">레시피 번호 : ${item.rno }</p>
-										<p class="">레시피 조회수 : ${item.views }</p>
-									</div>
 									</a>
+									<div class="recipe-info">
+										<span>레시피 제목: ${item.title }</span>
+										<span><img src="/resources/uploads/날짜아이콘">${item.indate }</span>
+										<span>레시피 번호 : ${item.rno }</span>
+										<span>레시피 조회수 : ${item.views }</span>
+									</div>
 								</div>
 								<c:set var="row" value="${row-1 }"/>
 								</c:forEach>
