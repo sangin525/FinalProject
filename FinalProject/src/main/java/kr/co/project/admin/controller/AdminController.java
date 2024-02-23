@@ -23,6 +23,7 @@ import kr.co.project.common.pageing.Pagination;
 import kr.co.project.common.session.SessionMessage;
 import kr.co.project.common.upload.AdminUploadFile;
 import kr.co.project.common.upload.EventUploadFile;
+import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.member.model.service.MemberServiceImpl;
 
@@ -415,6 +416,28 @@ public class AdminController {
 	}
 	
 	
+	
+	
+	@PostMapping("/productAnswer.do")
+	public String productAnswer(@RequestParam(value="ino")int i_no,
+			HttpSession session,AdminDTO admin,GoodsDTO goods,Model model) {
+		System.out.println("Dd :" + goods.getI_contents());
+		admin.setI_no(i_no);
+		admin.setMno((int) session.getAttribute("mno"));
+		
+		goods.setI_no(i_no);
+		goods.setM_no((int) session.getAttribute("mno"));
+		int answer = adminService.addAnswer(admin,goods);
+		
+		if(answer>0) {
+			System.out.println("문의 답변완료");
+		}else {
+			System.out.println("문의 작성실패");
+		}
+		
+		return"redirect:/goods/adminInquiry";
+	}
+		
 	
 	
 	

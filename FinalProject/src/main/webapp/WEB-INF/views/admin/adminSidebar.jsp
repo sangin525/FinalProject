@@ -35,7 +35,7 @@
                             <li><a href="/admin/adminNotice">게시글 관리</a></li>
                             <li><a href="/admin/noticeEnrollForm">공지사항 등록</a></li>
                             <li><a href="/admin/eventEnrollForm">이벤트 등록</a></li>
-                            <li><a href="/productAnswer">문의사항 답변</a></li>
+                            <li><a href="/goods/adminInquiry">문의사항 답변</a></li>
                         </ul>
                     </ul>
                 </div>

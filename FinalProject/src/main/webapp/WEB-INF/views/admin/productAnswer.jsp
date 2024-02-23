@@ -11,7 +11,7 @@
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="/resources/js/admin/admin.js"></script>
+<script src="/resources/js/admin/admin3.js"></script>
 </head>
 
 <body>
@@ -22,12 +22,11 @@
 <div class="managingPostsContainer">
 	<h2>문의사항</h2>
 	
-	
 	<div class="update-delete-btn">
 		<button class="board_answer_btn">답변하기</button>					<!-- notice, free, event -->
 	</div>
 	<div id="board_Modal" class="board_modal">
-		<form><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
+		<form method="post" id="modalForm"><!-- action은 자바스크립트에서 입력되기 때문에 빼고 입력해야함 -->
 			<div class="modal_container">
 			<input type="hidden" class="boardNum" id="boardNum" value=""> <!-- idx 값 들어감 -->
 				<table class="questionsTable">
@@ -39,25 +38,25 @@
 									<tr>
 										<th>제목</th>
 										<td>
-											<input type="text" class="boardTitle" id="boardTitle" value="">
+											<input type="text" class="boardTitle" name="aa_title" id="boardTitle" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>작성자</th>
 										<td>
-											<input type="text" class="boardWriter" id="boardWriter" value="">
+											<input type="text" class="boardWriter" name="aa_writer" id="boardWriter" value="">
 										</td>
 									</tr>
 									<tr>
 										<th>내용</th>
 										<td>
-			                                 <textarea class="boardContent" id="boardContent" value="" disabled></textarea>
+			                                 <textarea class="boardContent" id="boardContents" name="aa_contents" disabled></textarea>
 										</td>
 									</tr>
 									<tr>
 										<th>답변</th>
 										<td>
-			                                 <textarea class="boardAnswer" id="boardAnswer"></textarea>
+			                                 <textarea class="boardAnswer" name="aa_answer" id="boardAnswer"></textarea>
 										</td>
 									</tr>
 								</tbody>
@@ -84,7 +83,7 @@
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty noticeList}">
+					<c:when test="${empty adminInquiryList}">
 						<tr>
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">1</td>
@@ -109,9 +108,26 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<tr>
-							<td colspan="7">글이 없습니다.</td>
+					<c:forEach var="item" items="${adminInquiryList}" varStatus="status">					
+						
+						<tr id="row">
+						<td><input type="checkbox" class="Detail">
+							<input type="hidden" id="hiddenino" value="${item.i_no }">
+							<input type="hidden" id="hiddenTitle" value="${item.i_title}">
+							<input type="hidden" class="noticeContent" id="hiddenContents" value="${item.i_contents}">
+							<input type="hidden" id="hiddenSecret" value="${item.i_secret}">
+							<input type="hidden" id="hiddenAnswerCheck" value="${item.i_answerCheck}">
+							<input type="hidden" class="boardContents" value="${item.i_contents}">
+						
+						</td>
+							<td class="boardNum">${row}</td>
+							<td class="boardTit">${item.i_title}</td>
+							<td class="boardwriter">${item.i_writer }</td>							
+							<td class="boardDate">${item.i_in_date}</td>
+							<td class="boardView">${item.i_answerCheck}</td>
+							<c:set var="row" value="${row -1}"/>
 						</tr>
+					</c:forEach>
 					</c:otherwise>
 				</c:choose>
 
