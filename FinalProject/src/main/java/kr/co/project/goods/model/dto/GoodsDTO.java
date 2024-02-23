@@ -18,4 +18,7 @@ public class GoodsDTO {
 	private String g_in_date;
 	private int g_stock;
 	private String g_delete_check;
+	
+	//---------------------------
+	private int gp_type ;
 }

@@ -9,143 +9,143 @@
 		<ul class="categoryList">
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=국/탕">
+				<a href="/recipe/categoryList.do?recipeTitle_main=국/탕">
 					<img src="/resources/uploads/category/cate1_03.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">국/탕</div>
+			<div class="recipeTitle_main">국/탕</div>
 		</li>
 		
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=메인반찬">
+				<a href="/recipe/categoryList.do?recipeTitle_main=메인반찬">
 					<img src="/resources/uploads/category/cate1_07.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">메인반찬</div>
+			<div class="recipeTitle_main">메인반찬</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=면/만두">
+				<a href="/recipe/categoryList.do?recipeTitle_main=면/만두">
 					<img src="/resources/uploads/category/cate1_08.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">면/만두</div>
+			<div class="recipeTitle_main">면/만두</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=밑반찬">
+				<a href="/recipe/categoryList.do?recipeTitle_main=밑반찬">
 					<img src="/resources/uploads/category/cate1_09.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">밑반찬</div>
+			<div class="recipeTitle_main">밑반찬</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=밥/죽/떡">
+				<a href="/recipe/categoryList.do?recipeTitle_main=밥/죽/떡">
 					<img src="/resources/uploads/category/cate1_10.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">밥/죽/떡</div>
+			<div class="recipeTitle_main">밥/죽/떡</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=퓨전">
+				<a href="/recipe/categoryList.do?recipeTitle_main=퓨전">
 					<img src="/resources/uploads/category/cate1_18.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">퓨전</div>
+			<div class="recipeTitle_main">퓨전</div>
 		</li>
 		
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=스프">
+				<a href="/recipe/categoryList.do?recipeTitle_main=스프">
 					<img src="/resources/uploads/category/cate1_13.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">스프</div>
+			<div class="recipeTitle_main">스프</div>
 		</li>
 		
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=양식">
+				<a href="/recipe/categoryList.do?recipeTitle_main=양식">
 					<img src="/resources/uploads/category/cate1_15.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">양식</div>
+			<div class="recipeTitle_main">양식</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=찌개">
+				<a href="/recipe/categoryList.do?recipeTitle_main=찌개">
 					<img src="/resources/uploads/category/cate1_16.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">찌개</div>
+			<div class="recipeTitle_main">찌개</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=건어물류">
+				<a href="/recipe/categoryList.do?recipeTitle_main=건어물류">
 					<img src="/resources/uploads/category/cate1_05.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">건어물류</div>
+			<div class="recipeTitle_main">건어물류</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=디저트">
+				<a href="/recipe/categoryList.do?recipeTitle_main=디저트">
 					<img src="/resources/uploads/category/cate1_06.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">디저트</div>
+			<div class="recipeTitle_main">디저트</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=양념/소스/잼">
+				<a href="/recipe/categoryList.do?recipeTitle_main=양념/소스/잼">
 					<img src="/resources/uploads/category/cate1_14.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">양념/소스/잼</div>
+			<div class="recipeTitle_main">양념/소스/잼</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=빵">
+				<a href="/recipe/categoryList.do?recipeTitle_main=빵">
 					<img src="/resources/uploads/category/cate1_11.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">빵</div>
+			<div class="recipeTitle_main">빵</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=샐러드">
+				<a href="/recipe/categoryList.do?recipeTitle_main=샐러드">
 					<img src="/resources/uploads/category/cate1_12.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">샐러드</div>
+			<div class="recipeTitle_main">샐러드</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=차/음료/술">
+				<a href="/recipe/categoryList.do?recipeTitle_main=차/음료/술">
 					<img src="/resources/uploads/category/cate1_17.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">차/음료/술</div>
+			<div class="recipeTitle_main">차/음료/술</div>
 		</li>
 		
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=과자">
+				<a href="/recipe/categoryList.do?recipeTitle_main=과자">
 					<img src="/resources/uploads/category/cate1_02.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">과자</div>
+			<div class="recipeTitle_main">과자</div>
 		</li>
 		<li class="mainCategoryLi">
 			<div>
-				<a href="/recipe/categoryList.do?recipeTitle=기타">
+				<a href="/recipe/categoryList.do?recipeTitle_main=기타">
 					<img src="/resources/uploads/category/cate1_04.png" class="category-image">
 				</a>
 			</div>
-			<div class="recipeTitle">기타</div>
+			<div class="recipeTitle_main">기타</div>
 		</li>
 		</ul>
 		<img src="/resources/uploads/icon_arrow3_next.png" class="icon_arrow3_next3">

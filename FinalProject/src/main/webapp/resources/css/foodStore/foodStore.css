@@ -6,6 +6,10 @@
 	background-color: white;
 }
 
+.storeList {
+	padding-bottom: 20px;
+}
+
 .storeTitle {
 	padding: 60px 0 50px 0;
 	text-align: center;
@@ -362,6 +366,10 @@
 	overflow: hidden;
 	transition: max-height 0.5s ease-out; /* 부드럽게 전환되도록 설정 */
 	padding-bottom: 30px;
+}
+
+.detail-img img{
+	width: 85%;
 }
 
 .detail-img-pull {
@@ -928,34 +936,53 @@ textarea::-webkit-scrollbar-thumb:hover {
     width: 100%;
 }
 
+.pageNav {
+	text-align: center;
+	width: 100%;
+}
+
 .pagination {
-	padding: 20px 0 0;
-    text-align: center;
+	list-style: none;
+	display: inline-block;
+	padding: 0;
+	margin-top: 20px;
 }
 
 .page-item {
-	display: inline-block;
-    min-width: 24px;
-    vertical-align: middle;
-    height: 30px;
-    line-height: 1;
-    padding: 2px;
-    border: 1px solid #ebebeb;
-    margin: 0 2px;
+	display: inline;
+	text-align: center;
+	
 }
 
 .page-link {
+	float: left;
 	display: block;
-    padding: 0 10px;
-    height: 30px;
-    color: #888;
-    font-size: 14px;
-    line-height: 30px;
-    text-decoration: none;
+	font-size: 20px;
+	text-decoration: none;
+	padding: 5px 12px;
+	color: #96a0ad;
+	line-height: 1.5;
+	margin-left: 3px;
+	height: 30px;
+	width: 17px;
+	line-height: 30px;
+	-moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
 }
 
-.page-link.active {
-  color: red;
+.page-link:hover {
+	background-color: green;
+	color: #ffffff;
+}
+
+
+
+.pagination li.active a{
+	cursor: default;
+	color: #ffffff;
+	outline: none;
+	background-color: green;
 }
 
 .questionsEnroll-btn button{
