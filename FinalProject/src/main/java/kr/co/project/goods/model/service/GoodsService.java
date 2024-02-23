@@ -4,6 +4,7 @@ import java.util.List;
 
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.goods.model.dto.GoodsDTO;
+import kr.co.project.goods.model.dto.GoodsPhotosDTO;
 
 public interface GoodsService {
 	// 전체 게시글 수 구하기
@@ -18,4 +19,8 @@ public interface GoodsService {
 	int addGoods(GoodsDTO goodsDTO);
 
 	int changeStock(GoodsDTO goodsDTO);
+
+	int manyPhotosGoods(GoodsDTO goodsDTO, List<GoodsPhotosDTO> goodsPhotoList);
+
+	List<GoodsPhotosDTO> goodsPhotosList(int g_no);
 }

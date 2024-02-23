@@ -129,6 +129,11 @@
               WHERE R_NO = #{rno}
    </update>
    
+   <update id="memberNickNameUpdate">
+   UPDATE RECIPE SET R_WRITER =#{memberNickName}
+   WHERE M_NO=#{mno}
+   </update>
+   
    <update id="deleteRecipe" parameterType="_int">
    UPDATE RECIPE SET R_DELETEDATE = SYSDATE
    WHERE R_NO = #{rno}

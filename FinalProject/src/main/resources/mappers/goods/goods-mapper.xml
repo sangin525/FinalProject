@@ -19,6 +19,17 @@
 		<result column="g_delete_check" property="g_delete_check"></result>
 	</resultMap>
 
+	<resultMap type="goodsPhotos" id="goodsPhotosResultSet">
+		<result column="gp_no" property="gp_no"></result>
+		<result column="gp_file_path" property="gp_file_path"></result>
+		<result column="gp_file_name" property="gp_file_name"></result>
+		<result column="gp_origin_name" property="gp_origin_name"></result>
+		<result column="gp_type" property="gp_type"></result>
+		<result column="g_no" property="g_no"></result>
+	</resultMap>
+
+
+
 	<select id="selectListCount" resultType="_int">
 		SELECT COUNT(*) FROM
 		goods
@@ -35,6 +46,23 @@
 		SELECT * FROM goods
 		WHERE g_no
 		= #{g_no}
+	</select>
+	
+	<select id="getG_no" parameterType="goods" resultType="_int">
+		SELECT G_NO FROM GOODS 
+		WHERE g_name =#{g_name}
+		AND g_file_path=#{g_file_path}
+		AND g_file_name=#{g_file_name}
+		AND g_origin_name=#{g_origin_name}
+		AND g_introduce=#{g_introduce}
+		AND g_regular_price=#{g_regular_price}
+		AND g_price=#{g_price}
+		AND g_dcRate=#{g_dcRate}
+	</select>
+	
+	<select id="goodsPhotosList" parameterType="_int" resultMap="goodsPhotosResultSet">
+		SELECT * FROM GOODSPHOTOS 
+		WHERE G_NO = #{G_NO}
 	</select>
 
 	<insert id="addGoods" parameterType="goods">
@@ -53,10 +81,22 @@
 		null
 		)
 	</insert>
+	
+	<insert id="addGoodsPhotos" parameterType="goodsPhotos">
+		INSERT INTO GOODSPHOTOS
+		VALUES (goodsPhotos_seq.nextVAL,
+		#{gp_file_path},
+		#{gp_file_name},
+		#{gp_origin_name},
+		1,
+		#{g_no}
+		)
+	</insert>
 
 	<update id="changeStock" parameterType="goods">
 		UPDATE GOODS
-		SET G_STOCK = #{g_stock}
+		SET G_STOCK =
+		#{g_stock}
 		WHERE g_no= #{g_no}
 	</update>
 

@@ -5,7 +5,7 @@
 	
 <div class="mainContainer">
 		<div class="slick_slide">
-		<p class="main-Title">최신 레시피</p>
+		<p class="main-Title">최신 레시피 </p>
 		<img src="/resources/uploads/icon_arrow3_pre.png" class="icon_arrow3_pre2">
 		<ul class="randomRecipe">
 		<c:choose>
@@ -20,7 +20,7 @@
 			</div>
 			<div class="recipeTitle">${item.title }</div>
 			<div class="chefName">
-				<a><img src="/resources/uploads/member/${memberList[status.index].uploadName }" class="ChefPicture">${item.memberNickName }</a>
+				<a><img src="/resources/uploads/member/${memberList2[status.index].uploadName }" class="ChefPicture">${item.memberNickName }</a>
 			</div>
 			<div class="RecipeScore">
 				<span>별점 :${item.star}</span>

@@ -1,6 +1,7 @@
 package kr.co.project.member.model.service;
 
 import java.util.List;
+import java.util.Objects;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.member.model.dao.MemberDAO;
 import kr.co.project.member.model.dto.MemberDTO;
+import kr.co.project.recipe.model.dao.RecipeDAO;
 import kr.co.project.recipe.model.dto.RecipeDTO;
 
 @Service
@@ -19,6 +21,9 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	private MemberDAO memberDao;
+	
+	@Autowired
+	private RecipeDAO recipeDao;
 	
 	@Override
 	public MemberDTO loginMember(MemberDTO member) {
@@ -61,9 +66,16 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.selectMember(sqlSession,mno);
 	}
 
-	public int memberNickNameUpdate(MemberDTO member) {
+	public int memberNickNameUpdate(MemberDTO member,RecipeDTO recipe) {
 		
-		return memberDao.memberNickNameUpdate(sqlSession,member);
+		int result1 = memberDao.memberNickNameUpdate(sqlSession,member);
+		System.out.println("a : " + Objects.isNull(recipe));
+		System.out.println("b : " + Objects.isNull(recipeDao));
+		int result2 = recipeDao.memberNickNameUpdate(sqlSession,recipe);
+		if(result1==1&&result2==1) {
+			System.out.println("성공");		
+		}
+		return 1;
 	}
 
 	public int secessionMember(MemberDTO member) {
@@ -111,6 +123,11 @@ public class MemberServiceImpl implements MemberService{
 	public MemberDTO memberList(int mno) {
 		
 		return memberDao.memberList(sqlSession,mno);
+	}
+
+	public MemberDTO logMember(int mno) {
+		
+		return memberDao.logMember(sqlSession,mno);
 	}
 
 	
