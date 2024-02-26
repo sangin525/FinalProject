@@ -217,7 +217,49 @@
 
 			</c:forEach>
 		</div>
-
+<div class="pageNav">
+    <ul class="pagination justify-content-center">
+        <c:choose>
+            <c:when test="${pi.cpage eq 1}">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item">
+                    <a class="page-link" href="/recipe/detail.do?rno=${recipe.rno }&cpage=${pi.cpage-1}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+        
+        <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+		    <li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>">
+		        <a class="page-link" href="/recipe/detail.do?rno=${recipe.rno }&cpage=${page}">${page}</a>
+		    </li>
+		</c:forEach>
+        
+        <c:choose>
+            <c:when test="${pi.cpage eq pi.maxPage}">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item">
+                    <a class="page-link" href="/recipe/detail.do?rno=${recipe.rno }&cpage=${pi.cpage+1}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+    </ul>
+</div>
 
 		<div class="comment-section">
 
@@ -230,13 +272,14 @@
 				<div class="commentPic">
 					<img src="/resources/uploads/member/${sessionScope.uploadName}">
 				</div>
-				
+
         <div class="comment">
             <div class="rating">
                 <span onclick="ratingTest(5);">★</span><span
                     onclick="ratingTest(4);">★</span><span onclick="ratingTest(3);">★</span><span
                     onclick="ratingTest(2);">★</span><span onclick="ratingTest(1);">★</span>
             </div>
+            
             <input type="hidden" name="star" id="star">
             <textarea class="commentTextbox" name="comment"
                 placeholder="코멘트 및 후기를 써주세요!"></textarea>
