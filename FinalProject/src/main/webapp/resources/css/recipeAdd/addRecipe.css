@@ -89,7 +89,7 @@ select {
 	display: block;
 }
 
- button {
+ .addButton {
 	background-color: #5cb85c;
 	color: #fff;
 	border: none;
