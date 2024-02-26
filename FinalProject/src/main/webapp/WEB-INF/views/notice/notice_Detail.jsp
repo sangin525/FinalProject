@@ -43,7 +43,7 @@
 						<c:if test ="${not empty notice.fileName }">
 						<img src="/resources/uploads/admin/${notice.fileName }"><br> 
 						</c:if>
-						${notice.contents }
+						<pre><c:out value="${notice.contents }" /></pre>
 						
 					</div>
 				</div>

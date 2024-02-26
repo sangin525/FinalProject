@@ -33,7 +33,7 @@ public class GoodsController {
 
 	@Autowired
 	private GoodsServiceImpl goodsService;
-	
+
 	@Autowired
 	private AdminServiceImpl adminService;
 
@@ -42,22 +42,20 @@ public class GoodsController {
 
 		int listCount = goodsService.selectListCount();
 		int pageLimit = 10;
-		int boardLimit = 15;
+		int boardLimit = 12;
 		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 
 		List<GoodsDTO> list = goodsService.selectListAll(pi, goods);
 		model.addAttribute("list", list);
+		model.addAttribute("pi", pi);
+
 		return "foodStore/products";
 	}
 
 	@GetMapping("/detail.do")
 	public String detailBoard(@RequestParam(value = "g_no") int g_no, Model model, HttpServletRequest request,
-			HttpSession session,GoodsDTO goods,AdminDTO admin) {
+			HttpSession session, GoodsDTO goods, AdminDTO admin) {
 		int mno = (int) session.getAttribute("mno");
-
-		
-		
-				
 
 		GoodsDTO result = goodsService.detailGoods(g_no);
 
@@ -67,34 +65,31 @@ public class GoodsController {
 		detailedImage.setGp_type(2);
 		List<GoodsPhotosDTO> thumbnailList = goodsService.goodsPhotosList(thumbnail);
 		List<GoodsPhotosDTO> detailedImagelList = goodsService.goodsPhotosList(detailedImage);
-		
+
 		List<GoodsDTO> inquiryList = goodsService.selectInquiryList(g_no);
 		List<AdminDTO> adminAnswer = new ArrayList<>();
 //		List<AdminDTO> adminInquiryList = adminService.s
-		
-		model.addAttribute("m_no",mno);
+
+		model.addAttribute("m_no", mno);
 		if (!Objects.isNull(result)) {
 			model.addAttribute("m_no", mno);
 			model.addAttribute("goods", result);
 			model.addAttribute("thumbnailList", thumbnailList);
 			model.addAttribute("detailedImagelList", detailedImagelList);
 
-			if(!Objects.isNull(inquiryList)) {
+			if (!Objects.isNull(inquiryList)) {
 //				System.out.println(inquiryList);
-				model.addAttribute("inquiryList",inquiryList);
-				for(GoodsDTO item:inquiryList) {
+				model.addAttribute("inquiryList", inquiryList);
+				for (GoodsDTO item : inquiryList) {
 					try {
 						AdminDTO adminAnswerDTO = adminService.adminAnswerList(item.getI_no());
 						adminAnswer.add(adminAnswerDTO);
-					}catch(NullPointerException e) {
+					} catch (NullPointerException e) {
 						adminAnswer.add(new AdminDTO());
 					}
 					model.addAttribute("adminAnswer", adminAnswer);
 				}
 			}
-			
-
-			
 
 			return "foodStore/productDetail";
 		} else {
@@ -121,56 +116,47 @@ public class GoodsController {
 		}
 	}
 
-	
 	@PostMapping("/addInquiry")
-	public String addInquiry(@RequestParam(value = "g_no")int g_no,Model model,
-			HttpSession session,MemberDTO member,GoodsDTO goods) {
-		
+	public String addInquiry(@RequestParam(value = "g_no") int g_no, Model model, HttpSession session, MemberDTO member,
+			GoodsDTO goods) {
+
 		goods.setM_no((int) session.getAttribute("mno"));
 		goods.setG_no(g_no);
 		int addInquiry = goodsService.addInquiry(goods);
-		
-		if(addInquiry>0) {
+
+		if (addInquiry > 0) {
 			System.out.println("문의작성완료");
-		}else {
+		} else {
 			System.out.println("문의작성실패");
 		}
 		return "redirect:/goods/list.do";
 	}
-	
-	
+
 	@GetMapping("/adminInquiry")
-	public String adminInquiry(@RequestParam(value="cpage",defaultValue="1")int cpage,
-			GoodsDTO goods,
-			HttpSession session,Model model) {
+	public String adminInquiry(@RequestParam(value = "cpage", defaultValue = "1") int cpage, GoodsDTO goods,
+			HttpSession session, Model model) {
 		int adminInquiryCount = goodsService.adminInquiryCount(goods);
-		
+
 		int pageLimit = 10;
-		int boardLimit =15;
-		
-		int row = adminInquiryCount-(cpage-1) * boardLimit;
+		int boardLimit = 15;
+
+		int row = adminInquiryCount - (cpage - 1) * boardLimit;
 		PageInfo pi = Pagination.getPageInfo(adminInquiryCount, cpage, pageLimit, boardLimit);
-		List<GoodsDTO> adminInquiryList = goodsService.adminInquiryList(pi,goods);
-		
-		for(GoodsDTO item:adminInquiryList) {
-			String indate = item.getI_in_date().substring(0,10);
+		List<GoodsDTO> adminInquiryList = goodsService.adminInquiryList(pi, goods);
+
+		for (GoodsDTO item : adminInquiryList) {
+			String indate = item.getI_in_date().substring(0, 10);
 			item.setI_in_date(indate);
 		}
-		model.addAttribute("row",row);
-		model.addAttribute("adminInquiryList",adminInquiryList);
-		model.addAttribute("pi",pi);
-		
-		return"/admin/productAnswer";
+		model.addAttribute("row", row);
+		model.addAttribute("adminInquiryList", adminInquiryList);
+		model.addAttribute("pi", pi);
+
+		return "/admin/productAnswer";
 	}
-	
-	
-	
-	
+
 	@PostMapping("/manyPhotosGoods.do")
-	public String manyPhotosGoods(
-			GoodsDTO goodsDTO, 
-			List<MultipartFile> multiFileList, 
-			HttpSession session,
+	public String manyPhotosGoods(GoodsDTO goodsDTO, List<MultipartFile> multiFileList, HttpSession session,
 			Model model) {
 		List<GoodsPhotosDTO> goodsPhotoList = new ArrayList<>();
 		List<GoodsPhotosDTO> detailPhotoList = new ArrayList<>();

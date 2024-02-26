@@ -24,6 +24,7 @@
 	<select id="selectListAll" resultMap="freeResultSet">
 	SELECT * FROM FREELIST
 	WHERE FL_DELETE_DATE IS NULL
+	ORDER BY FL_IN_DATE DESC
 	</select>
 	
 	<select id="freeDetail" resultMap="freeResultSet">

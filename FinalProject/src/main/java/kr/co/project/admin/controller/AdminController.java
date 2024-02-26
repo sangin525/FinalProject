@@ -484,6 +484,7 @@ public class AdminController {
 		
 		model.addAttribute("list",list);
 		model.addAttribute("row",row);
+		model.addAttribute("pi",pi);
 		return"admin/memberList";
 	}
 	

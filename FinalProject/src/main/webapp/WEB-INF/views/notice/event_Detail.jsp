@@ -43,7 +43,7 @@
 						<c:if test ="${not empty event.e_file_name }">
 						<img src="/resources/uploads/event/${event.e_file_name }"><br> 
 						</c:if>
-						${event.e_contents }
+						<pre><c:out value="${event.e_contents }" /></pre>
 					</div>
 				</div>
 				<div class="bt_wrap">

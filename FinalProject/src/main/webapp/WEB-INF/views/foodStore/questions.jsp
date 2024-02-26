@@ -123,8 +123,7 @@
 						<div class="questionsDetail">
 							<div id="boardContent" class="goods_board_view">
 								<div class="contents_holder">
-								${item.i_contents }
-
+							<pre><c:out value="${item.i_contents }" /></pre>
 									<div class="btn_view_qna_box"></div>
 								</div>
 								
@@ -138,21 +137,7 @@
 										<c:forEach var="item2" items="${adminAnswer}">
 											<c:if test="${item.i_no == item2.i_no }">
 												<dl class="contents_holder answer">
-													<dt>안녕하세요 !</dt>
-													<dd>
-													${item2.aa_contents}
-													${item2.aa_answer }
-														<!-- <p>안녕하세요 고객님</p>
-														<p>&nbsp;</p>
-														<p>주문하신내역 확인해보니 "플루딕 짤순이 기본구성" 구매해주신걸로 확인됩니다.</p>
-														<p>&nbsp;</p>
-														<p>기본구성은 유청분리주머니가 포함되어 있지 않습니다.</p>
-														<p>&nbsp;</p>
-														<p>옵션보시면 유청분리기 3p, 10p 가 포함된 옵션을 구매하셔야 유청분리기가 동봉되어
-															출고됩니다!</p>
-														<p>&nbsp;</p>
-														<p>감사합니다 :)</p> -->
-													</dd>
+													<pre><c:out value="${item2.aa_answer }" /></pre>
 												</dl>
 											</c:if>
 										</c:forEach>
@@ -182,8 +167,9 @@
 						<div class="questionsDetail">
 							<div id="boardContent" class="goods_board_view">
 								<div class="contents_holder">
-								${item.i_contents }
-
+									<textarea class="contents_textarea">
+										${item.i_contents}
+									</textarea>
 									<div class="btn_view_qna_box"></div>
 								</div>
 								
@@ -196,23 +182,9 @@
 										</div>
 										<c:forEach var="item2" items="${adminAnswer}">
 											<c:if test="${item.i_no == item2.i_no }">
-												<dl class="contents_holder answer">
-													<dt>안녕하세요 !</dt>
-													<dd>
-													${item2.aa_contents}
+												<textarea class="contents_holder answer">
 													${item2.aa_answer }
-														<!-- <p>안녕하세요 고객님</p>
-														<p>&nbsp;</p>
-														<p>주문하신내역 확인해보니 "플루딕 짤순이 기본구성" 구매해주신걸로 확인됩니다.</p>
-														<p>&nbsp;</p>
-														<p>기본구성은 유청분리주머니가 포함되어 있지 않습니다.</p>
-														<p>&nbsp;</p>
-														<p>옵션보시면 유청분리기 3p, 10p 가 포함된 옵션을 구매하셔야 유청분리기가 동봉되어
-															출고됩니다!</p>
-														<p>&nbsp;</p>
-														<p>감사합니다 :)</p> -->
-													</dd>
-												</dl>
+												</textarea>
 											</c:if>
 										</c:forEach>
 										
