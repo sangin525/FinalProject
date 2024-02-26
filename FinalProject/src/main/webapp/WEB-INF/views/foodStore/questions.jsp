@@ -113,7 +113,6 @@
 							<div class="accordion_q_tit2"> 문의제목 : ${item.i_title}</div>
 							<div class="accordion_q_tit1">
 							<input type="hidden" value="${item.i_secret}">
-							<span class="questions-nickName">이메일 : ${item.i_email }</span>
 								<span class="questions-nickName">닉네임 : ${item.i_writer }</span> 
 								<span class="questions-date">날짜 : ${item.i_in_date }</span> 
 								<span class="questions-answer">비밀글 : ${item.i_secret }</span>
@@ -157,7 +156,6 @@
 							<div class="accordion_q_tit2"> 문의제목 : ${item.i_title}</div>
 							<div class="accordion_q_tit1">
 							<input type="hidden" value="${item.i_secret}">
-							<span class="questions-nickName">이메일 : ${item.i_email }</span>
 								<span class="questions-nickName">닉네임 : ${item.i_writer }</span> 
 								<span class="questions-date">날짜 : ${item.i_in_date }</span> 
 								<span class="questions-answer">비밀글 : ${item.i_secret }</span>
