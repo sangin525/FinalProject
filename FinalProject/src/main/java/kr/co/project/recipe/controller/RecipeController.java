@@ -229,51 +229,55 @@ public class RecipeController {
 	}
 	
 	// 스크랩 레시피 리스트
-	@GetMapping("/scrapRecipeList.do")
-	public String scrapRecipeList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
-			Model model,MemberDTO member,
-			HttpSession session){
-		
-		int listCount = recipeService.scrapListCount(recipe);
-		
-		int pageLimit = 6;
-		int boardLimit =6;
-		
-		int row = listCount - (cpage-1) * boardLimit;
-		
-		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
-		
-		List<RecipeDTO> scrapList = recipeService.scrapRecipeList(recipe,pi);
-			for(RecipeDTO item:scrapList) {
-				
-				recipe.setMno((int) session.getAttribute("mno"));
-				recipe.setRno(item.getRno());
+		@GetMapping("/scrapRecipeList.do")
+		public String scrapRecipeList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
+				Model model,MemberDTO member,
+				HttpSession session){
 			
-				List<RecipeDTO> scraplist = recipeService.selectScrapRecipe(item,pi);
-
-				for(RecipeDTO item2:scraplist) {
-				String scrapDate2 = item2.getScrapDate().substring(0,10);
-				item2.setScrapDate(scrapDate2);
+			int listCount = recipeService.scrapListCount(recipe);
+			
+			int pageLimit = 6;
+			int boardLimit =6;
+			
+			int row = listCount - (cpage-1) * boardLimit;
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+			
+			List<RecipeDTO> scrapList = recipeService.scrapRecipeList(recipe,pi);
+				for(RecipeDTO item:scrapList) {
+					
+//					recipe.setMno((int) session.getAttribute("mno"));
+//					recipe.setRno(item.getRno());
+					
+					item.setMno((int) session.getAttribute("mno"));
+					item.setRno(item.getRno());
+				
+					List<RecipeDTO> scraplist2 = recipeService.selectScrapRecipe(item,pi);
+					for(RecipeDTO item2:scraplist2) {
+					System.out.println(item2);
+					String scrapDate2 = item2.getScrapDate().substring(0,10);
+					item2.setScrapDate(scrapDate2);
+					model.addAttribute("scraplist2",scraplist2);				
+					}
+					
+					member.setMno((int) session.getAttribute("mno"));
+					
+					int mno = member.getMno();
+					MemberDTO result = memberService.memberProfile(mno);					
+					int viewSum = recipeService.viewSum(mno);
+				
+					model.addAttribute("result",result);
+					model.addAttribute("viewSum",viewSum);
 				}
-				model.addAttribute("scraplist",scraplist);				
-				member.setMno((int) session.getAttribute("mno"));
-				int mno = member.getMno();
-				MemberDTO result = memberService.memberProfile(mno);
-				
-				int viewSum = recipeService.viewSum(mno);
 			
-				model.addAttribute("result",result);
-				model.addAttribute("viewSum",viewSum);
-			}
-		
-		
-		
-		model.addAttribute("row",row);
-		model.addAttribute("scrapList",scrapList);
-		model.addAttribute("pi",pi);
-		
-		return "myPage/scrapRecipe";
-	}
+			
+			
+			model.addAttribute("row",row);
+//			model.addAttribute("scrapList",scrapList);
+			model.addAttribute("pi",pi);
+			
+			return "myPage/scrapRecipe";
+		}
 	
 	@GetMapping("/scrapRecipeDelete")
 	public String scrapRecipeDelete(@RequestParam(value="frno")int frno,
@@ -486,6 +490,7 @@ public class RecipeController {
 	@GetMapping("/detail.do")
 	
 	public String detailRecipe(@RequestParam(value="rno") int rno,
+			@RequestParam(value="cpage",defaultValue="1")int cpage,
 												RecipeDTO recipe,
 												Model model,
 												HttpServletRequest request,HttpSession session) {
@@ -499,9 +504,7 @@ public class RecipeController {
 		System.out.println(ingreresult);
 
 		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
-		
-		List<RecipeDTO> comresult = recipeService.selectComment(rno);
-		
+				
 		List<RecipeDTO> seqPhoresult = new ArrayList<>();
 		
 		List<MemberDTO> memberResult = new ArrayList<>();
@@ -511,25 +514,34 @@ public class RecipeController {
 				if(!Objects.isNull(seqresult)) {	
 					int rsno = seqresult.getRsno();
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
-					if(!Objects.isNull(comresult)) {
+						// 댓글 페이징 처리
 						int commentCount = recipeService.commentCount(rno);
+						int commentPageLimit = 10;
+						int commentLimit = 5;
+						
+						PageInfo pi = Pagination.getPageInfo(commentCount, cpage, commentPageLimit, commentLimit);
+						
+						List<RecipeDTO> comresult = recipeService.selectComment(pi,rno);
+
 						int recentRecipe = recipeService.recentRecipe(recipe); 
+						
 						MemberDTO recipeChefProfile = memberService.memberProfile(result.getMno());
+						
 						for(RecipeDTO cp:comresult) {							
-//							
+							String indate = cp.getRcInDate().substring(0,10);
+							cp.setRcInDate(indate);
 							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
 							memberResult.add(resultProfile);
-//						
-							System.out.println(memberResult.toString());							
+					
+//							System.out.println(memberResult.toString());							
 						}
+						System.out.println(recentRecipe);
+						model.addAttribute("pi", pi);
+						
 						model.addAttribute("memberResult",memberResult);
 						model.addAttribute("recipeChefProfile",recipeChefProfile);
 						model.addAttribute("commentCount",commentCount);						
-						model.addAttribute("comment",comresult);
-						System.out.println(recentRecipe);
-						System.out.println("게시판 들어오기 완료~");
-					
-					}
+						model.addAttribute("comment",comresult);				
 				}
 			}
 		}

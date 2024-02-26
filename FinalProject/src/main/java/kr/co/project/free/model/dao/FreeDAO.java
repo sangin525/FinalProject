@@ -64,9 +64,11 @@ public class FreeDAO {
 		return sqlSession.insert("freeCommentMapper.addComment",free);
 	}
 
-	public List<FreeDTO> selectComment(SqlSessionTemplate sqlSession, int flno) {
+	public List<FreeDTO> selectComment(SqlSessionTemplate sqlSession,PageInfo pi,int flno) {
 		
-		return sqlSession.selectList("freeCommentMapper.selectComment",flno);
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());		
+		return sqlSession.selectList("freeCommentMapper.selectComment",flno,rb);
 	}
 
 	public int commentCount(SqlSessionTemplate sqlSession, int flno) {

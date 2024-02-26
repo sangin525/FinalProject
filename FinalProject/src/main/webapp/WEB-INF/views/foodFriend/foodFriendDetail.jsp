@@ -41,7 +41,9 @@
 						</dl>
 					</div>
 					<div class="cont">
+						<c:if test="${not empty food.uploadName}">
 						<img src="/resources/uploads/foodMate/${food.uploadName}"> <br>
+						</c:if>
 						<br> ${food.contents}
 					</div>
 				</div>
@@ -97,11 +99,13 @@
 
 		</div>
 		<div class="commentList">
-			<c:forEach var="item" items="${comment}">
+			<c:forEach var="item" items="${comment}" varStatus="status">
 				<div class="reply_list">
 					<div class="media-left">
+					<c:if test="${not empty memberResult }">
 						<a href="#"> <img class="profile_picture"
-							src="/resources/uploads/레시피등록대표사진.gif"></a>
+							src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
+					</c:if>
 					</div>
 					<div class="media-body">
 						<h4 class="media-heading">
@@ -132,6 +136,50 @@
 		</div>
 	</div>
 <br>
+	
+	<div class="pageNav">
+    <ul class="pagination justify-content-center">
+        <c:choose>
+            <c:when test="${pi.cpage eq 1}">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item">
+                    <a class="page-link" href="/foodMate/foodMateDetail.do?fno=${food.fno }&cpage=${pi.cpage-1}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+        
+        <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+		    <li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>">
+		        <a class="page-link" href="/foodMate/foodMateDetail.do?fno=${food.fno }&cpage=${page}">${page}</a>
+		    </li>
+		</c:forEach>
+        
+        <c:choose>
+            <c:when test="${pi.cpage eq pi.maxPage}">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item">
+                    <a class="page-link" href="/foodMate/foodMateDetail.do?fno=${food.fno }&cpage=${pi.cpage+1}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+    </ul>
+</div>
 	
 	<%@ include file="../../views/common/footer.jsp"%>
 

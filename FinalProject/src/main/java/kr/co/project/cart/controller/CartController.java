@@ -61,12 +61,12 @@ public class CartController {
 
 			for (CartDTO cartDTO : cartList) {
 				GoodsDTO goodsInfo = goodsService.detailGoods(cartDTO.getG_no());
+			
 				cartDTO.setG_name(goodsInfo.getG_name());
 				cartDTO.setG_price(goodsInfo.getG_price());
 				cartDTO.setG_regular_price(goodsInfo.getG_regular_price());
 				cartDTO.setG_file_name(goodsInfo.getG_file_name());
 			}
-			System.out.println();
 		} else {
 
 		}

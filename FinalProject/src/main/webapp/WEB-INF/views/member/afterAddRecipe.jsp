@@ -157,7 +157,7 @@
 					
 						<c:if test="${not empty memberResult }">
 							<a href="#"> <img class="profile_picture"
-								src="/resources/uploads/member/${sessionScope.uploadName}"></a>
+								src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
 						</c:if>
 					</div>
 					
@@ -264,7 +264,49 @@
 		</c:if>
 	</div>
 
-
+<div class="pageNav">
+    <ul class="pagination justify-content-center">
+        <c:choose>
+            <c:when test="${pi.cpage eq 1}">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item">
+                    <a class="page-link" href="/recipe/detail.do?rno=${recipe.rno }&cpage=${pi.cpage-1}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+        
+        <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+		    <li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>">
+		        <a class="page-link" href="/recipe/detail.do?rno=${recipe.rno }&cpage=${page}">${page}</a>
+		    </li>
+		</c:forEach>
+        
+        <c:choose>
+            <c:when test="${pi.cpage eq pi.maxPage}">
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:when>
+            <c:otherwise>
+                <li class="page-item">
+                    <a class="page-link" href="/recipe/detail.do?rno=${recipe.rno }&cpage=${pi.cpage+1}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </c:otherwise>
+        </c:choose>
+    </ul>
+</div>
 
 
 

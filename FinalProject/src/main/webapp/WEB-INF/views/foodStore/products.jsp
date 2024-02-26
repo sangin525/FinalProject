@@ -61,19 +61,21 @@
 					<ul class="products-ul">
 
 						<c:forEach var="item" items="${list}">
-							<li>
-							<a href="/goods/detail.do?g_no=${item.g_no}"> 
-							<img src="/resources/uploads/goods/${item.g_file_name}">
-									<div class="product-caption">
-										<div>상품명: ${item.g_name}</div> <br>
-										<div>정상가: ${item.g_regular_price}원</div>									
-										<div>
-											<span style="color: red;">${item.g_dcRate} %</span> 
-											<strong>판매가: ${item.g_price} 원</strong>
-										</div>
-									</div>
-							</a>
-							</li>
+						    <li class="products-li">
+						        <a href="/goods/detail.do?g_no=${item.g_no}"> 
+						            <img src="/resources/uploads/goods/${item.g_file_name}">
+						            <div class="product-caption">
+						                <input type="hidden" class="g_price" value="${item.g_price}">
+						                <input type="hidden" class="g_r_price" value="${item.g_regular_price}">
+						                <div>${item.g_name}</div> <br>
+						                <div class="re_price">정상가: ${item.g_regular_price}원</div>                                    
+						                <div>
+						                    <span style="color: red;">${item.g_dcRate} %</span> 
+						                    <strong class="price_g">판매가: ${item.g_price} 원</strong>
+						                </div>
+						            </div>
+						        </a>
+						    </li>
 						</c:forEach>
 					</ul>
 				</c:otherwise>
@@ -98,10 +100,19 @@
 				    </c:choose>
 				    
 				    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-				    	<li class="page-item" <c:if test="${pi.cpage eq page}">active</c:if>>
-				    		<a class="page-link" href="/goods/list.do?cpage=${page}">${page}</a>
-			    		</li>
-				    </c:forEach>
+					    <c:choose>
+					        <c:when test="${pi.cpage eq page}">
+					            <li class="page-item active">
+					                <a class="page-link" href="/goods/list.do?cpage=${page}">${page}</a>
+					            </li>
+					        </c:when>
+					        <c:otherwise>
+					            <li class="page-item">
+					                <a class="page-link" href="/goods/list.do?cpage=${page}">${page}</a>
+					            </li>
+					        </c:otherwise>
+					    </c:choose>
+					</c:forEach>
 				    
 				    <c:choose>
 					    <c:when test="${pi.cpage eq pi.maxPage}">

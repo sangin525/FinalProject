@@ -133,29 +133,40 @@ public class AdminController {
 	
 	@GetMapping("/noticeDetail")
 	public String noticeDetail(@RequestParam(value="acno") int acno,
+			@RequestParam(value="cpage",defaultValue="1")int cpage,
 								AdminDTO admin,MemberDTO member,
 								Model model,
 								HttpSession session) {
 		
 		AdminDTO result = adminService.detailNotice(acno);
-		
-		List<AdminDTO> adminComment = adminService.selectNoticeComment(acno);
-		
+				
 		List<MemberDTO> commentProfile = new ArrayList<>();
+		
 		if(!Objects.isNull(result)) {
-			if(!Objects.isNull(adminComment)) {
+			
 				int ncommentCount = adminService.ncommentCount(acno);
+				int commentPageLimit = 10;
+				int commentLimit = 5;
+				
+				PageInfo pi = Pagination.getPageInfo(ncommentCount, cpage, commentPageLimit, commentLimit);
+				
 				model.addAttribute("ncommentCount",ncommentCount);
+				
+				List<AdminDTO> adminComment = adminService.selectNoticeComment(pi,acno);
+				
 				for(AdminDTO ad:adminComment) {
+					String indate  = ad.getNcIndate().substring(0,10);
+					ad.setNcIndate(indate);
 					MemberDTO resultProfile = memberService.memberList(ad.getMno());
 					commentProfile.add(resultProfile);
 					model.addAttribute("memberResult",commentProfile);
 				}
-			}
+				model.addAttribute("pi",pi);
+				model.addAttribute("noticeComment",adminComment);
+			
 		}else {
 			System.out.println("실패");
 		}
-		model.addAttribute("noticeComment",adminComment);
 		model.addAttribute("notice",result);				
 		return "/notice/notice_Detail";
 	}
@@ -317,32 +328,40 @@ public class AdminController {
 	
 	@GetMapping("/eventDetail")
 	public String eventDetail(@RequestParam(value="eno") int eno,
+			@RequestParam(value="cpage",defaultValue="1")int cpage,				
 								AdminDTO admin,MemberDTO member,
 								Model model,
 								HttpSession session) {
 		
-		AdminDTO event = adminService.detailEvent(eno);
-		
-		List<AdminDTO> eventComment = adminService.selectEventComment(eno);
+		AdminDTO event = adminService.detailEvent(eno);		
 		
 		List<MemberDTO> commentProfile = new ArrayList<>();
+		
 		if(!Objects.isNull(event)) {
-			if(!Objects.isNull(eventComment)) {
+			
 				int ecommentCount = adminService.ecommentCount(eno);
+				int commentPageLimit = 10;
+				int commentLimit = 5;
+				
+				PageInfo pi = Pagination.getPageInfo(ecommentCount, cpage, commentPageLimit, commentLimit);
+				
+				List<AdminDTO> eventComment = adminService.selectEventComment(pi,eno);
+
 				model.addAttribute("ecommentCount",ecommentCount);
+				
 				for(AdminDTO ep:eventComment) {
+					String indate = ep.getEcIndate().substring(0,10);
+					ep.setEcIndate(indate);
 					MemberDTO resultProfile = memberService.memberList(ep.getMno());
 					commentProfile.add(resultProfile);
 					model.addAttribute("memberResult",commentProfile);
 				}
-			}
-			System.out.println("e게시글 들어오기 완료");
+				model.addAttribute("eventComment",eventComment);
+				model.addAttribute("pi", pi);			
 		}else {
 			System.out.println("e게시글 들어오기 실패");
 		}
-	
 		model.addAttribute("event",event);
-		model.addAttribute("eventComment",eventComment);
 		return "/notice/event_Detail";
 	}
 	
@@ -465,6 +484,7 @@ public class AdminController {
 		
 		model.addAttribute("list",list);
 		model.addAttribute("row",row);
+		model.addAttribute("pi",pi);
 		return"admin/memberList";
 	}
 	

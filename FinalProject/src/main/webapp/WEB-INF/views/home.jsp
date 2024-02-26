@@ -21,7 +21,7 @@
 	<%@ include file="../views/common/nav.jsp" %>
 	
 <div class="homeContainer">
-    <c:forEach var="item" items="${bestRecipe}" varStatus="loop">
+    <c:forEach var="item" items="${bestRecipe}" varStatus="loop" begin="0" end="5">
         <img src="/resources/uploads/recipe/${item.uploadName}" class="homeImg" data-rno="${item.rno}">
     </c:forEach>
 </div>

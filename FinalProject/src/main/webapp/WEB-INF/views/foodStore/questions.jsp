@@ -102,15 +102,17 @@
 		<li><a class="accordion_i_tit2" id="inquiry">문의</a>
 			<div class="productQuestions">
 				<ul>
+				<c:forEach var="item" items="${inquiryList }">
 				<c:choose>
 				<c:when test="${empty inquiryList }">
 					<p>문의내역이 없습니다.</p>
 				</c:when>
-				<c:otherwise>
-				<c:forEach var="item" items="${inquiryList }">
+				<c:when test="${item.i_secret eq 'y' and sessionScope.type eq 0 or item.m_no eq sessionScope.mno}">
+				
 				<li><a class="productQuestions_a">
 							<div class="accordion_q_tit2"> 문의제목 : ${item.i_title}</div>
 							<div class="accordion_q_tit1">
+							<input type="hidden" value="${item.i_secret}">
 							<span class="questions-nickName">이메일 : ${item.i_email }</span>
 								<span class="questions-nickName">닉네임 : ${item.i_writer }</span> 
 								<span class="questions-date">날짜 : ${item.i_in_date }</span> 
@@ -121,8 +123,7 @@
 						<div class="questionsDetail">
 							<div id="boardContent" class="goods_board_view">
 								<div class="contents_holder">
-${item.i_contents }
-
+							<pre><c:out value="${item.i_contents }" /></pre>
 									<div class="btn_view_qna_box"></div>
 								</div>
 								
@@ -136,21 +137,7 @@ ${item.i_contents }
 										<c:forEach var="item2" items="${adminAnswer}">
 											<c:if test="${item.i_no == item2.i_no }">
 												<dl class="contents_holder answer">
-													<dt>안녕하세요 !</dt>
-													<dd>
-													${item2.aa_contents}
-													${item2.aa_answer }
-														<!-- <p>안녕하세요 고객님</p>
-														<p>&nbsp;</p>
-														<p>주문하신내역 확인해보니 "플루딕 짤순이 기본구성" 구매해주신걸로 확인됩니다.</p>
-														<p>&nbsp;</p>
-														<p>기본구성은 유청분리주머니가 포함되어 있지 않습니다.</p>
-														<p>&nbsp;</p>
-														<p>옵션보시면 유청분리기 3p, 10p 가 포함된 옵션을 구매하셔야 유청분리기가 동봉되어
-															출고됩니다!</p>
-														<p>&nbsp;</p>
-														<p>감사합니다 :)</p> -->
-													</dd>
+													<pre><c:out value="${item2.aa_answer }" /></pre>
 												</dl>
 											</c:if>
 										</c:forEach>
@@ -161,9 +148,57 @@ ${item.i_contents }
 								<div class="comment_box"></div>
 							</div>
 						</div></li>
-				</c:forEach>
-				</c:otherwise>		
+				</c:when>
+				
+				 <c:when test="${item.i_secret eq 'n'}">
+				
+				
+				<li><a class="productQuestions_a">
+							<div class="accordion_q_tit2"> 문의제목 : ${item.i_title}</div>
+							<div class="accordion_q_tit1">
+							<input type="hidden" value="${item.i_secret}">
+							<span class="questions-nickName">이메일 : ${item.i_email }</span>
+								<span class="questions-nickName">닉네임 : ${item.i_writer }</span> 
+								<span class="questions-date">날짜 : ${item.i_in_date }</span> 
+								<span class="questions-answer">비밀글 : ${item.i_secret }</span>
+								<span class="questions-answer">답변여부 : ${item.i_answerCheck }</span>
+							</div>
+					</a>
+						<div class="questionsDetail">
+							<div id="boardContent" class="goods_board_view">
+								<div class="contents_holder">
+									<textarea class="contents_textarea">
+										${item.i_contents}
+									</textarea>
+									<div class="btn_view_qna_box"></div>
+								</div>
+								
+								<div class="js_data_comment_row">
+									<div class="reply_box">
+										<div class="item_list_summary">
+											<div>
+												<b class="rv_cont_name"></b> <span class="rv_cont_date"></span>
+											</div>
+										</div>
+										<c:forEach var="item2" items="${adminAnswer}">
+											<c:if test="${item.i_no == item2.i_no }">
+												<textarea class="contents_holder answer">
+													${item2.aa_answer }
+												</textarea>
+											</c:if>
+										</c:forEach>
+										
+									</div>
+								</div>
+								
+								<div class="comment_box"></div>
+							</div>
+						</div></li>
+			
+			</c:when> 
+					
 				</c:choose>
+				</c:forEach> 
 				</ul>
 				
 				<br>

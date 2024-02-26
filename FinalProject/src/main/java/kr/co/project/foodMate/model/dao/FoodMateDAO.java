@@ -69,9 +69,10 @@ public class FoodMateDAO {
 		return sqlSession.insert("foodMateCommentMapper.addComment",food);
 	}
 
-	public List<FoodMateDTO> selectComment(SqlSessionTemplate sqlSession, int fno) {
-		
-		return sqlSession.selectList("foodMateCommentMapper.selectComment",fno);
+	public List<FoodMateDTO> selectComment(SqlSessionTemplate sqlSession,PageInfo pi, int fno) {
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		return sqlSession.selectList("foodMateCommentMapper.selectComment",fno,rb);
 	}
 
 	public int commentCount(SqlSessionTemplate sqlSession, int fno) {

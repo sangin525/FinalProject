@@ -48,7 +48,7 @@
 					<c:otherwise>
 						<c:forEach var="item" items="${list}">
 						<tr>
-							<td>${row }</td>
+							<td>${item.mno }</td>
 							<td>${item.name}</td>
 							<td>${item.email }</td>
 							<td>${item.phone }</td>
@@ -74,7 +74,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/recipe/list.do?cpage=${pi.cpage-1}" aria-label="Previous">
+					href="/admin/memberList?cpage=${pi.cpage-1}" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 				</a></li>
 			</c:otherwise>
@@ -82,7 +82,7 @@
 
 		<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 			<li class="page-item"><a class="page-link"
-				href="/recipe/list.do?cpage=${page}">${page}1</a></li>
+				href="/admin/memberList?cpage=${page}">${page}1</a></li>
 		</c:forEach>
 
 		<c:choose>
@@ -93,7 +93,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/recipe/list.do?cpage=${pi.cpage+1}" aria-label="Next"> <span
+					href="/admin/memberList?cpage=${pi.cpage+1}" aria-label="Next"> <span
 						aria-hidden="true">&raquo;</span>
 				</a></li>
 			</c:otherwise>
