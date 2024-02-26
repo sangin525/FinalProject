@@ -64,7 +64,8 @@ public class FreeDAO {
 		return sqlSession.insert("freeCommentMapper.addComment",free);
 	}
 
-	public List<FreeDTO> selectComment(SqlSessionTemplate sqlSession, int flno) {
+	public List<FreeDTO> selectComment(SqlSessionTemplate sqlSession,int flno) {
+	
 		
 		return sqlSession.selectList("freeCommentMapper.selectComment",flno);
 	}
