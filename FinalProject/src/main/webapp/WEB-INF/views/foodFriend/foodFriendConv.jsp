@@ -26,7 +26,6 @@
 			<div class="chat-header">
 				<h2>1대1 채팅방</h2>
 			</div>
-
 			<div class="chat-description">
 				<p>이 채팅방은 1대1 대화를 위한 공간입니다. 친절하게 대화해주세요.</p>
 			</div>
