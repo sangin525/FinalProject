@@ -260,14 +260,18 @@ public class RecipeController {
 					model.addAttribute("scraplist2",scraplist2);				
 					}
 					
+					List<RecipeDTO> list = recipeService.selectMyRecipe(pi,recipe);
 					member.setMno((int) session.getAttribute("mno"));
-					
-					int mno = member.getMno();
-					MemberDTO result = memberService.memberProfile(mno);					
-					int viewSum = recipeService.viewSum(mno);
+							int mno = member.getMno();
+							MemberDTO result = memberService.memberProfile(mno);
+							
+							if(!list.isEmpty()) {
+								int viewSum = recipeService.viewSum(mno);			
+								System.out.println(viewSum);
+								model.addAttribute("viewSum",viewSum);
+							}
+							model.addAttribute("result",result);
 				
-					model.addAttribute("result",result);
-					model.addAttribute("viewSum",viewSum);
 				}
 			
 			

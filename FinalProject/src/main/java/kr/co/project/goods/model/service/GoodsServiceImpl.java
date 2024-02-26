@@ -98,5 +98,10 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDAO.goodsPhotosList(sqlSession, goodsDTO);
 	}
 
+	public List<GoodsDTO> myInquiryList(int m_no) {
+		
+		return goodsDAO.myInquiryList(sqlSession,m_no);
+	}
+
 
 }

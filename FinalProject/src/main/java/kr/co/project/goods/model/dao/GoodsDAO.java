@@ -107,5 +107,10 @@ public class GoodsDAO {
 		return sqlSession.selectList("goodsMapper.goodsPhotosList", goodsDTO);
 	}
 
+	public List<GoodsDTO> myInquiryList(SqlSessionTemplate sqlSession, int m_no) {
+	
+		return sqlSession.selectList("inquiryMapper.myInquiryList",m_no);
+	}
+
 
 }
