@@ -11,104 +11,103 @@
 </head>
 <body class="Main_body">
 	<%@ include file="../../views/common/header.jsp"%>
-			<%@ include file="../../views/common/nav.jsp" %>
+	<%@ include file="../../views/common/nav.jsp"%>
 
 	<div class="myPage">
 		<h2>마이페이지</h2>
 		<div class="myPageContain">
-		<div class="container">
+			<div class="container">
 				<%@ include file="../../views/myPage/myPageMenu.jsp"%>
 
-			<div class="content">
-				<div class="chef_cont">
-					<ul class="myPageNav">
-						<li><a>나의 레시피</a></li>
-					
-						<div class="list">
-							<a onclick="window.location.href='/member/newList.do'">최신순</a><a onclick="window.location.href='/member/viewList.do'">조회순</a>
-						</div>
-					</ul>
-					<hr />
-					<br>
-					<div class="result">
-						<c:choose>
-					<c:when test="${not empty list}">
-								<c:forEach var="item" items="${list}">
-									<div class="resultList">
-									<a onclick="location.href='/member/detail.do?rno=${item.rno}'">
-									<img src="/resources/uploads/recipe/${item.uploadName}"  class="recipe-image">
-									</a>
-									<div class="recipe-info">
-										<span>레시피 제목: ${item.title }</span>
-										<span><img src="/resources/uploads/날짜아이콘">${item.indate }</span>
-										<span>레시피 번호 : ${item.rno }</span>
-										<span>레시피 조회수 : ${item.views }</span>
+				<div class="content">
+					<div class="chef_cont">
+						<ul class="myPageNav">
+							<li><a>나의 레시피</a></li>
+
+							<div class="list">
+								<a onclick="window.location.href='/member/newList.do'">최신순</a><a
+									onclick="window.location.href='/member/viewList.do'">조회순</a>
+							</div>
+						</ul>
+						<hr />
+						<br>
+						<div class="result">
+							<c:choose>
+								<c:when test="${not empty list}">
+									<c:forEach var="item" items="${list}">
+										<div class="resultList">
+											<a
+												onclick="location.href='/member/detail.do?rno=${item.rno}'">
+												<img src="/resources/uploads/recipe/${item.uploadName}"
+												class="recipe-image">
+											</a>
+											<div class="recipe-info">
+												<h2>레시피 제목: &nbsp;${item.title}</h2>
+												<div class="receipeInfo">
+												<span><img src="/resources/uploads/날짜아이콘.png">&nbsp;${item.indate}&nbsp;&nbsp;</span>
+												<span><img src="/resources/uploads/view아이콘.png">&nbsp;조회수: ${item.views }</span>
+												</div>
+											</div>
+										</div>
+										<c:set var="row" value="${row-1 }" />
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<div class="result_none">
+										<img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
+										<p>레시피를 직접 올려보세요!</p>
+										자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br>
+										<br>
+										<button type="button"
+											onclick="location.href='/recipe/addRecipeForm.do'"
+											class="btn-lg btn-primary">레시피 등록하기</button>
 									</div>
-								</div>
-								<c:set var="row" value="${row-1 }"/>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<div class="result_none">
-									<img src="https://recipe1.ezmember.co.kr/img/none_recipe.png">
-									<p>레시피를 직접 올려보세요!</p>
-									자랑하고 싶은 나만의 레시피! 공유하고 싶은 멋진 레시피를 올려 주세요.<br><br>
-									<button type="button"
-										onclick="location.href='/recipe/addRecipeForm.do'"
-										class="btn-lg btn-primary">레시피 등록하기</button>
-								</div>
-							</c:otherwise> 						</c:choose>
+								</c:otherwise>
+							</c:choose>
+						</div>
+					</div>
+					<div class="pageBtn">
+						<ul class="pagination justify-content-center">
+							<c:choose>
+								<c:when test="${pi.cpage eq 1}">
+									<li class="page-item"><a class="page-link" href="#"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="/member/myRecipe.do?cpage=${pi.cpage-1}"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									</a></li>
+								</c:otherwise>
+							</c:choose>
+
+							<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+								<li class="page-item"><a class="page-link"
+									href="/member/myRecipe.do?cpage=${page}">${page}</a></li>
+							</c:forEach>
+
+							<c:choose>
+								<c:when test="${pi.cpage eq pi.maxPage}">
+									<li class="page-item"><a class="page-link" href="#"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="/member/myRecipe.do?cpage=${pi.cpage+1}"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
 					</div>
 				</div>
-	<div class="pageBtn">
-	<ul class="pagination justify-content-center">
-				 <c:choose>
-				  		<c:when test="${pi.cpage eq 1}">
-						    <li class="page-item">
-						      <a class="page-link" href="#" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
-						      </a>
-						    </li>
-					    </c:when>
-					    <c:otherwise>
-						    <li class="page-item">
-						      <a class="page-link" href="/member/myRecipe.do?cpage=${pi.cpage-1}" aria-label="Previous">
-						        <span aria-hidden="true">&laquo;</span>
-						      </a>
-						    </li>
-					    </c:otherwise>
-				    </c:choose>
-				    
-				    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-				    	<li class="page-item">
-				    		<a class="page-link" href="/member/myRecipe.do?cpage=${page}">${page}</a>
-			    		</li>
-				    </c:forEach>
-				    
-				    <c:choose>
-					    <c:when test="${pi.cpage eq pi.maxPage}">
-						    <li class="page-item">
-						      <a class="page-link" href="#" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
-						      </a>
-						    </li>
-					    </c:when>
-					    <c:otherwise>
-  						    <li class="page-item">
-						      <a class="page-link" href="/member/myRecipe.do?cpage=${pi.cpage+1}" aria-label="Next">
-						        <span aria-hidden="true">&raquo;</span>
-						      </a>
-						    </li>
-					    </c:otherwise>
-				    </c:choose>
-		</ul>	
-	</div>
-			</div>
 
-		</div>
-		<div class="rightBar">
-			<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
-		</div>
+			</div>
+			<div class="rightBar">
+				<%@ include file="../../views/myPage/mypageSidebar.jsp"%>
+			</div>
 		</div>
 	</div>
 
