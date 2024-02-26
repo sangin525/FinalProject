@@ -34,6 +34,34 @@ public class GoodsDAO {
 		return sqlSession.update("goodsMapper.changeStock", goodsDTO);
 	}
 
+
+	public int addInquiry(SqlSessionTemplate sqlSession, GoodsDTO goods) {
+		
+		return sqlSession.insert("inquiryMapper.addInquiry",goods);
+	}
+
+	public List<GoodsDTO> selectInquiryList(SqlSessionTemplate sqlSession, int g_no) {
+		
+		return sqlSession.selectList("inquiryMapper.selectInquiryList",g_no);
+	}
+
+	public int adminInquiryCount(SqlSessionTemplate sqlSession, GoodsDTO goods) {
+		
+		return sqlSession.selectOne("inquiryMapper.adminInquiryCount",goods);
+	}
+
+	public List<GoodsDTO> adminInquiryList(SqlSessionTemplate sqlSession, PageInfo pi, GoodsDTO goods) {
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		
+		return sqlSession.selectList("inquiryMapper.adminInquiryList",goods,rb);
+	}
+
+	public int updateAnswerCheck(SqlSessionTemplate sqlSession, GoodsDTO goods) {
+		
+		return sqlSession.update("inquiryMapper.updateAnswerCheck",goods);
+	}
+
 	public int addGoodsPhotos(SqlSessionTemplate sqlSession, List<GoodsPhotosDTO> goodsPhotoList) {
 
 		int check = goodsPhotoList.size();
@@ -78,5 +106,6 @@ public class GoodsDAO {
 	public List<GoodsPhotosDTO> goodsPhotosList(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
 		return sqlSession.selectList("goodsMapper.goodsPhotosList", goodsDTO);
 	}
+
 
 }

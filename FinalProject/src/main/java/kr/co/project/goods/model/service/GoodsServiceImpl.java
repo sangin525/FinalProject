@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kr.co.project.admin.model.dto.AdminDTO;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.goods.model.dao.GoodsDAO;
 import kr.co.project.goods.model.dto.GoodsDTO;
@@ -43,6 +44,29 @@ public class GoodsServiceImpl implements GoodsService {
 		return goodsDAO.changeStock(sqlSession, goodsDTO);
 	}
 
+
+	public int addInquiry(GoodsDTO goods) {
+		
+		return goodsDAO.addInquiry(sqlSession,goods);
+	}
+
+	public List<GoodsDTO> selectInquiryList(int g_no) {
+		
+		return goodsDAO.selectInquiryList(sqlSession,g_no);
+	}
+
+	public int adminInquiryCount(GoodsDTO goods) {
+		
+		return goodsDAO.adminInquiryCount(sqlSession,goods);
+	}
+
+	public List<GoodsDTO> adminInquiryList(PageInfo pi, GoodsDTO goods) {
+		
+		return goodsDAO.adminInquiryList(sqlSession,pi,goods);
+	}
+
+	
+	
 	@Override
 	public int manyPhotosGoods(GoodsDTO goodsDTO, List<GoodsPhotosDTO> goodsPhotoList,
 			List<GoodsPhotosDTO> detailPhotoList) {
@@ -73,5 +97,6 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<GoodsPhotosDTO> goodsPhotosList(GoodsDTO goodsDTO) {
 		return goodsDAO.goodsPhotosList(sqlSession, goodsDTO);
 	}
+
 
 }

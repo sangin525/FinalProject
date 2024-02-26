@@ -1,5 +1,5 @@
 let trNo = 0;
-let selectAcno=0;
+let selectino=0;
 $(function() {
 	// 왼쪽메뉴 드롭다운
 	$(".sub_menu ul.small_menu").hide();
@@ -9,6 +9,21 @@ $(function() {
 });
 
 
+//판매가격 구하기
+// document.addEventListener('DOMContentLoaded', function() {
+//	document.getElementById('productDiscount').addEventListener('input', calculatePrice);
+//	document.getElementById('costPrice').addEventListener('input', calculatePrice);
+//});
+
+function calculatePrice() {
+	var discount = document.getElementById('productDiscount').value;
+	var cost = document.getElementById('costPrice').value;
+
+	if (discount && cost) {
+		var sellingPrice = cost * (1 - discount / 100);
+		document.getElementById('sellingPrice').textContent = '판매가격 : ' + sellingPrice;
+	}
+}
 
 //이미지 업로드 js
 window.addEventListener('DOMContentLoaded', () => {
@@ -215,13 +230,14 @@ $(document).ready(function() {
 $(document).ready(function() {
 	$(".noticeContent, .freeContent, .eventContent, .answerContent").hide();
 	var toggleContent = function(trSelector, contentClass) {
-	const acno = document.getElementById('hiddenAcno').value; 
-	const acContents = document.getElementById('hiddenContents').value;
-	const asFile = document.getElementById('hiddenFileName').value;
+		const ino = document.getElementById('hiddenino').value; 
+		const acContents = document.getElementById('hiddenContents').value;
+		const asFile = document.getElementById('hiddenFileName').value;
 	
 		$(trSelector).click(function() {
 		
-		trNo= $(this).children('#hiddenAcno').val();
+			trNo= $(this).children('#hiddenino').val();
+			console.log("trNo : " +trNo);
 			// 이전에 추가된 내용을 삭제합니다.
 			$(trSelector + '.added').remove();
 
@@ -256,10 +272,13 @@ $(document).ready(function() {
 	var modal = $("#board_Modal");
 	var span = $(".close")[0];
 	
-	const acno = document.getElementById('hiddenAcno').value; 
+	const ino = document.getElementById('hiddenino').value; 
 	const title = document.getElementById('hiddenTitle').value;
 	const contents = document.getElementById('hiddenContents').value;
-	const fileName = document.getElementById('hiddenFileName').value;
+	const secret = document.getElementById('hiddenSecret').value;
+	const answerCheck = document.getElementById('hiddenAnswerCheck').value;
+	
+	
 	
 	var answerContent = ""; // 답변 내용을 저장할 변수를 선언합니다.
 
@@ -267,17 +286,18 @@ $(document).ready(function() {
 	$('input.Detail[type="checkbox"]').on("click", function() {
 		var row = $(this).parent().parent();
 		if (this.checked) {
-			answerContent = row.next().find('.answerContent').text(); // 체크박스가 체크된 행의 '.answerContent'의 텍스트를 변수에 저장합니다.
+			hiddenContents = $(this).parent().children('#hiddenContents').val();
+			// answerContent = row.next().find('.hiddenContents').text(); // 체크박스가 체크된 행의 '.answerContent'의 텍스트를 변수에 저장합니다.
+			trNo = $(this).parent().children('#hiddenino').val();
 		} else {
-			answerContent = ""; // 체크박스가 해제되면 변수를 초기화합니다.
+			hiddenContents = ""; // 체크박스가 해제되면 변수를 초기화합니다.
 		}
 	});
 
-	$(".board_update_btn").click(function() {
+	$(".board_answer_btn").click(function() {
 		var checkboxes = $("input.Detail[type='checkbox']"); // 'Detail' 클래스를 가진 모든 체크박스를 선택합니다.
 		let modalForm = document.getElementById('modalForm');
-		const acno = document.getElementById('hiddenAcno').value;
-		let selectAcno = trNo;
+		const ino = document.getElementById('hiddenino').value;
 		
 		
 		// 모든 체크박스에 대해 반복합니다.
@@ -286,12 +306,18 @@ $(document).ready(function() {
 			if (this.checked) {
 				var row = $(this).parent().parent(); // 체크박스의 상위 노드를 통해 현재 행을 가져옵니다.
 				var nextRow = row.next(); // 현재 행의 바로 다음 행을 가져옵니다.
-				let hiddenTrAcno = document.createElement('input');
-				hiddenTrAcno.type = "hidden";
-				hiddenTrAcno.name = "acno";
-				hiddenTrAcno.value = trNo;
-				modalForm.appendChild(hiddenTrAcno);
+				let hiddenTrino = document.createElement('input');
+				hiddenTrino.type = "hidden";
+				hiddenTrino.name = "ino";
+				hiddenTrino.value = trNo;
+				let hiddenSubmitContents = document.createElement('input');
+				hiddenSubmitContents.type = "hidden";
+				hiddenSubmitContents.name = "aa_contents";
+				hiddenSubmitContents.value = contents;
 				
+				modalForm.appendChild(hiddenTrino);
+				modalForm.appendChild(hiddenSubmitContents);
+				selectino = trNo;
 				
 				// 현재 행의 상위 div가 'noticeTable' 클래스를 가지고 있는지 확인합니다.
 				if (row.closest('div').hasClass('noticeTable')) {
@@ -318,23 +344,35 @@ $(".board_answer_btn").click(function() {
 	var checkboxes = $("input.Detail[type='checkbox']");
 	var answerContents = $(".answerTable .answerContent"); // .answerContent를 모두 가져옵니다.
 
+	trNo= $(this).children('#hiddenino').val();
+
+	const ino = document.getElementById('hiddenino').value; 
+	const title = document.getElementById('hiddenTitle').value;
+	const contents = document.getElementById('hiddenContents').value;
+	console.log("ggg "  + contents);
+	
+	const secret = document.getElementById('hiddenSecret').value;
+	const answerCheck = document.getElementById('hiddenAnswerCheck').value;
+	
 	checkboxes.each(function(index) { // 체크박스를 순회하면서 인덱스도 함께 가져옵니다.
 		if (this.checked) {
 			var row = $(this).parent().parent();
 
 			if (row.closest('div').hasClass('answerTable')) {
-				modal.find('form').attr('action', 'productAnswer.do');
+				modal.find('form').attr('action', '/admin/productAnswer.do?ino='+ selectino);
+				
 			}
 
 			$("#boardTitle").val(row.find(".boardTit").text());
 			$("#boardNum").val(row.find(".boardNum").text());
 			$("#boardWriter").val(row.find(".boardwriter").text());
+			$("#boardContents").val(row.find(".boardContents").val());
 
 			// 체크된 체크박스와 같은 인덱스의 .answerContent의 내용을 가져옵니다.
 			var answerContent = $(answerContents[index]).text();
 
 			// 저장된 답변 내용을 모달창의 'boardContent'에 넣습니다.
-			$("#boardContent").val(answerContent);
+			$("#boardAnswer").val(answerContent);
 
 			modal.css("display", "block");
 		}
@@ -345,7 +383,7 @@ $(".board_answer_btn").click(function() {
 	// 삭제 버튼에 대한 이벤트 핸들러를 추가합니다.
 	$(".board_delete_btn").click(function() {
 		var checkboxes = $("input.Detail[type='checkbox']");
-		const acno = document.getElementById('hiddenAcno').value;
+		const ino = document.getElementById('hiddenino').value;
 		
 		checkboxes.each(function() {
 			if (this.checked) {

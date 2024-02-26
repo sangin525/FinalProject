@@ -15,6 +15,8 @@ import org.springframework.transaction.support.DefaultTransactionDefinition;
 import kr.co.project.admin.model.dao.AdminDAO;
 import kr.co.project.admin.model.dto.AdminDTO;
 import kr.co.project.common.pageing.PageInfo;
+import kr.co.project.goods.model.dao.GoodsDAO;
+import kr.co.project.goods.model.dto.GoodsDTO;
 
 @Service
 public class AdminServiceImpl implements AdminService{
@@ -24,6 +26,9 @@ public class AdminServiceImpl implements AdminService{
 	
 	@Autowired
 	private AdminDAO adminDao;
+	
+	@Autowired
+	private GoodsDAO goodsDAO;
 	
 	@Autowired
 	private PlatformTransactionManager transactionManager;	
@@ -195,6 +200,22 @@ public class AdminServiceImpl implements AdminService{
 		
 		return adminDao.ecommentCount(sqlSession,eno);
 	}
+
+	public int addAnswer(AdminDTO admin, GoodsDTO goods) {
+		int result1 = adminDao.addAnswer(sqlSession,admin);
+		int result2 = goodsDAO.updateAnswerCheck(sqlSession,goods);
+		if(result1 == 1 && result2 == 1) {
+			System.out.println("둘다 성공했음");
+		}
+		return 1;
+	}
+
+	public AdminDTO adminAnswerList(int i_no) {
+		
+		return adminDao.adminAnswerList(sqlSession,i_no) ;
+	}
+
+	
 
 	
 	

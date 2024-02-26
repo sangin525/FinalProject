@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="inquiryAnswerMapper">
+<resultMap type="admin" id="inquiryAnswerResultSet">
+<result column="AA_NO" property="aa_no"></result>
+<result column="M_NO" property="mno"></result>
+<result column="I_NO" property="i_no"></result>
+<result column="AA_TITLE" property="aa_title"></result>
+<result column="AA_WRITER" property="aa_writer"></result>
+<result column="AA_CONTENTS" property="aa_contents"></result>
+<result column="AA_ANSWER" property="aa_answer"></result>
+<result column="AA_IN_DATE" property="aa_indate"></result>
+</resultMap>
+
+<select id="adminAnswerList" resultMap="inquiryAnswerResultSet">
+SELECT * FROM ADMINANSWER
+WHERE I_NO=#{i_no}
+</select>
+
+<insert id="addAnswer">
+INSERT INTO ADMINANSWER VALUES(adminAnswer_seq.NEXTVAL,
+								#{mno},
+								#{i_no},
+								#{aa_title},
+								#{aa_writer},
+								#{aa_contents},
+								#{aa_answer},
+								SYSDATE
+								)
+</insert>
+
+</mapper>

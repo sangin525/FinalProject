@@ -102,26 +102,30 @@
 		<li><a class="accordion_i_tit2" id="inquiry">문의</a>
 			<div class="productQuestions">
 				<ul>
-					<li><a class="productQuestions_a">
-							<div class="accordion_q_tit2">문의사항 1</div>
+				<c:choose>
+				<c:when test="${empty inquiryList }">
+					<p>문의내역이 없습니다.</p>
+				</c:when>
+				<c:otherwise>
+				<c:forEach var="item" items="${inquiryList }">
+				<li><a class="productQuestions_a">
+							<div class="accordion_q_tit2"> 문의제목 : ${item.i_title}</div>
 							<div class="accordion_q_tit1">
-								<span class="questions-nickName">닉네임</span> <span
-									class="questions-date">날짜</span> <span class="questions-answer">답변여부</span>
+							<span class="questions-nickName">이메일 : ${item.i_email }</span>
+								<span class="questions-nickName">닉네임 : ${item.i_writer }</span> 
+								<span class="questions-date">날짜 : ${item.i_in_date }</span> 
+								<span class="questions-answer">비밀글 : ${item.i_secret }</span>
+								<span class="questions-answer">답변여부 : ${item.i_answerCheck }</span>
 							</div>
 					</a>
 						<div class="questionsDetail">
 							<div id="boardContent" class="goods_board_view">
 								<div class="contents_holder">
-									상품문의 입니다. <br> 주문하신 경우 양식에 맞게 항목을 기재해주시면 빠른 업무처리가 가능합니다.<br>
-									휴일간 문의사항은 휴무일 이후 순차적으로 처리해드리겠습니다.<br> <br> 주문번호 :
-									2311080846465261<br> 상품명 : 플루딕 짤순이<br> 주문자 이메일 :
-									kbst31@naver.com <br> 주문자 전화번호 : 010-4338-0659<br>
-
-									----------------------------------------------<br> <br>
-									주머니 3P가 배송 안됐네요
+${item.i_contents }
 
 									<div class="btn_view_qna_box"></div>
 								</div>
+								
 								<div class="js_data_comment_row">
 									<div class="reply_box">
 										<div class="item_list_summary">
@@ -129,178 +133,49 @@
 												<b class="rv_cont_name"></b> <span class="rv_cont_date"></span>
 											</div>
 										</div>
-										<dl class="contents_holder answer">
-											<dt>안녕하세요 !</dt>
-											<dd>
-												<p>안녕하세요 고객님</p>
-												<p>&nbsp;</p>
-												<p>주문하신내역 확인해보니 "플루딕 짤순이 기본구성" 구매해주신걸로 확인됩니다.</p>
-												<p>&nbsp;</p>
-												<p>기본구성은 유청분리주머니가 포함되어 있지 않습니다.</p>
-												<p>&nbsp;</p>
-												<p>옵션보시면 유청분리기 3p, 10p 가 포함된 옵션을 구매하셔야 유청분리기가 동봉되어
-													출고됩니다!</p>
-												<p>&nbsp;</p>
-												<p>감사합니다 :)</p>
-											</dd>
-										</dl>
+										<c:forEach var="item2" items="${adminAnswer}">
+											<c:if test="${item.i_no == item2.i_no }">
+												<dl class="contents_holder answer">
+													<dt>안녕하세요 !</dt>
+													<dd>
+													${item2.aa_contents}
+													${item2.aa_answer }
+														<!-- <p>안녕하세요 고객님</p>
+														<p>&nbsp;</p>
+														<p>주문하신내역 확인해보니 "플루딕 짤순이 기본구성" 구매해주신걸로 확인됩니다.</p>
+														<p>&nbsp;</p>
+														<p>기본구성은 유청분리주머니가 포함되어 있지 않습니다.</p>
+														<p>&nbsp;</p>
+														<p>옵션보시면 유청분리기 3p, 10p 가 포함된 옵션을 구매하셔야 유청분리기가 동봉되어
+															출고됩니다!</p>
+														<p>&nbsp;</p>
+														<p>감사합니다 :)</p> -->
+													</dd>
+												</dl>
+											</c:if>
+										</c:forEach>
+										
 									</div>
 								</div>
+								
 								<div class="comment_box"></div>
 							</div>
 						</div></li>
-					<li><a class="productQuestions_a">
-							<div class="accordion_q_tit2">문의사항 1</div>
-							<div class="accordion_q_tit1">
-								<span class="questions-nickName">닉네임</span> <span
-									class="questions-date">날짜</span> <span class="questions-answer">답변여부</span>
-							</div>
-					</a>
-						<div class="questionsDetail">
-							<div id="boardContent" class="goods_board_view">
-								<div class="contents_holder">
-									상품문의 입니다. <br> 주문하신 경우 양식에 맞게 항목을 기재해주시면 빠른 업무처리가 가능합니다.<br>
-									휴일간 문의사항은 휴무일 이후 순차적으로 처리해드리겠습니다.<br> <br> 주문번호 :
-									2311080846465261<br> 상품명 : 플루딕 짤순이<br> 주문자 이메일 :
-									kbst31@naver.com <br> 주문자 전화번호 : 010-4338-0659<br>
-
-									----------------------------------------------<br> <br>
-									주머니 3P가 배송 안됐네요
-
-									<div class="btn_view_qna_box"></div>
-								</div>
-								<div class="js_data_comment_row">
-									<div class="reply_box">
-										<div class="item_list_summary">
-											<div>
-												<b class="rv_cont_name"></b> <span class="rv_cont_date"></span>
-											</div>
-										</div>
-										<dl class="contents_holder answer">
-											<dt>안녕하세요 !</dt>
-											<dd>
-												<p>안녕하세요 고객님</p>
-												<p>&nbsp;</p>
-												<p>주문하신내역 확인해보니 "플루딕 짤순이 기본구성" 구매해주신걸로 확인됩니다.</p>
-												<p>&nbsp;</p>
-												<p>기본구성은 유청분리주머니가 포함되어 있지 않습니다.</p>
-												<p>&nbsp;</p>
-												<p>옵션보시면 유청분리기 3p, 10p 가 포함된 옵션을 구매하셔야 유청분리기가 동봉되어
-													출고됩니다!</p>
-												<p>&nbsp;</p>
-												<p>감사합니다 :)</p>
-											</dd>
-										</dl>
-									</div>
-								</div>
-								<div class="comment_box"></div>
-							</div>
-						</div></li>
-					<li><a class="productQuestions_a">
-							<div class="accordion_q_tit2">문의사항 1</div>
-							<div class="accordion_q_tit1">
-								<span class="questions-nickName">닉네임</span> <span
-									class="questions-date">날짜</span> <span class="questions-answer">답변여부</span>
-							</div>
-					</a>
-						<div class="questionsDetail">
-							<div id="boardContent" class="goods_board_view">
-								<div class="contents_holder">
-									상품문의 입니다. <br> 주문하신 경우 양식에 맞게 항목을 기재해주시면 빠른 업무처리가 가능합니다.<br>
-									휴일간 문의사항은 휴무일 이후 순차적으로 처리해드리겠습니다.<br> <br> 주문번호 :
-									2311080846465261<br> 상품명 : 플루딕 짤순이<br> 주문자 이메일 :
-									kbst31@naver.com <br> 주문자 전화번호 : 010-4338-0659<br>
-
-									----------------------------------------------<br> <br>
-									주머니 3P가 배송 안됐네요
-
-									<div class="btn_view_qna_box"></div>
-								</div>
-								<div class="js_data_comment_row">
-									<div class="reply_box">
-										<div class="item_list_summary">
-											<div>
-												<b class="rv_cont_name"></b> <span class="rv_cont_date"></span>
-											</div>
-										</div>
-										<dl class="contents_holder answer">
-											<dt>안녕하세요 !</dt>
-											<dd>
-												<p>안녕하세요 고객님</p>
-												<p>&nbsp;</p>
-												<p>주문하신내역 확인해보니 "플루딕 짤순이 기본구성" 구매해주신걸로 확인됩니다.</p>
-												<p>&nbsp;</p>
-												<p>기본구성은 유청분리주머니가 포함되어 있지 않습니다.</p>
-												<p>&nbsp;</p>
-												<p>옵션보시면 유청분리기 3p, 10p 가 포함된 옵션을 구매하셔야 유청분리기가 동봉되어
-													출고됩니다!</p>
-												<p>&nbsp;</p>
-												<p>감사합니다 :)</p>
-											</dd>
-										</dl>
-									</div>
-								</div>
-								<div class="comment_box"></div>
-							</div>
-						</div></li>
-					<li><a class="productQuestions_a">
-							<div class="accordion_q_tit2">문의사항 1</div>
-							<div class="accordion_q_tit1">
-								<span class="questions-nickName">닉네임</span> <span
-									class="questions-date">날짜</span> <span class="questions-answer">답변여부</span>
-							</div>
-					</a>
-						<div class="questionsDetail">
-							<div id="boardContent" class="goods_board_view">
-								<div class="contents_holder">
-									상품문의 입니다. <br> 주문하신 경우 양식에 맞게 항목을 기재해주시면 빠른 업무처리가 가능합니다.<br>
-									휴일간 문의사항은 휴무일 이후 순차적으로 처리해드리겠습니다.<br> <br> 주문번호 :
-									2311080846465261<br> 상품명 : 플루딕 짤순이<br> 주문자 이메일 :
-									kbst31@naver.com <br> 주문자 전화번호 : 010-4338-0659<br>
-
-									----------------------------------------------<br> <br>
-									주머니 3P가 배송 안됐네요
-
-									<div class="btn_view_qna_box"></div>
-								</div>
-								<div class="js_data_comment_row">
-									<div class="reply_box">
-										<div class="item_list_summary">
-											<div>
-												<b class="rv_cont_name"></b> <span class="rv_cont_date"></span>
-											</div>
-										</div>
-										<dl class="contents_holder answer">
-											<dt>안녕하세요 !</dt>
-											<dd>
-												<p>안녕하세요 고객님</p>
-												<p>&nbsp;</p>
-												<p>주문하신내역 확인해보니 "플루딕 짤순이 기본구성" 구매해주신걸로 확인됩니다.</p>
-												<p>&nbsp;</p>
-												<p>기본구성은 유청분리주머니가 포함되어 있지 않습니다.</p>
-												<p>&nbsp;</p>
-												<p>옵션보시면 유청분리기 3p, 10p 가 포함된 옵션을 구매하셔야 유청분리기가 동봉되어
-													출고됩니다!</p>
-												<p>&nbsp;</p>
-												<p>감사합니다 :)</p>
-											</dd>
-										</dl>
-									</div>
-								</div>
-								<div class="comment_box"></div>
-							</div>
-						</div></li>
+				</c:forEach>
+				</c:otherwise>		
+				</c:choose>
 				</ul>
+				
 				<br>
 				<button id="q_modal_btn">문의하기</button>
 				<div class="pagination-box">
 					<ul class="pagination">
-						<li class="page-item">
+						<!-- <li class="page-item">
 							<a class="page-link" href="#">1</a>
 						</li>
 						<li class="page-item">
 							<a class="page-link" href="#">2</a>
-						</li>
+						</li> -->
 					</ul>
 				</div>
 				
@@ -309,10 +184,11 @@
 					<div class="questionsTit">
 						<h4>상품문의 쓰기</h4>
 					</div>
-					<form>
+					<form action="/goods/addInquiry" method="post">
+					<input type="hidden" name="g_no" value="${goods.g_no }">
 						<div class="productTit">
 							<img src="/resources/uploads/고양이그림.png">
-							<h5>상품제목</h5>
+							<h5>상품제목 : ${goods.g_name }</h5>
 						</div>
 						<div class="writeBox">
 							<table class="questionsTable">
@@ -324,35 +200,31 @@
 									<tr>
 										<th>작성자</th>
 										<td>
-											<input type="text" placeholder="작성자 입력" class="questionsInput">
+											<input type="text" name="i_writer" value=${memberNickName } placeholder="작성자 입력" class="questionsInput">
 										</td>
 									</tr>
-									<tr>
-										<th>비밀번호</th>
-										<td>
-											<input type="text" placeholder="비밀번호 입력" class="questionsInput">
-										</td>
-									</tr>
+									
 									<tr>
 										<th>이메일</th>
 										<td>
-											<input type="text" placeholder="이메일 입력" class="questionsInput">
+											<input type="text" name="i_email"  placeholder="이메일 입력" class="questionsInput">
 										</td>
 									</tr>
 									<tr>
 										<th>제목</th>
 										<td>
-											<input type="text" placeholder="제목 입력" class="questionsSubTit">
+											<input type="text" name="i_title" placeholder="제목 입력" class="questionsSubTit">
 										</td>
 									</tr>
 									<tr>
 										<th>내용</th>
 										<td>
 											<div class="form_element">
-			                                  	<input type="checkbox" name="isSecret" value="y" id="secret" class="checkbox" checked="checked">
+			                                  	 <input type="checkbox" name="i_secret" value="y" id="input_check" class="checkbox" onchange="disableHiddenInput()" checked="checked">
+    <input type="hidden" name="i_secret" value="n" id="input_check_hidden">
 			                                    <label for="secret" class="check_s on">비밀글</label>
 			                                </div>
-											<textarea class="questionsText">
+											<textarea class="questionsText" name="i_contents">
 주문하신 경우 양식에 맞게 항목을 기재해주시면 빠른 업무처리가 가능합니다.
 휴일간 문의사항은 휴무일 이후 순차적으로 처리해드리겠습니다.
             
@@ -367,8 +239,8 @@
 								</tbody>
 							</table>
 							<div class="questionsEnroll-btn">
-								<button>작성</button>
-								<button class="close2">취소</button>
+								<button type="submit">작성</button>
+								<button type="button" onclick="history.back()" class="close2">취소</button>
 							</div>
 						</div>
 					</form>
@@ -378,3 +250,20 @@
 		</li>
 	</ul>
 </div>
+
+<script>
+disableHiddenInput();
+
+function disableHiddenInput() {
+    var checkbox = document.getElementById("input_check");
+    var hiddenInput = document.getElementById("input_check_hidden");
+
+    if (checkbox.checked) {
+        hiddenInput.disabled = true;
+    } else {
+        hiddenInput.disabled = false;
+    }
+}
+
+
+</script>
