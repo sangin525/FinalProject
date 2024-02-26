@@ -230,12 +230,7 @@
 				<div class="commentPic">
 					<img src="/resources/uploads/member/${sessionScope.uploadName}">
 				</div>
-
-
-
-        <div class="commentPic">
-            <img src="/resources/uploads/member/${sessionScope.uploadName}">
-        </div>
+				
         <div class="comment">
             <div class="rating">
                 <span onclick="ratingTest(5);">★</span><span
@@ -251,8 +246,8 @@
 </div>
 </div>
 	
-	<div class="container">
 		<c:if test="${sessionScope.memberNickName == recipe.memberNickName}">
+	<div class="container">
 			<div class="recipe_btn">
 				<button type="submit"
 					onclick="location.href='/recipe/editForm.do?rno=${recipe.rno}'">게시글
@@ -261,8 +256,8 @@
 					onclick="location.href='/recipe/delete.do?rno=${recipe.rno}'">게시글
 					삭제</button>
 			</div>
-		</c:if>
 	</div>
+		</c:if>
 
 <div class="pageNav">
     <ul class="pagination justify-content-center">
