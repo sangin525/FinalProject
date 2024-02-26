@@ -42,6 +42,8 @@
 								<h3>${goods.g_name}</h3>
 								<p>${goods.g_introduce}</p>
 								<div class="product-view-pricebox">
+									<input type="hidden" id="g_price" value="${goods.g_price}">
+									<input type="hidden" id="g_r_price" value="${goods.g_regular_price}">
 									<p class="dc">${goods.g_dcRate}%</p>
 									<p class="price">${goods.g_price}<b>원</b></p>
 									<p class="del">${goods.g_regular_price}원</p>
@@ -60,7 +62,7 @@
 											</tr>
 											<tr>
 												<td colspan="2">
-                                                <strong>${goods.g_price}</strong> 
+                                                <strong class="g_price">${goods.g_price}</strong> 
                                                 <span class="count"> 
 												<span class="count-btn">
 												<button type="button" class="down-product">감소</button> 
@@ -77,7 +79,7 @@
 										</tbody>
 									</table>
 									<div class="price-total-area">
-										<div class="price-total"> <span>${goods.g_price} 원</span></div>
+										<div class="price-total"> <span class="pt_price">${goods.g_price} 원</span></div>
 									</div>
 									<div class="payment-btn-box">
 										<button type="button" class="go_to_cart" onclick="goCart()">장바구니</button>
