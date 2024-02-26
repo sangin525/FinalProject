@@ -100,6 +100,14 @@
 	cursor: pointer;
 }
 
+.recipeRanking img {
+	cursor: pointer;
+}
+
+.recommendedRecipe-li img {
+	cursor: pointer;
+}
+
 .rank-image{
 	width: 252px;
 	height: 282px;

@@ -317,3 +317,27 @@ document.addEventListener('DOMContentLoaded', function() {
 function topScroll() {
 	$("html, body").animate({scrollTop:0}, 300);
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.querySelectorAll('.g_price').forEach((item, index) => {
+        let price = item.value;
+        price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        document.querySelectorAll('.price_g')[index].innerHTML = `판매가: ${price}원`;
+    });
+    document.querySelectorAll('.g_r_price').forEach((item, index) => {
+        let regularPrice = item.value;
+        regularPrice = regularPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        document.querySelectorAll('.re_price')[index].innerHTML = `정상가: ${regularPrice}원`;
+    });
+});
+document.addEventListener('DOMContentLoaded', (event) => {
+    let price = document.getElementById('g_price').value;
+    let regularPrice = document.getElementById('g_r_price').value;
+    price = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    regularPrice = regularPrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    document.querySelector(".price").innerHTML = `${price}<b>원</b>`;
+	document.querySelector(".g_price").innerHTML = `${price}`;
+	document.querySelector(".pt_price").innerHTML = `${price}원`;
+    document.querySelector(".del").innerHTML = `${regularPrice}<b>원</b>`;
+	
+});
