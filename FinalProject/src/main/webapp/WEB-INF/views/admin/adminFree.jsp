@@ -130,6 +130,7 @@
          </tbody>
       </table>
    </div>
+   <br>
 <div class="pageNav">
    <ul class="pagination">
       <c:choose>

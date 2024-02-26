@@ -73,6 +73,7 @@
 
 			</tbody>
 		</table>
+		<div class="pageNav">
 	<ul class="pagination justify-content-center">
 		<c:choose>
 			<c:when test="${pi.cpage eq 1}">
@@ -90,7 +91,7 @@
 
 		<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 			<li class="page-item"><a class="page-link"
-				href="/recipe/list.do?cpage=${page}">${page}1</a></li>
+				href="/recipe/list.do?cpage=${page}">${page}</a></li>
 		</c:forEach>
 
 		<c:choose>
@@ -107,6 +108,7 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
+	</div>
 	</div>
 		<div class="orderDetail">
 			<div>

@@ -18,7 +18,8 @@
 	<%@ include file="../../views/common/header.jsp"%>
 		<%@ include file="../../views/common/nav.jsp" %>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
-<div class="adminContainer">
+<div class="adminContainer">	
+		<h2 style="margin-left: 270px;">회원목록</h2>
 	<div class="memberTable">
 		<table>
 			<thead>
@@ -64,6 +65,7 @@
 			</tbody>
 		</table>
 	</div>
+	<br>
 <div class="pageNav">
 	<ul class="pagination justify-content-center">
 		<c:choose>

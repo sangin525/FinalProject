@@ -65,7 +65,7 @@
 							</c:choose>
 						</div>
 					</div>
-					<div class="pageBtn">
+					<div class="pageNav">
 						<ul class="pagination justify-content-center">
 							<c:choose>
 								<c:when test="${pi.cpage eq 1}">
@@ -82,7 +82,7 @@
 							</c:choose>
 
 							<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-								<li class="page-item"><a class="page-link"
+								<li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>"><a class="page-link"
 									href="/member/myRecipe.do?cpage=${page}">${page}</a></li>
 							</c:forEach>
 

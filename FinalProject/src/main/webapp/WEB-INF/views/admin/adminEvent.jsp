@@ -123,6 +123,7 @@
 							<td><input type="checkbox" class="Detail"></td>
 							<td class="boardNum">${erow}</td>
 							<td class="boardTit">${item.e_title}</td>
+							<td class="boardWriter">관리자</td>
 							<td class="boardDate">${item.e_indate}</td>
 							<td class="boardView">${item.e_views}</td>
 						</tr>
@@ -134,7 +135,8 @@
 			</tbody>
 		</table>
 	</div>
-
+	<br>
+<div class="pageNav">
 	<ul class="pagination">
 		<c:choose>
 			<c:when test="${pi.cpage eq 1}">
@@ -144,15 +146,15 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/recipe/list.do?cpage=${pi.cpage-1}" aria-label="Previous">
+					href="/admin/adminEvent?cpage=${pi.cpage-1}" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 				</a></li>
 			</c:otherwise>
 		</c:choose>
 
 		<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-			<li class="page-item"><a class="page-link"
-				href="/recipe/list.do?cpage=${page}">${page}1</a></li>
+			<li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>"><a class="page-link"
+				href="/admin/adminEvent?cpage=${page}">${page}</a></li>
 		</c:forEach>
 
 		<c:choose>
@@ -163,12 +165,13 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/recipe/list.do?cpage=${pi.cpage+1}" aria-label="Next"> <span
+					href="/admin/adminEvent?cpage=${pi.cpage+1}" aria-label="Next"> <span
 						aria-hidden="true">&raquo;</span>
 				</a></li>
 			</c:otherwise>
 		</c:choose>
 	</ul>
+	</div>
 </div>
 </div>
 </div>	

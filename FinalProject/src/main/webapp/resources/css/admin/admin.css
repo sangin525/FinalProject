@@ -342,7 +342,7 @@ tr:last-child td:last-child {
 /*배송관리*/
 .deliveryContainer {
 	border-bottom: 3px solid black;
-	margin-left: 250px;
+	margin-left: 270px;
 }
 
 .deliveryTable {
@@ -392,6 +392,10 @@ tr:last-child td:last-child {
 /*게시글관리*/
 .managingPostsContainer {
 	margin-left: 250px;
+}
+
+.managingPostsContainer h2 {
+	margin-left: 20px;
 }
 
 .postCategoryBtn {
@@ -469,7 +473,7 @@ tr:last-child td:last-child {
 /* 게시글 작성 */
 .adminEnrollcontainer {
     max-width: 1200px;
-    margin: 20px 0 0 250px;
+    margin: 20px 0 0 270px;
     padding: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;

@@ -49,13 +49,43 @@
 					</div>
 				</div>
 			</div>
-				<!-- <div class="notice_page">
-					<a href="#" class="bt first"><<</a> <a href="#" class="bt prev"><</a>
-					<a href="#" class="num on">1</a> <a href="#" class="num">2</a> <a
-						href="#" class="num">3</a> <a href="#" class="num">4</a> <a
-						href="#" class="num">5</a> <a href="#" class="bt next">></a> <a
-						href="#" class="bt last">>></a>
-				</div> -->
+				<div class="pageNav">
+						<ul class="pagination justify-content-center">
+							<c:choose>
+								<c:when test="${pi.cpage eq 1}">
+									<li class="page-item"><a class="page-link" href="#"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="/admin/noticeList?cpage=${pi.cpage-1}"
+										aria-label="Previous"> <span aria-hidden="true">&laquo;</span>
+									</a></li>
+								</c:otherwise>
+							</c:choose>
+
+							<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
+								<li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>"><a class="page-link"
+									href="/admin/noticeList?cpage=${page}">${page}</a></li>
+							</c:forEach>
+
+							<c:choose>
+								<c:when test="${pi.cpage eq pi.maxPage}">
+									<li class="page-item"><a class="page-link" href="#"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:when>
+								<c:otherwise>
+									<li class="page-item"><a class="page-link"
+										href="/admin/noticeList?cpage=${pi.cpage+1}"
+										aria-label="Next"> <span aria-hidden="true">&raquo;</span>
+									</a></li>
+								</c:otherwise>
+							</c:choose>
+						</ul>
+					</div>
+				</div>
 		
 		</div>
 	</div>

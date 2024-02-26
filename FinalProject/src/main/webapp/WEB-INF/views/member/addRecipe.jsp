@@ -12,6 +12,7 @@
 
 	<%@ include file="../../views/common/header.jsp"%>
 			<%@ include file="../../views/common/nav.jsp" %>
+			<br>
 
 	<div class="addRecipeContainer">
 		<div class="recipeContain">
@@ -165,8 +166,8 @@
 					placeholder="예) 돼지고기"> <input name="ingredientWeight" type="text"
 					class="form-control" placeholder="예) 500g"></li>
 			</ul>
-			<button type="button" id="addIngredientBtn">재료 추가</button>
-			<button type="button" id="deleteIngredientBtn">재료 삭제</button>
+			<button class="addButton" type="button" id="addIngredientBtn">재료 추가</button>
+			<button class="addButton" type="button" id="deleteIngredientBtn">재료 삭제</button>
 
 		</div>
 	</div>
@@ -224,33 +225,7 @@
 
 	<br>
 	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
-	<br>
+
 	<%@ include file="../../views/common/footer.jsp"%>
 </body>
 <script src="/resources/js/member/addRecipe.js">
