@@ -157,7 +157,7 @@
 					
 						<c:if test="${not empty memberResult }">
 							<a href="#"> <img class="profile_picture"
-								src="/resources/uploads/member/${sessionScope.uploadName}"></a>
+								src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
 						</c:if>
 					</div>
 					
