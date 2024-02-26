@@ -97,11 +97,13 @@
 
 		</div>
 		<div class="commentList">
-			<c:forEach var="item" items="${comment}">
+			<c:forEach var="item" items="${comment}" varStatus="status">
 				<div class="reply_list">
 					<div class="media-left">
+					<c:if test="${not empty memberResult }">
 						<a href="#"> <img class="profile_picture"
-							src="/resources/uploads/레시피등록대표사진.gif"></a>
+							src="/resources/uploads/member/${memberResult[status.index].uploadName}"></a>
+					</c:if>
 					</div>
 					<div class="media-body">
 						<h4 class="media-heading">

@@ -33,8 +33,8 @@
                   <br>
                   <div class="result">
                      <c:choose>
-                        <c:when test="${not empty scraplist}">
-                           <c:forEach var="item" items="${scraplist}">
+                        <c:when test="${not empty scraplist2}">
+                          <c:forEach var="item" items="${scraplist2}">
                               
                                  <div class="result">
                                  <a onclick="location.href='/member/detail.do?rno=${item.rno}'">

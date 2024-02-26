@@ -207,9 +207,10 @@ public class RecipeController {
 		recipe.setRno(rno);
 		recipe.setMno((int) session.getAttribute("mno"));
 		int scrapRecipe = recipeService.scrapRecipe(recipe);
-		if (scrapRecipe > 0) {
-			System.out.println("레시피 스크랩 성공");
-		} else {
+
+		if(scrapRecipe>0) {
+			System.out.println("레시피 스크랩 성공!");
+		}else {
 			System.out.println("레시피 스크랩 실패 ㅜㅜ");
 		}
 
@@ -217,48 +218,56 @@ public class RecipeController {
 	}
 
 	// 스크랩 레시피 리스트
-	@GetMapping("/scrapRecipeList.do")
-	public String scrapRecipeList(RecipeDTO recipe, @RequestParam(value = "cpage", defaultValue = "1") int cpage,
-			Model model, MemberDTO member, HttpSession session) {
-
-		int listCount = recipeService.scrapListCount(recipe);
-
-		int pageLimit = 6;
-		int boardLimit = 6;
-
-		int row = listCount - (cpage - 1) * boardLimit;
-
-		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
-
-		List<RecipeDTO> scrapList = recipeService.scrapRecipeList(recipe, pi);
-		for (RecipeDTO item : scrapList) {
-
-			recipe.setMno((int) session.getAttribute("mno"));
-			recipe.setRno(item.getRno());
-
-			List<RecipeDTO> scraplist = recipeService.selectScrapRecipe(item, pi);
-
-			for (RecipeDTO item2 : scraplist) {
-				String scrapDate2 = item2.getScrapDate().substring(0, 10);
-				item2.setScrapDate(scrapDate2);
-			}
-			model.addAttribute("scraplist", scraplist);
-			member.setMno((int) session.getAttribute("mno"));
-			int mno = member.getMno();
-			MemberDTO result = memberService.memberProfile(mno);
-
-			int viewSum = recipeService.viewSum(mno);
-
-			model.addAttribute("result", result);
-			model.addAttribute("viewSum", viewSum);
+		@GetMapping("/scrapRecipeList.do")
+		public String scrapRecipeList(RecipeDTO recipe,@RequestParam(value="cpage",defaultValue="1")int cpage,
+				Model model,MemberDTO member,
+				HttpSession session){
+			
+			int listCount = recipeService.scrapListCount(recipe);
+			
+			int pageLimit = 6;
+			int boardLimit =6;
+			
+			int row = listCount - (cpage-1) * boardLimit;
+			
+			PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+			
+			List<RecipeDTO> scrapList = recipeService.scrapRecipeList(recipe,pi);
+				for(RecipeDTO item:scrapList) {
+					
+//					recipe.setMno((int) session.getAttribute("mno"));
+//					recipe.setRno(item.getRno());
+					
+					item.setMno((int) session.getAttribute("mno"));
+					item.setRno(item.getRno());
+				
+					List<RecipeDTO> scraplist2 = recipeService.selectScrapRecipe(item,pi);
+					for(RecipeDTO item2:scraplist2) {
+					System.out.println(item2);
+					String scrapDate2 = item2.getScrapDate().substring(0,10);
+					item2.setScrapDate(scrapDate2);
+					model.addAttribute("scraplist2",scraplist2);				
+					}
+					
+					member.setMno((int) session.getAttribute("mno"));
+					
+					int mno = member.getMno();
+					MemberDTO result = memberService.memberProfile(mno);					
+					int viewSum = recipeService.viewSum(mno);
+				
+					model.addAttribute("result",result);
+					model.addAttribute("viewSum",viewSum);
+				}
+			
+			
+			
+			model.addAttribute("row",row);
+//			model.addAttribute("scrapList",scrapList);
+			model.addAttribute("pi",pi);
+			
+			return "myPage/scrapRecipe";
 		}
-
-		model.addAttribute("row", row);
-		model.addAttribute("scrapList", scrapList);
-		model.addAttribute("pi", pi);
-
-		return "myPage/scrapRecipe";
-	}
+	
 
 	@GetMapping("/scrapRecipeDelete")
 	public String scrapRecipeDelete(@RequestParam(value = "frno") int frno, HttpSession session, RecipeDTO recipe,

@@ -117,6 +117,8 @@ public class FreeController {
 			FreeDTO free,MemberDTO member,HttpSession session,
 			Model model) {
 		
+		
+		
 		FreeDTO result = freeService.freeDetail(flno);
 		
 		List<FreeDTO> freeComment = freeService.selectComment(flno);
