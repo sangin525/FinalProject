@@ -219,7 +219,7 @@ public class RecipeController {
 		recipe.setMno((int) session.getAttribute("mno"));
 		int scrapRecipe = recipeService.scrapRecipe(recipe);
 		if(scrapRecipe>0) {
-			System.out.println("레시피 스크랩 성공!");
+			System.out.println("레시피 스크랩 성공");
 		}else {
 			System.out.println("레시피 스크랩 실패 ㅜㅜ");
 		}		
@@ -490,6 +490,7 @@ public class RecipeController {
 	@GetMapping("/detail.do")
 	
 	public String detailRecipe(@RequestParam(value="rno") int rno,
+			@RequestParam(value="cpage",defaultValue="1")int cpage,
 												RecipeDTO recipe,
 												Model model,
 												HttpServletRequest request,HttpSession session) {
@@ -503,9 +504,7 @@ public class RecipeController {
 		System.out.println(ingreresult);
 
 		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
-		
-		List<RecipeDTO> comresult = recipeService.selectComment(rno);
-		
+				
 		List<RecipeDTO> seqPhoresult = new ArrayList<>();
 		
 		List<MemberDTO> memberResult = new ArrayList<>();
@@ -515,25 +514,34 @@ public class RecipeController {
 				if(!Objects.isNull(seqresult)) {	
 					int rsno = seqresult.getRsno();
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
-					if(!Objects.isNull(comresult)) {
+						// 댓글 페이징 처리
 						int commentCount = recipeService.commentCount(rno);
+						int commentPageLimit = 10;
+						int commentLimit = 5;
+						
+						PageInfo pi = Pagination.getPageInfo(commentCount, cpage, commentPageLimit, commentLimit);
+						
+						List<RecipeDTO> comresult = recipeService.selectComment(pi,rno);
+
 						int recentRecipe = recipeService.recentRecipe(recipe); 
+						
 						MemberDTO recipeChefProfile = memberService.memberProfile(result.getMno());
+						
 						for(RecipeDTO cp:comresult) {							
-//							
+							String indate = cp.getRcInDate().substring(0,10);
+							cp.setRcInDate(indate);
 							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
 							memberResult.add(resultProfile);
-//						
-							System.out.println(memberResult.toString());							
+					
+//							System.out.println(memberResult.toString());							
 						}
+						System.out.println(recentRecipe);
+						model.addAttribute("pi", pi);
+						
 						model.addAttribute("memberResult",memberResult);
 						model.addAttribute("recipeChefProfile",recipeChefProfile);
 						model.addAttribute("commentCount",commentCount);						
-						model.addAttribute("comment",comresult);
-						System.out.println(recentRecipe);
-						System.out.println("게시판 들어오기 완료~");
-					
-					}
+						model.addAttribute("comment",comresult);				
 				}
 			}
 		}

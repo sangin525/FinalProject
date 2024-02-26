@@ -106,9 +106,10 @@ public class AdminDAO {
 		return sqlSession.insert("adminCommentMapper.addNoticeComment",admin);
 	}
 
-	public List<AdminDTO> selectNoticeComment(SqlSessionTemplate sqlSession, int acno) {
-		
-		return sqlSession.selectList("adminCommentMapper.selectNoticeComment",acno);
+	public List<AdminDTO> selectNoticeComment(SqlSessionTemplate sqlSession,PageInfo pi,int acno) {
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());
+		return sqlSession.selectList("adminCommentMapper.selectNoticeComment",acno,rb);
 	}
 
 	public int ncommentCount(SqlSessionTemplate sqlSession, int acno) {
@@ -121,9 +122,10 @@ public class AdminDAO {
 		return sqlSession.insert("eventCommentMapper.addEventComment",admin);
 	}
 
-	public List<AdminDTO> selectEventComment(SqlSessionTemplate sqlSession, int eno) {
-		
-		return sqlSession.selectList("eventCommentMapper.selectEventComment",eno);
+	public List<AdminDTO> selectEventComment(SqlSessionTemplate sqlSession,PageInfo pi, int eno) {
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());	
+		return sqlSession.selectList("eventCommentMapper.selectEventComment",eno,rb);
 	}
 
 	public int ecommentCount(SqlSessionTemplate sqlSession, int eno) {
