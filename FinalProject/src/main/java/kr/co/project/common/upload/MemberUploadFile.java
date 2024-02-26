@@ -25,7 +25,6 @@ public class MemberUploadFile {
 
 
 
-
 	public static boolean deleteFile(String fileName, String boardName) {
 		// C:\\spring\\Project\\src\\main\\webapp\\resources\\uploads\\
 		// 240103113409_cRvSeZPY.png
