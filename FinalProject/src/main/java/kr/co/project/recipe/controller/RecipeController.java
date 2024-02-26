@@ -219,7 +219,7 @@ public class RecipeController {
 		recipe.setMno((int) session.getAttribute("mno"));
 		int scrapRecipe = recipeService.scrapRecipe(recipe);
 		if(scrapRecipe>0) {
-			System.out.println("레시피 스크랩 성공");
+			System.out.println("레시피 스크랩 성공!");
 		}else {
 			System.out.println("레시피 스크랩 실패 ㅜㅜ");
 		}		
