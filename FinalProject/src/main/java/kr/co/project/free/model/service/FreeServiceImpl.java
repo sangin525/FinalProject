@@ -99,9 +99,9 @@ public class FreeServiceImpl {
 		return freeDao.addComment(sqlSession,free);
 	}
 
-	public List<FreeDTO> selectComment(int flno) {
+	public List<FreeDTO> selectComment(PageInfo pi,int flno) {
 		
-		return freeDao.selectComment(sqlSession,flno);
+		return freeDao.selectComment(sqlSession,pi,flno);
 	}
 
 	public int commentCount(int flno) {

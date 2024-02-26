@@ -430,6 +430,7 @@ public class MemberController {
 @GetMapping("/detail.do")
 	
 	public String detailRecipe(@RequestParam(value="rno") int rno,
+			@RequestParam(value="cpage",defaultValue="1")int cpage,
 												RecipeDTO recipe,
 												Model model,
 												HttpServletRequest request) {
@@ -439,10 +440,7 @@ public class MemberController {
 		RecipeDTO ingreresult = recipeService.selectRecipe(rno);
 		
 		RecipeDTO seqresult = recipeService.seqSelectRecipe(rno);
-		
-		List<RecipeDTO> comresult = recipeService.selectComment(rno);
-//		RecipeDTO comresult = recipeService.selectComment(rno);
-		
+			
 		List<RecipeDTO> seqPhoresult = new ArrayList<>();
 
 		List<MemberDTO> memberResult = new ArrayList<>();
@@ -452,18 +450,30 @@ public class MemberController {
 				if(!Objects.isNull(seqresult)) {	
 					int rsno = seqresult.getRsno();
 					seqPhoresult = recipeService.seqPhoSelectRecipe(rsno);
-					if(!Objects.isNull(comresult)) {
+						// 댓글 페이징 처리
 						int commentCount = recipeService.commentCount(rno);
-						model.addAttribute("commentCount",commentCount);						
-						model.addAttribute("comment",comresult);
+						int commentPageLimit = 10;
+						int commentLimit = 5;
+						
+						PageInfo pi = Pagination.getPageInfo(commentCount, cpage, commentPageLimit, commentLimit);
+						
+						List<RecipeDTO> comresult = recipeService.selectComment(pi,rno);
+						
 						MemberDTO recipeChefProfile = memberService.memberProfile(result.getMno());
+						
 						for(RecipeDTO cp:comresult) {
+							String indate = cp.getRcInDate().substring(0,10);
+							cp.setRcInDate(indate);
 							MemberDTO resultProfile = memberService.memberList(cp.getMno());				
 							memberResult.add(resultProfile);
-							model.addAttribute("memberResult",memberResult);
 						}
+						model.addAttribute("pi", pi);
+						
+						model.addAttribute("memberResult",memberResult);
 						model.addAttribute("recipeChefProfile",recipeChefProfile);
-					}
+						model.addAttribute("commentCount",commentCount);						
+						model.addAttribute("comment",comresult);
+					
 				}
 			}
 		}

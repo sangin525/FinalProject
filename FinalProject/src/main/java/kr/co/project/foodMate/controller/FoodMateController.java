@@ -98,25 +98,37 @@ public class FoodMateController {
 
 	@GetMapping("/foodMateDetail.do")
 	public String foodMateDetail(@RequestParam(value = "fno") int fno, HttpSession session, Model model,
+			@RequestParam(value="cpage",defaultValue="1")int cpage,
 			HttpServletRequest request) {
 
 		FoodMateDTO result = foodMateService.detailFoodMate(fno);
 		
-		List<FoodMateDTO> comresult = foodMateService.selectComment(fno);
 
 		List<MemberDTO> commentProfile = new ArrayList<>();
 		
 		if (!Objects.isNull(result)) {// 게시글이 있다면
-			if (!Objects.isNull(comresult)) {// 댓글
+			
 				int commentCount = foodMateService.commentCount(fno);
-				model.addAttribute("comment", comresult);
+				int commentPageLimit = 10;
+				int commentLimit = 5;
+				
+				PageInfo pi = Pagination.getPageInfo(commentCount, cpage, commentPageLimit, commentLimit);
+				
 				model.addAttribute("commentCount", commentCount);
+				
+				List<FoodMateDTO> comresult = foodMateService.selectComment(pi,fno);
+				
+				model.addAttribute("pi",pi);
+				model.addAttribute("comment", comresult);
+
 				for(FoodMateDTO fd:comresult) {
+					String indate = fd.getCommentIndate().substring(0,10);
+					fd.setCommentIndate(indate);
 					MemberDTO resultProfile = memberService.memberList(fd.getMno());
 					commentProfile.add(resultProfile);
 					model.addAttribute("memberResult",commentProfile);
 				}
-			}
+			
 			int first_m_no = result.getMno();// 게시물 작성자(주인)
 			int second_m_no = (int) session.getAttribute("mno");// 사용자
 

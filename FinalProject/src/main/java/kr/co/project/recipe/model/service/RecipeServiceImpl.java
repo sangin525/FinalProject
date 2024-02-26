@@ -196,9 +196,9 @@ public class RecipeServiceImpl implements RecipeService{
 		return recipeDao.addComment(sqlSession,recipe);
 	}
 
-	public List<RecipeDTO> selectComment(int rno) {
+	public List<RecipeDTO> selectComment(PageInfo pi,int rno) {
 		
-		return recipeDao.selectComment(sqlSession,rno);
+		return recipeDao.selectComment(sqlSession,pi,rno);
 	}
 
 	public int commentCount(int rno) {

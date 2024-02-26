@@ -114,30 +114,42 @@ public class FreeController {
 	
 	@GetMapping("/freeDetail")
 	public String freeDetail(@RequestParam(value="flno")int flno,
+			@RequestParam(value="cpage",defaultValue="1")int cpage,
 			FreeDTO free,MemberDTO member,HttpSession session,
 			Model model) {
 		
 		
 		
-		FreeDTO result = freeService.freeDetail(flno);
-		
-		List<FreeDTO> freeComment = freeService.selectComment(flno);
+		FreeDTO result = freeService.freeDetail(flno);		
 		
 		List<MemberDTO> commentProfile = new ArrayList<>();
+		
+//		List<FreeDTO> comment = new ArrayList<>();
+		
 		if(!Objects.isNull(result)) {
-			if(!Objects.isNull(freeComment)) {
+			
 				int commentCount = freeService.commentCount(flno);
+				int commentPageLimit = 10;
+				int commentLimit = 5;
+				
+				PageInfo pi = Pagination.getPageInfo(commentCount, cpage, commentPageLimit, commentLimit);
+				
 				model.addAttribute("commentCount",commentCount);
+				
+				List<FreeDTO> freeComment = freeService.selectComment(pi,flno);
+	
 				for(FreeDTO fp:freeComment) {
+					String indate = fp.getFcIndate().substring(0,10);
+					fp.setFcIndate(indate);
 					MemberDTO resultProfile = memberService.memberList(fp.getMno());
 					commentProfile.add(resultProfile);
 					model.addAttribute("memberResult",commentProfile);
 				}
-			}
+				model.addAttribute("pi", pi);
+				model.addAttribute("freeComment",freeComment);
 		}
-		
+//		model.addAttribute("comment",comment);
 		model.addAttribute("free",result);
-		model.addAttribute("freeComment",freeComment);
 		return "/notice/free_Detail";
 	}
 	

@@ -106,9 +106,11 @@ public class RecipeDAO {
 		return sqlSession.insert("recipeCommentMapper.addComment",recipe);
 	}
 
-	public List<RecipeDTO> selectComment(SqlSessionTemplate sqlSession, int rno) {
+	public List<RecipeDTO> selectComment(SqlSessionTemplate sqlSession,PageInfo pi,int rno) {
+		int offset = (pi.getCpage()-1) * pi.getBoardLimit();		
+		RowBounds rb = new RowBounds(offset,pi.getBoardLimit());	
 		
-		return sqlSession.selectList("recipeCommentMapper.selectComment",rno);
+		return sqlSession.selectList("recipeCommentMapper.selectComment",rno,rb);
 	}
 
 	public int commentCount(SqlSessionTemplate sqlSession, int rno) {
