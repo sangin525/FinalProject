@@ -18,7 +18,8 @@
 	<%@ include file="../../views/common/header.jsp"%>
 		<%@ include file="../../views/common/nav.jsp" %>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
-<div class="adminContainer">
+<div class="adminContainer">	
+		<h2 style="margin-left: 270px;">회원목록</h2>
 	<div class="memberTable">
 		<table>
 			<thead>
@@ -64,7 +65,8 @@
 			</tbody>
 		</table>
 	</div>
-
+	<br>
+<div class="pageNav">
 	<ul class="pagination justify-content-center">
 		<c:choose>
 			<c:when test="${pi.cpage eq 1}">
@@ -81,8 +83,8 @@
 		</c:choose>
 
 		<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-			<li class="page-item"><a class="page-link"
-				href="/admin/memberList?cpage=${page}">${page}1</a></li>
+			<li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>"><a class="page-link"
+				href="/admin/memberList?cpage=${page}">${page}</a></li>
 		</c:forEach>
 
 		<c:choose>
@@ -99,6 +101,7 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
+	</div>
 </div>
 <%@ include file="../../views/common/footer.jsp" %>
 </body>

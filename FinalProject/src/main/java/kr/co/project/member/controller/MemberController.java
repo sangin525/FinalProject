@@ -21,6 +21,8 @@ import org.springframework.web.multipart.MultipartFile;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.common.pageing.Pagination;
 import kr.co.project.common.upload.MemberUploadFile;
+import kr.co.project.goods.model.dto.GoodsDTO;
+import kr.co.project.goods.model.service.GoodsServiceImpl;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.member.model.service.MemberServiceImpl;
 import kr.co.project.recipe.model.dto.RecipeDTO;
@@ -37,6 +39,9 @@ public class MemberController {
 	
 	@Autowired
 	private RecipeServiceImpl recipeService;
+	
+	@Autowired
+	private GoodsServiceImpl goodsService;
 	
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
@@ -138,16 +143,17 @@ public class MemberController {
 		model.addAttribute("list",list);
 		model.addAttribute("pi",pi);
 	
+		List<RecipeDTO> list2 = recipeService.selectMyRecipe(pi,recipe);
 		member.setMno((int) session.getAttribute("mno"));
-		int mno = member.getMno();
-		MemberDTO result = memberService.memberProfile(mno);
-		
-		if(!list.isEmpty()) {
-			int viewSum = recipeService.viewSum(mno);			
-			System.out.println(viewSum);
-			model.addAttribute("viewSum",viewSum);
-		}
-		model.addAttribute("result",result);
+				int mno = member.getMno();
+				MemberDTO result = memberService.memberProfile(mno);
+				
+				if(!list2.isEmpty()) {
+					int viewSum = recipeService.viewSum(mno);			
+					System.out.println(viewSum);
+					model.addAttribute("viewSum",viewSum);
+				}
+				model.addAttribute("result",result);
 
 		return "/myPage/myRecipes";
 	
@@ -394,6 +400,33 @@ public class MemberController {
 		
 		return "/myPage/myRecipes";
 	}
+	
+	@GetMapping("/myInquiry.do")
+	public String myinquiry(@RequestParam(value="cpage",defaultValue="1")int cpage,
+			Model model,
+			MemberDTO member,
+			GoodsDTO goods,			
+			HttpSession session) {
+
+		goods.setM_no((int) session.getAttribute("mno"));
+		
+		List<GoodsDTO> inquiryList = goodsService.myInquiryList(goods.getM_no());
+		model.addAttribute("inquiryList",inquiryList);
+		
+		member.setMno((int) session.getAttribute("mno"));
+		int mno = member.getMno();
+		MemberDTO result = memberService.memberProfile(mno);
+		
+		if(!inquiryList.isEmpty()) {
+			int viewSum = recipeService.viewSum(mno);			
+			
+			model.addAttribute("viewSum",viewSum);
+		}
+		model.addAttribute("result",result);
+		return "/myPage/quiries";
+	}
+	
+	
 	
 	@PostMapping("/checkNickName.do")
 	@ResponseBody 

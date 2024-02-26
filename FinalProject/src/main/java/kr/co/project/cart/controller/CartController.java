@@ -18,6 +18,9 @@ import kr.co.project.cart.model.dto.CartDTO;
 import kr.co.project.cart.model.service.CartServiceImpl;
 import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.goods.model.service.GoodsServiceImpl;
+import kr.co.project.member.model.dto.MemberDTO;
+import kr.co.project.member.model.service.MemberServiceImpl;
+import kr.co.project.recipe.model.service.RecipeServiceImpl;
 
 @Controller
 @RequestMapping("/cart")
@@ -28,6 +31,12 @@ public class CartController {
 
 	@Autowired
 	private GoodsServiceImpl goodsService;
+	
+	@Autowired
+	private RecipeServiceImpl recipeService;
+	
+	@Autowired
+	private MemberServiceImpl memberService;
 
 	@PostMapping("/addCart.do")
 	public String addCart(CartDTO cart, HttpServletRequest request) {
@@ -53,7 +62,7 @@ public class CartController {
 	}
 
 	@GetMapping("/getCart.do")
-	public String getCart(HttpSession session, Model model) {
+	public String getCart(HttpSession session, Model model,MemberDTO member) {
 		int mno = (int) session.getAttribute("mno");
 		List<CartDTO> cartList = cartService.getCart(mno);
 
@@ -70,7 +79,16 @@ public class CartController {
 		} else {
 
 		}
-
+		member.setMno((int) session.getAttribute("mno"));
+		
+		MemberDTO result = memberService.memberProfile(mno);
+		
+		
+			int viewSum = recipeService.viewSum(mno);			
+			
+			model.addAttribute("viewSum",viewSum);
+		
+		model.addAttribute("result",result);		
 		model.addAttribute("cartList", cartList);
 		return "myPage/cart";
 	}
