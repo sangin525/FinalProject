@@ -43,7 +43,9 @@
 						<c:if test ="${not empty event.e_file_name }">
 						<img src="/resources/uploads/event/${event.e_file_name }"><br> 
 						</c:if>
+						<textarea readonly>
 						${event.e_contents }
+						</textarea>
 					</div>
 				</div>
 				<div class="bt_wrap">

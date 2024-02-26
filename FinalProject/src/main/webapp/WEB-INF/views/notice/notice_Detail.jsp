@@ -43,7 +43,9 @@
 						<c:if test ="${not empty notice.fileName }">
 						<img src="/resources/uploads/admin/${notice.fileName }"><br> 
 						</c:if>
-						${notice.contents }
+						<textarea readonly>
+							${notice.contents }
+						</textarea>
 						
 					</div>
 				</div>

@@ -61,21 +61,21 @@
 					<ul class="products-ul">
 
 						<c:forEach var="item" items="${list}">
-							<li>
-							<a href="/goods/detail.do?g_no=${item.g_no}"> 
-							<img src="/resources/uploads/goods/${item.g_file_name}">
-									<div class="product-caption">
-									<input type="hidden" id="g_price" value="${item.g_price}">
-									<input type="hidden" id="g_r_price" value="${item.g_regular_price}">
-										<div>상품명: ${item.g_name}</div> <br>
-										<div class="re_price">정상가: ${item.g_regular_price}원</div>									
-										<div>
-											<span style="color: red;">${item.g_dcRate} %</span> 
-											<strong class="price_g">판매가: ${item.g_price} 원</strong>
-										</div>
-									</div>
-							</a>
-							</li>
+						    <li class="products-li">
+						        <a href="/goods/detail.do?g_no=${item.g_no}"> 
+						            <img src="/resources/uploads/goods/${item.g_file_name}">
+						            <div class="product-caption">
+						                <input type="hidden" class="g_price" value="${item.g_price}">
+						                <input type="hidden" class="g_r_price" value="${item.g_regular_price}">
+						                <div>${item.g_name}</div> <br>
+						                <div class="re_price">정상가: ${item.g_regular_price}원</div>                                    
+						                <div>
+						                    <span style="color: red;">${item.g_dcRate} %</span> 
+						                    <strong class="price_g">판매가: ${item.g_price} 원</strong>
+						                </div>
+						            </div>
+						        </a>
+						    </li>
 						</c:forEach>
 					</ul>
 				</c:otherwise>
