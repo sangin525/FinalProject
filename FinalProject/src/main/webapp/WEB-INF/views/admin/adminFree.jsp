@@ -108,29 +108,30 @@
 						</div>
 					</c:when>
 					<c:otherwise>
-						<c:forEach var="item" items="${list}" varStatus="status">
-						<tr id="row">
-							<input type="hidden" id="hiddenFlno" value="${item.flno }">
-							<input type="hidden" id="hiddenTitle" value="${item.title}">
-							<input type="hidden" class="noticeContent_${status.index +1}" id="hiddenContents" value="${item.contents}">
-							<input type="hidden" id="hiddenFileName" value="${item.fileName}">
-							
-							<td><input type="checkbox" class="Detail"></td>
-							<td class="boardNum">${row}</td>
-							<td class="boardTit">${item.title}</td>
-							<td class="boardDate">${item.writer }</td>							
-							<td class="boardDate">${item.indate}</td>
-							<td class="boardView">${item.views}</td>
-						</tr>
-							<c:set var="row" value="${row -1}"/>
-						</c:forEach>
+					    <c:forEach var="item" items="${list}" varStatus="status">
+					        <tr id="row">
+					            <td>
+					                <input type="hidden" id="hiddenFlno" value="${item.flno}">
+					                <input type="hidden" id="hiddenTitle" value="${item.title}">
+					                <input type="hidden" class="noticeContent_${status.index +1}" id="hiddenContents" value="${item.contents}">
+					                <input type="hidden" id="hiddenFileName" value="${item.fileName}">
+					                <input type="checkbox" class="Detail">
+					            </td>
+					            <td class="boardNum">${row}</td>
+					            <td class="boardTit">${item.title}</td>
+					            <td class="boardDate">${item.writer}</td>                            
+					            <td class="boardDate">${item.indate}</td>
+					            <td class="boardView">${item.views}</td>
+					        </tr>
+					        <c:set var="row" value="${row -1}"/>
+					    </c:forEach>
 					</c:otherwise>
 				</c:choose>
 
 			</tbody>
 		</table>
 	</div>
-
+<div class="pageNav">
 	<ul class="pagination">
 		<c:choose>
 			<c:when test="${pi.cpage eq 1}">
@@ -140,15 +141,15 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/recipe/list.do?cpage=${pi.cpage-1}" aria-label="Previous">
+					href="/admin/freeList.do?cpage=${pi.cpage-1}" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 				</a></li>
 			</c:otherwise>
 		</c:choose>
 
 		<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-			<li class="page-item"><a class="page-link"
-				href="/recipe/list.do?cpage=${page}">${page}1</a></li>
+			<li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>"><a class="page-link"
+				href="/admin/freeList.do?cpage=${page}">${page}</a></li>
 		</c:forEach>
 
 		<c:choose>
@@ -159,12 +160,13 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/recipe/list.do?cpage=${pi.cpage+1}" aria-label="Next"> <span
+					href="/admin/freeList.do?cpage=${pi.cpage+1}" aria-label="Next"> <span
 						aria-hidden="true">&raquo;</span>
 				</a></li>
 			</c:otherwise>
 		</c:choose>
 	</ul>
+	</div>
 </div>
 </div>
 </div>	
