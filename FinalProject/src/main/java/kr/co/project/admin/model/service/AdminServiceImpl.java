@@ -176,9 +176,9 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.addNoticeComment(sqlSession,admin);
 	}
 
-	public List<AdminDTO> selectNoticeComment(int acno) {
+	public List<AdminDTO> selectNoticeComment(PageInfo pi,int acno) {
 		
-		return adminDao.selectNoticeComment(sqlSession,acno);
+		return adminDao.selectNoticeComment(sqlSession,pi,acno);
 	}
 
 	public int ncommentCount(int acno) {
@@ -191,9 +191,9 @@ public class AdminServiceImpl implements AdminService{
 		return adminDao.addEventComment(sqlSession,admin);
 	}
 
-	public List<AdminDTO> selectEventComment(int eno) {
+	public List<AdminDTO> selectEventComment(PageInfo pi,int eno) {
 		
-		return adminDao.selectEventComment(sqlSession,eno);
+		return adminDao.selectEventComment(sqlSession,pi,eno);
 	}
 
 	public int ecommentCount(int eno) {

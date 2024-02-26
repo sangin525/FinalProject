@@ -102,8 +102,8 @@ public class FoodMateServiceImpl implements FoodMateService{
 		return foodMateDao.addComment(sqlSession,food);
 	}
 
-	public List<FoodMateDTO> selectComment(int fno) {		
-		return foodMateDao.selectComment(sqlSession,fno);
+	public List<FoodMateDTO> selectComment(PageInfo pi,int fno) {		
+		return foodMateDao.selectComment(sqlSession,pi,fno);
 	}
 
 	public int commentCount(int fno) {		

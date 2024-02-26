@@ -151,7 +151,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/admin/noticeList.do?cpage=${pi.cpage-1}" aria-label="Previous">
+					href="/admin/noticeList?cpage=${pi.cpage-1}" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 				</a></li>
 			</c:otherwise>
@@ -159,7 +159,7 @@
 
 		<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 			<li class="page-item <c:if test="${pi.cpage eq page}">active</c:if>"><a class="page-link"
-				href="/admin/noticeList.do?cpage=${page}">${page}</a></li>
+				href="/admin/noticeList?cpage=${page}">${page}</a></li>
 		</c:forEach>
 
 		<c:choose>
@@ -170,7 +170,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/admin/noticeList.do?cpage=${pi.cpage+1}" aria-label="Next"> <span
+					href="/admin/noticeList?cpage=${pi.cpage+1}" aria-label="Next"> <span
 						aria-hidden="true">&raquo;</span>
 				</a></li>
 			</c:otherwise>
