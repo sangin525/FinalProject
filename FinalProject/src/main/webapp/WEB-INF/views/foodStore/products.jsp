@@ -100,10 +100,19 @@
 				    </c:choose>
 				    
 				    <c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
-				    	<li class="page-item" <c:if test="${pi.cpage eq page}">active</c:if>>
-				    		<a class="page-link" href="/goods/list.do?cpage=${page}">${page}</a>
-			    		</li>
-				    </c:forEach>
+					    <c:choose>
+					        <c:when test="${pi.cpage eq page}">
+					            <li class="page-item active">
+					                <a class="page-link" href="/goods/list.do?cpage=${page}">${page}</a>
+					            </li>
+					        </c:when>
+					        <c:otherwise>
+					            <li class="page-item">
+					                <a class="page-link" href="/goods/list.do?cpage=${page}">${page}</a>
+					            </li>
+					        </c:otherwise>
+					    </c:choose>
+					</c:forEach>
 				    
 				    <c:choose>
 					    <c:when test="${pi.cpage eq pi.maxPage}">
