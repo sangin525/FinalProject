@@ -149,6 +149,14 @@
 	padding: 10px;
 	border-radius: 5px;
 }
+.receipeInfo{
+	display:flex;
+}
+.receipeInfo span{
+	display:flex;
+	align-items: center;
+	font-size:20px;
+}
 
 .recipe-info p {
 	color: #333;
