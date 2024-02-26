@@ -18,6 +18,7 @@
 		<%@ include file="../../views/common/nav.jsp" %>
 	<%@ include file="../../views/admin/adminSidebar.jsp"%>
 <div class="adminContainer">
+<h2 style="margin-left: 270px;">상품목록</h2>
 	<div class="productTable">
 		<table>
 			<thead>
@@ -52,7 +53,7 @@
 			</tbody>
 		</table>
 	</div>
-
+<div class="pageNav">
 	<ul class="pagination justify-content-center">
 		<c:choose>
 			<c:when test="${pi.cpage eq 1}">
@@ -87,6 +88,7 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
+	</div>
 </div>
 <%@ include file="../../views/common/footer.jsp" %>
 </body>
