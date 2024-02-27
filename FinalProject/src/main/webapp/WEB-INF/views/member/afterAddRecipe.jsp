@@ -272,6 +272,7 @@
 				<div class="commentPic">
 					<img src="/resources/uploads/member/${sessionScope.uploadName}">
 				</div>
+
         <div class="comment">
             <div class="rating">
                 <span onclick="ratingTest(5);">★</span><span

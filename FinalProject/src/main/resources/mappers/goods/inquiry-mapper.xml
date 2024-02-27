@@ -29,6 +29,12 @@
 	ORDER BY I_IN_DATE DESC
 	</select>
 	
+	<select id="myInquiryList" resultMap="inquiryResultSet">
+	SELECT * FROM INQUIRY
+	WHERE M_NO = #{m_no}
+	ORDER BY I_IN_DATE DESC
+	</select>
+	
 	<insert id="addInquiry">
 	INSERT INTO INQUIRY VALUES(inquiry_seq.NEXTVAL,
 					#{i_writer},

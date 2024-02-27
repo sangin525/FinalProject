@@ -27,6 +27,7 @@ import kr.co.project.foodMate.model.dto.FoodMateDTO;
 import kr.co.project.foodMate.model.service.FoodMateServiceImpl;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.member.model.service.MemberServiceImpl;
+import kr.co.project.recipe.model.service.RecipeServiceImpl;
 
 @Controller
 @RequestMapping("/foodMate")
@@ -43,6 +44,9 @@ public class FoodMateController {
 	@Autowired
 	private ChatServiceImpl chatService;
 
+	@Autowired
+	private RecipeServiceImpl recipeService;
+	
 	@Autowired
 	private MemberServiceImpl memberService;
 
@@ -243,5 +247,20 @@ public class FoodMateController {
 		}
 
 	}
-
+	
+	@GetMapping("/food.do")
+	public String food(MemberDTO member,HttpSession session,Model model) {
+		
+		member.setMno((int) session.getAttribute("mno"));
+		int mno = member.getMno();
+		MemberDTO result = memberService.memberProfile(mno);
+		
+		
+			int viewSum = recipeService.viewSum(mno);			
+			
+			model.addAttribute("viewSum",viewSum);
+		
+		model.addAttribute("result",result);
+		return "/myPage/notification";
+	}
 }
