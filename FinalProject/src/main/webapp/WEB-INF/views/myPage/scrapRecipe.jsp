@@ -66,7 +66,7 @@
                               <p>사람들의 레시피를 스크랩해보세요!</p>
                               레시피를 스크립하고 두고두고 맛있는 레시피로 요리해보세요.<br> <br>
                               <button type="button"
-                                 onclick="location.href='/ranking_recipe'"
+                                 onclick="location.href='/recipe/rankingRecipe.do'"
                                  class="btn-lg btn-primary">레시피 구경하러가기</button>
                            </div>
 
