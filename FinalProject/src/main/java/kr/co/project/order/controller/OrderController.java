@@ -25,6 +25,7 @@ import kr.co.project.order.model.dto.ItemOnPageDTO;
 import kr.co.project.order.model.dto.OrderDTO;
 import kr.co.project.order.model.dto.OrderDetailDTO;
 import kr.co.project.order.model.service.OrderServiceImpl;
+import kr.co.project.recipe.model.dto.RecipeDTO;
 import kr.co.project.recipe.model.service.RecipeServiceImpl;
 
 @Controller
@@ -247,7 +248,7 @@ public class OrderController {
 	}
 
 	@GetMapping("/myOrderList.do")
-	public String myOrderList(HttpSession session, Model model,MemberDTO member) {
+	public String myOrderList(HttpSession session, Model model,MemberDTO member,RecipeDTO recipe) {
 		int m_no = (int) session.getAttribute("mno");
 		List<OrderDTO> orderList = orderService.getOrderList(m_no);
 		List<OrderDetailDTO> orderDetailList = new ArrayList<>();
@@ -265,11 +266,15 @@ public class OrderController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
-		
-			int viewSum = recipeService.viewSum(mno);			
+	
+		recipe.setMno(mno);
+		List<RecipeDTO> list = recipeService.selectMyRecipe(null,recipe);
+		if(!list.isEmpty()) {
 			
+			int viewSum = recipeService.viewSum(mno);
+		
 			model.addAttribute("viewSum",viewSum);
+		}
 		
 		model.addAttribute("result",result);
 		

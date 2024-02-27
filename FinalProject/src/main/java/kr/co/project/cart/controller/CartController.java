@@ -20,6 +20,7 @@ import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.goods.model.service.GoodsServiceImpl;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.member.model.service.MemberServiceImpl;
+import kr.co.project.recipe.model.dto.RecipeDTO;
 import kr.co.project.recipe.model.service.RecipeServiceImpl;
 
 @Controller
@@ -62,7 +63,7 @@ public class CartController {
 	}
 
 	@GetMapping("/getCart.do")
-	public String getCart(HttpSession session, Model model,MemberDTO member) {
+	public String getCart(HttpSession session, Model model,MemberDTO member,RecipeDTO recipe) {
 		int mno = (int) session.getAttribute("mno");
 		List<CartDTO> cartList = cartService.getCart(mno);
 
@@ -82,11 +83,15 @@ public class CartController {
 		member.setMno((int) session.getAttribute("mno"));
 		
 		MemberDTO result = memberService.memberProfile(mno);
-		
-		
-			int viewSum = recipeService.viewSum(mno);			
+	
+		recipe.setMno(mno);
+		List<RecipeDTO> list = recipeService.selectMyRecipe(null,recipe);
+		if(!list.isEmpty()) {
 			
+			int viewSum = recipeService.viewSum(mno);
+		
 			model.addAttribute("viewSum",viewSum);
+		}
 		
 		model.addAttribute("result",result);		
 		model.addAttribute("cartList", cartList);

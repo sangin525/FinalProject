@@ -244,6 +244,8 @@ public class RecipeController {
 			PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
 			
 			List<RecipeDTO> scrapList = recipeService.scrapRecipeList(recipe,pi);
+			
+			List<RecipeDTO> myScrap = new ArrayList<>();
 				for(RecipeDTO item:scrapList) {
 					
 //					recipe.setMno((int) session.getAttribute("mno"));
@@ -257,20 +259,26 @@ public class RecipeController {
 					System.out.println(item2);
 					String scrapDate2 = item2.getScrapDate().substring(0,10);
 					item2.setScrapDate(scrapDate2);
-					model.addAttribute("scraplist2",scraplist2);				
+					model.addAttribute("scraplist2",scraplist2);
+					myScrap.add(item2);			
 					}
 					
-					List<RecipeDTO> list = recipeService.selectMyRecipe(pi,recipe);
+					
+					
 					member.setMno((int) session.getAttribute("mno"));
-							int mno = member.getMno();
-							MemberDTO result = memberService.memberProfile(mno);
-							
-							if(!list.isEmpty()) {
-								int viewSum = recipeService.viewSum(mno);			
-								System.out.println(viewSum);
-								model.addAttribute("viewSum",viewSum);
-							}
-							model.addAttribute("result",result);
+					int mno = member.getMno();
+					MemberDTO result = memberService.memberProfile(mno);
+				
+					recipe.setMno(mno);
+					List<RecipeDTO> list = recipeService.selectMyRecipe(null,recipe);
+					if(!list.isEmpty()) {
+						
+						int viewSum = recipeService.viewSum(mno);
+					
+						model.addAttribute("viewSum",viewSum);
+					}
+					
+					model.addAttribute("result",result);
 				
 				}
 			

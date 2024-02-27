@@ -405,7 +405,8 @@ public class MemberController {
 	public String myinquiry(@RequestParam(value="cpage",defaultValue="1")int cpage,
 			Model model,
 			MemberDTO member,
-			GoodsDTO goods,			
+			GoodsDTO goods,	
+			RecipeDTO recipe,
 			HttpSession session) {
 
 		goods.setM_no((int) session.getAttribute("mno"));
@@ -416,12 +417,16 @@ public class MemberController {
 		member.setMno((int) session.getAttribute("mno"));
 		int mno = member.getMno();
 		MemberDTO result = memberService.memberProfile(mno);
-		
-		if(!inquiryList.isEmpty()) {
-			int viewSum = recipeService.viewSum(mno);			
+	
+		recipe.setMno(mno);
+		List<RecipeDTO> list = recipeService.selectMyRecipe(null,recipe);
+		if(!list.isEmpty()) {
 			
+			int viewSum = recipeService.viewSum(mno);
+		
 			model.addAttribute("viewSum",viewSum);
 		}
+		
 		model.addAttribute("result",result);
 		return "/myPage/quiries";
 	}
