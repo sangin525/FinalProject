@@ -107,7 +107,22 @@
 - 주문한 상품 조회 기능
 
 # 🔍 : 프로젝트 시연
-#"이건 사진받고 나서"
+## `메인페이지 및 레시피`  
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/17cf8947-a5ce-4545-abed-f9bb1e7877b3"></img>
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/7ac033ca-01ef-4053-92d0-89c2bfedeb7b"></img>
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/4328ea31-790c-4074-ab26-afc0ab1e5332"></img>
+## `홈페이지 개요`
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/650bd58e-539e-4743-99c1-a45deb2511df"></img>
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/55f57647-b373-486b-840d-a6ac8b061e88"></img>
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/1ff46147-c450-4454-a782-cd48349c652d"></img>
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/b190486c-cc2b-4fbe-8422-baf88d777df9"></img>
+
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/a4db8eeb-6373-4b52-a020-569192a85321"></img>
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/6c552177-d5ec-4351-88a0-71834f69d801"></img>
+<img width="400" src="https://github.com/sangin525/finalProject/assets/150643108/5dac51f5-1cad-4489-b29c-81eacf75f806"></img>
+
+<br/>
+
 <br/><br/>
 
 # 🗨️ : 멤버 별 후기
