@@ -132,5 +132,15 @@ public class MemberDAO {
 		return sqlSession.selectOne("memberMapper.logMember",mno);
 	}
 
+	public List<MemberDTO> memberImage(SqlSessionTemplate sqlSession, int m_no) {
+		
+		return sqlSession.selectList("memberMapper.memberImage",m_no);
+	}
+
+	public MemberDTO memberImage2(SqlSessionTemplate sqlSession, int m_no) {
+		
+		return sqlSession.selectOne("memberMapper.memberImage2",m_no);
+	}
+
 	
 }

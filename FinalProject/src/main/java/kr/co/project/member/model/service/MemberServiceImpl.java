@@ -130,6 +130,16 @@ public class MemberServiceImpl implements MemberService{
 		return memberDao.logMember(sqlSession,mno);
 	}
 
+	public List<MemberDTO> memberImage(int m_no) {
+		
+		return memberDao.memberImage(sqlSession,m_no);
+	}
+
+	public MemberDTO memberImage2(int m_no) {
+		
+		return memberDao.memberImage2(sqlSession, m_no);
+	}
+
 	
 	
 	

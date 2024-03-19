@@ -71,7 +71,7 @@ public class ChatController {
 			MemberDTO user = memberService.findMember(mno);// 현재 사용자
 			
 			model.addAttribute("chatRoom", chatRoom);
-			model.addAttribute("firstMember", firstMember);
+			model.addAttribute("firstMember", firstMember); 
 			model.addAttribute("secondMember", secondMember);
 			model.addAttribute("user", user);
 			
