@@ -37,6 +37,8 @@ function sendMessage() {
 }
 
 function onMessage(msg) {
+	// console.log(msg);
+	// '{"cm_no":3,"cr_no":1,"m_no":2,"cm_message":"ㄷㄷㄷ","…end_time":"2024-03-07 10:19:29.0","m_name":"홍길동", "image_name": "이미지.jpg"}'
 	var data = JSON.parse(msg.data);
 
 	var date = new Date(data.cm_send_time);
@@ -62,9 +64,10 @@ function onMessage(msg) {
 
 	var clearBox = document.createElement('div');
 	clearBox.style.clear = "both";
-
+	
 	var newImage = document.createElement('img');
-	newImage.src = '/resources/uploads/레시피등록대표사진.gif';
+	newImage.src = '/resources/uploads/member/'+data.cm_imageName;
+	// newImage.src = '/resources/uploads/레시피등록대표사진.gif';
 	newImage.classList.add('new-image');
 
 	var userName = document.createElement('p');
