@@ -116,6 +116,12 @@
 
 				<%@ include file="../../views/foodStore/productReview.jsp"%>
 				<%@ include file="../../views/foodStore/questions.jsp"%>
+		<c:if test="${sessionScope.type == 0}">
+		<div class="questionsEnroll-btn">
+			<button type="submit" onclick="location.href='/goods/updateProduct'">상품 수정</button>
+			<button type="submit" onclick="location.href='/goods/delete.do?g_no=${goods.g_no}'">상품 삭제</button>
+		</div>
+		</c:if>
 			</div>
 		</div>
 	</div>

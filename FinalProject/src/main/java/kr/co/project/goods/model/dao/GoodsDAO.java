@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.goods.model.dto.GoodsPhotosDTO;
+import kr.co.project.recipe.model.dto.RecipeDTO;
 
 @Repository
 public class GoodsDAO {
@@ -111,6 +112,11 @@ public class GoodsDAO {
 	
 		return sqlSession.selectList("inquiryMapper.myInquiryList",m_no);
 	}
+
+	public int deleteProduct(SqlSessionTemplate sqlSession, GoodsDTO goodsDTO) {
+		return sqlSession.update("goodsMapper.deleteProduct", goodsDTO);
+	}
+
 
 
 }

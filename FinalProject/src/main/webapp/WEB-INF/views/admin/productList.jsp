@@ -33,20 +33,22 @@
 			</thead>
 			<tbody>
 				<c:choose>
-					<c:when test="${empty memberList}">
-						<tr>
-							<td>1</td>
-							<td>감동란</td>
-							<td>10000</td>
-							<td>10</td>
-							<td>9000</td>
-							<td>100판</td>
-						</tr>
-					</c:when>
-					<c:otherwise>
+					<c:when test="${empty list}">
 						<tr>
 							<td colspan="7">등록된 상품이 없습니다.</td>
 						</tr>
+					</c:when>
+					<c:otherwise>
+						<c:forEach var="item" items="${list}">
+							<tr onclick="location.href='/goods/detail.do?g_no=${item.g_no}'">
+								<td>${item.g_no}</td>
+								<td>${item.g_name}</td>
+								<td>${item.g_regular_price}원</td>
+								<td>${item.g_dcRate} %</td>
+								<td>${item.g_price} 원</td>
+								<td>${item.g_stock}</td>
+							</tr>
+						</c:forEach>
 					</c:otherwise>
 				</c:choose>
 
@@ -63,7 +65,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/recipe/list.do?cpage=${pi.cpage-1}" aria-label="Previous">
+					href="/admin/productList?cpage=${pi.cpage-1}" aria-label="Previous">
 						<span aria-hidden="true">&laquo;</span>
 				</a></li>
 			</c:otherwise>
@@ -71,7 +73,7 @@
 
 		<c:forEach var="page" begin="${pi.startPage}" end="${pi.endPage}">
 			<li class="page-item"><a class="page-link"
-				href="/recipe/list.do?cpage=${page}">${page}</a></li>
+				href="/admin/productList?cpage=${page}">${page}</a></li>
 		</c:forEach>
 
 		<c:choose>
@@ -82,7 +84,7 @@
 			</c:when>
 			<c:otherwise>
 				<li class="page-item"><a class="page-link"
-					href="/recipe/list.do?cpage=${pi.cpage+1}" aria-label="Next"> <span
+					href="/admin/productList?cpage=${pi.cpage+1}" aria-label="Next"> <span
 						aria-hidden="true">&raquo;</span>
 				</a></li>
 			</c:otherwise>

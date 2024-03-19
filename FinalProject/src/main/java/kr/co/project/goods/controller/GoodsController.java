@@ -26,6 +26,7 @@ import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.goods.model.dto.GoodsPhotosDTO;
 import kr.co.project.goods.model.service.GoodsServiceImpl;
 import kr.co.project.member.model.dto.MemberDTO;
+import kr.co.project.recipe.model.dto.RecipeDTO;
 
 @Controller
 @RequestMapping("/goods")
@@ -177,4 +178,26 @@ public class GoodsController {
 			return "common/error";
 		}
 	}
+	
+	@GetMapping("/delete.do")
+	public String deleteProduct(@RequestParam(value="g_no") int g_no,
+			GoodsDTO goodsDTO,
+			HttpSession session) {
+		goodsDTO.setG_no(g_no);
+		int memberType = (int) session.getAttribute("type");
+		System.out.println(memberType);
+		int result = 0;
+		
+		if(memberType == 0) {		
+			result = goodsService.deleteProduct(goodsDTO);
+			if(result>0) {
+				System.out.println("삭제성공");
+			}else {
+				System.out.println("삭제실패 ㅜ");
+			}
+		}
+		return "redirect:/goods/list.do";
+	}
+	
+	
 }

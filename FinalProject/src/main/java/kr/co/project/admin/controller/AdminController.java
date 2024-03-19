@@ -24,6 +24,7 @@ import kr.co.project.common.session.SessionMessage;
 import kr.co.project.common.upload.AdminUploadFile;
 import kr.co.project.common.upload.EventUploadFile;
 import kr.co.project.goods.model.dto.GoodsDTO;
+import kr.co.project.goods.model.service.GoodsServiceImpl;
 import kr.co.project.member.model.dto.MemberDTO;
 import kr.co.project.member.model.service.MemberServiceImpl;
 
@@ -33,13 +34,16 @@ public class AdminController {
 	
 	private static final String BOARD_NAME = "admin\\";
 	
-
+	
 	
 	@Autowired
 	private AdminServiceImpl adminService;
 	
 	@Autowired
 	private MemberServiceImpl memberService;
+	
+	@Autowired
+	private GoodsServiceImpl goodsService;
 	
 	@Autowired
 	private SessionMessage sessionMessage;
@@ -488,7 +492,20 @@ public class AdminController {
 		return"admin/memberList";
 	}
 	
-	
+	@GetMapping("/productList")
+	public String productList(Model model, @RequestParam(value = "cpage", defaultValue = "1") int cpage, GoodsDTO goods) {
+		
+		int listCount = goodsService.selectListCount();
+		int pageLimit = 10;
+		int boardLimit = 12;
+		PageInfo pi = Pagination.getPageInfo(listCount, cpage, pageLimit, boardLimit);
+
+		List<GoodsDTO> list = goodsService.selectListAll(pi, goods);
+		model.addAttribute("list", list);
+		model.addAttribute("pi", pi);
+
+		return "admin/productList";
+	}
 	
 
 }

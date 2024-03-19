@@ -110,5 +110,11 @@
 		#{g_stock}
 		WHERE g_no= #{g_no}
 	</update>
+	
+	<update id="deleteProduct">
+		UPDATE GOODS
+		SET g_delete_check = SYSDATE
+		WHERE g_no=#{g_no}
+	</update>
 
 </mapper>

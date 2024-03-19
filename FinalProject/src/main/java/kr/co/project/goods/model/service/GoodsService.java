@@ -23,4 +23,7 @@ public interface GoodsService {
 	int manyPhotosGoods(GoodsDTO goodsDTO, List<GoodsPhotosDTO> goodsPhotoList, List<GoodsPhotosDTO> detailPhotoList);
 
 	List<GoodsPhotosDTO> goodsPhotosList(GoodsDTO goodsDTO);
+	
+	// 상품삭제
+	int deleteProduct(GoodsDTO goodsDTO);
 }
