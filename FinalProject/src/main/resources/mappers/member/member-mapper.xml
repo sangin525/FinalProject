@@ -62,6 +62,16 @@ WHERE M_NO=#{mno}
 								null)
 </insert>
 
+<select id="memberImage" resultMap="memberResultSet">
+	SELECT * FROM MEMBER
+	WHERE M_NO=#{m_no}
+</select>
+
+<select id="memberImage2" resultMap="memberResultSet">
+	SELECT * FROM MEMBER
+	WHERE M_NO=#{m_no}
+</select>
+
 <select id="checkEmail" resultType="_int">
 	SELECT COUNT(*) FROM member
 	WHERE m_email = #{email}

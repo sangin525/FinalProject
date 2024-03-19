@@ -11,8 +11,10 @@ public class ChatMsgDTO {
 	private int m_no;
 	private String cm_message;
 	private String cm_send_time;
+	private String cm_imageName;
+	private String cm_imagePath;
+	private String cm_imgOrigin;
 	
 	
 	private String m_name;
-
 }
