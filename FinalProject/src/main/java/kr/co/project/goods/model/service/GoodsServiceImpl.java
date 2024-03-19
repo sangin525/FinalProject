@@ -11,6 +11,7 @@ import kr.co.project.common.pageing.PageInfo;
 import kr.co.project.goods.model.dao.GoodsDAO;
 import kr.co.project.goods.model.dto.GoodsDTO;
 import kr.co.project.goods.model.dto.GoodsPhotosDTO;
+import kr.co.project.recipe.model.dto.RecipeDTO;
 
 @Service
 public class GoodsServiceImpl implements GoodsService {
@@ -101,6 +102,10 @@ public class GoodsServiceImpl implements GoodsService {
 	public List<GoodsDTO> myInquiryList(int m_no) {
 		
 		return goodsDAO.myInquiryList(sqlSession,m_no);
+	}
+	@Override
+	public int deleteProduct(GoodsDTO goodsDTO) {
+		return goodsDAO.deleteProduct(sqlSession, goodsDTO);
 	}
 
 

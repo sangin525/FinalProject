@@ -738,7 +738,7 @@ textarea::-webkit-scrollbar-thumb:hover {
 .accordion_q_tit2{
     padding: 1px 0 4px 0;
     font-size: 14px;
-    width: 724px;
+    width: 550px;
     display: inline-block;
 }
 
@@ -747,7 +747,7 @@ textarea::-webkit-scrollbar-thumb:hover {
     font-weight: normal;
     font-size: 14px;
     color: #888;
-    margin-left: 60px;
+    margin-left: 20px;
 }
 
 .questionsDetail{

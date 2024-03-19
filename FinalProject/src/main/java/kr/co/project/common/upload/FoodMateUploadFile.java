@@ -23,7 +23,7 @@ public class FoodMateUploadFile {
 
 
 
-private static final String UPLOAD_PATH="C:\\Users\\rlwjd\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
+private static final String UPLOAD_PATH="C:\\Users\\kaw19\\git\\finalProject\\FinalProject\\src\\main\\webapp\\resources\\uploads\\";
 
 
 	public static boolean deleteFile(String fileName, String boardName) {

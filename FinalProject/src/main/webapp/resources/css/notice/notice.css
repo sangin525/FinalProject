@@ -531,9 +531,11 @@ a {
 	background-color: green;
 }
 
-
-
-
+pre {
+	padding: 10px;
+	overflow: auto;
+	white-space: pre-wrap;
+}
 
 
 
